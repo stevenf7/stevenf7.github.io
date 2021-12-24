@@ -1,7 +1,6 @@
 import React from "react";
 
 const Card = ({ heading, paragraph, imgUrl, projectLink }) => {
-  let link = window.location.origin + projectLink;
   return (
     <div
       className="card"
@@ -17,7 +16,7 @@ const Card = ({ heading, paragraph, imgUrl, projectLink }) => {
         <p className="text">{paragraph}</p>
 
         <button 
-          onClick= {event =>  window.location.href=link } 
+          onClick= {event =>  window.location.href=projectLink } 
           type="button" className="btn"> Explore
         </button>
       </div>
