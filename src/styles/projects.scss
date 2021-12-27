@@ -59,6 +59,7 @@
                   @include media(">=lgphone", "<tablet") {
                     font-size: 10px;
                     line-height: 10px;
+                    display: none;
                   }
                   @include media(">=tablet", "<desktop") {
                     font-size: 14px;
