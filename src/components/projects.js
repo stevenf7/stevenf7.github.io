@@ -55,7 +55,7 @@ const Project = () => {
               <img
                 className="d-block w-100"
                 src={watoImage}
-                alt="Second slide"
+                alt="Watonomous"
                 fluid
               />
               <Carousel.Caption className="carouselCaption">
@@ -85,12 +85,12 @@ const Project = () => {
               <img
                 className="d-block w-100"
                 src={webappImg}
-                alt="Third slide"
+                alt="Webapps"
                 fluid
               />
               <Carousel.Caption className="carouselCaption">
-                <h3>Intelibatch (left) Purrtector (right)</h3>
-                <h4>Best Use of Google Cloud Award (Purrtector, NWHacks)</h4>
+                <h3>Webapp Hackathon Projects</h3>
+                <h4>Best Use of Google Cloud Award (Purrtector, NWHacks 2021)</h4>
                 <p>
                   Intelibatch (left) is a webapp for displaying and predicting COVID19 cases across North America using React (front end), Flask (back end), and Tensorflow (prediction) to compute the optimal batch size for repeated testing<br></br><br></br>
                   Purrtech (right) is a chrome extension for encouraging planet positive behaviors by rewarding users with digital pets using React and Flask.
@@ -121,15 +121,15 @@ const Project = () => {
               <img
                 className="d-block w-100"
                 src={wearableImg}
-                alt="Third slide"
+                alt="Wearables"
                 fluid
               />
               <Carousel.Caption className="carouselCaption">
                 <h3>Wearable Hackathon Projects</h3>
-                <h4>1st Place at MakeUofT (VisionSense, 2019)</h4>
+                <h4>1st Place (VisionSense, MakeUofT 2019)</h4>
                 <p>
                   VisionSense (left) is an IoT outfit to haptically guide users with visual impairments/obstructions while monitoring their environment<br></br><br></br>
-                  Nightlight (right) is a design that allows bike users to signal turns at night via motion-sensing technologies which will activate turn lights
+                  Nightlight (right) is a wearable that allows bike users to signal turns at night via motion-sensing technologies which will activate turn lights
                 </p>
                 <button
                   onClick={event =>
@@ -149,7 +149,7 @@ const Project = () => {
                   type="button"
                   className="btn"
                 >
-                  Nightlight
+                  NightLight
                 </button>
 
 
@@ -160,14 +160,14 @@ const Project = () => {
               <img
                 className="d-block w-100"
                 src={mte380Img}
-                alt="Third slide"
+                alt="bofa"
                 fluid
               />
               <Carousel.Caption className="carouselCaption">
                 <h3>BOFA, the Line Follower Robot</h3>
                 <h4>2nd highest competition mark</h4>
                 <p>
-                  Lead the mechanical design for a line following robot using SolidWorks, drafted Bill of Material, and oversee project as project manager
+                  Lead the mechanical design for a line following robot using SolidWorks, drafted Bill of Material, and oversee software, mechanical, and electrical developments as project manager
                 </p>
                 <button
                   onClick={event =>
@@ -186,7 +186,7 @@ const Project = () => {
               <img
                 className="d-block w-100"
                 src={hisecurityImage}
-                alt="Third slide"
+                alt="hisecurity"
                 fluid
               />
               <Carousel.Caption className="carouselCaption">
@@ -216,14 +216,15 @@ const Project = () => {
               <img
                 className="d-block w-100"
                 src={vexImg}
-                alt="Third slide"
+                alt="vex"
                 fluid
               />
               <Carousel.Caption className="carouselCaption">
                 <h3>VEX Robotics</h3>
                 <h4>Finalists, Alberta Provincial Championship 2017 and 2018</h4>
                 <p>
-                This was my first time working with robots. Over the three years, we qualified and competed at VEX World Robotics Championship twice and ultimately propelled me towards robotics engineering and turning this hobby into a career.
+                Over the three years, we explored various robotics systems such as holonomic drives, reverse double four bar lifts, and even learned C programming and programed PID controllers from scratch in a team of three.
+                <br></br>Furthermore, we qualified and competed at VEX World Robotics Championship representing Canada twice, and this experience ultimately propelled me towards a career in robotics engineering.
                 </p>
 
                 <button
@@ -243,7 +244,7 @@ const Project = () => {
               <img
                 className="d-block w-100"
                 src={pilotImg}
-                alt="Third slide"
+                alt="pilot"
                 fluid
               />
               <Carousel.Caption className="carouselCaption">
