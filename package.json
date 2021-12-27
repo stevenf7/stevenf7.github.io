@@ -8,7 +8,7 @@
     "bootstrap": "^5.1.3",
     "gatsby": "^2.26.1",
     "gatsby-background-image": "^1.6.0",
-    "gatsby-image": "^2.5.0",
+    "gatsby-image": "^2.11.0",
     "gatsby-plugin-manifest": "^2.6.1",
     "gatsby-plugin-offline": "^3.4.0",
     "gatsby-plugin-react-helmet": "^3.4.0",
@@ -36,7 +36,7 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "deploy": "gatsby build --prefix-paths && ghpages -d public", 
+    "deploy": "gatsby build && gh-pages -d public -b main",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
@@ -47,7 +47,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/stevenf7/stevenf7.github.io/"
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"

@@ -1,0 +1,123 @@
+@import "include-media.scss";
+
+.project-wrapper {
+    width: 60vw;
+    margin-top: 3vh;
+    
+    flex-direction: column;
+    align-items: center;
+    font-family: "Open Sans";
+
+    @include media(">=phone", "<lgphone") {
+        width: 100vw;
+      }
+      @include media(">=lgphone", "<tablet") {
+        width: 80vw;
+      }
+      @include media(">=tablet", "<desktop") {
+        width: 75vw;
+      }
+    .masterCarousel{
+        &:hover .carouselCaption{
+            opacity: 1;
+            transform: translate(0, 0px);
+            background-color:rgba(0,0,0,0.6);
+        }
+        .carouselCaption{
+            font-family: "Open Sans";
+            cursor: pointer;
+            padding: 10px;
+            opacity: 0;
+            transition: all 500ms ease-in-out;
+            h3{
+                font-size: 30px;
+                line-height: 30px;
+                @include media(">=phone", "<lgphone") {
+                    font-size: 12px;
+                    line-height: 12px;
+                  }
+                  @include media(">=lgphone", "<tablet") {
+                    font-size: 16px;
+                    line-height: 16px;
+                  }
+                  @include media(">=tablet", "<desktop") {
+                    font-size: 20px;
+                    line-height: 20px;
+                  }
+            }
+        
+            p{
+                font-size: 16px;
+                line-height: 16px;
+                justify-content: left;
+                @include media(">=phone", "<lgphone") {
+                    font-size: 0px;
+                    line-height: 0px;
+                    display: none;
+                  }
+        
+                  @include media(">=lgphone", "<tablet") {
+                    font-size: 10px;
+                    line-height: 10px;
+                  }
+                  @include media(">=tablet", "<desktop") {
+                    font-size: 14px;
+                    line-height: 14px;
+                }
+            }
+
+            h4{
+                font-size: 16px;
+                line-height: 16px;
+                font-style: oblique;
+                @include media(">=phone", "<lgphone") {
+                    font-size: 8px;
+                    line-height: 8px;
+                    
+                  }
+        
+                  @include media(">=lgphone", "<tablet") {
+                    font-size: 10px;
+                    line-height: 10px;
+                  }
+                  @include media(">=tablet", "<desktop") {
+                    font-size: 14px;
+                    line-height: 14px;
+                }
+            }
+
+            .btn {
+                background-color: black;
+                color: white;
+                padding: 1%;
+                text-decoration: none;
+                margin-bottom: 10px;
+                @include media(">=phone", "<lgphone") {
+                    font-size: 8px;
+                    line-height: 8px;
+                  }
+        
+                  @include media(">=lgphone", "<tablet") {
+                    font-size: 10px;
+                    line-height: 10px;
+                  }
+                  @include media(">=tablet", "<desktop") {
+                    font-size: 14px;
+                    line-height: 14px;
+                }
+              }
+          
+        }
+    }
+
+    h2{
+        text-align: center;
+        font-size: 3rem;
+        line-height: 3rem;
+        margin-bottom: 2vh;
+    }
+
+
+  }
+
+

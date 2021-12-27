@@ -4,9 +4,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  h1 {
+  h1{
+    text-align: center;
     font-size: 3rem;
-    line-height: 3rem;
+    line-height: 6rem;
+    margin-bottom: 2vh;
+    white-space: normal;
   }
   .grid {
     display: grid;

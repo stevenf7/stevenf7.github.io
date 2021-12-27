@@ -1,7 +1,7 @@
 import React from "react"
 
 const Navbar = () => {
-  let resumelink = window.location.origin + "/resume/";
+  let resumelink = "/resume/";
   return (
     <div className="section">
       <div className="container">
