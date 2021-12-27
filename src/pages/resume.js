@@ -12,7 +12,7 @@ export default function Resume() {
         <SEO title="Resume" />
         <Container>
         <h1>Resume</h1>
-        <iframe src="https://drive.google.com/file/d/1j0EH9eTQvSfKvXiGWYdnqBM3PW2hqIhB/preview" width="850" height="1100" allow="autoplay" className="Resume">Resume</iframe>
+        <iframe src="https://drive.google.com/file/d/1j0EH9eTQvSfKvXiGWYdnqBM3PW2hqIhB/preview" width="850" height="1100" allow="autoplay" className="Resume" title="Resume">Resume</iframe>
         </Container>
       </Layout>
     </div>

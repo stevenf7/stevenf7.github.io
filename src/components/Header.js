@@ -37,7 +37,7 @@ const Header = () => {
                     typeSpeed={70}
                     deleteSpeed={50}
                     delaySpeed={1200}
-                    words={["Robotics Engineer", "Pilot", "Code Monkey", "Embedded Developer", "accordionist", "Simulation Developer", "Path Planner", "clarinetist", "Firmware Developer"]}
+                    words={["Robotics Engineer", "Pilot", "Code Monkey", "Embedded Developer", "Accordionist", "Simulation Developer", "Path Planner", "Clarinetist", "Firmware Developer"]}
 
                   />
                 </span>

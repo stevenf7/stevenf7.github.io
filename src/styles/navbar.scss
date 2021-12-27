@@ -23,6 +23,18 @@
       &:hover {
         opacity: 1;
       }
+      @include media(">=phone", "<lgphone") {
+        font-size: 12px;
+        line-height: 12px;
+      }
+      @include media(">=lgphone", "<tablet") {
+        font-size: 16px;
+        line-height: 16px;
+      }
+      @include media(">=tablet", "<desktop") {
+        font-size: 20px;
+        line-height: 20px;
+      }
     }
     .active {
       color: black;
