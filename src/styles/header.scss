@@ -6,8 +6,18 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  
   background-attachment: fixed;
-
+  
+  @include media(">=phone", "<lgphone") {
+    background-attachment: scroll;
+  }
+  @include media(">=lgphone", "<tablet") {
+    background-attachment: scroll;
+  }
+  @include media(">=tablet", "<desktop") {
+    background-attachment: scroll;
+  }
   h2 {
     margin-top: 70vh;
     line-height: 70px;
@@ -28,6 +38,8 @@
       line-height: 50px;
     }
   }
+
+
   .heading-wrapper {
     h1 {
       margin-top: 2vh;
