@@ -31,6 +31,9 @@
       img {
         height: 4rem;
       }
+      img:hover{
+        transform: scale(1.1);
+      }
       p {
         font-size: 20px;
       }

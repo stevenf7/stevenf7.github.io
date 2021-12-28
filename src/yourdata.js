@@ -106,7 +106,7 @@ export default {
 
   // About Secton --------------
   aboutParaOne:
-    "I am a incoming 4th year mechatronics engineering student from the University of Waterloo. I have 6 planned coops in various sectors such as robotics, automotive, IoT, and education; and gained valuable experiences with C++, Python, and tools such as .NET, Unity and more.",
+    "I am an incoming 4th year mechatronics engineering student from the University of Waterloo. I have 6 planned coops in various sectors such as robotics, automotive, IoT, and education; and gained valuable experiences with C++, Python, and tools such as .NET, Unity and more.",
   aboutParaTwo:
     "Outside of school, I am a part of WATonomous, the Waterloo's self driving car team where I gained insights in autonomous vehicles and experiences with ROS. In addition, I compete in hackathons and built 10 unique projects which won numerous awards and learned tools such as Tensorflow and OpenCV.",
   aboutParaThree:

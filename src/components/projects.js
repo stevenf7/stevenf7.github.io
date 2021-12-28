@@ -40,8 +40,8 @@ const Project = () => {
                 </p>
                 <button
                   onClick={event =>
-                    (window.location.href =
-                      "https://github.com/The-Airplane-Project/Remote-Controlled-Airplane")
+                    (window.open(
+                      "https://github.com/The-Airplane-Project/Remote-Controlled-Airplane"))
                   }
                   type="button"
                   className="btn"
@@ -70,8 +70,8 @@ const Project = () => {
                 
                 <button
                   onClick={event =>
-                    (window.location.href =
-                      "https://www.watonomous.ca/")
+                    (window.open(
+                      "https://www.watonomous.ca/"))
                   }
                   type="button"
                   className="btn"
@@ -97,8 +97,8 @@ const Project = () => {
                 </p>
                 <button
                   onClick={event =>
-                    (window.location.href =
-                      "https://devpost.com/software/pool-sampler")
+                    (window.open(
+                      "https://devpost.com/software/pool-sampler"))
                   }
                   type="button"
                   className="btn"
@@ -107,8 +107,8 @@ const Project = () => {
                 </button>
                 <button
                   onClick={event =>
-                    (window.location.href =
-                      "https://devpost.com/software/purrtech")
+                    (window.open(
+                      "https://devpost.com/software/purrtech"))
                   }
                   type="button"
                   className="btn"
@@ -133,8 +133,8 @@ const Project = () => {
                 </p>
                 <button
                   onClick={event =>
-                    (window.location.href =
-                      "https://devpost.com/software/visionsense")
+                    (window.open(
+                      "https://devpost.com/software/visionsense"))
                   }
                   type="button"
                   className="btn"
@@ -143,8 +143,8 @@ const Project = () => {
                 </button>
                 <button
                   onClick={event =>
-                    (window.location.href =
-                      "https://devpost.com/software/team-18-go-team")
+                    (window.open(
+                      "https://devpost.com/software/team-18-go-team"))
                   }
                   type="button"
                   className="btn"
@@ -171,8 +171,8 @@ const Project = () => {
                 </p>
                 <button
                   onClick={event =>
-                    (window.location.href =
-                      "https://github.com/B-O-F-A")
+                    (window.open(
+                      "https://github.com/B-O-F-A"))
                   }
                   type="button"
                   className="btn"
@@ -197,8 +197,8 @@ const Project = () => {
                 </p>
                 <button
                   onClick={event =>
-                    (window.location.href =
-                      "https://devpost.com/software/acs-htn2019")
+                    (window.open(
+                      "https://devpost.com/software/acs-htn2019"))
                   }
                   type="button"
                   className="btn"
@@ -229,9 +229,9 @@ const Project = () => {
 
                 <button
                   onClick={event =>
-                    (window.location.href =
+                    (window.open(
                       "https://globalnews.ca/video/3355924/sir-winston-churchill-students-head-to-vex-robotics-world-championship/")
-                  }
+                      )  }
                   type="button"
                   className="btn"
                 >

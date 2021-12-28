@@ -16,7 +16,7 @@
     justify-content: space-evenly;
   
     .content {
-      width: 50%;
+      width: 68%;
       @include media(">=phone", "<lgphone") {
         width: 100%;
       }
@@ -30,7 +30,7 @@
   
       p {
         margin-top: 1vh;
-        font-size: 1.5rem;
+        font-size: 1rem;
         @include media(">=phone", "<lgphone") {
           font-size: 0.8rem;
           text-align: center;     
@@ -47,7 +47,7 @@
     }
   
     .img-fluid {
-      width: 50%;
+      width: 32%;
       align-items: right;
       justify-content: center;
       overflow: hidden;
