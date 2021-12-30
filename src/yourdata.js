@@ -20,83 +20,114 @@ import UwaterlooIcon from "./images/Company/Uwaterloo.png"
 import KhazanahIcon from "./images/Company/Khazanah.png"
 import FordIcon from "./images/Company/Ford.jpg"
 
-//import 
+
 
 
 export default {
 
-  //   Header Details ---------------------
+ 
   name: "Steven Feng",
-  //   Header Paragraph
+ 
   headerParagraph:
     "I'm a driven Mechatronics Engineering Student with AI specialization from UWaterloo with passion in software engineering, prototyping, and mechanical design; and experience in robotics, autonomous vehicle, and IoT.",
 
-  //Contact Email
   contactEmail: "jy5feng@uwaterloo.ca",
 
-  // End Header Details -----------------------
-
-  // Work Section ------------------------
   projects: [
     {
-      title: "Tesla", //Project Title - Add Your Project Title Here
+      title: "Tesla", 
       para:
-        "I will be joining Tesla's in Summer 2022, on the body firmware control team, which develops software that control all the cabin internals inside the Teslas", // Add Your Service Type Here
-      //Project Image - Add Your Project Image Here
+        "I will be joining Tesla's body firmware controls team in Summer 2022, which develops software that control all the cabin internals inside the Teslas", // Add Your Service Type Here
+      
       imageSrc:
         TeslaIcon,
-      //Project URL - Add Your Project Url Here
+      
       url: "/work/tesla/",
+
+      date: "05/2022 - 08/2022 ",
+
+      description:
+      "I will be joining the body firmware controls team in Summer 2022, stay tuned.",
     },
     {
-      title: "NVIDIA AI", //Project Title - Add Your Project Title Here
+      title: "NVIDIA AI", 
       para:
         "I will be joining NVIDIA AI ISSAC Robotics Sim team, which is a scalable robotics simulation and synthetic data generation tool that powers photorealistic, and physically accurate metaverse for training advance robots.", // Add Your Service Type Here
-      //Project Image - Add Your Project Image Here
+      
       imageSrc:
         NVIDIAIcon,
-      //Project URL - Add Your Project Url Here
+   
       url: "/work/nvidia/",
+      
+      date: "01/2022 - 04/2022 ",
+
+      description:
+      "- I will be joining the Issac Simulation team in winter 2022, stay tuned.",
+    
     },
+
     {
-      title: "Ecobee", //Project Title - Add Your Project Title Here
+      title: "Ecobee", 
       para:
         "Ecobee is a Canadian Smart Thermostat Company, I joined Ecobee as an embedded developer, worked on fixtures that supports thermostats productions and developed computer vision and machine learning algorithms for testing displays", // Add Your Service Type Here
-      //Project Image - Add Your Project Image Here
+      
       imageSrc:
         EcobeeIcon  ,    
-      //Project URL - Add Your Project Url Here
+     
       url: "/work/ecobee/",
+
+      date: "05/2021 - 08/2021 ",
+
+      description:
+      "- Built display testing pipeline using C++ OpenCV to detect discoloration, misalignment, dead pixels, and poor connections, capable of detecting alignment offsets of 0.5mm and dead pixels under 0.2mm\n\n - Prototyped LCD tests using Convolutional Neural Network and TensorFlow with 98% accuracy, won Best Internal Impact Award \n\n       -	Gathered requirements, designed, and developed customer firmware flash and label printer software for the smart thermostats using C++/CLI and .NET framework, logging results using MongoDB, printing labels using ZPL \n\n       -	Drafted documentation and deployed customer firmware flash and label printer software at Wistron factory for Design Validation Test, projected to flash 80000+ units per month in full production",
+   
     },
     {
-      title: "University of Waterloo, Faculty of Electrical and Computer Engineering", //Project Title - Add Your Project Title Here
+      title: "University of Waterloo, Faculty of Electrical and Computer Engineering", 
+
       para:
         "I joined the Teaching Team for an introductory C++ programming course as a TA, hosted tutorials, graded assessments, created exam questions, and supported the automated testing server using Python.", // Add Your Service Type Here
-      //Project Image - Add Your Project Image Here
+      
       imageSrc:
         UwaterlooIcon,
-      //Project URL - Add Your Project Url Here
+      
       url: "/work/uwaterloota/",
+
+      date: "09/2020 - 12/2020 ",
+
+      description:
+      "- Designed questions on quizzes, midterm, and final and created automated testing using C++ and python to grade 300+ submissions per assessment and provide instantaneous feedback using Python expect library and regular expression based on the SOLID design principle\n   - Lead lab and help sessions for 300+ students assisted with teaching concepts in C++, such as dynamic memory allocation, Object-Oriented Programming, pointers, and linked lists, leads to a significant increase in student grades",
+      
     },
     {
-      title: "Khazanah National Americas", //Project Title - Add Your Project Title Here
+      title: "Khazanah National Americas", 
       para:
         "Khazanah is a National Wealth Fund that primarily invest in Silicon Valley startups, and as an innovation intern, I worked on different projects in the fields of drone, computer vision, AR/VR to better understand and explain the technologies to the investors", // Add Your Service Type Here
-      //Project Image - Add Your Project Image Here
+      
       imageSrc:
         KhazanahIcon,
-      //Project URL - Add Your Project Url Here
+      
       url: "/work/khazanah/",
+
+      date: "01/2020 - 04/2020 ",
+
+      description:
+      "- Created a VR game based on Atari’s Asteroids for Oculus Go platform, designed game logic, collision physics, and cloud leaderboard using C#, Unity, and Oculus developer toolkit, created asteroid models with blender \n- Developed novel computer vision-based control for drones using Python OpenCV library, capable of tracking and following an Aruco marker in different lighting conditions up to 10 meters away, and autonomous take-off and land.\n\n - Design open-sourced smart germicidal device with UV-C bulbs to sterilize personal devices; won Editor’s Choice Award on Instructable",
     },
     {
-      title: "Ford", //Project Title - Add Your Project Title Here
+      title: "Ford", 
       para:
         "At Ford Motor Company, I worked on supporting the various chipsets used in the F150 as a member of the manufacturing software team, using tools such as jenkins, NI Teststand, C++, and Python.", // Add Your Service Type Here
-      //Project Image - Add Your Project Image Here
+      
       imageSrc:
         FordIcon,
-      //Project URL - Add Your Project Url Here
+     
       url: "/work/ford/",
+
+      date: "05/2019 - 08/2019 ",
+
+      description:
+      "  -	Developed automation pipeline to flash and systematically test devices routinely on the Jenkins platform for over 100 daily tests \n\n  -	Prototyped utility to flash multiple chips simultaneously on TestStand using C#, increasing efficiency by over 2 times",
     },
 
 

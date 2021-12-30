@@ -31,6 +31,11 @@
       color: white;
       margin-bottom: 30px;
     }
+
+    h6{
+      white-space: pre-wrap;
+    }
+
     .btn {
       background-color: black;
       color: white;
@@ -38,6 +43,8 @@
       text-decoration: none;
       margin-bottom: 30px;
     }
+
+
 
     &:hover {
       opacity: 1;
