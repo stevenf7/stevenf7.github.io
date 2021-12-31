@@ -3,8 +3,11 @@ import Card from "./atoms/Card"
 import Fade from "react-reveal/Fade"
 
 import data from "../yourdata"
+import {useState} from "react"
+import Modal from "./modal"
 
 const Work = () => {
+  const [openModal, setOpenModal] = useState(false);
   return (
     <div className="section" id="work">
       <div className="container">
@@ -22,10 +25,14 @@ const Work = () => {
                   paragraph={project.para}
                   imgUrl={project.imageSrc}
                   projectLink={project.url}
+                  setOpenModal = {setOpenModal}
                 ></Card>
               ))}
             </Fade>
           </div>
+
+          {openModal&&<Modal closeModal={setOpenModal} />}
+    
         </div>
       </div>
     </div>
