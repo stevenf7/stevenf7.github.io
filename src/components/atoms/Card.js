@@ -2,10 +2,7 @@ import React from "react";
 
 
 
-
-const Card = ({ heading, paragraph, imgUrl, projectLink, setOpenModal}) => {
-  
-
+const Card = ({id, heading, paragraph, imgUrl, projectLink, setOpenModal, setId}) => {
   return (
    
     <div
@@ -22,7 +19,10 @@ const Card = ({ heading, paragraph, imgUrl, projectLink, setOpenModal}) => {
         <p className="text">{paragraph}</p>
 
         <button 
-          onClick= {()=>{setOpenModal(true)}}
+          onClick= {()=>{
+            setOpenModal(true);
+            setId(id);
+          }}
           type="button" className="btn"> Explore
         </button>
         
