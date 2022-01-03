@@ -20,8 +20,13 @@ import UwaterlooIcon from "./images/Company/Uwaterloo.png"
 import KhazanahIcon from "./images/Company/Khazanah.png"
 import FordIcon from "./images/Company/Ford.jpg"
 
-
-
+// company image
+import TeslaImg from "./images/workPhotos/TeslaWork.jpg"
+import IssacSim from "./images/workPhotos/IssacSim.jpg"
+import Khazanah from "./images/workPhotos/khazanahInnovation.jpg"
+import uwaterloo from "./images/workPhotos/uwaterlootaImg.jpg"
+import ford from "./images/workPhotos/Ford.jpg"
+import ecobee from "./images/workPhotos/ecobeeProduct.png"
 
 export default {
 
@@ -47,7 +52,10 @@ export default {
       date: "05/2022 - 08/2022 ",
 
       description:
-      "I will be joining the body firmware controls team in Summer 2022, stay tuned.",
+      ["I will be joining the body firmware controls team in Summer 2022, stay tuned.",],
+
+      workImg:
+        TeslaImg,
     },
     {
       title: "NVIDIA AI", 
@@ -62,8 +70,10 @@ export default {
       date: "01/2022 - 04/2022 ",
 
       description:
-      "- I will be joining the Issac Simulation team in winter 2022, stay tuned.",
-    
+      ["I will be joining the Issac Simulation team in winter 2022, stay tuned."],
+      
+      workImg:
+        IssacSim,
     },
 
     {
@@ -79,8 +89,10 @@ export default {
       date: "05/2021 - 08/2021 ",
 
       description:
-      "- Built display testing pipeline using C++ OpenCV to detect discoloration, misalignment, dead pixels, and poor connections, capable of detecting alignment offsets of 0.5mm and dead pixels under 0.2mm\n\n - Prototyped LCD tests using Convolutional Neural Network and TensorFlow with 98% accuracy, won Best Internal Impact Award \n\n       -	Gathered requirements, designed, and developed customer firmware flash and label printer software for the smart thermostats using C++/CLI and .NET framework, logging results using MongoDB, printing labels using ZPL \n\n       -	Drafted documentation and deployed customer firmware flash and label printer software at Wistron factory for Design Validation Test, projected to flash 80000+ units per month in full production",
+      ["Built display testing pipeline using C++ OpenCV to detect discoloration, misalignment, dead pixels, and poor connections, capable of detecting alignment offsets of 0.5mm and dead pixels under 0.2mm", " Prototyped LCD tests using Convolutional Neural Network and TensorFlow with 98% accuracy, won Best Internal Impact Award" , "Gathered requirements, designed, and developed customer firmware flash and label printer software for the smart thermostats using C++/CLI and .NET framework, logging results using MongoDB, printing labels using ZPL","Drafted documentation and deployed customer firmware flash and label printer software at Wistron factory for Design Validation Test, projected to flash 80000+ units per month in full production"],
    
+      workImg:
+        ecobee,
     },
     {
       title: "University of Waterloo, Faculty of Electrical and Computer Engineering", 
@@ -96,8 +108,11 @@ export default {
       date: "09/2020 - 12/2020 ",
 
       description:
-      "- Designed questions on quizzes, midterm, and final and created automated testing using C++ and python to grade 300+ submissions per assessment and provide instantaneous feedback using Python expect library and regular expression based on the SOLID design principle\n   - Lead lab and help sessions for 300+ students assisted with teaching concepts in C++, such as dynamic memory allocation, Object-Oriented Programming, pointers, and linked lists, leads to a significant increase in student grades",
+      ["Designed questions on quizzes, midterm, and final and created automated testing using C++ and python to grade 300+ submissions per assessment and provide instantaneous feedback using Python expect library and regular expression based on the SOLID design principle","Lead lab and help sessions for 300+ students assisted with teaching concepts in C++, such as dynamic memory allocation, Object-Oriented Programming, pointers, and linked lists, leads to a significant increase in student grades"],
       
+      
+      workImg:
+        uwaterloo,
     },
     {
       title: "Khazanah National Americas", 
@@ -112,7 +127,11 @@ export default {
       date: "01/2020 - 04/2020 ",
 
       description:
-      "- Created a VR game based on Atari’s Asteroids for Oculus Go platform, designed game logic, collision physics, and cloud leaderboard using C#, Unity, and Oculus developer toolkit, created asteroid models with blender \n- Developed novel computer vision-based control for drones using Python OpenCV library, capable of tracking and following an Aruco marker in different lighting conditions up to 10 meters away, and autonomous take-off and land.\n\n - Design open-sourced smart germicidal device with UV-C bulbs to sterilize personal devices; won Editor’s Choice Award on Instructable",
+      ["Created a VR game based on Atari’s Asteroids for Oculus Go platform, designed game logic, collision physics, and cloud leaderboard using C#, Unity, and Oculus developer toolkit, created asteroid models with blender","Developed novel computer vision-based control for drones using Python OpenCV library, capable of tracking and following an Aruco marker in different lighting conditions up to 10 meters away, and autonomous take-off and land.","Design open-sourced smart germicidal device with UV-C bulbs to sterilize personal devices; won Editor’s Choice Award on Instructable"],
+    
+      workImg:
+        Khazanah,
+    
     },
     {
       title: "Ford", 
@@ -127,7 +146,11 @@ export default {
       date: "05/2019 - 08/2019 ",
 
       description:
-      "  -	Developed automation pipeline to flash and systematically test devices routinely on the Jenkins platform for over 100 daily tests \n\n  -	Prototyped utility to flash multiple chips simultaneously on TestStand using C#, increasing efficiency by over 2 times",
+      ["Developed automation pipeline to flash and systematically test devices routinely on the Jenkins platform for over 100 daily tests","Prototyped utility to flash multiple chips simultaneously on TestStand using C#, increasing efficiency by over 2 times"],
+      
+      workImg:
+      ford,
+    
     },
 
 

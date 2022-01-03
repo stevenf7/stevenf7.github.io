@@ -1,7 +1,10 @@
 import React from "react";
 
-const Card = ({ heading, paragraph, imgUrl, projectLink }) => {
+
+
+const Card = ({id, heading, paragraph, imgUrl, projectLink, setOpenModal, setId}) => {
   return (
+   
     <div
       className="card"
       style={{
@@ -16,11 +19,17 @@ const Card = ({ heading, paragraph, imgUrl, projectLink }) => {
         <p className="text">{paragraph}</p>
 
         <button 
-          onClick= {event =>  window.location.href=projectLink } 
+          onClick= {()=>{
+            setOpenModal(true);
+            setId(id);
+          }}
           type="button" className="btn"> Explore
         </button>
+        
       </div>
+      
     </div>
+    
   )
 }
 
