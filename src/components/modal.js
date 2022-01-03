@@ -5,7 +5,9 @@ import "./../css/modal.scss"
 export default function Modal({ closeModal, id }) {
   return (
     <>
-      <div className="modalBackground"></div>
+      <div className="modalBackground" onClick={() => {
+              closeModal(false)
+            }}></div>
       <div className="modalContainer">
         <div className="titleCloseBtn">
           <button
@@ -22,9 +24,9 @@ export default function Modal({ closeModal, id }) {
         <div className="body">
           <p>{data.projects[id].description}</p>
         </div>
-        <div className="footer">
+        {/* <div className="footer">
           <button onClick={() => closeModal(false)}>close</button>
-        </div>
+        </div> */}
       </div>
     </>
   )
