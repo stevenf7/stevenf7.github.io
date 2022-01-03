@@ -1,8 +1,9 @@
+@import "./../styles/include-media.scss";
 .modalBackground {
     top: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #2e2e2e69;
+    background-color: #0e0e0e7e;
     position: fixed;
     display: flex;
     justify-content: center;
@@ -11,7 +12,8 @@
   }
   
   .modalContainer {
-    width: 500px;
+    width: 60vw;
+    max-height: 90vh;
     border-radius: 12px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -23,13 +25,54 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10000;
+
+    overflow: auto;
+    @include media(">=phone", "<lgphone") {
+      width: 100%;       
+    }
+    @include media(">=lgphone", "<tablet") {
+      width: 100%;
+    }
+    @include media(">=tablet", "<desktop") {
+      width: 100%;
+    }
+
   }
   
   .modalContainer .title {
     display: inline-block;
     text-align: center;
-    margin-top: 10px;
-    line-height: 1em;
+    margin-bottom: 1em;
+    h1{
+      margin-top: 0px;
+      line-height: 1em;
+      font-size: 3em;
+
+      @include media(">=phone", "<lgphone") {
+        font-size: 1em;       
+      }
+      @include media(">=lgphone", "<tablet") {
+        font-size: 1.5em;
+      }
+      @include media(">=tablet", "<desktop") {
+        font-size: 2em;
+      }
+
+    }
+
+    h2{
+      line-height: 1em;
+      font-size: 2em;
+      @include media(">=phone", "<lgphone") {
+        font-size: 0.8em;       
+      }
+      @include media(">=lgphone", "<tablet") {
+        font-size: 1em;
+      }
+      @include media(">=tablet", "<desktop") {
+        font-size: 1.5em;
+      }
+    }
   }
   
   .titleCloseBtn {
@@ -40,15 +83,53 @@
   .titleCloseBtn button {
     background-color: transparent;
     border: none;
-    font-size: 25px;
+    font-size: 2rem;
     cursor: pointer;
   }
   
   .modalContainer .body {
-    flex: 50%;
-    display: flex;
     justify-content: center;
-    align-items: center;
-    font-size: 1.7rem;
-    text-align: center;
+    align-items: flex-start;
+    @include media(">=desktop") {
+      display: flex;
+    }
+
+    img{
+      width: 50%;
+      justify-content: center;
+      overflow: hidden;
+      max-height: 60vh;
+      margin-bottom: 1rem;
+      object-fit: cover;
+      @include media(">=phone", "<lgphone") {
+        width: 100%;       
+      }
+      @include media(">=lgphone", "<tablet") {
+        width: 100%;
+      }
+      @include media(">=tablet", "<desktop") {
+        width: 100%;
+      }
+    }
+    ul{
+      width: 50%;
+      margin-top: 0;
+      @include media(">=phone", "<lgphone") {
+        width: 100%;
+        font-size: 0.5rem;       
+      }
+      @include media(">=lgphone", "<tablet") {
+        width: 100%;
+        font-size: 0.75rem;
+      }
+      @include media(">=tablet", "<desktop") {
+        width: 100%;
+        font-size: 1rem;
+      }
+      font-size: 1.5rem;
+
+      li{
+        padding: 0em 1em 0.5em 1em;
+      };
+    }
   }
