@@ -34,7 +34,7 @@ export default {
   name: "Steven Feng",
  
   headerParagraph:
-    "I'm a driven Mechatronics Engineering Student with AI specialization from UWaterloo with passion in software engineering, prototyping, and mechanical design; and experience in robotics, autonomous vehicle, and IoT.",
+    "I'm a driven Mechatronics Engineering Student with AI specialization from the University of Waterloo with passion in designing robotics systems and experience in C++ and Python programming for autonomous vehicle, control systems, and IoT.",
 
   contactEmail: "jy5feng@uwaterloo.ca",
 
@@ -52,7 +52,7 @@ export default {
       date: "05/2022 - 08/2022 ",
 
       description:
-      ["I will be joining the body firmware controls team in Summer 2022, stay tuned.",],
+      ["I will be joining the body firmware controls team in Summer 2022",],
 
       workImg:
         TeslaImg,
@@ -70,7 +70,7 @@ export default {
       date: "01/2022 - 04/2022 ",
 
       description:
-      ["I will be joining the Issac Simulation team in winter 2022, stay tuned."],
+      ["I will be joining the Issac Simulation team in winter 2022"],
       
       workImg:
         IssacSim,
@@ -156,23 +156,16 @@ export default {
 
   ],
 
-  // End Work Section -----------------------
-
   // About Secton --------------
   aboutParaOne:
-    "I am an incoming 4th year mechatronics engineering student from the University of Waterloo. I have 6 planned coops in various sectors such as robotics, automotive, IoT, and education; and gained valuable experiences with C++, Python, and tools such as .NET, Unity and more.",
+    "I am an incoming 4th year mechatronics engineering student from the University of Waterloo with 6 planned coops in various sectors such as robotics, automotive, IoT, and education, and gained valuable experiences with C++, Python, and tools such as .NET, Unity and more.",
   aboutParaTwo:
-    "Outside of school, I am a part of WATonomous, the Waterloo's self driving car team where I gained insights in autonomous vehicles and experiences with ROS. In addition, I compete in hackathons and built 10 unique projects which won numerous awards and learned tools such as Tensorflow and OpenCV.",
+    "Outside of school, I am a part of WATonomous, the Waterloo's self driving car team where I gained insights in autonomous vehicles and experiences with ROS. In addition, I compete in hackathons and have built 10 unique projects which won numerous awards and learned tools such as Tensorflow and OpenCV.",
   aboutParaThree:
-    "In my free time, I play the accordion and clarinet. I am also a fully licensed pilot, and I miss flying! I have also been playing a few strategy games lately, namely Total War and Civilization, add me on steam if you enjoy those games too.",
+    "In my free time, I play the accordion and clarinet. I am also a fully licensed pilot, and I miss flying!",
   aboutImage:
     "images/SelfPhoto.jpg",
 
-  //   End About Section ---------------------
-
-  // Skills Section ---------------
-
-  //   Import Icons from the top and link it here
 
   skills: [
     {
@@ -203,7 +196,7 @@ export default {
     {
       img: rosIcon,
       para:
-        "ROS, RVIZ, and learning ISSAC Sim",
+        "learning ROS, RVIZ, and  ISSAC Sim",
     },
   ],
 
@@ -213,8 +206,9 @@ export default {
 
   contactSubHeading: "Let's talk about robots!",
   social: [
-    // Add Or Remove The Link Accordingly
-    { img: githubIcon, url: "https://github.com/stevenf7" },
+
+    { img: githubIcon, 
+      url: "https://github.com/stevenf7" },
     {
       img: devpostIcon,
       url: "https://devpost.com/TheRealStevenFeng",
@@ -228,5 +222,3 @@ export default {
 
   // End Contact Section ---------------
 }
-
-// Thanks for using this template, I would love to hear from you contact me at hello@chetanverma.com
