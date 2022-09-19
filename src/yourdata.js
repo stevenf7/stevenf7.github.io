@@ -42,7 +42,7 @@ export default {
     {
       title: "Tesla", 
       para:
-        "I will be joining Tesla's body firmware controls team in Summer 2022, which develops software that control all the cabin internals inside the Teslas", // Add Your Service Type Here
+        "I worked on the  body firmware controls team, and developed control applications that run on the new palladium Model S, X, and Tesla Semi", // Add Your Service Type Here
       
       imageSrc:
         TeslaIcon,
@@ -52,7 +52,7 @@ export default {
       date: "05/2022 - 08/2022 ",
 
       description:
-      ["I will be joining the body firmware controls team in Summer 2022",],
+      ["Brought up lighting fault detection and lighting alerts for Tesla Semi headlamp, rear lights, and trailer lights using C","Designed Semi lighting inspection mode for controlling 19 unique light groups across 3 controllers in C and created SIL test with Python", "Created self tests for checking Semi’s mirror, latch, steering wheel, and horn and fixed various firmware bugs for Model S/X lighting in C"],
 
       workImg:
         TeslaImg,
@@ -60,7 +60,7 @@ export default {
     {
       title: "NVIDIA AI", 
       para:
-        "I will be joining NVIDIA AI ISSAC Robotics Sim team, which is a scalable robotics simulation and synthetic data generation tool that powers photorealistic, and physically accurate metaverse for training advance robots.", // Add Your Service Type Here
+        "I joined NVIDIA AI ISSAC Robotics Sim team, which is a scalable robotics simulation and synthetic data generation tool that powers photorealistic, and physically accurate metaverse for training advance robots.", // Add Your Service Type Here
       
       imageSrc:
         NVIDIAIcon,
@@ -70,7 +70,7 @@ export default {
       date: "01/2022 - 04/2022 ",
 
       description:
-      ["I will be joining the Issac Simulation team in winter 2022"],
+      ["Developed Quadruped extension for unitree A1 robots on Isaac Sim using Python, connected quadruped gait controlers to the quadruped model, and created ROS, ROS2, and Visual Inertial Odometry examples for Isaac Sim.","Created Isaac Sensor extension for simulating physic based sensors such as the contact sensor and IMU sensors using C++ and Python, written USD schema for the sensors, enabling visualization and modification of sensor parameters during runtime from the GUI", "Drafted user manual and extension documentations using Sphinx, and created unit tests for the quadruped and Isaac sensor extension."],
       
       workImg:
         IssacSim,
@@ -158,7 +158,7 @@ export default {
 
   // About Secton --------------
   aboutParaOne:
-    "I am an incoming 4th year mechatronics engineering student from the University of Waterloo with 6 planned coops in various sectors such as robotics, automotive, IoT, and education, and gained valuable experiences with C++, Python, and tools such as .NET, Unity and more.",
+    "I am an 4th year mechatronics engineering student from the University of Waterloo with 6 planned coops in various sectors such as robotics, automotive, IoT, and education, and gained valuable experiences with C++, Python, and tools such as .NET, Unity and more.",
   aboutParaTwo:
     "Outside of school, I am a part of WATonomous, the Waterloo's self driving car team where I gained insights in autonomous vehicles and experiences with ROS. In addition, I compete in hackathons and have built 10 unique projects which won numerous awards and learned tools such as Tensorflow and OpenCV.",
   aboutParaThree:
