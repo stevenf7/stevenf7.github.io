@@ -26,7 +26,7 @@ import IssacSim from "./images/workPhotos/IssacSim.jpg"
 import Khazanah from "./images/workPhotos/khazanahInnovation.jpg"
 import uwaterloo from "./images/workPhotos/uwaterlootaImg.jpg"
 import ford from "./images/workPhotos/Ford.jpg"
-import ecobee from "./images/workPhotos/ecobeeProduct.png"
+import ecobee from "./images/workPhotos/ecobeeProduct.jpg"
 
 export default {
 
@@ -176,7 +176,7 @@ export default {
     {
       img: codeIcon,
       para:
-        "Python, MATLAB",
+        "Python, MATLAB, R",
     },
     {
       img: RPIIcon,
@@ -196,7 +196,7 @@ export default {
     {
       img: rosIcon,
       para:
-        "learning ROS, RVIZ, and  ISSAC Sim",
+        "ROS, ROS2, RVIZ, and  ISSAC Sim",
     },
   ],
 
