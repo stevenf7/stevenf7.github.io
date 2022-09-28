@@ -164,7 +164,7 @@ export default {
   aboutParaThree:
     "In my free time, I play the accordion and clarinet. I am also a fully licensed pilot, and I miss flying!",
   aboutImage:
-    "images/SelfPhoto.jpg",
+    "images/SelfPhoto2.jpg",
 
 
   skills: [
