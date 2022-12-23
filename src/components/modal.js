@@ -1,5 +1,5 @@
 import React from "react"
-import data from "./../yourdata"
+import data from "./../data"
 import "./../css/modal.scss"
 
 export default function Modal({ closeModal, id }) {

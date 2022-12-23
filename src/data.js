@@ -13,12 +13,12 @@ import devpostIcon from "./images/contactIcon/devpost.png"
 
 
 // Company icon
-import TeslaIcon from "./images/Company/Tesla.png"
-import NVIDIAIcon from "./images/Company/NVIDIA.jpg"
-import EcobeeIcon from "./images/Company/ecobee.png"
-import UwaterlooIcon from "./images/Company/Uwaterloo.png"
-import KhazanahIcon from "./images/Company/Khazanah.png"
-import FordIcon from "./images/Company/Ford.jpg"
+import TeslaIcon from "./images/company/Tesla.png"
+import NVIDIAIcon from "./images/company/NVIDIA.jpg"
+import EcobeeIcon from "./images/company/ecobee.png"
+import UwaterlooIcon from "./images/company/Uwaterloo.png"
+import KhazanahIcon from "./images/company/Khazanah.png"
+import FordIcon from "./images/company/Ford.jpg"
 
 // company image
 import TeslaImg from "./images/workPhotos/TeslaWork.jpg"
@@ -34,7 +34,7 @@ export default {
   name: "Steven Feng",
  
   headerParagraph:
-    "I'm a driven Mechatronics Engineering Student with AI specialization from the University of Waterloo with passion in designing robotics systems and experience in C++ and Python programming for autonomous vehicle, control systems, and IoT.",
+    "I'm a driven Mechatronics Engineering Student with AI specialization from the University of Waterloo with passion in designing robotics systems and experience in C, C++, and Python programming for autonomous vehicle, control systems, and IoT.",
 
   contactEmail: "jy5feng@uwaterloo.ca",
 
@@ -42,7 +42,7 @@ export default {
     {
       title: "Tesla", 
       para:
-        "I worked on the  body firmware controls team, and developed control applications that run on the new palladium Model S, X, and Tesla Semi", // Add Your Service Type Here
+        "I worked on the  body firmware controls team, and developed lighting applications that run on the new palladium Model S, X, and Tesla Semi such as the Tesla Light Test, which was featured on the Tesla Semi Delivery Event", 
       
       imageSrc:
         TeslaIcon,
@@ -60,7 +60,7 @@ export default {
     {
       title: "NVIDIA AI", 
       para:
-        "I joined NVIDIA AI ISSAC Robotics Sim team, which is a scalable robotics simulation and synthetic data generation tool that powers photorealistic, and physically accurate metaverse for training advance robots.", // Add Your Service Type Here
+        "I joined NVIDIA Isaac Sim team, a scalable robotics simulation that powers photorealistic, and physically accurate metaverse for training advance robots. I worked on creating force sensors and simulating quadruped robots in the Omniverse",
       
       imageSrc:
         NVIDIAIcon,
@@ -103,7 +103,7 @@ export default {
       imageSrc:
         UwaterlooIcon,
       
-      url: "/work/uwaterloota/",
+      url: "/work/uwaterloo/",
 
       date: "09/2020 - 12/2020 ",
 
@@ -158,14 +158,11 @@ export default {
 
   // About Secton --------------
   aboutParaOne:
-    "I am an 4th year mechatronics engineering student from the University of Waterloo with 6 planned coops in various sectors such as robotics, automotive, IoT, and education, and gained valuable experiences with C++, Python, and tools such as .NET, Unity and more.",
+    "I am an mechatronics engineer with 2 years of work experience in various sectors such as robotics, automotive, IoT, and education, and gained valuable experiences with C++, Python, and tools such as .NET, Unity and more.",
   aboutParaTwo:
     "Outside of school, I am a part of WATonomous, the Waterloo's self driving car team where I gained insights in autonomous vehicles and experiences with ROS. In addition, I compete in hackathons and have built 10 unique projects which won numerous awards and learned tools such as Tensorflow and OpenCV.",
   aboutParaThree:
     "In my free time, I play the accordion and clarinet. I am also a fully licensed pilot, and I miss flying!",
-  aboutImage:
-    "images/SelfPhoto2.jpg",
-
 
   skills: [
     {
@@ -186,7 +183,7 @@ export default {
     {
       img: openCVIcon,
       para:
-        "OpenCV and learning Tensorflow for CNNs",
+        "OpenCV and learning Tensorflow",
     },
     {
       img: SolidworksIcon,
@@ -196,7 +193,7 @@ export default {
     {
       img: rosIcon,
       para:
-        "ROS, ROS2, RVIZ, and  ISSAC Sim",
+        "ROS, ROS2, Gazebo, and  ISSAC Sim",
     },
   ],
 
