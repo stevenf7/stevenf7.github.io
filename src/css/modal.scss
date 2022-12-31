@@ -12,11 +12,11 @@
   }
   
   .modalContainer {
-    width: 60vw;
+    width: 80vw;
     max-height: 90vh;
     border-radius: 12px;
     background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 5px 15px;
     display: flex;
     flex-direction: column;
     padding: 25px;
@@ -36,7 +36,7 @@
     @include media(">=tablet", "<desktop") {
       width: 100%;
     }
-
+    
   }
   
   .modalContainer .title {
@@ -126,7 +126,12 @@
         width: 100%;
         font-size: 1rem;
       }
+      @include media(">desktop", "<=2550") {
+        width: 50%;
+        font-size: 2rem;
+      }
       font-size: 1.5rem;
+
 
       li{
         padding: 0em 0.5em 0.5em 1em;

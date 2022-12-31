@@ -61,7 +61,7 @@ export default {
         TeslaImg,
     },
     {
-      title: "NVIDIA AI", 
+      title: "NVIDIA", 
       para:
         "I joined NVIDIA Isaac Sim team, a scalable robotics simulation that powers photorealistic, and physically accurate metaverse for training advance robots. I worked on creating force sensors and simulating quadruped robots in the Omniverse",
       
@@ -82,7 +82,7 @@ export default {
     },
 
     {
-      title: "Ecobee", 
+      title: "ecobee", 
       para:
         "Ecobee is a Canadian Smart Thermostat Company, I joined Ecobee as an embedded developer, worked on fixtures that supports thermostats productions and developed computer vision and machine learning algorithms for testing displays", // Add Your Service Type Here
       
@@ -139,9 +139,9 @@ export default {
     
     },
     {
-      title: "Ford", 
+      title: "Ford Motor Company", 
       para:
-        "At Ford Motor Company, I worked on supporting the various chipsets used in the F150 as a member of the manufacturing software team, using tools such as jenkins, NI Teststand, C++, and Python.", // Add Your Service Type Here
+        "At Ford Motor Company, I worked on supporting the various chipsets used in the F150 Lightning as a member of the manufacturing software team, using tools such as Jenkins, NI Teststand, C#, and Python. \n", // Add Your Service Type Here
       
       imageSrc:
         FordIcon,
@@ -151,7 +151,9 @@ export default {
       date: "05/2019 - 08/2019 ",
 
       description:
-      ["Developed automation pipeline to flash and systematically test devices routinely on the Jenkins platform for over 100 daily tests","Prototyped utility to flash multiple chips simultaneously on TestStand using C#, increasing efficiency by over 2 times"],
+      ["Developed automation pipeline to flash and systematically test devices routinely on the Jenkins platform for over 100 daily tests",
+      "Prototyped utility in C# to flash multiple chips simultaneously on TestStand using C#, increasing efficiency by over 2 times",
+      "Debugged audio issues for infotainment chips with TestStand and .Net Framework by recreating issues in controlled settings"],
       
       workImg:
       ford,

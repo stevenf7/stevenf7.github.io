@@ -93,7 +93,7 @@ const Project = () => {
                 <h4>Best Use of Google Cloud Award (Purrtector, NWHacks 2021)</h4>
                 <p>
                   Intelibatch (left) is a webapp for displaying and predicting COVID19 cases across North America using React (front end), Flask (back end), and Tensorflow (prediction) to compute the optimal batch size for repeated testing<br></br><br></br>
-                  Purrtech (right) is a chrome extension for encouraging planet positive behaviors by rewarding users with digital pets using React and Flask.
+                  Purrtector (right) is a chrome extension for encouraging planet positive behaviors by rewarding users with digital pets using React and Flask.
                 </p>
                 <button
                   onClick={event =>
