@@ -41,6 +41,7 @@ export default {
   projects: [
     {
       title: "Tesla", 
+      position: "Body Controls Developer - Tesla",
       para:
         "I worked on the  body firmware controls team, and developed lighting applications that run on the new palladium Model S, X, and Tesla Semi such as the Tesla Light Test, which was featured on the Tesla Semi Delivery Event", 
       
@@ -62,6 +63,7 @@ export default {
     },
     {
       title: "NVIDIA", 
+      position: "Robotics Simulation Engineer - NVIDIA",
       para:
         "I joined NVIDIA Isaac Sim team, a scalable robotics simulation that powers photorealistic, and physically accurate metaverse for training advance robots. I worked on creating force sensors and simulating quadruped robots in the Omniverse",
       
@@ -83,6 +85,7 @@ export default {
 
     {
       title: "ecobee", 
+      position: "Embedded Systems Developer - ecobee",
       para:
         "Ecobee is a Canadian Smart Thermostat Company, I joined Ecobee as an embedded developer, worked on fixtures that supports thermostats productions and developed computer vision and machine learning algorithms for testing displays", // Add Your Service Type Here
       
@@ -101,7 +104,7 @@ export default {
     },
     {
       title: "University of Waterloo, Faculty of Electrical and Computer Engineering", 
-
+      position: "Teaching Assistant - University of Waterloo",
       para:
         "I joined the Teaching Team for an introductory C++ programming course as a TA, hosted tutorials, graded assessments, created exam questions, and supported the automated testing server using Python.", // Add Your Service Type Here
       
@@ -121,6 +124,7 @@ export default {
     },
     {
       title: "Khazanah National Americas", 
+      position: "Innovation Developer - Khazanah",
       para:
         "Khazanah is a National Wealth Fund that primarily invest in Silicon Valley startups, and as an innovation intern, I worked on different projects in the fields of drone, computer vision, AR/VR to better understand and explain the technologies to the investors", // Add Your Service Type Here
       
@@ -140,6 +144,7 @@ export default {
     },
     {
       title: "Ford Motor Company", 
+      position: "Manufacturing Software Developer - Ford",
       para:
         "At Ford Motor Company, I worked on supporting the various chipsets used in the F150 Lightning as a member of the manufacturing software team, using tools such as Jenkins, NI Teststand, C#, and Python. \n", // Add Your Service Type Here
       
@@ -200,7 +205,7 @@ export default {
     {
       img: rosIcon,
       para:
-        "ROS, ROS2, Gazebo, and  ISSAC Sim",
+        "ROS, ROS2, Gazebo, and  Isaac Sim",
     },
   ],
 

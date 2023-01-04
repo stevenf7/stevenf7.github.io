@@ -19,7 +19,7 @@ export default function Modal({ closeModal, id }) {
           </button>
         </div>
         <div className="title">
-          <h1>{data.projects[id].title}</h1>
+          <h1>{data.projects[id].position}</h1>
           <h2>{data.projects[id].date}</h2>
         </div>
         <div className="body">
