@@ -31,10 +31,10 @@ import ecobee from "./images/workPhotos/ecobeeProduct.jpg"
 export default {
 
  
-  name: "Steven Feng",
+  name: "Ji Yuan Steven Feng",
  
   headerParagraph:
-    "I'm a driven Mechatronics Engineering Student with AI specialization from the University of Waterloo with passion in designing robotics systems and experience in C, C++, and Python programming for autonomous vehicle, control systems, and IoT.",
+    "I am a robotics systems engineer passionate about bring autonomous, biomimetic robots to life.",
 
   contactEmail: "jy5feng@uwaterloo.ca",
 
@@ -170,17 +170,17 @@ export default {
 
   // About Secton --------------
   aboutParaOne:
-    "I am an mechatronics engineer with 2 years of work experience in various sectors such as robotics, automotive, IoT, and education, and gained valuable experiences with C++, Python, and tools such as .NET, Unity and more.",
+    "I am a robotics systems engineer at NVIDIA on the NVIDIA Isaac Sim and Isaac lab, simulation platforms for training and developing robots of the future. I specialize in making sensor simulation models, creating digital twins, and building reinforcement learning workflows for the simulator.",
   aboutParaTwo:
-    "Outside of school, I am a part of WATonomous, the Waterloo's self driving car team where I gained insights in autonomous vehicles and experiences with ROS. In addition, I compete in hackathons and have built 10 unique projects which won numerous awards and learned tools such as Tensorflow and OpenCV.",
+    "I received my bachelor's degree in Mechatronics Engineering and AI option with distinction at the University of Waterloo. I was a part of WATonomous, the Waterloo's self driving car team where I gained insights in autonomous vehicles and experiences with ROS. I also competed in hackathons and have built 10 unique projects which won numerous awards.",
   aboutParaThree:
-    "In my free time, I play the accordion and clarinet. I am also a fully licensed pilot, and I miss flying!",
+    "In my free time, I play the accordion and clarinet, adn I am also active at NVIDIA's board game club. I am also a fully licensed pilot, and I miss flying!",
 
   skills: [
     {
       img: clangIcon,
       para:
-        "C, C++, C#",
+        "C, C++, C#, CUDA",
     },
     {
       img: codeIcon,
@@ -213,7 +213,7 @@ export default {
 
   //   Contact Section --------------
 
-  contactSubHeading: "Let's talk about robots!",
+  contactSubHeading: "Let's chat about robots!",
   social: [
 
     { img: githubIcon, 
