@@ -9,11 +9,13 @@ import About from "../components/about"
 import Skills from "../components/skills"
 import Footer from "../components/Footer"
 import Project from "../components/projects"
+import Nvidia from "../components/NVIDIA"
 
 const IndexPage = () => (
   <Layout>
     <SEO title="Steven Feng Portfolio" />
     <Header></Header>
+    <Nvidia></Nvidia>
     <Work></Work>
     <About></About>
     <Skills></Skills>

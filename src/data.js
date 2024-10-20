@@ -31,10 +31,10 @@ import ecobee from "./images/workPhotos/ecobeeProduct.jpg"
 export default {
 
  
-  name: "Ji Yuan Steven Feng",
+  name: "Ji Yuan Feng",
  
   headerParagraph:
-    "I am a robotics systems engineer passionate about bring autonomous, biomimetic robots to life.",
+    "I am a robotics systems engineer passionate about bringing autonomous and biomimetic robots to life.",
 
   contactEmail: "jy5feng@uwaterloo.ca",
 
@@ -170,11 +170,21 @@ export default {
 
   // About Secton --------------
   aboutParaOne:
-    "I am a robotics systems engineer at NVIDIA on the NVIDIA Isaac Sim and Isaac lab, simulation platforms for training and developing robots of the future. I specialize in making sensor simulation models, creating digital twins, and building reinforcement learning workflows for the simulator.",
+    "I am a robotics systems engineer at NVIDIA on the NVIDIA Isaac Sim and Isaac lab team, building simulation platforms for training and developing robots of the future. I specialize in making sensor simulation models, creating digital twins, and building reinforcement learning workflows for the simulator.",
   aboutParaTwo:
     "I received my bachelor's degree in Mechatronics Engineering and AI option with distinction at the University of Waterloo. I was a part of WATonomous, the Waterloo's self driving car team where I gained insights in autonomous vehicles and experiences with ROS. I also competed in hackathons and have built 10 unique projects which won numerous awards.",
   aboutParaThree:
-    "In my free time, I play the accordion and clarinet, adn I am also active at NVIDIA's board game club. I am also a fully licensed pilot, and I miss flying!",
+    "In my free time, I play the accordion and clarinet, and I am also active at NVIDIA's board game club. I am also a fully licensed pilot, and I miss flying!",
+
+  nvidiaTime: "2023 to Present",
+
+  nvidiaExperience: ["- Developed sim to sim transfer pipeline for Isaac Lab and Isaac Sim for reinforcement learning based locomotion inference workflow for humanoid and quadruped such as H1, Spot, and Anymal",
+    "- Created a digital twin’s library of over 30 humanoids, quadrupeds, manipulators, claws, and mobile robots for training and deployment in Isaac Sim and Isaac Lab",
+    "- Optimized physical sensors such as contact sensor and IMU with tensor backend to improve performance, unified raw data source, and parallelized data processing with CUDA", 
+    "- Improved URDF and MJCF robot file importers to Isaac Sim to accurately represent robot dynamics and organize robot visual, physics, and sensor properties in different assets",
+    "- Mentored an intern by teaching essential skills though projects steering (Ackermann) controller and giving feedback between projects, saw significant improvement on the intern’s capabilities",
+    "- Set up sample stereo vision SLAM and ROS pipelines to demonstrate digital robot workflow in simulated warehouse environments",
+    ],
 
   skills: [
     {

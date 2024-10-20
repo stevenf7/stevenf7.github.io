@@ -19,7 +19,7 @@ const Header = () => {
       >
           <Fade bottom>
             <h2>
-              Hi, My name is {data.name}{" "}
+              Hi, I am {data.name}{" "}
 
             </h2>
           </Fade>
