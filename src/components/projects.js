@@ -17,10 +17,10 @@ const Project = () => {
   return (
     <div className="section" id="projects">
       <div className="container">
+        <Fade bottom cascade distance="20px">
+          <h1>Projects</h1>
+        </Fade>
         <div className="project-wrapper">
-          <Fade bottom>
-            <h2>Projects and Hobbies</h2>
-          </Fade>
           <Carousel className="masterCarousel">
             <Carousel.Item className="CarouselItem" interval={2000}>
               <img
