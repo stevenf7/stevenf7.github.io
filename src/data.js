@@ -32,6 +32,10 @@ import ecobee from "./images/workPhotos/ecobeeProduct.jpg"
 import WaterlooLogo from "./images/school/University-of-Waterloo.png"
 import AirLabLogo from "./images/school/airlab_logo_extended.jpg"
 import StanfordLogo from "./images/school/stanford.png"
+import WaterlooImg from "./images/school/waterloo_eng_img.jpg"
+import AirLabImg from "./images/school/airlab_img.jpg"
+import StanfordImg from "./images/school/stanford_img.jpg"
+
 
 export default {
 
@@ -48,32 +52,36 @@ export default {
       title: "University of Waterloo",
       para: "Bachelor of Applied Science in Mechatronics Engineering with AI Option, with Distinction",
       imageSrc: WaterlooLogo,
+      workImg: WaterlooImg,
       url: "https://uwaterloo.ca/mechanical-mechatronics-engineering/",
       description: [
-        "Specialized in robotics, control systems, and embedded systems",
-        "Completed 6 co-op terms in robotics and software development",
-        "Participated in multiple robotics competitions and hackathons"
-      ]
+        "GPA: 3.7, specialized in robotics, control systems, and embedded systems",
+        "Clubs: SAE AutoDrive Challenge (Level 4 Autonomous Vehicle), Waterloop (Hyperloop)",
+        "Scholarships: President's Scholarship, Sanford Flaming Foundation Award, Term Dean's Honor List"
+      ],
     },
     {
       title: "Active Robotics Interaction Lab",
       para: "Researched human perception of robot behaviors under Dr. Yue Hu, paper published in IEEE Robotics and Automation Letters",
       imageSrc: AirLabLogo,
+      workImg: AirLabImg,
       url: "https://airlab.stanford.edu/",
       description: [
         "N. Abdulazeem, N. Sichert, J. Y. Feng and Y. Hu, 'Quantifying Human Mental State in Interactive pHRI: Maintaining Balancing,' in IEEE Robotics and Automation Letters, vol. 10, no. 3, pp. 2958-2965, March 2025, doi: 10.1109/LRA.2025.3539103.",
-        "Brainstormed and assisted with conducting experiments to analyze the effect of active vs passive robot behavior on user’s cognition during balancing tasks",
-        "Developed scripts to track participant’s pose and worked with the Sawyer robot using ROS",
-      ]
+        "Brainstormed and assisted with conducting experiments to analyze the effect of active vs passive robot behavior on user's cognition during balancing tasks",
+        "Developed scripts to track participant's pose and worked with the Sawyer robot using ROS"
+      ],
     },
     {
       title: "Stanford University",
       para: "Robotics and Autonomous Systems Graduate Certificate (In Progress)",
       imageSrc: StanfordLogo,
+      workImg: StanfordImg,
       url: "https://www.stanford.edu/",
       description: [
-        "Class work focus on reinforcement learning for robotic control",
-      ]
+        "Classes focus on classical control theories and reinforcement learning for robotic control",
+        "Classes: CS 237A Principles or Robot Autonomy I, CS 237B Principles or Robot Autonomy II"
+      ],
     }
   ],
 
@@ -90,11 +98,12 @@ export default {
 
       date: "05/2022 - 08/2022 ",
 
-      description:
-      ["Designed “Semi Lighting Test” feature for controlling 19 unique light groups across 4 controllers in C, displayed at the Tesla Semi Delivery Event by Elon Musk",
-      "Set up simulations for the Semi Truck lighting controllers in Python and created Software In a Loop tests using Python, drafted “Semi Light Test” specs on Polarion", 
-      "Brought up lighting fault detection and lighting alerts for Tesla Semi headlamps, rear lights, and trailer lights using C via CAN network",
-      "Created self-tests for checking Semi's mirror, latch, steering wheel, and horn and fixed various firmware bugs for Model S/X lighting in C"],
+      description: [
+        'Designed "Semi Lighting Test" feature for controlling 19 unique light groups across 4 controllers in C, displayed at the Tesla Semi Delivery Event by Elon Musk',
+        'Set up simulations for the Semi Truck lighting controllers in Python and created Software In a Loop tests using Python, drafted "Semi Light Test" specs on Polarion',
+        'Brought up lighting fault detection and lighting alerts for Tesla Semi headlamps, rear lights, and trailer lights using C via CAN network',
+        'Created self-tests for checking Semi\'s mirror, latch, steering wheel, and horn and fixed various firmware bugs for Model S/X lighting in C'
+      ],
 
       workImg:
         TeslaImg,
@@ -183,7 +192,7 @@ export default {
       title: "Ford Motor Company", 
       position: "Manufacturing Software Developer - Ford",
       para:
-        "Supported F150 Lightning development on Ford’s manufacturing software team using Jenkins, TestStand, C#, Python.",      
+        "Supported F150 Lightning development on Ford's manufacturing software team using Jenkins, TestStand, C#, Python.",      
       imageSrc:
         FordIcon,
      

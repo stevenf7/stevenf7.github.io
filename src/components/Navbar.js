@@ -13,6 +13,8 @@ const Navbar = () => {
           <div className="links-wrapper">
             <button onClick= {event =>  window.location.href='/#home'} type="button">Home</button>
             <button onClick= {event =>  window.location.href='/#work'} type="button">Work</button>
+            <button onClick= {event =>  window.location.href='/#nvidia'} type="button">NVIDIA</button>
+            <button onClick= {event =>  window.location.href='/#education'} type="button">Education</button>
             <button onClick= {event =>  window.location.href='/#about'} type="button">About</button>
             <button onClick= {event =>  window.location.href='/#contact'} type="button">Contact</button>
           </div>
