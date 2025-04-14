@@ -3,10 +3,11 @@ import Fade from "react-reveal/Fade"
 import data from "../data"
 import selfImage from "./../images/SelfPhoto3.jpg"
 import "bootstrap/dist/css/bootstrap.min.css"
+import "../styles/about.scss"
 
 const About = () => {
   return (
-    <div className="secion" id="about">
+    <div className="section" id="about">
       <div className="container">
         <Fade bottom cascade>
           <h1>About Me</h1>
@@ -16,16 +17,16 @@ const About = () => {
             <Fade bottom cascade>
               <p>
                 {data.aboutParaOne}
-                <br></br>
-                <br></br>
+                <br />
+                <br />
                 {data.aboutParaTwo}
-                <br></br>
-                <br></br>
+                <br />
+                <br />
                 {data.aboutParaThree}
               </p>
             </Fade>
           </div>
-          <img src={selfImage} alt="about" className="img-fluid" />
+          <img src={selfImage} alt="Steven Feng" className="img-fluid" />
         </div>
       </div>
     </div>

@@ -27,7 +27,7 @@ const Footer = () => {
             ))}
           </div>
           <span>
-            Made by 👻
+            Made by <span role="img" aria-label="ghost">👻</span>
             <a href="https://www.linkedin.com/in/stevenfeng7/">Ji Yuan "Steven" Feng</a>
           </span>
         </div>

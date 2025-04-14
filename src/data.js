@@ -170,21 +170,15 @@ export default {
 
   // About Secton --------------
   aboutParaOne:
-    "I am a robotics systems engineer at NVIDIA on the NVIDIA Isaac Sim and Isaac lab team, building simulation platforms for training and developing robots of the future. I specialize in making sensor simulation models, creating digital twins, and building reinforcement learning workflows for the simulator.",
+    "I am a robotics engineer specializing in simulation development, building high-fidelity virtual environments to accelerate robotic testing and deployment. My work contributes to bridging the sim-to-real gap by creating more accurate and efficient simulation frameworks. I am particularly interested in reinforcement learning and imitation learning, exploring novel control policies that unlock new robotic capabilities and enable safer, more human-like interactions.",
   aboutParaTwo:
     "I received my bachelor's degree in Mechatronics Engineering and AI option with distinction at the University of Waterloo. I was a part of WATonomous, the Waterloo's self driving car team where I gained insights in autonomous vehicles and experiences with ROS. I also competed in hackathons and have built 10 unique projects which won numerous awards.",
-  aboutParaThree:
-    "In my free time, I play the accordion and clarinet, and I am also active at NVIDIA's board game club. I am also a fully licensed pilot, and I miss flying!",
 
   nvidiaTime: "2023 to Present",
 
-  nvidiaExperience: ["- Developed sim to sim transfer pipeline for Isaac Lab and Isaac Sim for reinforcement learning based locomotion inference workflow for humanoid and quadruped such as H1, Spot, and Anymal",
-    "- Created a digital twin’s library of over 30 humanoids, quadrupeds, manipulators, claws, and mobile robots for training and deployment in Isaac Sim and Isaac Lab",
-    "- Optimized physical sensors such as contact sensor and IMU with tensor backend to improve performance, unified raw data source, and parallelized data processing with CUDA", 
-    "- Improved URDF and MJCF robot file importers to Isaac Sim to accurately represent robot dynamics and organize robot visual, physics, and sensor properties in different assets",
-    "- Mentored an intern by teaching essential skills though projects steering (Ackermann) controller and giving feedback between projects, saw significant improvement on the intern’s capabilities",
-    "- Set up sample stereo vision SLAM and ROS pipelines to demonstrate digital robot workflow in simulated warehouse environments",
-    ],
+  nvidiaExperience: ["At NVIDIA, I developed a sim-to-sim transfer pipeline between Isaac Lab and Isaac Sim to enable reinforcement learning-based locomotion for robots like H1, Spot, and Anymal. I created a digital twin library of over 30 robots and optimized physical sensors such as contact sensors and IMUs using a tensor backend and CUDA for faster, unified data processing. I also improved URDF and MJCF importers to better represent robot dynamics and organize asset properties.",
+    "In addition, I mentored an intern through robotics controller projects, helped set up stereo vision SLAM and ROS pipelines for simulated warehouse workflows, and gave numerous talks at NVIDIA GTC on digital twin composition and ROS integration."
+  ],
 
   skills: [
     {
@@ -205,7 +199,7 @@ export default {
     {
       img: openCVIcon,
       para:
-        "OpenCV and learning Tensorflow",
+        "OpenCV, Tensorflow",
     },
     {
       img: SolidworksIcon,

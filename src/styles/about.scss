@@ -2,9 +2,13 @@
   h1 {
     margin-top: 10vh;
     font-size: 3rem;
-    line-height: 20px;
-    @include media(">=tablet", "<desktop") {
+    line-height: 1.2;
+    @media (max-width: 768px) {
       text-align: center;
+      font-size: 2.5rem;
+    }
+    @media (max-width: 480px) {
+      font-size: 2rem;
     }
   }
   .about-section {
@@ -17,31 +21,23 @@
   
     .content {
       width: 66%;
-      @include media(">=phone", "<lgphone") {
+      @media (max-width: 992px) {
         width: 100%;
       }
-      @include media(">=lgphone", "<tablet") {
-        width: 100%;
-      }
-      @include media(">=tablet", "<desktop") {
-        width: 100%;
-      }
-  
   
       p {
         margin-top: 1vh;
         font-size: 1.5rem;
-        @include media(">=phone", "<lgphone") {
-          font-size: 0.8rem;
-          text-align: center;     
-        }
-        @include media(">=lgphone", "<tablet") {
-          font-size: 1rem;
-          text-align: center;
-        }
-        @include media(">=tablet", "<desktop") {
+        line-height: 1.5;
+        @media (max-width: 992px) {
           font-size: 1.2rem;
           text-align: center;
+        }
+        @media (max-width: 768px) {
+          font-size: 1rem;
+        }
+        @media (max-width: 480px) {
+          font-size: 0.9rem;
         }
       }
     }
@@ -54,16 +50,9 @@
       padding: 1%;
       margin-bottom: 1rem;
       object-fit: scale-down;
-      @include media(">=phone", "<lgphone") {
-        width: 100%;       
-      }
-      @include media(">=lgphone", "<tablet") {
-        width: 100%;
-      }
-      @include media(">=tablet", "<desktop") {
+      @media (max-width: 992px) {
         width: 100%;
       }
     }
   }
-  
 }
