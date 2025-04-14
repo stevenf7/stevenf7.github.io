@@ -24,7 +24,7 @@ const Header = () => {
             </h2>
           </Fade>
 
-          <Fade bottom cascade>
+          <Fade bottom>
             <div className="heading-wrapper">
               <h1              >
                 I am a {" "}

@@ -12,13 +12,13 @@ const Education = () => {
   return (
     <div className="section" id="education">
       <div className="container">
+        <Fade bottom cascade distance="20px">
+          <h1>Education</h1>
+          <h2>{data.educationSubHeading}</h2>
+        </Fade>
         <div className="education-wrapper">
-          <Fade bottom>
-            <h1>Education & Research</h1>
-          </Fade>
-
           <div className="grid">
-            <Fade bottom cascade>
+            <Fade bottom distance="20px">
               {data.education.map((school, index) => (
                 <Card
                   key={index}
@@ -30,11 +30,10 @@ const Education = () => {
                   setOpenModal={setOpenModal}
                   setId={setId}
                   type="education"
-                ></Card>
+                />
               ))}
             </Fade>
           </div>
-
           {openModal && <Modal closeModal={setOpenModal} id={id} type="education" />}
         </div>
       </div>

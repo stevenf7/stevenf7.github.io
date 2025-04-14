@@ -14,13 +14,13 @@ const Work = () => {
   return (
     <div className="section" id="work">
       <div className="container">
+        <Fade bottom cascade distance="20px">
+          <h1>Work</h1>
+          <h2>{data.workSubHeading}</h2>
+        </Fade>
         <div className="work-wrapper">
-          <Fade bottom>
-            <h1 >Internships</h1>
-          </Fade>
-
           <div className="grid">
-            <Fade bottom cascade>
+            <Fade bottom distance="20px">
               {data.projects.map((project, index) => (
                 <Card
                   key={index}

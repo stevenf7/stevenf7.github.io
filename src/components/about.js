@@ -9,12 +9,12 @@ const About = () => {
   return (
     <div className="section" id="about">
       <div className="container">
-        <Fade bottom cascade>
+        <Fade bottom>
           <h1>About Me</h1>
         </Fade>
         <div className="about-section">
           <div className="content">
-            <Fade bottom cascade>
+            <Fade bottom>
               <p>
                 {data.aboutParaOne}
                 <br />
