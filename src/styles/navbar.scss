@@ -1,9 +1,11 @@
 .navbar-wrapper {
   width: 90vw;
-  margin-top: 2vh;
+  max-width: 1200px;
+  margin: 2vh auto;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
   font-size: 20px;
   .name {
     font-weight: 600;
@@ -40,4 +42,19 @@
       color: black;
     }
   }
+
+@media (max-width: 768px) {
+  .navbar-wrapper {
+    width: 95vw;
+    padding: 0 1rem;
+
+    .links-wrapper {
+      gap: 0.5rem;
+
+      button {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
 

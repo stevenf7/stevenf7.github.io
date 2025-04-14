@@ -13,6 +13,7 @@
 @import "./skills.scss";
 @import "./footer.scss";
 @import "./projects.scss";
+@import "./education.scss";
 @import "./../css/resume.scss";
 @import "./../css/worksiteStyle.scss";
 
@@ -36,11 +37,15 @@ body {
 
 .container {
   width: 100%;
+  max-width: 1200px;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .primary-btn {

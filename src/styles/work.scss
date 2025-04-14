@@ -1,5 +1,5 @@
 .work-wrapper {
-  width: 80vw;
+  width: 100%;
   margin-top: 5vh;
   display: flex;
   flex-direction: column;
@@ -7,7 +7,7 @@
   h1{
     text-align: center;
     font-size: 3rem;
-    line-height: 6rem;
+    line-height: 1.2;
     margin-bottom: 2vh;
     white-space: normal;
   }
@@ -15,15 +15,43 @@
     display: grid;
     margin-top: 20px;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    @include media(">=phone", "<lgphone") {
-      grid-template-columns: 1fr;
+    grid-gap: 20px;
+    width: 100%;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 992px) {
+  .work-wrapper {
+    h1 {
+      font-size: 2.5rem;
     }
-    @include media(">=lgphone", "<tablet") {
-      grid-template-columns: 1fr;
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
     }
-    @include media(">=tablet", "<desktop") {
-      grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .work-wrapper {
+    h1 {
+      font-size: 2.2rem;
+    }
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 15px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .work-wrapper {
+    h1 {
+      font-size: 2rem;
+    }
+    .grid {
+      grid-template-columns: 1fr;
+      grid-gap: 15px;
     }
   }
 }

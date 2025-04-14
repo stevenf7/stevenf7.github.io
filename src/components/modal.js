@@ -2,7 +2,10 @@ import React from "react"
 import data from "./../data"
 import "./../css/modal.scss"
 
-export default function Modal({ closeModal, id }) {
+export default function Modal({ closeModal, id, type = "project" }) {
+  // Determine which data to use based on the type
+  const content = type === "project" ? data.projects[id] : data.education[id];
+  
   return (
     <>
       <div 
@@ -28,15 +31,15 @@ export default function Modal({ closeModal, id }) {
           </button>
         </div>
         <div className="title">
-          <h1>{data.projects[id].position}</h1>
-          <h2>{data.projects[id].date}</h2>
+          <h1>{type === "project" ? content.position : content.title}</h1>
+          <h2>{type === "project" ? content.date : ""}</h2>
         </div>
         <div className="body">
-        <img src={data.projects[id].workImg} alt="" className="img-fluid" />
+        <img src={content.workImg || content.imageSrc} alt="" className="img-fluid" />
 
         <ul>
-        {data.projects[id].description.map((text, index) => (
-                <li>{text}</li>
+        {content.description.map((text, index) => (
+                <li key={index}>{text}</li>
               ))}
           
           </ul>

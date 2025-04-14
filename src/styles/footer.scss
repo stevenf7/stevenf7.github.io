@@ -1,32 +1,57 @@
 .footer-container {
   width: 80vw;
-  margin-top: 3vh;
-  margin-bottom: 5vh;
+  max-width: 1200px;
+  margin: 3vh auto 5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  
   h1 {
     font-size: 3rem;
-    line-height: 20px;
+    line-height: 1.2;
+    margin-bottom: 1vh;
+    @include media(">=phone", "<lgphone") {
+      font-size: 2rem;
+    }
+    @include media(">=lgphone", "<tablet") {
+      font-size: 2.5rem;
+    }
+    @include media(">=tablet", "<desktop") {
+      font-size: 2.8rem;
+    }
   }
+  
   h2 {
     margin-top: 1vh;
     font-size: 1.5rem;
+    line-height: 1.5;
     overflow: hidden;
     @include media(">=phone", "<lgphone") {
       display: none;
     }
     @include media(">=lgphone", "<tablet") {
-      font-size: 14px;
-    }
-    @include media(">=tablet", "<desktop") {
       font-size: 1.2rem;
     }
+    @include media(">=tablet", "<desktop") {
+      font-size: 1.3rem;
+    }
   }
+  
   .email-link {
     font-size: 1.5rem;
     color: black;
+    margin: 2vh 0;
+    @include media(">=phone", "<lgphone") {
+      font-size: 1.2rem;
+    }
+    @include media(">=lgphone", "<tablet") {
+      font-size: 1.3rem;
+    }
+    @include media(">=tablet", "<desktop") {
+      font-size: 1.4rem;
+    }
   }
+  
   .social-icons {
     margin-top: 20px;
     img {
@@ -37,7 +62,25 @@
       transform: scale(1.1);
     }
   }
+  
   span {
     margin-top: 10px;
+    font-size: 1rem;
+    @include media(">=phone", "<lgphone") {
+      font-size: 0.8rem;
+    }
+    @include media(">=lgphone", "<tablet") {
+      font-size: 0.9rem;
+    }
+    
+    a {
+      color: black;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: #007bff;
+      }
+    }
   }
 }

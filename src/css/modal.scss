@@ -13,6 +13,7 @@
   
   .modalContainer {
     width: 80vw;
+    max-width: 1200px;
     max-height: 90vh;
     border-radius: 12px;
     background-color: white;
@@ -25,18 +26,19 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10000;
-
     overflow: auto;
+    
     @include media(">=phone", "<lgphone") {
-      width: 100%;       
+      width: 95vw;
+      padding: 15px;
     }
     @include media(">=lgphone", "<tablet") {
-      width: 100%;
+      width: 90vw;
+      padding: 20px;
     }
     @include media(">=tablet", "<desktop") {
-      width: 100%;
+      width: 85vw;
     }
-    
   }
   
   .modalContainer .title {
@@ -57,7 +59,6 @@
       @include media(">=tablet", "<desktop") {
         font-size: 2em;
       }
-
     }
 
     h2{
@@ -131,7 +132,6 @@
         font-size: 2rem;
       }
       font-size: 1.5rem;
-
 
       li{
         padding: 0em 0.5em 0.5em 1em;

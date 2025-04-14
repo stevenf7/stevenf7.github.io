@@ -28,6 +28,11 @@ import uwaterloo from "./images/workPhotos/uwaterlootaImg.jpg"
 import ford from "./images/workPhotos/Ford.jpg"
 import ecobee from "./images/workPhotos/ecobeeProduct.jpg"
 
+// School images
+import WaterlooLogo from "./images/school/University-of-Waterloo.png"
+import AirLabLogo from "./images/school/airlab_logo_extended.jpg"
+import StanfordLogo from "./images/school/stanford.png"
+
 export default {
 
  
@@ -38,13 +43,46 @@ export default {
 
   contactEmail: "jy5feng@uwaterloo.ca",
 
+  education: [
+    {
+      title: "University of Waterloo",
+      para: "Bachelor of Applied Science in Mechatronics Engineering with AI Option, with Distinction",
+      imageSrc: WaterlooLogo,
+      url: "https://uwaterloo.ca/mechanical-mechatronics-engineering/",
+      description: [
+        "Specialized in robotics, control systems, and embedded systems",
+        "Completed 6 co-op terms in robotics and software development",
+        "Participated in multiple robotics competitions and hackathons"
+      ]
+    },
+    {
+      title: "Active Robotics Interaction Lab",
+      para: "Researched human perception of robot behaviors under Dr. Yue Hu, paper published in IEEE Robotics and Automation Letters",
+      imageSrc: AirLabLogo,
+      url: "https://airlab.stanford.edu/",
+      description: [
+        "N. Abdulazeem, N. Sichert, J. Y. Feng and Y. Hu, 'Quantifying Human Mental State in Interactive pHRI: Maintaining Balancing,' in IEEE Robotics and Automation Letters, vol. 10, no. 3, pp. 2958-2965, March 2025, doi: 10.1109/LRA.2025.3539103.",
+        "Brainstormed and assisted with conducting experiments to analyze the effect of active vs passive robot behavior on user’s cognition during balancing tasks",
+        "Developed scripts to track participant’s pose and worked with the Sawyer robot using ROS",
+      ]
+    },
+    {
+      title: "Stanford University",
+      para: "Robotics and Autonomous Systems Graduate Certificate (In Progress)",
+      imageSrc: StanfordLogo,
+      url: "https://www.stanford.edu/",
+      description: [
+        "Class work focus on reinforcement learning for robotic control",
+      ]
+    }
+  ],
+
   projects: [
     {
       title: "Tesla", 
       position: "Body Controls Developer - Tesla",
       para:
-        "I worked on the  body firmware controls team, and developed lighting applications that run on the new palladium Model S, X, and Tesla Semi such as the Tesla Light Test, which was featured on the Tesla Semi Delivery Event", 
-      
+        "Developed lighting apps for new Model S/X and Tesla Semi, including Tesla Light Test.",      
       imageSrc:
         TeslaIcon,
       
@@ -56,7 +94,7 @@ export default {
       ["Designed “Semi Lighting Test” feature for controlling 19 unique light groups across 4 controllers in C, displayed at the Tesla Semi Delivery Event by Elon Musk",
       "Set up simulations for the Semi Truck lighting controllers in Python and created Software In a Loop tests using Python, drafted “Semi Light Test” specs on Polarion", 
       "Brought up lighting fault detection and lighting alerts for Tesla Semi headlamps, rear lights, and trailer lights using C via CAN network",
-      "Created self-tests for checking Semi’s mirror, latch, steering wheel, and horn and fixed various firmware bugs for Model S/X lighting in C"],
+      "Created self-tests for checking Semi's mirror, latch, steering wheel, and horn and fixed various firmware bugs for Model S/X lighting in C"],
 
       workImg:
         TeslaImg,
@@ -65,8 +103,7 @@ export default {
       title: "NVIDIA", 
       position: "Robotics Simulation Engineer - NVIDIA",
       para:
-        "I joined NVIDIA Isaac Sim team, a scalable robotics simulation that powers photorealistic, and physically accurate metaverse for training advance robots. I worked on creating force sensors and simulating quadruped robots in the Omniverse",
-      
+        "Built realistic sensors and simulated quadruped robots in NVIDIA Isaac Sim's robotics platform.",
       imageSrc:
         NVIDIAIcon,
    
@@ -87,7 +124,7 @@ export default {
       title: "ecobee", 
       position: "Embedded Systems Developer - ecobee",
       para:
-        "Ecobee is a Canadian Smart Thermostat Company, I joined Ecobee as an embedded developer, worked on fixtures that supports thermostats productions and developed computer vision and machine learning algorithms for testing displays", // Add Your Service Type Here
+        "Built production test fixtures and CV/ML algorithms for smart thermostat display testing.",
       
       imageSrc:
         EcobeeIcon  ,    
@@ -106,7 +143,7 @@ export default {
       title: "University of Waterloo, Faculty of Electrical and Computer Engineering", 
       position: "Teaching Assistant - University of Waterloo",
       para:
-        "I joined the Teaching Team for an introductory C++ programming course as a TA, hosted tutorials, graded assessments, created exam questions, and supported the automated testing server using Python.", // Add Your Service Type Here
+        "TA for intro C++ course; led tutorials, graded, wrote exams, and maintained testing server.",
       
       imageSrc:
         UwaterlooIcon,
@@ -126,7 +163,7 @@ export default {
       title: "Khazanah National Americas", 
       position: "Innovation Developer - Khazanah",
       para:
-        "Khazanah is a National Wealth Fund that primarily invest in Silicon Valley startups, and as an innovation intern, I worked on different projects in the fields of drone, computer vision, AR/VR to better understand and explain the technologies to the investors", // Add Your Service Type Here
+        "Explored drone, CV, and AR/VR tech to support investor understanding and decision-making.",
       
       imageSrc:
         KhazanahIcon,
@@ -136,7 +173,7 @@ export default {
       date: "01/2020 - 04/2020 ",
 
       description:
-      ["Created a VR game based on Atari’s Asteroids for Oculus Go platform, designed game logic, collision physics, and cloud leaderboard using C#, Unity, and Oculus developer toolkit, created asteroid models with blender","Developed novel computer vision-based control for drones using Python OpenCV library, capable of tracking and following an Aruco marker in different lighting conditions up to 10 meters away, and autonomous take-off and land.","Design open-sourced smart germicidal device with UV-C bulbs to sterilize personal devices; won Editor’s Choice Award on Instructable"],
+      ["Created a VR game based on Atari's Asteroids for Oculus Go platform, designed game logic, collision physics, and cloud leaderboard using C#, Unity, and Oculus developer toolkit, created asteroid models with blender","Developed novel computer vision-based control for drones using Python OpenCV library, capable of tracking and following an Aruco marker in different lighting conditions up to 10 meters away, and autonomous take-off and land.","Design open-sourced smart germicidal device with UV-C bulbs to sterilize personal devices; won Editor's Choice Award on Instructable"],
     
       workImg:
         Khazanah,
@@ -146,8 +183,7 @@ export default {
       title: "Ford Motor Company", 
       position: "Manufacturing Software Developer - Ford",
       para:
-        "At Ford Motor Company, I worked on supporting the various chipsets used in the F150 Lightning as a member of the manufacturing software team, using tools such as Jenkins, NI Teststand, C#, and Python. \n", // Add Your Service Type Here
-      
+        "Supported F150 Lightning development on Ford’s manufacturing software team using Jenkins, TestStand, C#, Python.",      
       imageSrc:
         FordIcon,
      
