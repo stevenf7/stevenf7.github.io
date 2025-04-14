@@ -67,7 +67,7 @@ export default {
       workImg: AirLabImg,
       url: "https://airlab.stanford.edu/",
       description: [
-        "N. Abdulazeem, N. Sichert, J. Y. Feng and Y. Hu, 'Quantifying Human Mental State in Interactive pHRI: Maintaining Balancing,' in IEEE Robotics and Automation Letters, vol. 10, no. 3, pp. 2958-2965, March 2025, doi: 10.1109/LRA.2025.3539103.",
+        "<a href='https://ieeexplore.ieee.org/document/10873829' target='_blank' rel='noopener noreferrer' style='color: #007bff; text-decoration: underline;'>N. Abdulazeem, N. Sichert, J. Y. Feng and Y. Hu, 'Quantifying Human Mental State in Interactive pHRI: Maintaining Balancing,' in IEEE Robotics and Automation Letters, vol. 10, no. 3, pp. 2958-2965, March 2025</a>",
         "Brainstormed and assisted with conducting experiments to analyze the effect of active vs passive robot behavior on user's cognition during balancing tasks",
         "Developed scripts to track participant's pose and worked with the Sawyer robot using ROS"
       ],
@@ -244,7 +244,7 @@ export default {
     {
       img: openCVIcon,
       para:
-        "OpenCV, Tensorflow",
+        "OpenCV, Tensorflow, Pytorch",
     },
     {
       img: SolidworksIcon,

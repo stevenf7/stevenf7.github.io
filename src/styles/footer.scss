@@ -1,3 +1,32 @@
+#contact {
+  h1 {
+    font-size: 3rem !important;
+    line-height: 1.2;
+    margin: 10vh 0 2vh 0;
+    text-align: center;
+    @media (max-width: 768px) {
+      font-size: 2.5rem !important;
+    }
+    @media (max-width: 480px) {
+      font-size: 2rem !important;
+    }
+  }
+  
+  h2 {
+    font-size: 2rem !important;
+    line-height: 1.5;
+    margin: 1vh 0;
+    text-align: center;
+    color: #4a4a4a;
+    @media (max-width: 768px) {
+      font-size: 1.5rem !important;
+    }
+    @media (max-width: 480px) {
+      font-size: 1.2rem !important;
+    }
+  }
+}
+
 .footer-container {
   width: 80vw;
   max-width: 1200px;
@@ -6,49 +35,15 @@
   flex-direction: column;
   align-items: center;
   
-  h1 {
-    font-size: 3rem;
-    line-height: 1.2;
-    margin-bottom: 1vh;
-    @include media(">=phone", "<lgphone") {
-      font-size: 2rem;
-    }
-    @include media(">=lgphone", "<tablet") {
-      font-size: 2.5rem;
-    }
-    @include media(">=tablet", "<desktop") {
-      font-size: 2.8rem;
-    }
-  }
-  
-  h2 {
-    margin-top: 1vh;
-    font-size: 1.5rem;
-    line-height: 1.5;
-    overflow: hidden;
-    @include media(">=phone", "<lgphone") {
-      display: none;
-    }
-    @include media(">=lgphone", "<tablet") {
-      font-size: 1.2rem;
-    }
-    @include media(">=tablet", "<desktop") {
-      font-size: 1.3rem;
-    }
-  }
-  
   .email-link {
     font-size: 1.5rem;
     color: black;
     margin: 2vh 0;
-    @include media(">=phone", "<lgphone") {
-      font-size: 1.2rem;
-    }
-    @include media(">=lgphone", "<tablet") {
-      font-size: 1.3rem;
-    }
-    @include media(">=tablet", "<desktop") {
-      font-size: 1.4rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: #007bff;
     }
   }
   
@@ -57,21 +52,17 @@
     img {
       height: 2rem;
       margin: 10px;
-    }
-    img:hover{
-      transform: scale(1.1);
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
   
   span {
     margin-top: 10px;
     font-size: 1rem;
-    @include media(">=phone", "<lgphone") {
-      font-size: 0.8rem;
-    }
-    @include media(">=lgphone", "<tablet") {
-      font-size: 0.9rem;
-    }
     
     a {
       color: black;

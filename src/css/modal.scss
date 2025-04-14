@@ -101,7 +101,8 @@
       overflow: hidden;
       max-height: 60vh;
       margin-bottom: 1rem;
-      object-fit: cover;
+      object-fit: contain;
+      padding: 1rem;
       @include media(">=phone", "<lgphone") {
         width: 100%;       
       }
@@ -135,6 +136,17 @@
 
       li{
         padding: 0em 0.5em 0.5em 1em;
-      };
+        
+        a {
+          color: #007bff;
+          text-decoration: underline;
+          transition: color 0.3s ease;
+          
+          &:hover {
+            color: #0056b3;
+            text-decoration: underline;
+          }
+        }
+      }
     }
   }

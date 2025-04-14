@@ -14,7 +14,7 @@ const Card = ({id, heading, paragraph, imgUrl, projectLink, setOpenModal, setId,
       />
       <div className="content">
         <h1 className="header">{heading}</h1>
-        <p className="text">{paragraph}</p>
+        <p className="text" dangerouslySetInnerHTML={{ __html: paragraph }}></p>
 
         <button 
           onClick= {()=>{

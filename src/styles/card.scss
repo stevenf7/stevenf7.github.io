@@ -48,23 +48,34 @@
     border-radius: 12px;
     z-index: 2;
     
-   
     h1 {
-      margin-top: 0;
+      margin: 15px;
       font-size: 16px;
       color: white;
-      margin-bottom: 15px;
+      padding: 15px;
     }
+    
     p {
       font-size: 14px;
       color: white;
-      margin-bottom: 20px;
-      max-height: 60px;
+      margin: 0 0 20px 0;
+      max-height: none;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       padding: 0 15px;
+      line-height: 1.4;
+
+      a {
+        color: inherit;
+        text-decoration: underline;
+        transition: opacity 0.2s ease;
+        
+        &:hover {
+          opacity: 0.8;
+        }
+      }
     }
     .btn {
       background-color: black;

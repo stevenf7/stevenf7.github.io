@@ -20,8 +20,8 @@ const IndexPage = () => (
     <Nvidia></Nvidia>
     <Education></Education>
     <Work></Work>
-    <Skills></Skills>
     <Project></Project>
+    <Skills></Skills>
     <Footer></Footer>
   </Layout>
 )
