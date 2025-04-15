@@ -99,24 +99,22 @@
   &:hover .background-image {
     filter: blur(3px);
   }
-}
-
-@media (max-width: 992px) {
-  .card {
+  
+  &:hover .content {
+    opacity: 1;
+  }
+  
+  @media (max-width: 992px) {
     height: 280px !important;
     min-height: 280px;
   }
-}
-
-@media (max-width: 768px) {
-  .card {
+  
+  @media (max-width: 768px) {
     height: 260px !important;
     min-height: 260px;
   }
-}
-
-@media (max-width: 480px) {
-  .card {
+  
+  @media (max-width: 480px) {
     height: 240px !important;
     min-height: 240px;
   }

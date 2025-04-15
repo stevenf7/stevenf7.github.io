@@ -7,14 +7,18 @@
 
 import React from "react"
 import Navbar from "./Navbar"
+import BackgroundIcons from "./BackgroundIcons"
 import "../styles/mains.scss"
 
 const Layout = ({ children }) => {
   return (
-    <>
-      <Navbar></Navbar>
-      <main>{children}</main>
-    </>
+    <div className="layout-container">
+      <BackgroundIcons />
+      <div className="content-wrapper">
+        <Navbar></Navbar>
+        <main>{children}</main>
+      </div>
+    </div>
   )
 }
 export default Layout

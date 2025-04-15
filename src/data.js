@@ -213,17 +213,20 @@ export default {
 
   ],
 
-  // About Secton --------------
-  aboutParaOne:
-    "I am a robotics engineer specializing in simulation development, building high-fidelity virtual environments to accelerate robotic testing and deployment. My work contributes to bridging the sim-to-real gap by creating more accurate and efficient simulation frameworks. I am particularly interested in reinforcement learning and imitation learning, exploring novel control policies that unlock new robotic capabilities and enable safer, more human-like interactions.",
-  aboutParaTwo:
-    "I received my bachelor's degree in Mechatronics Engineering and AI option with distinction at the University of Waterloo. I was a part of WATonomous, the Waterloo's self driving car team where I gained insights in autonomous vehicles and experiences with ROS. I also competed in hackathons and have built 10 unique projects which won numerous awards.",
+// About Section --------------
+aboutParaOne:
+  "Ji Yuan is a robotics engineer specializing in simulation development, with a focus on building high-fidelity virtual environments to accelerate robotic testing and deployment. His work aims to bridge the sim-to-real gap by designing accurate and efficient simulation frameworks. He is particularly interested in reinforcement learning and imitation learning, exploring novel control policies that enhance robotic capabilities and promote safer, more human-like interactions.",
 
-  nvidiaTime: "2023 to Present",
+aboutParaTwo:
+  "He earned his Bachelor's degree with distinction in Mechatronics Engineering with an AI specialization from the University of Waterloo. At Waterloo, he conducted human-robot interaction research at the Active Robotics Interaction Lab under Dr. Yue Hu, resulting in a publication in *IEEE Robotics and Automation Letters*. He was also deeply involved in the university's robotics community, contributing to the self-driving car team WATonomous, the Formula Electric race car team, and the Hyperloop team.",
 
-  nvidiaExperience: ["At NVIDIA, I developed a sim-to-sim transfer pipeline between Isaac Lab and Isaac Sim to enable reinforcement learning-based locomotion for robots like H1, Spot, and Anymal. I created a digital twin library of over 30 robots and optimized physical sensors such as contact sensors and IMUs using a tensor backend and CUDA for faster, unified data processing. I also improved URDF and MJCF importers to better represent robot dynamics and organize asset properties.",
-    "In addition, I mentored an intern through robotics controller projects, helped set up stereo vision SLAM and ROS pipelines for simulated warehouse workflows, and gave numerous talks at NVIDIA GTC on digital twin composition and ROS integration."
-  ],
+nvidiaTime: "2023 to Present",
+
+nvidiaExperience: [
+  "At NVIDIA, Ji Yuan developed a sim-to-sim transfer pipeline between Isaac Lab and Isaac Sim to enable reinforcement learning-based locomotion for robots such as H1, Spot, and Anymal. He created a digital twin library of over 30 robots and optimized physical sensors like contact sensors and IMUs using a tensor backend and CUDA for faster, unified data processing. He also improved URDF and MJCF importers to better represent robot dynamics and streamline asset property management.",
+  "In addition, he helped establish stereo vision SLAM and ROS pipelines for simulated warehouse workflows and delivered multiple talks at NVIDIA GTC on digital twin composition and ROS integration."
+],
+
 
   skills: [
     {

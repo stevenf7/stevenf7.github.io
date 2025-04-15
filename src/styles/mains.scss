@@ -61,3 +61,16 @@ body {
     transform: scale(1.1);
   }
 }
+
+.content-wrapper {
+  position: relative;
+  z-index: 1; /* Ensure content is above the background */
+  width: 100%;
+  min-height: 100vh;
+}
+
+.layout-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
