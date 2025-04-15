@@ -67,7 +67,7 @@ export default {
       workImg: AirLabImg,
       url: "https://airlab.stanford.edu/",
       description: [
-        "<a href='https://ieeexplore.ieee.org/document/10873829' target='_blank' rel='noopener noreferrer' style='color: #007bff; text-decoration: underline;'>N. Abdulazeem, N. Sichert, J. Y. Feng and Y. Hu, 'Quantifying Human Mental State in Interactive pHRI: Maintaining Balancing,' in IEEE Robotics and Automation Letters, vol. 10, no. 3, pp. 2958-2965, March 2025</a>",
+        "N. Abdulazeem, N. Sichert, J. Y. Feng and Y. Hu, 'Quantifying Human Mental State in Interactive pHRI: Maintaining Balancing,' in IEEE Robotics and Automation Letters, vol. 10, no. 3, pp. 2958-2965, March 2025",
         "Brainstormed and assisted with conducting experiments to analyze the effect of active vs passive robot behavior on user's cognition during balancing tasks",
         "Developed scripts to track participant's pose and worked with the Sawyer robot using ROS"
       ],
@@ -79,7 +79,7 @@ export default {
       workImg: StanfordImg,
       url: "https://www.stanford.edu/",
       description: [
-        "Classes focus on classical control theories and reinforcement learning for robotic control",
+        "Classes focus on classical control theories and reinforcement learning for mobile robots",
         "Classes: CS 237A Principles or Robot Autonomy I, CS 237B Principles or Robot Autonomy II"
       ],
     }
@@ -152,7 +152,7 @@ export default {
       title: "University of Waterloo, Faculty of Electrical and Computer Engineering", 
       position: "Teaching Assistant - University of Waterloo",
       para:
-        "TA for intro C++ course; led tutorials, graded, wrote exams, and maintained testing server.",
+        "TA for intro C++ course; led tutorials, graded, designed exams.",
       
       imageSrc:
         UwaterlooIcon,
@@ -192,7 +192,7 @@ export default {
       title: "Ford Motor Company", 
       position: "Manufacturing Software Developer - Ford",
       para:
-        "Supported F150 Lightning development on Ford's manufacturing software team using Jenkins, TestStand, C#, Python.",      
+        "Supported F150 Lightning development and testing using Jenkins, TestStand, C#, Python.",      
       imageSrc:
         FordIcon,
      

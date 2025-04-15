@@ -11,7 +11,7 @@ const NVIDIA = () => {
       <div className="container">
         <Fade bottom cascade distance="20px">
           <h1>NVIDIA</h1>
-          <h2>{data.nvidiaTime}</h2>
+          <h3>{data.nvidiaTime}</h3>
         </Fade>
         <div className="nvidia-section">
           <div className="content">

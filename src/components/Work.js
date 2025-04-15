@@ -15,7 +15,7 @@ const Work = () => {
     <div className="section" id="work">
       <div className="container">
         <Fade bottom cascade distance="20px">
-          <h1>Work</h1>
+          <h1>Internships</h1>
           <h2>{data.workSubHeading}</h2>
         </Fade>
         <div className="work-wrapper">
