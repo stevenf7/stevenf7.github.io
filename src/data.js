@@ -218,7 +218,7 @@ aboutParaOne:
   "Ji Yuan is a robotics engineer specializing in simulation development, with a focus on building high-fidelity virtual environments to accelerate robotic testing and deployment. His work aims to bridge the sim-to-real gap by designing accurate and efficient simulation frameworks. He is particularly interested in reinforcement learning and imitation learning, exploring novel control policies that enhance robotic capabilities and promote safer, more human-like interactions.",
 
 aboutParaTwo:
-  "He earned his Bachelor's degree with distinction in Mechatronics Engineering with an AI specialization from the University of Waterloo. At Waterloo, he conducted human-robot interaction research at the Active Robotics Interaction Lab under Dr. Yue Hu, resulting in a publication in *IEEE Robotics and Automation Letters*. He was also deeply involved in the university's robotics community, contributing to the self-driving car team WATonomous, the Formula Electric race car team, and the Hyperloop team.",
+  "He earned his Bachelor's degree in Mechatronics Engineering, AI Option, with Distinction, from the University of Waterloo. At Waterloo, he conducted human-robot interaction research at the Active Robotics Interaction Lab under Dr. Yue Hu, resulting in a publication in IEEE Robotics and Automation Letters. He was also deeply involved in the university's robotics community, contributing to the self-driving car team WATonomous, the Formula Electric race car team, and the Hyperloop team.",
 
 nvidiaTime: "2023 to Present",
 

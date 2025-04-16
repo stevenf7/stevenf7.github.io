@@ -12,12 +12,14 @@
     }
   }
   .nvidia-section {
-    width: 100%;
-    margin-top: 2vh;
-    font-size: 1rem;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    padding: 0 2vw;
+    width: 100%;
   
     .content {
       width: 50%;
@@ -25,13 +27,27 @@
         width: 100%;
       }
   
+      h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1vh;
+        @media (max-width: 992px) {
+          text-align: center;
+          font-size: 2rem;
+        }
+        @media (max-width: 768px) {
+          font-size: 1.8rem;
+        }
+        @media (max-width: 480px) {
+          font-size: 1.5rem;
+        }
+      }
+  
       p {
-        margin-top: 1vh;
         font-size: 1.5rem;
         line-height: 1.5;
         @media (max-width: 992px) {
-          font-size: 1.2rem;
           text-align: center;
+          font-size: 1.2rem;
         }
         @media (max-width: 768px) {
           font-size: 1rem;
@@ -44,14 +60,17 @@
   
     .img-fluid {
       width: 50%;
-      align-items: right;
+      max-height: 400px;
+      display: flex;
+      align-items: center;
       justify-content: center;
       overflow: hidden;
       padding: 1%;
       margin-bottom: 1rem;
-      object-fit: scale-down;
+      object-fit: contain;
       @media (max-width: 992px) {
         width: 100%;
+        max-height: 300px;
       }
     }
   }

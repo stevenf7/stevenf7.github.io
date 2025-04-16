@@ -17,10 +17,11 @@
     font-size: 1rem;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: center;
   
     .content {
-      width: 66%;
+      width: 60%;
       @media (max-width: 992px) {
         width: 100%;
       }
@@ -43,13 +44,14 @@
     }
   
     .img-fluid {
-      width: 33%;
-      align-items: right;
+      width: 40%;
+      display: flex;
+      align-items: center;
       justify-content: center;
       overflow: hidden;
-      padding: 1%;
+      padding: 2%;
       margin-bottom: 1rem;
-      object-fit: scale-down;
+      object-fit: contain;
       @media (max-width: 992px) {
         width: 100%;
       }

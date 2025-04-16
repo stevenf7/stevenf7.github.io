@@ -14,6 +14,19 @@ import rover2 from '../images/backgroundIcons/rover2.svg';
 import arms from '../images/backgroundIcons/arms.svg';
 import robot2 from '../images/backgroundIcons/robot2.svg';
 import arm from '../images/backgroundIcons/arm.svg';
+// Import newly added icons
+import industry from '../images/backgroundIcons/industry.svg';
+import aiResearch from '../images/backgroundIcons/ai-research.svg';
+import aiSophia from '../images/backgroundIcons/ai-sophia.svg';
+import ai from '../images/backgroundIcons/ai.svg';
+import robotAlien from '../images/backgroundIcons/robot-alien.svg';
+import aerialImaging from '../images/backgroundIcons/aerial-imaging.svg';
+import artificialIntelligence from '../images/backgroundIcons/artificial-intelligence.svg';
+import robot3 from '../images/backgroundIcons/robot3.svg';
+import petRobot from '../images/backgroundIcons/pet-robot.svg';
+import robot4 from '../images/backgroundIcons/robot4.png';
+import robot5 from '../images/backgroundIcons/robot5.png';
+import robotAssistant from '../images/backgroundIcons/robot-assistant.png';
 
 const BackgroundIcons = () => {
   const [icons, setIcons] = useState([]);
@@ -22,7 +35,10 @@ const BackgroundIcons = () => {
   
   // All available icons
   const allIcons = [
-    robot, aerial, hand1, hand2, hand3, pet, computer, rover1, rover2, arms, robot2, arm
+    robot, aerial, hand1, hand2, hand3, pet, computer, rover1, rover2, arms, robot2, arm,
+    // Add newly imported icons
+    industry, aiResearch, aiSophia, ai, robotAlien, aerialImaging, artificialIntelligence, 
+    robot3, petRobot, robot4, robot5, robotAssistant
   ];
 
   // Generate the grid only once on mount
@@ -73,7 +89,7 @@ const BackgroundIcons = () => {
     const numRows = Math.ceil(height / verticalSpacing);
     
     // Header height in pixels (adjust as needed)
-    const headerHeight = 80;
+    const headerHeight = 240;
     // Convert header height to percentage of viewport height
     const headerHeightPercent = (headerHeight / height) * 100;
     
