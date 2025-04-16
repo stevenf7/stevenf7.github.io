@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../styles/backgroundIcons.scss';
 
 // Import all background icons
@@ -17,48 +17,79 @@ import arm from '../images/backgroundIcons/arm.svg';
 
 const BackgroundIcons = () => {
   const [icons, setIcons] = useState([]);
-  const initialized = useRef(false);
-
+  const gridGenerated = useRef(false);
+  const resizeTimeout = useRef(null);
+  
   // All available icons
   const allIcons = [
     robot, aerial, hand1, hand2, hand3, pet, computer, rover1, rover2, arms, robot2, arm
   ];
 
-  // Create a grid of icons based on window size
-  const createIconGrid = useCallback(() => {
+  // Generate the grid only once on mount
+  useEffect(() => {
+    if (!gridGenerated.current) {
+      generateGrid();
+      gridGenerated.current = true;
+    }
+    
+    // Set up resize listener
+    const handleResize = () => {
+      // Clear any existing timeout
+      if (resizeTimeout.current) {
+        clearTimeout(resizeTimeout.current);
+      }
+      
+      // Set a new timeout to update the grid after 500ms of no resize events
+      resizeTimeout.current = setTimeout(() => {
+        generateGrid();
+      }, 500);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (resizeTimeout.current) {
+        clearTimeout(resizeTimeout.current);
+      }
+    };
+  }, []);
+  
+  // Function to generate the grid
+  const generateGrid = () => {
     const grid = [];
     
     // Get window dimensions
     const width = window.innerWidth;
     const height = window.innerHeight;
     
-    // Calculate number of rows and columns based on window size
-    // Significantly more horizontal spacing (one per ~600px width), significantly less vertical spacing (one per ~100px height)
-    const numCols = Math.floor(width / 600) + 1; 
-    const numRows = Math.floor(height / 100) + 1;
+    // Fixed spacing between icons (in pixels)
+    const horizontalSpacing = 400; // pixels between icons horizontally
+    const verticalSpacing = 80;    // pixels between icons vertically
     
-    // Navbar height in pixels (adjust as needed)
-    const navbarHeight = 80;
-    // Convert navbar height to percentage of viewport height
-    const navbarHeightPercent = (navbarHeight / height) * 100;
+    // Calculate number of columns and rows based on fixed spacing
+    const numCols = Math.ceil(width / horizontalSpacing); 
+    const numRows = Math.ceil(height / verticalSpacing);
     
+    // Header height in pixels (adjust as needed)
+    const headerHeight = 80;
+    // Convert header height to percentage of viewport height
+    const headerHeightPercent = (headerHeight / height) * 100;
+    
+    // Add icons in a grid pattern
     for (let row = 0; row < numRows; row++) {
       for (let col = 0; col < numCols; col++) {
-        // Calculate position with even spacing
-        const x = (col * (100 / (numCols - 1 || 1))); // Even horizontal spacing
+        // Calculate position with fixed pixel spacing
+        // Convert to percentage for responsive positioning
+        const x = (col * horizontalSpacing / width) * 100;
+        const y = headerHeightPercent + ((row * verticalSpacing / height) * 100);
         
-        // Calculate y position, ensuring it's below the navbar
-        // Add navbarHeightPercent to ensure icons start below the navbar
-        const y = navbarHeightPercent + ((row * (100 - navbarHeightPercent) / (numRows - 1 || 1))); // Even vertical spacing
-        
-        // Skip if the icon would be in the navbar area
-        if (y < navbarHeightPercent) continue;
+        // Skip if the icon would be in the header area
+        if (y < headerHeightPercent) continue;
         
         // Random rotation between -15 and 15 degrees
         const rotation = Math.random() * 30 - 15;
-        
-        // Random scale between 0.8 and 1.2
-        const scale = 0.8 + Math.random() * 0.4;
         
         // Fixed opacity of 0.3
         const opacity = 0.3;
@@ -72,22 +103,44 @@ const BackgroundIcons = () => {
           x,
           y,
           rotation,
-          scale,
           opacity
         });
       }
     }
     
-    return grid;
-  }, [allIcons]);
-
-  // Initialize icons only once
-  useEffect(() => {
-    if (!initialized.current) {
-      setIcons(createIconGrid());
-      initialized.current = true;
+    // Add extra icons on the rightmost side
+    const rightEdgeIcons = 3; // Number of extra icons on the right edge
+    for (let i = 0; i < rightEdgeIcons; i++) {
+      const row = Math.floor(Math.random() * numRows);
+      const y = headerHeightPercent + ((row * verticalSpacing / height) * 100);
+      
+      // Skip if the icon would be in the header area
+      if (y < headerHeightPercent) continue;
+      
+      // Position slightly to the right of the rightmost column
+      const x = 100 + (Math.random() * 5); // 100% + random offset
+      
+      // Random rotation between -15 and 15 degrees
+      const rotation = Math.random() * 30 - 15;
+      
+      // Fixed opacity of 0.3
+      const opacity = 0.3;
+      
+      // Random icon from the array
+      const iconIndex = Math.floor(Math.random() * allIcons.length);
+      
+      grid.push({
+        id: `right-${i}`,
+        src: allIcons[iconIndex],
+        x,
+        y,
+        rotation,
+        opacity
+      });
     }
-  }, [createIconGrid]);
+    
+    setIcons(grid);
+  };
 
   return (
     <div className="background-wallpaper">
@@ -101,7 +154,7 @@ const BackgroundIcons = () => {
             position: 'absolute',
             left: `${icon.x}%`,
             top: `${icon.y}%`,
-            transform: `rotate(${icon.rotation}deg) scale(${icon.scale})`,
+            transform: `rotate(${icon.rotation}deg)`,
             opacity: icon.opacity
           }}
         />

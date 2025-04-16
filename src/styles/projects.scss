@@ -23,6 +23,24 @@
         width: 100%;
         max-width: 1200px;
         margin: 0 auto;
+        
+        // Add fixed height for carousel
+        .carousel-inner {
+            height: 700px; // Increased height for all slides
+        }
+        
+        // Ensure all carousel items have the same height
+        .CarouselItem {
+            height: 700px; // Increased height to match carousel-inner
+            
+            img {
+                height: 100%;
+                object-fit: contain; // Changed from cover to contain to prevent cropping
+                width: 100%;
+                background-color: #f5f5f5; // Light background for images that don't fill the space
+            }
+        }
+        
         &:hover .carouselCaption{
             opacity: 1;
             transform: translate(0, 0px);
@@ -136,5 +154,27 @@
 
 
   }
+
+// Add responsive adjustments for the carousel height
+@media (max-width: 992px) {
+    .project-wrapper .masterCarousel .carousel-inner,
+    .project-wrapper .masterCarousel .CarouselItem {
+        height: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-wrapper .masterCarousel .carousel-inner,
+    .project-wrapper .masterCarousel .CarouselItem {
+        height: 500px;
+    }
+}
+
+@media (max-width: 576px) {
+    .project-wrapper .masterCarousel .carousel-inner,
+    .project-wrapper .masterCarousel .CarouselItem {
+        height: 400px;
+    }
+}
 
 

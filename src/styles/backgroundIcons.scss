@@ -41,17 +41,11 @@
 
 .wallpaper-icon {
   position: absolute;
+  opacity: 0.3;
   width: 80px;
   height: 80px;
-  pointer-events: auto;
-  cursor: pointer;
-  will-change: transform, opacity;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  
-  &:hover {
-    transform: rotate(0deg) scale(1.2) !important;
-    opacity: 0.8 !important;
-  }
+  pointer-events: none;
+  transform: none !important; /* Remove any transforms */
 }
 
 // Media queries for responsive sizing
@@ -62,9 +56,9 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
   .wallpaper-icon {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
   }
 } 
