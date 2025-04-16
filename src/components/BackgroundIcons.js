@@ -88,8 +88,8 @@ const BackgroundIcons = () => {
         // Skip if the icon would be in the header area
         if (y < headerHeightPercent) continue;
         
-        // Random rotation between -15 and 15 degrees
-        const rotation = Math.random() * 30 - 15;
+        // Random initial rotation offset for each icon
+        const initialRotation = Math.random() * 360;
         
         // Fixed opacity of 0.3
         const opacity = 0.3;
@@ -102,7 +102,7 @@ const BackgroundIcons = () => {
           src: allIcons[iconIndex],
           x,
           y,
-          rotation,
+          initialRotation,
           opacity
         });
       }
@@ -120,8 +120,8 @@ const BackgroundIcons = () => {
       // Position slightly to the right of the rightmost column
       const x = 100 + (Math.random() * 5); // 100% + random offset
       
-      // Random rotation between -15 and 15 degrees
-      const rotation = Math.random() * 30 - 15;
+      // Random initial rotation offset for each icon
+      const initialRotation = Math.random() * 360;
       
       // Fixed opacity of 0.3
       const opacity = 0.3;
@@ -134,7 +134,7 @@ const BackgroundIcons = () => {
         src: allIcons[iconIndex],
         x,
         y,
-        rotation,
+        initialRotation,
         opacity
       });
     }
@@ -154,7 +154,7 @@ const BackgroundIcons = () => {
             position: 'absolute',
             left: `${icon.x}%`,
             top: `${icon.y}%`,
-            transform: `rotate(${icon.rotation}deg)`,
+            transform: `rotate(${icon.initialRotation}deg)`,
             opacity: icon.opacity
           }}
         />
