@@ -5,6 +5,8 @@ import openCVIcon from "./images/skillsIcon/OpenCV.png"
 import RPIIcon from "./images/skillsIcon/CPU.jpg"
 import SolidworksIcon from "./images/skillsIcon/CAD.svg"
 import codeIcon from "./images/skillsIcon/code.svg"
+import isaacsIcon from "./images/skillsIcon/isaacsim.png"
+import airplaneIcon from "./images/skillsIcon/airplane.svg"
 
 // Social Icon
 import githubIcon from "./images/contactIcon/github.svg"
@@ -257,8 +259,19 @@ nvidiaExperience: [
     {
       img: rosIcon,
       para:
-        "ROS, ROS2, Gazebo, and  Isaac Sim",
+        "ROS, ROS2, Gazebo",
     },
+    {
+      img: isaacsIcon,
+      para:
+        "Isaac Sim, Isaac Lab",
+    },
+    {
+      img: airplaneIcon,
+      para:
+        "Private Pilot, Glider Pilot License",
+    },
+    
   ],
 
   // End Skills Section --------------------------
