@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import '../styles/backgroundIcons.scss';
 
 // Import all background icons
@@ -32,6 +32,7 @@ const BackgroundIcons = () => {
   const [icons, setIcons] = useState([]);
   const gridGenerated = useRef(false);
   const resizeTimeout = useRef(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   
   // All available icons
   const allIcons = [
@@ -41,55 +42,39 @@ const BackgroundIcons = () => {
     robot3, petRobot, robot4, robot5, robotAssistant
   ];
 
-  // Generate the grid only once on mount
-  useEffect(() => {
-    if (!gridGenerated.current) {
-      generateGrid();
-      gridGenerated.current = true;
-    }
-    
-    // Set up resize listener
-    const handleResize = () => {
-      // Clear any existing timeout
-      if (resizeTimeout.current) {
-        clearTimeout(resizeTimeout.current);
-      }
-      
-      // Set a new timeout to update the grid after 500ms of no resize events
-      resizeTimeout.current = setTimeout(() => {
-        generateGrid();
-      }, 500);
-    };
-    
-    window.addEventListener('resize', handleResize);
-    
-    // Cleanup
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      if (resizeTimeout.current) {
-        clearTimeout(resizeTimeout.current);
-      }
-    };
-  }, []);
-  
-  // Function to generate the grid
-  const generateGrid = () => {
+  // Function to generate the grid - memoized with useCallback
+  const generateGrid = useCallback(() => {
     const grid = [];
     
     // Get window dimensions
     const width = window.innerWidth;
     const height = window.innerHeight;
     
-    // Fixed spacing between icons (in pixels)
-    const horizontalSpacing = 400; // pixels between icons horizontally
-    const verticalSpacing = 80;    // pixels between icons vertically
+    // Check if we're on a mobile device
+    const isMobileView = width <= 768;
+    setIsMobile(isMobileView);
+    
+    // If on a very small screen, don't show icons at all
+    if (width <= 480) {
+      setIcons([]);
+      return;
+    }
+    
+    // Adjust spacing based on screen size
+    let horizontalSpacing = 400; // Default spacing
+    let verticalSpacing = 80;    // Default spacing
+    
+    if (isMobileView) {
+      horizontalSpacing = 200; // Closer spacing on mobile
+      verticalSpacing = 60;    // Closer spacing on mobile
+    }
     
     // Calculate number of columns and rows based on fixed spacing
     const numCols = Math.ceil(width / horizontalSpacing); 
     const numRows = Math.ceil(height / verticalSpacing);
     
     // Header height in pixels (adjust as needed)
-    const headerHeight = 240;
+    const headerHeight = 300;
     // Convert header height to percentage of viewport height
     const headerHeightPercent = (headerHeight / height) * 100;
     
@@ -125,7 +110,7 @@ const BackgroundIcons = () => {
     }
     
     // Add extra icons on the rightmost side
-    const rightEdgeIcons = 3; // Number of extra icons on the right edge
+    const rightEdgeIcons = isMobileView ? 1 : 3; // Fewer extra icons on mobile
     for (let i = 0; i < rightEdgeIcons; i++) {
       const row = Math.floor(Math.random() * numRows);
       const y = headerHeightPercent + ((row * verticalSpacing / height) * 100);
@@ -156,7 +141,43 @@ const BackgroundIcons = () => {
     }
     
     setIcons(grid);
-  };
+  }, [allIcons]); // Add allIcons as a dependency
+
+  // Generate the grid only once on mount
+  useEffect(() => {
+    if (!gridGenerated.current) {
+      generateGrid();
+      gridGenerated.current = true;
+    }
+    
+    // Set up resize listener
+    const handleResize = () => {
+      // Clear any existing timeout
+      if (resizeTimeout.current) {
+        clearTimeout(resizeTimeout.current);
+      }
+      
+      // Set a new timeout to update the grid after 500ms of no resize events
+      resizeTimeout.current = setTimeout(() => {
+        generateGrid();
+      }, 500);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (resizeTimeout.current) {
+        clearTimeout(resizeTimeout.current);
+      }
+    };
+  }, [generateGrid]); // Add generateGrid as a dependency
+
+  // Don't render anything on very small screens
+  if (isMobile && window.innerWidth <= 480) {
+    return null;
+  }
 
   return (
     <div className="background-wallpaper">
