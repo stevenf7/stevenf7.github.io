@@ -2,7 +2,7 @@ import React from "react"
 import Fade from "react-reveal/Fade"
 import data from "../data"
 import { Typewriter } from "react-simple-typewriter"
-import imgUrl from "../images/headerphoto.png"
+import imgUrl from "../images/headerphoto.jpg"
 
 
 const Header = () => {
