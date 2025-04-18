@@ -32,7 +32,7 @@ const BackgroundIcons = () => {
   const [icons, setIcons] = useState([]);
   const gridGenerated = useRef(false);
   const resizeTimeout = useRef(null);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(false);
   
   // All available icons
   const allIcons = [
