@@ -99,13 +99,6 @@ const NVIDIA = () => {
           <h3>{data.nvidiaTime}</h3>
         </Fade>
         <div className="nvidia-section">
-          <div className="content">
-            {data.nvidiaExperience.map((exp, index) => (
-              <Fade bottom distance="20px" key={index}>
-                <p>{exp}</p>
-              </Fade>
-            ))}
-          </div>
           <div className="carousel-container">
             <Carousel 
               className="nvidia-carousel"
@@ -139,6 +132,13 @@ const NVIDIA = () => {
                 </Carousel.Item>
               ))}
             </Carousel>
+          </div>
+          <div className="content">
+            {data.nvidiaExperience.map((exp, index) => (
+              <Fade bottom distance="20px" key={index}>
+                <p>{exp}</p>
+              </Fade>
+            ))}
           </div>
         </div>
       </div>
