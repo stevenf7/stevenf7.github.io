@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import Fade from "react-reveal/Fade"
 import Carousel from "react-bootstrap/Carousel"
 import data from "../data"
@@ -20,56 +20,57 @@ import newton from "./../images/nvidia/newton.jpg"
 
 const NVIDIA = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const videoRefs = useRef([]); // Create a ref to store video elements
   
   // Create an array of carousel items with descriptions
   const carouselItems = [
     {
       media: h1FlipGif,
       type: 'video',
-      title: "Humanoid robot tries to backflip",
+      title: "H1 humanoid robot tries to backflip",
       description: "H1 attempted a backflip, but it didn't go as planned."
     },
     {
       media: h1TrainVideo,
       type: 'video',
-      title: "Training humanoids to walk",
+      title: "Training H1 humanoids to walk",
       description: "H1 robot during training phase."
     },
     {
       media: h1Gif,
       type: 'video',
-      title: "humanoid robot walking",
+      title: "H1 humanoid robot walking in Isaac Sim",
       description: "H1 is able to walk around using a reinforcement learning policy trained from Isaac Lab."
     },
     {
       media: frankaMoveitVideo,
       type: 'video',
-      title: "Manipulator simulation",
+      title: "Franka robot simulation",
       description: "Franka robot demonstrating MoveIt integration."
     },
     {
       media: frankaDrawerVideo,
       type: 'video',
-      title: "Opening a drawer with a robot",
+      title: "Reinforcement learning based drawer manipulation",
       description: "Franka robot performing drawer manipulation task."
     },
     {
       media: leatherbackVideo,
       type: 'video',
-      title: "RC car simulation",
+      title: "Car simulation",
       description: "RC car simulation"
     },
     {
       media: carterOutdoorVideo,
       type: 'video',
-      title: "Robot outdoor simulation",
+      title: "Outdoor robot simulation",
       description: "Robot outdoor simulation"
     },
     {
       media: agilityWalkVideo,
       type: 'video',
-      title: "Humanoid Robot Walking",
-      description: "Agility robot demonstrating walking capabilities."
+      title: "Agility humanoid robot walking",
+      description: "Agility humanoid robot demonstrating walking capabilities."
     },
     {
       media: gtc_lousd,
@@ -86,7 +87,7 @@ const NVIDIA = () => {
     {
       media: newton,
       type: 'image',
-      title: "Presenting the Newton Simulator at GTC 2025",
+      title: "Presenting the next generation simulator Newton at GTC 2025",
       description: "Presenting Newton, next generation robotics simulator at our both at NVIDIA GTC 2025."
     }
   ];
@@ -103,13 +104,21 @@ const NVIDIA = () => {
             <Carousel 
               className="nvidia-carousel"
               activeIndex={activeIndex}
-              onSelect={(index) => setActiveIndex(index)}
+              onSelect={(index) => {
+                setActiveIndex(index);
+                // Reset the video playback
+                if (videoRefs.current[index]) {
+                  videoRefs.current[index].currentTime = 0; // Reset to the beginning
+                  videoRefs.current[index].play(); // Play the video
+                }
+              }}
               interval={3000} // Auto-slide every 3 seconds
             >
               {carouselItems.map((item, index) => (
                 <Carousel.Item key={index}>
                   {item.type === 'video' ? (
                     <video
+                      ref={(el) => (videoRefs.current[index] = el)} // Assign ref to video element
                       className="d-block w-100"
                       src={item.media}
                       autoPlay

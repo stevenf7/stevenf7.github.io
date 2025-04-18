@@ -23,7 +23,7 @@
     .content {
       width: 100%;
       margin-top: 2rem;
-      text-align: center;
+      text-align: justify;
   
       h2 {
         font-size: 2.5rem;
@@ -62,7 +62,7 @@
         font-size: 1.5rem;
         line-height: 1.5;
         @media (max-width: 992px) {
-          text-align: center;
+          text-align: justify;
           font-size: 1.2rem;
         }
         @media (max-width: 768px) {

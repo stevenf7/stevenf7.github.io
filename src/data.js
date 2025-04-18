@@ -42,7 +42,7 @@ import StanfordImg from "./images/school/stanford_img.jpg"
 export default {
 
  
-  name: "Ji Yuan Feng",
+  name: "Ji Yuan 'Steven' Feng",
  
   headerParagraph:
     "I am a robotics systems engineer passionate about bringing autonomous and biomimetic robots to life.",
@@ -217,16 +217,14 @@ export default {
 
 // About Section --------------
 aboutParaOne:
-  "Ji Yuan is a robotics engineer specializing in simulation development, with a focus on building high-fidelity virtual environments to accelerate robotic testing and deployment. His work aims to bridge the sim-to-real gap by designing accurate and efficient simulation frameworks. He is particularly interested in reinforcement learning and imitation learning, exploring novel control policies that enhance robotic capabilities and promote safer, more human-like interactions.",
-
+"Ji Yuan 'Steven' is a robotics engineer with expertise in simulation development, focusing on the creation of high-fidelity virtual environments to accelerate robotic testing and deployment. His work centers on narrowing the sim-to-real gap by designing advanced simulation frameworks and realistic robot digital twins. He is particularly passionate about reinforcement learning and imitation learning, exploring innovative control strategies that improve robotic performance and enable safer, more human-like interactions.",
 aboutParaTwo:
-  "He earned his Bachelor's degree in Mechatronics Engineering, AI Option, with Distinction, from the University of Waterloo. At Waterloo, he conducted human-robot interaction research at the Active Robotics Interaction Lab under Dr. Yue Hu, resulting in a publication in IEEE Robotics and Automation Letters. He was also deeply involved in the university's robotics community, contributing to the self-driving car team WATonomous, the Formula Electric race car team, and the Hyperloop team.",
+  "He earned his Bachelor's degree in Mechatronics Engineering, AI Option, with Distinction, from the University of Waterloo. At Waterloo, he conducted human-robot interaction research at the Active Robotics Interaction Lab under Dr. Yue Hu, with a publication in IEEE Robotics and Automation Letters. He was also deeply involved in the university's robotics community, contributing to the self-driving car team WATonomous, the Formula Electric race car team, and the Hyperloop team.",
 
 nvidiaTime: "2023 to Present",
 
 nvidiaExperience: [
-  "At NVIDIA, Ji Yuan developed a sim-to-sim transfer pipeline between Isaac Lab and Isaac Sim to enable reinforcement learning-based locomotion for robots such as H1, Spot, and Anymal. He created a digital twin library of over 30 robots and optimized physical sensors like contact sensors and IMUs using a tensor backend and CUDA for faster, unified data processing. He also improved URDF and MJCF importers to better represent robot dynamics and streamline asset property management.",
-  "In addition, he helped establish stereo vision SLAM and ROS pipelines for simulated warehouse workflows and delivered multiple talks at NVIDIA GTC on digital twin composition and ROS integration."
+"At NVIDIA, Ji Yuan worked on both Isaac Lab and Isaac Sim, focusing on distinct facets of robotic simulation. In Isaac Lab, he developed scalable humanoid and legged robot models and designed reinforcement learning-based locomotion policies. In Isaac Sim, he concentrated on high-fidelity simulation, building realistic digital twins, synthetic sensor models, and inference pipelines for deploying trained policies through ROS and Isaac Sim. He also presented several talks at NVIDIA GTC on robot composition and software-in-the-loop simulation pipelines."
 ],
 
 
