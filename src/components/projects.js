@@ -12,6 +12,7 @@ import vexImg from "../images/ProjectPhotos/VEX.jpg"
 import wearableImg from "../images/ProjectPhotos/wearableHacks.png"
 import webappImg from "../images/ProjectPhotos/WebappProjects.png"
 import mte380Img from "../images/ProjectPhotos/mte380.png"
+import capstoneVideo from "../images/ProjectPhotos/capstone.mp4"
 
 const Project = () => {
   return (
@@ -72,6 +73,34 @@ const Project = () => {
                   onClick={event =>
                     (window.open(
                       "https://www.watonomous.ca/"))
+                  }
+                  type="button"
+                  className="btn"
+                >
+                  Read more
+                </button>
+              </Carousel.Caption>
+            </Carousel.Item>
+
+            <Carousel.Item className="CarouselItem" interval={7000}>
+              <video
+                className="d-block w-100"
+                src={capstoneVideo}
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
+              <Carousel.Caption className="carouselCaption">
+                <h3>Capstone Project (2023)</h3>
+                <h4>Multi-robot exploration and SLAM in a simulated warehouse</h4>
+                <p>
+                  Initial prototype of a single robot SLAM system for exploring and mapping a 80000 sqft virtual warehouse.
+                </p>
+                                <button
+                  onClick={event =>
+                    (window.open(
+                      "https://github.com/FireScopeRobotics"))
                   }
                   type="button"
                   className="btn"
@@ -255,6 +284,7 @@ const Project = () => {
                 </p>
               </Carousel.Caption>
             </Carousel.Item>
+
           </Carousel>
         </div>
       </div>

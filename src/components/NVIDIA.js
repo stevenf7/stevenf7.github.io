@@ -57,7 +57,7 @@ const NVIDIA = () => {
     {
       media: leatherbackVideo,
       type: 'video',
-      title: "Car simulation",
+      title: "Ackermann steering simulation",
       description: "RC car simulation"
     },
     {
@@ -69,19 +69,19 @@ const NVIDIA = () => {
     {
       media: agilityWalkVideo,
       type: 'video',
-      title: "Agility humanoid robot walking",
+      title: "Agility humanoid robot locomotion policy",
       description: "Agility humanoid robot demonstrating walking capabilities."
     },
     {
       media: gtc_lousd,
       type: 'image',
-      title: "Robot Composition talk at GTC 2025",
+      title: "A presentation on building robot digital twins at GTC 2025",
       description: "Giving a lecture at GTC 2025 on USD composition."
     },
     {
       media: gtc_sil,
       type: 'image',
-      title: "ROS training lab at GTC 2025",
+      title: "ROS software-in-the-loop simulation lab at GTC 2025",
       description: "Giving a lecture at GTC 2025 on ROS integration with Isaac Sim."
     },
     {
