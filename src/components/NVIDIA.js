@@ -17,6 +17,7 @@ import agilityWalkVideo from "./../images/nvidia/Agility Walk.mp4"
 import gtc_lousd from "./../images/nvidia/IMG_2228.jpg"
 import gtc_sil from "./../images/nvidia/gtc_sil.jpg"
 import newton from "./../images/nvidia/newton.jpg"
+import claw from "./../images/nvidia/claw.mp4"
 
 const NVIDIA = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -53,6 +54,12 @@ const NVIDIA = () => {
       type: 'video',
       title: "Reinforcement learning based drawer manipulation",
       description: "Franka robot performing drawer manipulation task."
+    },
+    {
+      media: claw,
+      type: 'video',
+      title: "High fidelity claw simulation",
+      description: "Claw robot grasping task."
     },
     {
       media: leatherbackVideo,

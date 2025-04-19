@@ -1,7 +1,7 @@
 import React from "react"
 import Fade from "react-reveal/Fade"
 import data from "../data"
-import selfImage from "./../images/SelfPhoto3.jpg"
+import selfImage from "./../images/SelfPhoto4.jpg"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "../styles/about.scss"
 
