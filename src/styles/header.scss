@@ -9,15 +9,61 @@
   
   background-attachment: fixed;
   
+  // Default mobile settings
   @include media(">=phone", "<lgphone") {
     background-attachment: scroll;
+    background-size: cover;
+    background-position: center;
   }
   @include media(">=lgphone", "<tablet") {
     background-attachment: scroll;
+    background-size: cover;
+    background-position: center;
   }
   @include media(">=tablet", "<desktop") {
     background-attachment: scroll;
+    background-size: cover;
+    background-position: center;
   }
+  
+  // Specific iPad landscape fix
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh; // Ensure the header covers the full viewport height
+  }
+  
+  // Specific classes for orientation
+  &.landscape {
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+  }
+  
+  &.portrait {
+    background-attachment: fixed;
+    @include media(">=tablet", "<desktop") {
+      background-attachment: scroll;
+    }
+  }
+  
+  // iPad Pro
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: landscape) {
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+  }
+  
+  // General fix for all mobile devices with high pixel ratio (retina displays)
+  @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center;
+  }
+  
   h2 {
     margin-top: 70vh;
     line-height: 70px;
