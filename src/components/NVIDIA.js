@@ -82,7 +82,7 @@ const NVIDIA = () => {
     {
       media: gtc_lousd,
       type: 'image',
-      title: "A presentation on building robot digital twins at GTC 2025",
+      title: "Giving a presentation on building robot digital twins at GTC 2025",
       description: "Giving a lecture at GTC 2025 on USD composition."
     },
     {

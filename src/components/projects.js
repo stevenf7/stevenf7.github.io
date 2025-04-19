@@ -83,14 +83,16 @@ const Project = () => {
             </Carousel.Item>
 
             <Carousel.Item className="CarouselItem" interval={7000}>
-              <video
-                className="d-block w-100"
-                src={capstoneVideo}
-                autoPlay
-                muted
-                loop
-                playsInline
-              />
+              <div className="video-container">
+                <video
+                  className="d-block"
+                  src={capstoneVideo}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                />
+              </div>
               <Carousel.Caption className="carouselCaption">
                 <h3>Capstone Project (2023)</h3>
                 <h4>Multi-robot exploration and SLAM in a simulated warehouse</h4>

@@ -39,6 +39,34 @@
                 width: 100%;
                 background-color: #f5f5f5; // Light background for images that don't fill the space
             }
+            
+            .video-container {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #f5f5f5;
+                
+                video {
+                    max-width: 100%;
+                    max-height: 100%;
+                    object-fit: contain;
+                }
+            }
+            
+            video {
+                height: 100%;
+                width: 100%;
+                object-fit: contain;
+                background-color: #f5f5f5;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+            }
         }
         
         &:hover .carouselCaption{
