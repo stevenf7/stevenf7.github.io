@@ -30,9 +30,9 @@ import robotAssistant from '../images/backgroundIcons/robot-assistant.png';
 
 const BackgroundIcons = () => {
   const [icons, setIcons] = useState([]);
-  const gridGenerated = useRef(false);
-  const resizeTimeout = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
+  const resizeTimeout = useRef(null);
+  const generatedGrid = useRef(false);
   
   // All available icons
   const allIcons = [
@@ -42,13 +42,19 @@ const BackgroundIcons = () => {
     robot3, petRobot, robot4, robot5, robotAssistant
   ];
 
-  // Function to generate the grid - memoized with useCallback
+  // Generate the grid based on current dimensions and path
   const generateGrid = useCallback(() => {
+    // Only run in browser
+    if (typeof window === 'undefined') return;
+    
     const grid = [];
     
-    // Get window dimensions
+    // Get current dimensions
     const width = window.innerWidth;
     const height = window.innerHeight;
+    
+    // Get current path
+    const path = window.location.pathname;
     
     // Check if we're on a mobile device
     const isMobileView = width <= 768;
@@ -60,44 +66,45 @@ const BackgroundIcons = () => {
       return;
     }
     
-    // Adjust spacing based on screen size
+    // Set spacing based on screen size and path
     let horizontalSpacing = 400; // Default spacing
     let verticalSpacing = 80;    // Default spacing
     
-    if (isMobileView) {
-      horizontalSpacing = 200; // Closer spacing on mobile
-      verticalSpacing = 60;    // Closer spacing on mobile
+    // Increase spacing on resume page
+    if (path.includes('resume')) {
+      verticalSpacing = 300;
     }
     
-    // Calculate number of columns and rows based on fixed spacing
+    // Adjust spacing for mobile
+    if (isMobileView) {
+      horizontalSpacing = path.includes('resume') ? 350 : 200;
+      verticalSpacing = path.includes('resume') ? 200 : 60;
+    }
+    
+    // Calculate number of columns and rows
     const numCols = Math.ceil(width / horizontalSpacing); 
     const numRows = Math.ceil(height / verticalSpacing);
     
-    // Header height in pixels (adjust as needed)
+    // Set header height
     const headerHeight = 300;
-    // Convert header height to percentage of viewport height
     const headerHeightPercent = (headerHeight / height) * 100;
     
-    // Add icons in a grid pattern
+    // Generate grid of icons
     for (let row = 0; row < numRows; row++) {
       for (let col = 0; col < numCols; col++) {
-        // Calculate position with fixed pixel spacing
-        // Convert to percentage for responsive positioning
+        // Calculate position
         const x = (col * horizontalSpacing / width) * 100;
         const y = headerHeightPercent + ((row * verticalSpacing / height) * 100);
         
-        // Skip if the icon would be in the header area
+        // Skip if in header area
         if (y < headerHeightPercent) continue;
         
-        // Random initial rotation offset for each icon
+        // Set properties
         const initialRotation = Math.random() * 360;
-        
-        // Fixed opacity of 0.3
         const opacity = 0.3;
-        
-        // Random icon from the array
         const iconIndex = Math.floor(Math.random() * allIcons.length);
         
+        // Add icon to grid
         grid.push({
           id: `${row}-${col}`,
           src: allIcons[iconIndex],
@@ -109,25 +116,17 @@ const BackgroundIcons = () => {
       }
     }
     
-    // Add extra icons on the rightmost side
-    const rightEdgeIcons = isMobileView ? 1 : 3; // Fewer extra icons on mobile
+    // Add extra icons on right edge
+    const rightEdgeIcons = isMobileView ? 1 : 3;
     for (let i = 0; i < rightEdgeIcons; i++) {
       const row = Math.floor(Math.random() * numRows);
       const y = headerHeightPercent + ((row * verticalSpacing / height) * 100);
       
-      // Skip if the icon would be in the header area
       if (y < headerHeightPercent) continue;
       
-      // Position slightly to the right of the rightmost column
-      const x = 100 + (Math.random() * 5); // 100% + random offset
-      
-      // Random initial rotation offset for each icon
+      const x = 100 + (Math.random() * 5);
       const initialRotation = Math.random() * 360;
-      
-      // Fixed opacity of 0.3
       const opacity = 0.3;
-      
-      // Random icon from the array
       const iconIndex = Math.floor(Math.random() * allIcons.length);
       
       grid.push({
@@ -140,26 +139,55 @@ const BackgroundIcons = () => {
       });
     }
     
+    // Update icons state
     setIcons(grid);
-  }, [allIcons]); // Add allIcons as a dependency
-
-  // Generate the grid only once on mount
-  useEffect(() => {
-    if (!gridGenerated.current) {
-      generateGrid();
-      gridGenerated.current = true;
-    }
     
-    // Set up resize listener
+    // Mark that we've generated the grid
+    generatedGrid.current = true;
+    
+    // Reset the flag
+    if (typeof window !== 'undefined') {
+      window.shouldRegenerateBackgroundGrid = false;
+    }
+  }, [allIcons]);
+
+  // Check if we need to regenerate the grid
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    // Helper function to check if we need to regenerate
+    const checkRegeneration = () => {
+      if (window.shouldRegenerateBackgroundGrid === true) {
+        generateGrid();
+      }
+    };
+    
+    // Initial generation
+    checkRegeneration();
+    
+    // Set up interval to check if we need to regenerate - use a longer interval to reduce CPU usage
+    const intervalId = setInterval(checkRegeneration, 2000);
+    
+    // Also check on visibility change (when tab becomes active)
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        checkRegeneration();
+      }
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    // Handle window resize
     const handleResize = () => {
-      // Clear any existing timeout
       if (resizeTimeout.current) {
         clearTimeout(resizeTimeout.current);
       }
       
-      // Set a new timeout to update the grid after 500ms of no resize events
       resizeTimeout.current = setTimeout(() => {
-        generateGrid();
+        // Force regeneration on resize
+        if (typeof window !== 'undefined') {
+          window.shouldRegenerateBackgroundGrid = true;
+        }
       }, 500);
     };
     
@@ -167,15 +195,17 @@ const BackgroundIcons = () => {
     
     // Cleanup
     return () => {
+      clearInterval(intervalId);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('resize', handleResize);
       if (resizeTimeout.current) {
         clearTimeout(resizeTimeout.current);
       }
     };
-  }, [generateGrid]); // Add generateGrid as a dependency
+  }, [generateGrid]);
 
-  // Don't render anything on very small screens
-  if (isMobile && window.innerWidth <= 480) {
+  // Don't render on very small screens
+  if (isMobile && typeof window !== 'undefined' && window.innerWidth <= 480) {
     return null;
   }
 

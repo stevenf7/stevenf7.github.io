@@ -7,7 +7,22 @@
   background-repeat: no-repeat;
   background-position: center;
   
-  background-attachment: fixed;
+  // Default to scroll for safety
+  background-attachment: scroll;
+  
+  // Desktop-specific styling
+  &.desktop {
+    background-attachment: fixed !important;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  // Mobile-specific styling
+  &.mobile {
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center;
+  }
   
   // Default mobile settings
   @include media(">=phone", "<lgphone") {
@@ -24,6 +39,44 @@
     background-attachment: scroll;
     background-size: cover;
     background-position: center;
+  }
+  
+  // Specific iOS device fixes (iPhone and iPad)
+  @supports (-webkit-touch-callout: none) {
+    /* iOS devices */
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  // Specific media query for desktop
+  @media only screen and (min-width: 1024px) {
+    &:not(.ios-device) {
+      background-attachment: fixed;
+    }
+  }
+  
+  // Specific iPhone fix
+  @media only screen 
+    and (min-device-width: 320px) 
+    and (max-device-width: 812px) 
+    and (-webkit-min-device-pixel-ratio: 2) {
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+  }
+  
+  // iPhone X, XS, 11 Pro
+  @media only screen 
+    and (min-device-width: 375px) 
+    and (max-device-width: 812px) 
+    and (-webkit-min-device-pixel-ratio: 3) {
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
   }
   
   // Specific iPad landscape fix
@@ -43,7 +96,9 @@
   }
   
   &.portrait {
-    background-attachment: fixed;
+    background-attachment: scroll; // Changed from fixed to scroll for better compatibility
+    background-size: cover;
+    background-position: center;
     @include media(">=tablet", "<desktop") {
       background-attachment: scroll;
     }
@@ -132,5 +187,38 @@
       width: 100%;
     }
     
+  }
+
+  // iOS-specific class
+  &.ios-device {
+    background-attachment: scroll !important; // Force scroll on iOS
+    background-size: cover !important;
+    background-position: center !important;
+    -webkit-background-size: cover !important;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    
+    // iOS specific background element
+    .ios-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    // Content wrapper for iOS
+    .content-wrapper {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1;
+    }
   }
 }
