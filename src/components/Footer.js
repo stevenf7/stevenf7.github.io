@@ -8,8 +8,12 @@ const Footer = () => {
     <div className="section" id="contact">
       <div className="container">
         <div className="footer-container">
-          <h1>Contact</h1>
-          <h2>{data.contactSubHeading}</h2>
+          <Fade bottom distance="20px" duration={1000}>
+            <h1>Contact</h1>
+          </Fade>
+          <Fade bottom distance="20px" delay={300} duration={1000}>
+            <h2>{data.contactSubHeading}</h2>
+          </Fade>
           <Fade bottom>
             <a className="email-link" href={`mailto:${data.contactEmail}`}>
               {data.contactEmail}

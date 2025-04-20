@@ -4,6 +4,25 @@
     line-height: 1.2;
     margin: 10vh 0 2vh 0;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: #007bff;
+      transition: all 0.6s ease;
+      transform: translateX(-50%);
+    }
+    
+    &:hover:after {
+      width: 100px;
+    }
+    
     @media (max-width: 768px) {
       font-size: 2.5rem !important;
     }
@@ -18,6 +37,12 @@
     margin: 1vh 0;
     text-align: center;
     color: #4a4a4a;
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: #007bff;
+    }
+    
     @media (max-width: 768px) {
       font-size: 1.5rem !important;
     }
@@ -73,5 +98,26 @@
         color: #007bff;
       }
     }
+  }
+}
+
+/* Animation keyframes for h1 and h2 reveal */
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes underlineExpand {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100px;
   }
 }
