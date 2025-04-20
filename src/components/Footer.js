@@ -29,7 +29,7 @@ const Footer = () => {
           </Fade>
           <span>
             Made by <span role="img" aria-label="duck">🦆</span>
-            <a href="https://www.linkedin.com/in/stevenfeng7/">Ji Yuan "Steven" Feng</a>
+            <a href="https://www.linkedin.com/in/stevenfeng7/"> Ji Yuan "Steven" Feng</a>
           </span>
         </div>
       </div>

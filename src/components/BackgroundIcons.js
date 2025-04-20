@@ -27,21 +27,136 @@ import petRobot from '../images/backgroundIcons/pet-robot.svg';
 import robot4 from '../images/backgroundIcons/robot4.png';
 import robot5 from '../images/backgroundIcons/robot5.png';
 import robotAssistant from '../images/backgroundIcons/robot-assistant.png';
+import dummy from '../images/backgroundIcons/dummy.svg';
+import robot6 from '../images/backgroundIcons/robot6.svg';
 
 const BackgroundIcons = () => {
   const [icons, setIcons] = useState([]);
   const [isMobile, setIsMobile] = useState(false);
   const resizeTimeout = useRef(null);
   const generatedGrid = useRef(false);
+
   
   // All available icons
   const allIcons = [
     robot, aerial, hand1, hand2, hand3, pet, computer, rover1, rover2, arms, robot2, arm,
     // Add newly imported icons
     industry, aiResearch, aiSophia, ai, robotAlien, aerialImaging, artificialIntelligence, 
-    robot3, petRobot, robot4, robot5, robotAssistant
+    robot3, petRobot, robot4, robot5, robotAssistant, dummy, robot6
   ];
 
+  // Helper function to compute header height
+  const getHeaderHeight = useCallback(() => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return 0;
+    
+    // Debug option - set to true to see the detected header area
+    const DEBUG_HEADER_DETECTION = false;
+    
+    // Try to find the Navbar specific elements first based on your site structure
+    const navbarSelectors = [
+      '.section',
+      '.navbar-wrapper',
+      '.links-wrapper',
+      'button[type="button"]' // Check for buttons in your navbar
+    ];
+    
+    // Add fallback generic header selectors
+    const headerSelectors = [
+      'header', 
+      '.header', 
+      '#header', 
+      'nav', 
+      '.nav', 
+      '#nav',
+      '.navbar',
+      '#navbar'
+    ];
+    
+    let headerElement = null;
+    
+    // Function to get the parent section or container
+    const getHeaderContainer = (element) => {
+      if (!element) return null;
+      
+      // Try to find a parent section or container
+      const section = element.closest('.section');
+      const container = element.closest('.container');
+      const navWrapper = element.closest('.navbar-wrapper');
+      
+      return section || container || navWrapper || element;
+    };
+    
+    // Try each navbar-specific selector first
+    for (const selector of navbarSelectors) {
+      try {
+        const element = document.querySelector(selector);
+        if (element) {
+          headerElement = getHeaderContainer(element);
+          break;
+        }
+      } catch (e) {
+        // Some complex selectors might not be supported in all browsers
+        continue;
+      }
+    }
+    
+    // Fall back to generic selectors if needed
+    if (!headerElement) {
+      for (const selector of headerSelectors) {
+        const element = document.querySelector(selector);
+        if (element) {
+          headerElement = getHeaderContainer(element);
+          break;
+        }
+      }
+    }
+    
+    // If we found a header element, measure its height and add some padding
+    if (headerElement) {
+      const headerRect = headerElement.getBoundingClientRect();
+      // Add padding to ensure we're below the header
+      const headerHeight = headerRect.height + 20;
+      
+      // Debug visualization
+      if (DEBUG_HEADER_DETECTION) {
+        const debugElement = document.createElement('div');
+        debugElement.style.position = 'fixed';
+        debugElement.style.top = '0';
+        debugElement.style.left = '0';
+        debugElement.style.width = '100%';
+        debugElement.style.height = `${headerHeight}px`;
+        debugElement.style.backgroundColor = 'rgba(255, 0, 0, 0.2)';
+        debugElement.style.zIndex = '9999';
+        debugElement.style.pointerEvents = 'none';
+        document.body.appendChild(debugElement);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+          document.body.removeChild(debugElement);
+        }, 3000);
+      }
+      
+      return headerHeight;
+    }
+    
+    // Get the current path to consider special cases
+    const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
+    
+    // Different default for different pages
+    let defaultHeight = 80; // Minimum default
+    
+    // Use a percentage of viewport height, but with minimums
+    const viewportBasedHeight = window.innerHeight * 0.15; // 15% of viewport height
+    defaultHeight = Math.max(viewportBasedHeight, defaultHeight);
+    
+    // For resume page, use a smaller header area
+    if (currentPath.includes('resume')) {
+      defaultHeight = Math.min(defaultHeight, 60);
+    }
+    
+    return defaultHeight;
+  }, []);
+  
   // Generate the grid based on current dimensions and path
   const generateGrid = useCallback(() => {
     // Only run in browser
@@ -85,8 +200,8 @@ const BackgroundIcons = () => {
     const numCols = Math.ceil(width / horizontalSpacing); 
     const numRows = Math.ceil(height / verticalSpacing);
     
-    // Set header height
-    const headerHeight = 300;
+    // Dynamically compute header height
+    const headerHeight = getHeaderHeight();
     const headerHeightPercent = (headerHeight / height) * 100;
     
     // Generate grid of icons
@@ -149,7 +264,7 @@ const BackgroundIcons = () => {
     if (typeof window !== 'undefined') {
       window.shouldRegenerateBackgroundGrid = false;
     }
-  }, [allIcons]);
+  }, [allIcons, getHeaderHeight]);
 
   // Check if we need to regenerate the grid
   useEffect(() => {

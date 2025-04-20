@@ -219,7 +219,7 @@ export default {
 aboutParaOne:
 "Ji Yuan 'Steven' is a robotics engineer with expertise in simulation development, focusing on the creation of high-fidelity virtual environments to accelerate robotic testing and deployment. His work centers on narrowing the sim-to-real gap by designing advanced simulation frameworks and realistic robot digital twins. He is particularly passionate about reinforcement learning and imitation learning, exploring innovative control strategies that improve robotic performance and enable safer, more human-like interactions.",
 aboutParaTwo:
-  "He earned his Bachelor's degree in Mechatronics Engineering, AI Option, with Distinction, from the University of Waterloo. At Waterloo, he conducted human-robot interaction research at the Active Robotics Interaction Lab under Dr. Yue Hu, with a publication on IEEE Robotics and Automation Letters. He was also deeply involved in the university's robotics community, contributing to the self-driving car team WATonomous, the Formula Electric race car team, and the Hyperloop team.",
+  "He earned his Bachelor's degree in Mechatronics Engineering, AI Option, with Distinction, from the University of Waterloo. At Waterloo, he conducted human-robot interaction research at the Active Robotics Interaction Lab under Dr. Yue Hu, with a publication on IEEE Robotics and Automation Letters.",
 
 nvidiaTime: "2023 to Present",
 
