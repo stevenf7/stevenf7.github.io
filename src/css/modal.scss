@@ -138,12 +138,12 @@
         padding: 0em 0.5em 0.5em 1em;
         
         a {
-          color: #007bff;
+          color: #333;
           text-decoration: underline;
           transition: color 0.3s ease;
           
           &:hover {
-            color: #0056b3;
+            color: #000;
             text-decoration: underline;
           }
         }

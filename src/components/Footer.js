@@ -31,10 +31,12 @@ const Footer = () => {
               ))}
             </div>
           </Fade>
+          <Fade bottom>
           <span>
             Made by <span role="img" aria-label="duck">🦆</span>
             <a href="https://www.linkedin.com/in/stevenfeng7/"> Ji Yuan "Steven" Feng</a>
           </span>
+          </Fade>
         </div>
       </div>
     </div>

@@ -3,6 +3,8 @@
     margin-top: 10vh;
     font-size: 3rem;
     line-height: 1.2;
+    position: relative;
+    
     @media (max-width: 768px) {
       text-align: center;
       font-size: 2.5rem;
@@ -21,7 +23,7 @@
     align-items: center;
   
     .content {
-      width: 60%;
+      width: 55%;
       @media (max-width: 992px) {
         width: 100%;
       }
@@ -42,16 +44,30 @@
         }
       }
     }
+    
+    .image-container {
+      width: 40%;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      
+      &:hover {
+        transform: scale(1.02);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      }
+      
+      @media (max-width: 992px) {
+        width: 80%;
+        margin: 2rem auto;
+      }
+    }
   
     .img-fluid {
-      width: 40%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      padding: 2%;
-      margin-bottom: 1rem;
-      object-fit: contain;
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.8s ease;      
       @media (max-width: 992px) {
         width: 100%;
       }
