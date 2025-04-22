@@ -1,4 +1,17 @@
 @import "./../styles/include-media.scss";
+
+/* This class will be added to the body when modal is open */
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  /* height is not set to allow for the top offset to work properly */
+  top: 0;
+  left: 0;
+  right: 0;
+  /* We don't set bottom to allow for the saved scroll position */
+}
+
 .modalBackground {
     top: 0;
     width: 100vw;

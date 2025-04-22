@@ -1,10 +1,31 @@
-import React from "react"
+import React, { useEffect } from "react"
 import data from "./../data"
 import "./../css/modal.scss"
 
 export default function Modal({ closeModal, id, type = "project" }) {
   // Determine which data to use based on the type
   const content = type === "project" ? data.projects[id] : data.education[id];
+  
+  useEffect(() => {
+    // Save the current scroll position
+    const scrollY = window.scrollY;
+    
+    // Disable scrolling when modal is mounted and keep the visual position
+    document.body.style.top = `-${scrollY}px`;
+    document.body.classList.add('modal-open');
+    
+    // Clean up function to re-enable scrolling when modal is unmounted
+    return () => {
+      // Remove the modal-open class
+      document.body.classList.remove('modal-open');
+      
+      // Reset the body position
+      document.body.style.top = '';
+      
+      // Restore the scroll position
+      window.scrollTo(0, scrollY);
+    };
+  }, []);
   
   return (
     <>

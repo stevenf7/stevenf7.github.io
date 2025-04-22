@@ -217,14 +217,14 @@ export default {
 
 // About Section --------------
 aboutParaOne:
-"Ji Yuan 'Steven' is a robotics engineer with expertise in simulation development, focusing on the creation of high-fidelity virtual environments to accelerate robotic testing and deployment. His work centers on narrowing the sim-to-real gap by designing advanced simulation frameworks and realistic robot digital twins. He is particularly passionate about reinforcement learning and imitation learning, exploring innovative control strategies that improve robotic performance and enable safer, more human-like interactions.",
+"I am a robotics engineer with expertise in simulation development, narrowing the sim-to-real gap by creation of high-fidelity virtual environments to accelerate robotic testing and deployment. I am particularly passionate about reinforcement learning and imitation learning, exploring control strategies that enable safer, more human-like interactions.",
 aboutParaTwo:
-  "He earned his Bachelor's degree in Mechatronics Engineering, AI Option, with Distinction, from the University of Waterloo. At Waterloo, he conducted human-robot interaction research at the Active Robotics Interaction Lab under Dr. Yue Hu, with a publication on IEEE Robotics and Automation Letters.",
+  "I earned my Bachelor's degree in Mechatronics Engineering from the University of Waterloo. I also conducted human-robot interaction research at the Active Robotics Interaction Lab under Dr. Yue Hu, with a publication on IEEE Robotics and Automation Letters.",
 
 nvidiaTime: "2023 to Present",
 
 nvidiaExperience: [
-"At NVIDIA, Ji Yuan worked on both Isaac Lab and Isaac Sim, focusing on distinct facets of robotic simulation. In Isaac Lab, he developed scalable humanoid and legged robot models and designed reinforcement learning-based locomotion policies. In Isaac Sim, he concentrated on high-fidelity simulation, building realistic digital twins, synthetic sensor models, and inference pipelines for deploying trained policies through ROS and Isaac Sim. He also presented several talks at NVIDIA GTC on robot composition and software-in-the-loop simulation pipelines."
+"At NVIDIA, I worked on both Isaac Lab and Isaac Sim, focusing on distinct facets of robotic simulation. In Isaac Lab, I developed scalable humanoid and legged robot models and designed reinforcement learning-based locomotion policies. In Isaac Sim, I concentrated on high-fidelity simulation, building realistic digital twins, synthetic sensor models, and inference pipelines for deploying trained policies through ROS and Isaac Sim. I also presented several talks at NVIDIA GTC on robot composition and software-in-the-loop simulation pipelines."
 ],
 
 
