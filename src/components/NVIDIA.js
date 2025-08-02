@@ -25,13 +25,19 @@ const NVIDIA = () => {
   const videoRefs = useRef([]);
   const carouselRef = useRef(null);
   
-  // Detect mobile device
+  // Detect mobile device with better initialization
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
+      const mobileState = window.innerWidth <= 768;
+      console.log(`Mobile state detected: ${mobileState}, width: ${window.innerWidth}`);
+      setIsMobile(mobileState);
     };
     
-    checkMobile();
+    // Ensure initial state is set correctly
+    if (typeof window !== 'undefined') {
+      checkMobile();
+    }
+    
     window.addEventListener('resize', checkMobile);
     
     return () => window.removeEventListener('resize', checkMobile);
@@ -135,30 +141,59 @@ const NVIDIA = () => {
     // Log performance safely (only to console, no state updates)
     logPerformance('carousel_select', startTime);
     
-    // Minimal video handling - don't interfere with carousel state
-    if (!isMobile) {
-      // Only handle videos on desktop, and do it non-blocking
-      setTimeout(() => {
-        try {
-          // Pause other videos
-          videoRefs.current.forEach((videoRef, i) => {
-            if (videoRef && i !== index) {
-              videoRef.pause();
-            }
-          });
-          
-          // Play current video on desktop only
-          if (videoRefs.current[index]) {
-            videoRefs.current[index].currentTime = 0;
-            videoRefs.current[index].play().catch(() => {
-              // Silently handle play errors
-            });
+    // Handle video loading for both mobile and desktop
+    setTimeout(() => {
+      try {
+        // Pause all other videos first
+        videoRefs.current.forEach((videoRef, i) => {
+          if (videoRef && i !== index) {
+            videoRef.pause();
           }
-        } catch (error) {
-          // Silently handle errors to not interfere with carousel
+        });
+        
+        // Handle current video based on device type
+        const currentVideo = videoRefs.current[index];
+        if (currentVideo) {
+          // Check if video element is ready
+          if (currentVideo.readyState >= 1) { // HAVE_METADATA or higher
+            if (isMobile) {
+              // On mobile: Load the video, reset to start, and autoplay
+              currentVideo.currentTime = 0;
+              currentVideo.play().catch((error) => {
+                console.warn('Mobile autoplay failed:', error);
+                // Fallback: just load the video
+                currentVideo.load();
+              });
+              console.log(`Mobile: Playing video ${index}`);
+            } else {
+              // On desktop: Play the video
+              currentVideo.currentTime = 0;
+              currentVideo.play().catch((error) => {
+                console.warn('Desktop play failed:', error);
+              });
+            }
+          } else {
+            // Video not ready, wait for it to load
+            console.log(`Video ${index} not ready, waiting for load...`);
+            const handleLoadedData = () => {
+              currentVideo.removeEventListener('loadeddata', handleLoadedData);
+              if (isMobile) {
+                currentVideo.currentTime = 0;
+                currentVideo.play().catch(() => console.warn('Delayed mobile play failed'));
+              } else {
+                currentVideo.currentTime = 0;
+                currentVideo.play().catch(() => console.warn('Delayed desktop play failed'));
+              }
+            };
+            currentVideo.addEventListener('loadeddata', handleLoadedData);
+            currentVideo.load();
+          }
         }
-      }, 100);
-    }
+      } catch (error) {
+        // Silently handle errors to not interfere with carousel
+        console.warn('Video handling error:', error);
+      }
+    }, 100);
   };
 
   // Handle video loading errors - simplified to avoid state update loops
@@ -229,11 +264,11 @@ const NVIDIA = () => {
                       ref={(el) => (videoRefs.current[index] = el)}
                       className="d-block w-100"
                       src={item.media}
-                      autoPlay={!isMobile && index === 0} // Only autoplay first video on desktop
+                      autoPlay={index === activeIndex} // Autoplay current active video on both mobile and desktop
                       muted
                       loop
                       playsInline
-                      preload={isMobile ? "metadata" : "metadata"} // Load metadata on mobile for better UX
+                      preload={isMobile ? "auto" : "metadata"} // Load full video on mobile, metadata on desktop
                       onError={() => handleVideoError(index)}
                       onLoadedData={() => handleVideoLoad(index)}
                     />

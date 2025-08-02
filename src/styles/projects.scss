@@ -105,6 +105,7 @@
                 font-size: 2rem;
                 line-height: 30px;
                 margin-bottom: 10px;
+                color: white;
                 @include media(">=phone", "<lgphone") {
                     font-size: 12px;
                     line-height: 12px;
@@ -124,6 +125,7 @@
                 line-height: 16px;
                 justify-content: left;
                 margin-bottom: 20px;
+                color: white;
                 @include media(">=phone", "<lgphone") {
                     font-size: 0px;
                     line-height: 0px;
@@ -146,6 +148,7 @@
                 line-height: 16px;
                 font-style: oblique;
                 margin-bottom: 15px;
+                color: white;
                 @include media(">=phone", "<lgphone") {
                     font-size: 8px;
                     line-height: 8px;

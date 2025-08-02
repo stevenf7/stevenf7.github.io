@@ -35,6 +35,7 @@ const BackgroundIcons = () => {
   const [isMobile, setIsMobile] = useState(false);
   const resizeTimeout = useRef(null);
   const generatedGrid = useRef(false);
+  const lastGridSize = useRef(0);
 
   // Handle mobile detection separately to avoid infinite loops
   useEffect(() => {
@@ -97,7 +98,10 @@ const BackgroundIcons = () => {
     
     // If on a very small screen, don't show icons at all
     if (width <= 480) {
-      setIcons([]);
+      if (lastGridSize.current !== 0) {
+        setIcons([]);
+        lastGridSize.current = 0;
+      }
       return;
     }
     
@@ -174,8 +178,11 @@ const BackgroundIcons = () => {
       });
     }
     
-    // Update icons state
-    setIcons(grid);
+    // Update icons state only if grid size changed to prevent unnecessary renders
+    if (grid.length !== lastGridSize.current) {
+      setIcons(grid);
+      lastGridSize.current = grid.length;
+    }
     
     // Mark that we've generated the grid
     generatedGrid.current = true;
