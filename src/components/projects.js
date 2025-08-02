@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import Fade from "react-reveal/Fade"
 import Carousel from "react-bootstrap/Carousel"
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -15,6 +15,31 @@ import mte380Img from "../images/ProjectPhotos/mte380.png"
 import capstoneVideo from "../images/ProjectPhotos/capstone.mp4"
 
 const Project = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Handle carousel selection
+  const handleCarouselSelect = (selectedIndex) => {
+    console.log(`Projects carousel select: ${selectedIndex}, isMobile: ${isMobile}`);
+    try {
+      setActiveIndex(selectedIndex);
+    } catch (error) {
+      console.error('Error in projects carousel selection:', error);
+    }
+  };
+
   return (
     <div className="section" id="projects">
       <div className="container">
@@ -22,13 +47,26 @@ const Project = () => {
           <h1>Projects</h1>
         </Fade>
         <div className="project-wrapper">
-          <Carousel className="masterCarousel">
-            <Carousel.Item className="CarouselItem" interval={2000}>
+          <Carousel 
+            className="masterCarousel" 
+            activeIndex={activeIndex}
+            onSelect={handleCarouselSelect}
+            touch={true} 
+            interval={isMobile ? null : 3000}
+            pause={isMobile ? false : "hover"}
+            indicators={true}
+            controls={true}
+            keyboard={false}
+            slide={true}
+            wrap={true}
+            variant="dark"
+          >
+            <Carousel.Item className="CarouselItem">
               <img
                 className="d-block w-100"
                 src={airplaneImage}
                 alt="Airplane Project"
-                fluid
+
               ></img>
 
               <Carousel.Caption className="carouselCaption">
@@ -52,12 +90,12 @@ const Project = () => {
               </Carousel.Caption>
             </Carousel.Item>
 
-            <Carousel.Item className="CarouselItem" interval={2000}>
+            <Carousel.Item className="CarouselItem">
               <img
                 className="d-block w-100"
                 src={watoImage}
                 alt="Watonomous"
-                fluid
+
               />
               <Carousel.Caption className="carouselCaption">
                 <h3>Watonomous</h3>
@@ -82,7 +120,7 @@ const Project = () => {
               </Carousel.Caption>
             </Carousel.Item>
 
-            <Carousel.Item className="CarouselItem" interval={7000}>
+            <Carousel.Item className="CarouselItem">
               <div className="video-container">
                 <video
                   className="d-block"
@@ -112,12 +150,12 @@ const Project = () => {
               </Carousel.Caption>
             </Carousel.Item>
 
-            <Carousel.Item className="CarouselItem" interval={2000}>
+            <Carousel.Item className="CarouselItem">
               <img
                 className="d-block w-100"
                 src={webappImg}
                 alt="Webapps"
-                fluid
+
               />
               <Carousel.Caption className="carouselCaption">
                 <h3>Webapp Hackathon Projects</h3>
@@ -148,12 +186,12 @@ const Project = () => {
                 </button>
               </Carousel.Caption>
             </Carousel.Item>
-            <Carousel.Item className="CarouselItem" interval={2000}>
+            <Carousel.Item className="CarouselItem">
               <img
                 className="d-block w-100"
                 src={wearableImg}
                 alt="Wearables"
-                fluid
+
               />
               <Carousel.Caption className="carouselCaption">
                 <h3>Wearable Hackathon Projects</h3>
@@ -187,12 +225,12 @@ const Project = () => {
               </Carousel.Caption>
             </Carousel.Item>
 
-            <Carousel.Item className="CarouselItem" interval={2000}>
+            <Carousel.Item className="CarouselItem">
               <img
                 className="d-block w-100"
                 src={mte380Img}
                 alt="bofa"
-                fluid
+
               />
               <Carousel.Caption className="carouselCaption">
                 <h3>BOFA, the Line Follower Robot</h3>
@@ -213,12 +251,12 @@ const Project = () => {
               </Carousel.Caption>
             </Carousel.Item>
 
-            <Carousel.Item className="CarouselItem" interval={2000}>
+            <Carousel.Item className="CarouselItem">
               <img
                 className="d-block w-100"
                 src={hisecurityImage}
                 alt="hisecurity"
-                fluid
+
               />
               <Carousel.Caption className="carouselCaption">
                 <h3>HiSecurity!</h3>
@@ -243,12 +281,12 @@ const Project = () => {
 
 
 
-            <Carousel.Item className="CarouselItem" interval={2000}>
+            <Carousel.Item className="CarouselItem">
               <img
                 className="d-block w-100"
                 src={vexImg}
                 alt="vex"
-                fluid
+
               />
               <Carousel.Caption className="carouselCaption">
                 <h3>VEX Robotics</h3>
@@ -271,12 +309,12 @@ const Project = () => {
               </Carousel.Caption>
             </Carousel.Item>
 
-            <Carousel.Item className="CarouselItem" interval={2000}>
+            <Carousel.Item className="CarouselItem">
               <img
                 className="d-block w-100"
                 src={pilotImg}
                 alt="pilot"
-                fluid
+
               />
               <Carousel.Caption className="carouselCaption">
                 <h3>Pilot</h3>

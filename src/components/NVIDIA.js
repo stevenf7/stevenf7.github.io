@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import Fade from "react-reveal/Fade"
 import Carousel from "react-bootstrap/Carousel"
 import data from "../data"
@@ -21,7 +21,34 @@ import claw from "./../images/nvidia/claw.mp4"
 
 const NVIDIA = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const videoRefs = useRef([]); // Create a ref to store video elements
+  const [isMobile, setIsMobile] = useState(false);
+  const videoRefs = useRef([]);
+  const carouselRef = useRef(null);
+  
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Performance monitoring - simplified to avoid state update loops
+  const logPerformance = (action, startTime) => {
+    const endTime = performance.now();
+    const duration = endTime - startTime;
+    
+    // Just log to console instead of updating state to prevent loops
+    console.log(`Performance: ${action} took ${duration.toFixed(2)}ms`);
+    
+    if (duration > 100) {
+      console.warn(`Slow operation detected: ${action} took ${duration.toFixed(2)}ms`);
+    }
+  };
   
   // Create an array of carousel items with descriptions
   const carouselItems = [
@@ -99,6 +126,53 @@ const NVIDIA = () => {
     }
   ];
 
+  // Handle carousel selection with minimal video handling
+  const handleCarouselSelect = (index) => {
+    const startTime = performance.now();
+    console.log(`Carousel select triggered: ${index}, isMobile: ${isMobile}`);
+    setActiveIndex(index);
+    
+    // Log performance safely (only to console, no state updates)
+    logPerformance('carousel_select', startTime);
+    
+    // Minimal video handling - don't interfere with carousel state
+    if (!isMobile) {
+      // Only handle videos on desktop, and do it non-blocking
+      setTimeout(() => {
+        try {
+          // Pause other videos
+          videoRefs.current.forEach((videoRef, i) => {
+            if (videoRef && i !== index) {
+              videoRef.pause();
+            }
+          });
+          
+          // Play current video on desktop only
+          if (videoRefs.current[index]) {
+            videoRefs.current[index].currentTime = 0;
+            videoRefs.current[index].play().catch(() => {
+              // Silently handle play errors
+            });
+          }
+        } catch (error) {
+          // Silently handle errors to not interfere with carousel
+        }
+      }, 100);
+    }
+  };
+
+  // Handle video loading errors - simplified to avoid state update loops
+  const handleVideoError = (index) => {
+    console.warn(`Failed to load video at index ${index}`);
+    // Remove setPerformanceData to prevent infinite loops
+  };
+
+  // Handle video load success - simplified to avoid state update loops
+  const handleVideoLoad = (index) => {
+    console.log(`Video loaded successfully at index ${index}`);
+    // Remove setPerformanceData to prevent infinite loops
+  };
+
   return (
     <div className="section" id="nvidia">
       <div className="container">
@@ -106,39 +180,69 @@ const NVIDIA = () => {
           <h1>NVIDIA</h1>
           <h3>{data.nvidiaTime}</h3>
         </Fade>
+        
+        {/* Performance Debug Info (only show in development) */}
+        {process.env.NODE_ENV === 'development' && (
+          <div style={{ 
+            position: 'fixed', 
+            top: '10px', 
+            right: '10px', 
+            background: 'rgba(0,0,0,0.8)', 
+            color: 'white', 
+            padding: '10px', 
+            borderRadius: '5px', 
+            fontSize: '12px', 
+            zIndex: 1000,
+            maxWidth: '300px',
+            maxHeight: '200px',
+            overflow: 'auto'
+          }}>
+            <strong>Carousel Debug:</strong><br/>
+            Mobile: {isMobile ? 'Yes' : 'No'}<br/>
+            Active Index: {activeIndex}<br/>
+            Touch Enabled: Yes<br/>
+            Total Items: {carouselItems.length}
+          </div>
+        )}
+        
         <div className="nvidia-section">
           <div className="carousel-container">
             <Carousel 
+              ref={carouselRef}
               className="nvidia-carousel"
               activeIndex={activeIndex}
-              onSelect={(index) => {
-                setActiveIndex(index);
-                // Reset the video playback
-                if (videoRefs.current[index]) {
-                  videoRefs.current[index].currentTime = 0; // Reset to the beginning
-                  videoRefs.current[index].play(); // Play the video
-                }
-              }}
-              interval={3000} // Auto-slide every 3 seconds
+              onSelect={handleCarouselSelect}
+              interval={isMobile ? null : 5000} // Disable auto-slide on mobile
+              touch={true} // Enable touch controls for mobile
+              pause={isMobile ? false : "hover"}
+              indicators={true} // Show indicators for navigation
+              controls={true} // Show controls for navigation
+              slide={true} // Ensure slide transitions work
+              wrap={true} // Allow wrapping from last to first
+              keyboard={false} // Disable keyboard navigation to avoid conflicts
+              variant="dark"
             >
               {carouselItems.map((item, index) => (
                 <Carousel.Item key={index}>
                   {item.type === 'video' ? (
                     <video
-                      ref={(el) => (videoRefs.current[index] = el)} // Assign ref to video element
+                      ref={(el) => (videoRefs.current[index] = el)}
                       className="d-block w-100"
                       src={item.media}
-                      autoPlay
+                      autoPlay={!isMobile && index === 0} // Only autoplay first video on desktop
                       muted
                       loop
                       playsInline
+                      preload={isMobile ? "metadata" : "metadata"} // Load metadata on mobile for better UX
+                      onError={() => handleVideoError(index)}
+                      onLoadedData={() => handleVideoLoad(index)}
                     />
                   ) : (
                     <img
                       className="d-block w-100"
                       src={item.media}
                       alt={item.title}
-                      fluid
+                      loading="lazy"
                     />
                   )}
                   <Carousel.Caption className="carousel-caption">

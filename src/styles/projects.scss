@@ -24,6 +24,21 @@
         max-width: 1200px;
         margin: 0 auto;
         
+        // Force touch events to work properly
+        touch-action: pan-y pinch-zoom;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        
+        // Optimize for mobile performance
+        @media (max-width: 768px) {
+          // Ensure touch interactions work
+          touch-action: manipulation;
+          -webkit-touch-callout: none;
+          -webkit-tap-highlight-color: transparent;
+        }
+        
         // Add fixed height for carousel
         .carousel-inner {
             height: 700px; // Increased height for all slides
