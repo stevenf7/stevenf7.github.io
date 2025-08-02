@@ -52,8 +52,7 @@ const Project = () => {
             activeIndex={activeIndex}
             onSelect={handleCarouselSelect}
             touch={true} 
-            interval={isMobile ? null : 3000}
-            pause={isMobile ? false : "hover"}
+            interval={3000}
             indicators={true}
             controls={true}
             keyboard={false}

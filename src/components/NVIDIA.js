@@ -216,30 +216,6 @@ const NVIDIA = () => {
           <h3>{data.nvidiaTime}</h3>
         </Fade>
         
-        {/* Performance Debug Info (only show in development) */}
-        {process.env.NODE_ENV === 'development' && (
-          <div style={{ 
-            position: 'fixed', 
-            top: '10px', 
-            right: '10px', 
-            background: 'rgba(0,0,0,0.8)', 
-            color: 'white', 
-            padding: '10px', 
-            borderRadius: '5px', 
-            fontSize: '12px', 
-            zIndex: 1000,
-            maxWidth: '300px',
-            maxHeight: '200px',
-            overflow: 'auto'
-          }}>
-            <strong>Carousel Debug:</strong><br/>
-            Mobile: {isMobile ? 'Yes' : 'No'}<br/>
-            Active Index: {activeIndex}<br/>
-            Touch Enabled: Yes<br/>
-            Total Items: {carouselItems.length}
-          </div>
-        )}
-        
         <div className="nvidia-section">
           <div className="carousel-container">
             <Carousel 
@@ -247,9 +223,8 @@ const NVIDIA = () => {
               className="nvidia-carousel"
               activeIndex={activeIndex}
               onSelect={handleCarouselSelect}
-              interval={isMobile ? null : 5000} // Disable auto-slide on mobile
+              interval={2000} // 2 second auto-advance on both desktop and mobile
               touch={true} // Enable touch controls for mobile
-              pause={isMobile ? false : "hover"}
               indicators={true} // Show indicators for navigation
               controls={true} // Show controls for navigation
               slide={true} // Ensure slide transitions work
