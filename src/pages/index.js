@@ -11,6 +11,7 @@ import Footer from "../components/Footer"
 import Project from "../components/projects"
 import Nvidia from "../components/NVIDIA"
 import Education from "../components/Education"
+import Publications from "../components/Publications"
 
 const IndexPage = () => (
   <Layout>
@@ -19,6 +20,7 @@ const IndexPage = () => (
     <About></About>
     <Nvidia></Nvidia>
     <Education></Education>
+    <Publications></Publications>
     <Work></Work>
     <Project></Project>
     <Skills></Skills>
