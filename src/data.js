@@ -80,7 +80,7 @@ export default {
     about: { en: "About", zh: "关于我" },
     nvidia: { en: "NVIDIA", zh: "英伟达" },
     publications: { en: "Publications", zh: "论文" },
-    education: { en: "Education", zh: "教育" },
+    education: { en: "Education", zh: "学历" },
     internships: { en: "Internships", zh: "实习" },
     projects: { en: "Projects", zh: "项目" },
     skills: { en: "Skills", zh: "技能" },

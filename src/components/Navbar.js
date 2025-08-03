@@ -4,8 +4,8 @@ import { useLanguage } from "../contexts/LanguageContext"
 import data, { getText } from "../data"
 
 const Navbar = () => {
-  const { language } = useLanguage();
-  let resumelink = "/resume/";
+  const { language, getLanguageUrl } = useLanguage();
+  let resumelink = getLanguageUrl(language, "/resume");
   
   return (
     <div className="section">
@@ -21,16 +21,13 @@ const Navbar = () => {
           
           <div className="center-nav">
             <div className="links-wrapper">
-              <button onClick= {event =>  window.location.href='/#home'} type="button">
+              <button onClick= {event =>  window.location.href=getLanguageUrl(language, '/') + '#home'} type="button">
                 {getText(data.nav.home, language)}
               </button>
-              <button onClick= {event =>  window.location.href='/#nvidia'} type="button">
+              <button onClick= {event =>  window.location.href=getLanguageUrl(language, '/') + '#nvidia'} type="button">
                 {getText(data.nav.work, language)}
               </button>
-              <button onClick= {event =>  window.location.href='/#projects'} type="button">
-                {getText(data.nav.projects, language)}
-              </button>
-              <button onClick= {event =>  window.location.href='/#contact'} type="button">
+              <button onClick= {event =>  window.location.href=getLanguageUrl(language, '/') + '#contact'} type="button">
                 {getText(data.nav.contact, language)}
               </button>
               <LanguageToggle />
