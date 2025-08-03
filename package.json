@@ -27,7 +27,8 @@
     "react-helmet": "^6.1.0",
     "react-reveal": "^1.2.2",
     "react-scroll": "^1.8.1",
-    "react-simple-typewriter": "^3.0.1"
+    "react-simple-typewriter": "^3.0.1",
+    "remark-mdx": "^1.6.22"
   },
   "devDependencies": {
     "gh-pages": "^3.2.3",

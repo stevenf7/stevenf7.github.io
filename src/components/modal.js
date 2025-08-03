@@ -1,8 +1,10 @@
 import React, { useEffect } from "react"
-import data from "./../data"
+import { useLanguage } from "../contexts/LanguageContext"
+import data, { getText } from "./../data"
 import "./../css/modal.scss"
 
 export default function Modal({ closeModal, id, type = "project" }) {
+  const { language } = useLanguage();
   // Determine which data to use based on the type
   const content = type === "project" ? data.projects[id] : data.education[id];
   
@@ -52,15 +54,15 @@ export default function Modal({ closeModal, id, type = "project" }) {
           </button>
         </div>
         <div className="title">
-          <h1>{type === "project" ? content.position : content.title}</h1>
+          <h1>{type === "project" ? getText(content.position, language) : getText(content.title, language)}</h1>
           <h2>{type === "project" ? content.date : ""}</h2>
         </div>
         <div className="body">
         <img src={content.workImg || content.imageSrc} alt="" className="img-fluid" />
 
         <ul>
-        {content.description.map((text, index) => (
-                <li key={index}>{text}</li>
+        {content.description.map((desc, index) => (
+                <li key={index}>{getText(desc, language)}</li>
               ))}
           
           </ul>

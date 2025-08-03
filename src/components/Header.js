@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react"
 import Fade from "react-reveal/Fade"
-import data from "../data"
+import { useLanguage } from "../contexts/LanguageContext"
+import data, { getText } from "../data"
 import { Typewriter } from "react-simple-typewriter"
 import imgUrl from "../images/headerphoto.jpg"
 
 const Header = () => {
+  const { language } = useLanguage();
   // Track orientation for responsive adjustments, initialize with a default value
   const [isLandscape, setIsLandscape] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
@@ -59,14 +61,14 @@ const Header = () => {
             <div className="content-wrapper">
               <Fade bottom>
                 <h2>
-                  Hi, I am {data.name}{" "}
+                  {getText({ en: "Hi, I am", zh: "你好,我是" }, language)} {getText(data.name, language)}{" "}
                 </h2>
               </Fade>
 
               <Fade bottom>
                 <div className="heading-wrapper">
                   <h1>
-                    I am a {" "}
+                    {getText({ en: "I am a", zh: "我是一名" }, language)}{" "}
                     <span style={{ color: "red", fontWeight: "bold" }}>
                       <Typewriter
                         loop
@@ -75,7 +77,10 @@ const Header = () => {
                         typeSpeed={70}
                         deleteSpeed={50}
                         delaySpeed={1200}
-                        words={["Robotics Engineer", "Pilot", "Code Monkey", "Embedded Developer", "Accordionist", "Simulation Developer", "Student", "Clarinetist", "Firmware Developer"]}
+                        words={language === 'zh' ? 
+                          ["机器人工程师", "飞行员", "程序猿", "学生", "单簧管演奏者", "固件开发工程师"] :
+                          ["Robotics Engineer", "Pilot", "Code Monkey", "Accordionist", "Simulation Developer", "Student", "Clarinetist", "Firmware Developer"]
+                        }
                       />
                     </span>
                   </h1>
@@ -83,7 +88,7 @@ const Header = () => {
               </Fade>
 
               <Fade bottom>
-                <p>{data.headerParagraph}</p>
+                <p>{getText(data.headerParagraph, language)}</p>
               </Fade>
 
               <Fade bottom>
@@ -91,7 +96,7 @@ const Header = () => {
                   href={`https://www.linkedin.com/in/stevenfeng7/`}
                   className="primary-btn"
                 >
-                  CONNECT WITH ME!
+                  {getText({ en: "CONNECT WITH ME!", zh: "与我联系！" }, language)}
                 </a>
               </Fade>
             </div>
@@ -116,14 +121,14 @@ const Header = () => {
         >
           <Fade bottom>
             <h2>
-              Hi, I am {data.name}{" "}
+              {getText({ en: "Hi, I am", zh: "你好,我是" }, language)} {getText(data.name, language)}{" "}
             </h2>
           </Fade>
 
           <Fade bottom>
             <div className="heading-wrapper">
               <h1>
-                I am a {" "}
+                {getText({ en: "I am a", zh: "我是一名" }, language)}{" "}
                 <span style={{ color: "red", fontWeight: "bold" }}>
                   <Typewriter
                     loop
@@ -132,7 +137,10 @@ const Header = () => {
                     typeSpeed={70}
                     deleteSpeed={50}
                     delaySpeed={1200}
-                    words={["Robotics Engineer", "Pilot", "Code Monkey", "Embedded Developer", "Accordionist", "Simulation Developer", "Student", "Clarinetist", "Firmware Developer"]}
+                    words={language === 'zh' ? 
+                      ["机器人工程师", "飞行员", "程序猿", "学生", "单簧管演奏者", "固件开发工程师"] :
+                      ["Robotics Engineer", "Pilot", "Code Monkey", "Accordionist", "Simulation Developer", "Student", "Clarinetist", "Firmware Developer"]
+                    }
                   />
                 </span>
               </h1>
@@ -140,7 +148,7 @@ const Header = () => {
           </Fade>
 
           <Fade bottom>
-            <p>{data.headerParagraph}</p>
+            <p>{getText(data.headerParagraph, language)}</p>
           </Fade>
 
           <Fade bottom>
@@ -148,7 +156,7 @@ const Header = () => {
               href={`https://www.linkedin.com/in/stevenfeng7/`}
               className="primary-btn"
             >
-              CONNECT WITH ME!
+              {getText({ en: "CONNECT WITH ME!", zh: "与我联系！" }, language)}
             </a>
           </Fade>
         </div>

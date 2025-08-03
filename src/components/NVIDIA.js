@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react"
 import Fade from "react-reveal/Fade"
 import Carousel from "react-bootstrap/Carousel"
-import data from "../data"
+import { useLanguage } from "../contexts/LanguageContext"
+import data, { getText } from "../data"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "../styles/NVIDIA.scss"
 
@@ -20,6 +21,7 @@ import claw from "./../images/nvidia/claw.mp4"
 import urLousdVideo from "./../images/publications/ur_lousd.mp4"
 
 const NVIDIA = () => {
+  const { language } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const videoRefs = useRef([]);
@@ -56,81 +58,29 @@ const NVIDIA = () => {
     }
   };
   
-  // Create an array of carousel items with descriptions
-  const carouselItems = [
-    {
-      media: h1FlipGif,
-      type: 'video',
-      title: "H1 humanoid robot tries to backflip",
-      description: "H1 attempted a backflip, but it didn't go as planned."
-    },
-    {
-      media: h1TrainVideo,
-      type: 'video',
-      title: "Training H1 humanoids to walk",
-      description: "H1 robot during training phase."
-    },
-    {
-      media: urLousdVideo,
-      type: 'video',
-      title: "Robotics arm pick and place example",
-      description: "Demonstrating OpenUSD integration with Isaac Sim for robotics applications and digital twin workflows."
-    },
-    {
-      media: frankaMoveitVideo,
-      type: 'video',
-      title: "Franka robot simulation",
-      description: "Franka robot demonstrating MoveIt integration."
-    },
-    {
-      media: frankaDrawerVideo,
-      type: 'video',
-      title: "Reinforcement learning based drawer manipulation",
-      description: "Franka robot performing drawer manipulation task."
-    },
-    {
-      media: claw,
-      type: 'video',
-      title: "High fidelity claw simulation",
-      description: "Claw robot grasping task."
-    },
-    {
-      media: leatherbackVideo,
-      type: 'video',
-      title: "Ackermann steering simulation",
-      description: "RC car simulation"
-    },
-    {
-      media: carterOutdoorVideo,
-      type: 'video',
-      title: "Outdoor robot simulation",
-      description: "Robot outdoor simulation"
-    },
-    {
-      media: agilityWalkVideo,
-      type: 'video',
-      title: "Agility humanoid robot locomotion policy",
-      description: "Agility humanoid robot demonstrating walking capabilities."
-    },
-    {
-      media: gtc_lousd,
-      type: 'image',
-      title: "Giving a presentation on building robot digital twins at GTC 2025",
-      description: "Giving a lecture at GTC 2025 on USD composition."
-    },
-    {
-      media: gtc_sil,
-      type: 'image',
-      title: "ROS software-in-the-loop simulation lab at GTC 2025",
-      description: "Giving a lecture at GTC 2025 on ROS integration with Isaac Sim."
-    },
-    {
-      media: newton,
-      type: 'image',
-      title: "Presenting the next generation simulator Newton at GTC 2025",
-      description: "Presenting Newton, next generation robotics simulator at our both at NVIDIA GTC 2025."
-    }
-  ];
+  // Media mapping for carousel items
+  const mediaMap = {
+    h1FlipGif,
+    h1TrainVideo,
+    urLousdVideo,
+    frankaMoveitVideo,
+    frankaDrawerVideo,
+    claw,
+    leatherbackVideo,
+    carterOutdoorVideo,
+    agilityWalkVideo,
+    gtc_lousd,
+    gtc_sil,
+    newton
+  };
+
+  // Get carousel items from data with translated content
+  const carouselItems = data.nvidiaCarouselItems.map(item => ({
+    ...item,
+    media: mediaMap[item.media],
+    title: getText(item.title, language),
+    description: getText(item.description, language)
+  }));
 
   // Handle carousel selection with minimal video handling
   const handleCarouselSelect = (index) => {
@@ -212,8 +162,8 @@ const NVIDIA = () => {
     <div className="section" id="nvidia">
       <div className="container">
         <Fade bottom cascade distance="20px">
-          <h1>NVIDIA</h1>
-          <h3>{data.nvidiaTime}</h3>
+          <h1>{getText(data.sections.nvidia, language)}</h1>
+          <h3>{getText(data.nvidiaTime, language)}</h3>
         </Fade>
         
         <div className="nvidia-section">
@@ -257,7 +207,7 @@ const NVIDIA = () => {
                   )}
                   <Carousel.Caption className="carousel-caption">
                     <h3>{item.title}</h3>
-                    {/* <p>{item.description}</p> */}
+                    <p>{item.description}</p>
                   </Carousel.Caption>
                 </Carousel.Item>
               ))}
@@ -266,7 +216,7 @@ const NVIDIA = () => {
           <div className="content">
             {data.nvidiaExperience.map((exp, index) => (
               <Fade bottom distance="20px" key={index}>
-                <p>{exp}</p>
+                <p>{getText(exp, language)}</p>
               </Fade>
             ))}
           </div>
