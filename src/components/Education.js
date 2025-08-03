@@ -24,7 +24,7 @@ const Education = () => {
                 <Card
                   key={index}
                   id={index}
-                  heading={school.title}
+                  heading={getText(school.title, language)}
                   paragraph={getText(school.para, language)}
                   imgUrl={school.imageSrc}
                   projectLink={school.url}

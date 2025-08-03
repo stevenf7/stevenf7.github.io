@@ -118,7 +118,7 @@ const Header = () => {
         >
           <Fade bottom>
             <h2>
-              {getText({ en: "Hi, I am", zh: "你好，我是" }, language)} {getText(data.name, language)}{" "}
+              {getText({ en: "Hi, I am", zh: "你好,我是" }, language)} {getText(data.name, language)}{" "}
             </h2>
           </Fade>
 

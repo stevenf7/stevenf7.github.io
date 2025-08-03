@@ -12,12 +12,11 @@ const LanguageToggle = () => {
       type="button"
       aria-label={`Switch to ${language === 'en' ? 'Chinese' : 'English'}`}
     >
-      <span className={`lang-option ${language === 'en' ? 'active' : ''}`}>
-        EN
+      <span className="active-lang">
+        {language === 'en' ? 'EN' : '中'}
       </span>
-      <span className="divider">|</span>
-      <span className={`lang-option ${language === 'zh' ? 'active' : ''}`}>
-        中
+      <span className="inactive-lang">
+        {language === 'en' ? '中' : 'EN'}
       </span>
     </button>
   );
