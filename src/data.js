@@ -11,7 +11,7 @@ import airplaneIcon from "./images/skillsIcon/airplane.svg"
 // Social Icon
 import githubIcon from "./images/contactIcon/github.svg"
 import linkedinIcon from "./images/contactIcon/linkedin.png"
-import devpostIcon from "./images/contactIcon/devpost.png"
+import googleScholarIcon from "./images/contactIcon/gscholar.png"
 
 
 // Company icon
@@ -333,7 +333,7 @@ export default {
     {
       title: {
         en: "Khazanah National Americas",
-        zh: "国库控股美洲公司"
+        zh: "国库控股美洲分部"
       }, 
       position: {
         en: "Innovation Developer - Khazanah",
@@ -424,7 +424,7 @@ aboutParaTwo: {
 },
 aboutParaThree: {
   en: "When I'm not building robots, you can find me hiking, playing my clarinet and accordion, or exploring new cuisines around the city.",
-          zh: "在工作之余, 我喜欢去爬山, 吹黑管, 弹手风琴, 或者在城市里探索新的食物。"
+          zh: "在工作之余, 我喜欢去爬山, 吹黑管, 弹手风琴, 和在城市里探索新的食物。"
 },
 
 nvidiaTime: {
@@ -843,7 +843,7 @@ projectsCarouselItems: [
 
   contactSubHeading: {
   en: "Let's chat about robots!",
-  zh: "聊聊机器人吧！"
+  zh: "一起聊聊机器人吧！"
 },
   social: [
 
@@ -851,8 +851,8 @@ projectsCarouselItems: [
       url: "https://github.com/stevenf7"
     },
     {
-      img: devpostIcon,
-      url: "https://devpost.com/TheRealStevenFeng",
+      img: googleScholarIcon,
+      url: "https://scholar.google.com/citations?hl=en&user=0YSkT7UAAAAJ",
     },
     {
       img: linkedinIcon,
