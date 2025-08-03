@@ -1,18 +1,21 @@
 import React from "react"
 import Fade from "react-reveal/Fade"
-import data from "../data"
+import { useLanguage } from "../contexts/LanguageContext"
+import data, { getText } from "../data"
 import "../styles/footer.scss"
 
 const Footer = () => {
+  const { language } = useLanguage();
+
   return (
     <div className="section" id="contact">
       <div className="container">
         <div className="footer-container">
           <Fade bottom distance="20px" duration={1000}>
-            <h1>Contact</h1>
+            <h1>{getText(data.sections.contact, language)}</h1>
           </Fade>
           <Fade bottom distance="20px" delay={300} duration={1000}>
-            <h2>{data.contactSubHeading}</h2>
+            <h2>{getText(data.contactSubHeading, language)}</h2>
           </Fade>
           <Fade bottom>
             <a className="email-link" href={`mailto:${data.contactEmail}`}>

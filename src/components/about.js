@@ -1,28 +1,30 @@
 import React from "react"
 import Fade from "react-reveal/Fade"
-import data from "../data"
+import { useLanguage } from "../contexts/LanguageContext"
+import data, { getText } from "../data"
 import selfImage from "./../images/SelfPhoto4.jpg"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "../styles/about.scss"
 
 const About = () => {
+  const { language } = useLanguage();
   return (
     <div className="section" id="about">
       <div className="container">
         <Fade bottom cascade distance="20px">
-          <h1>About</h1>
+          <h1>{getText(data.sections.about, language)}</h1>
         </Fade>
         <div className="about-section">
           <div className="content">
             <Fade bottom distance="20px">
               <p>
-                {data.aboutParaOne}
+                {getText(data.aboutParaOne, language)}
                 <br />
                 <br />
-                {data.aboutParaTwo}
+                {getText(data.aboutParaTwo, language)}
                 <br />
                 <br />
-                {data.aboutParaThree}
+                {getText(data.aboutParaThree, language)}
               </p>
             </Fade>
           </div>

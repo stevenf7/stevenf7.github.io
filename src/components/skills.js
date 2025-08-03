@@ -1,14 +1,16 @@
 import React from "react"
 import Fade from "react-reveal/Fade"
-import data from "../data"
+import { useLanguage } from "../contexts/LanguageContext"
+import data, { getText } from "../data"
 
 const Skills = () => {
+  const { language } = useLanguage();
   return (
     <div className="section" id="skills">
       <div className="container">
         <Fade bottom cascade distance="20px">
-          <h1>Skills</h1>
-          <h2>{data.skillsSubHeading}</h2>
+          <h1>{getText(data.sections.skills, language)}</h1>
+
         </Fade>
         <div className="skills-wrapper">
           <div className="grid">

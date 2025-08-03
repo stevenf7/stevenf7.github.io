@@ -1,11 +1,13 @@
 import React from "react"
 import Card from "./atoms/Card"
 import Fade from "react-reveal/Fade"
-import data from "../data"
+import { useLanguage } from "../contexts/LanguageContext"
+import data, { getText } from "../data"
 import {useState} from "react"
 import Modal from "./modal"
 
 const Education = () => {
+  const { language } = useLanguage();
   const [openModal, setOpenModal] = useState(false);
   const [id, setId] = useState(0);
 
@@ -13,8 +15,7 @@ const Education = () => {
     <div className="section" id="education">
       <div className="container">
         <Fade bottom cascade distance="20px">
-          <h1>Education</h1>
-          <h2>{data.educationSubHeading}</h2>
+          <h1>{getText(data.sections.education, language)}</h1>
         </Fade>
         <div className="education-wrapper">
           <div className="grid">
@@ -24,7 +25,7 @@ const Education = () => {
                   key={index}
                   id={index}
                   heading={school.title}
-                  paragraph={school.para}
+                  paragraph={getText(school.para, language)}
                   imgUrl={school.imageSrc}
                   projectLink={school.url}
                   setOpenModal={setOpenModal}

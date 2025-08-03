@@ -1,5 +1,7 @@
 import React from "react"
 import Fade from "react-reveal/Fade"
+import { useLanguage } from "../contexts/LanguageContext"
+import { getText } from "../data"
 import "../styles/publications.scss"
 
 // Import publication images/videos
@@ -8,6 +10,8 @@ import urLousdVideo from "../images/publications/ur_lousd.mp4"
 import h1SilVideo from "../images/publications/h1_sil.mp4"
 
 const Publications = () => {
+  const { language } = useLanguage();
+  
   // Publication data with actual links
   const publicationsData = [
     {
@@ -40,7 +44,7 @@ const Publications = () => {
     <div className="section" id="publications">
       <div className="container">
         <Fade bottom cascade distance="20px">
-          <h1>Publications</h1>
+          <h1>{getText({ en: "Publications", zh: "发表论文" }, language)}</h1>
         </Fade>
         <div className="publications-wrapper">
           <div className="grid">
@@ -78,7 +82,7 @@ const Publications = () => {
                       type="button" 
                       className="btn"
                     > 
-                      View Publication
+                      {getText({ en: "View Publication", zh: "查看论文" }, language)}
                     </button>
                   </div>
                 </div>

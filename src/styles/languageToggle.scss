@@ -1,0 +1,39 @@
+.language-toggle {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 8px 16px;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .lang-option {
+    transition: all 0.3s ease;
+    font-weight: 500;
+
+    &.active {
+      color: #3498db;
+      font-weight: 700;
+    }
+  }
+
+  .divider {
+    opacity: 0.5;
+    font-weight: 300;
+  }
+
+  // Mobile styles
+  @media (max-width: 768px) {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}
