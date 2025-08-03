@@ -25,7 +25,7 @@ const Work = () => {
                 <Card
                   key={index}
                   id={index}
-                  heading={project.title}
+                  heading={getText(project.title, language)}
                   paragraph={getText(project.para, language)}
                   imgUrl={project.imageSrc}
                   projectLink={project.url}

@@ -54,7 +54,7 @@ export default function Modal({ closeModal, id, type = "project" }) {
           </button>
         </div>
         <div className="title">
-          <h1>{type === "project" ? content.position : content.title}</h1>
+          <h1>{type === "project" ? getText(content.position, language) : getText(content.title, language)}</h1>
           <h2>{type === "project" ? content.date : ""}</h2>
         </div>
         <div className="body">
