@@ -160,7 +160,7 @@ const Project = () => {
                 <h3>Webapp Hackathon Projects</h3>
                 <h4>Best Use of Google Cloud Award (Purrtector, NWHacks 2021)</h4>
                 <p>
-                  Intelibatch (left) is a webapp for displaying and predicting COVID19 cases across North America using React (front end), Flask (back end), and Tensorflow (prediction) to compute the optimal batch size for repeated testing<br></br><br></br>
+                  Intelibatch (left) is a webapp for displaying and predicting COVID19 cases across North America using React (front end), Flask (back end), and Tensorflow (prediction) to compute the optimal batch size for repeated testing.
                   Purrtector (right) is a chrome extension for encouraging planet positive behaviors by rewarding users with digital pets using React and Flask.
                 </p>
                 <button
@@ -196,8 +196,8 @@ const Project = () => {
                 <h3>Wearable Hackathon Projects</h3>
                 <h4>1st Place (VisionSense, MakeUofT 2019)</h4>
                 <p>
-                  VisionSense (left) is an IoT outfit to haptically guide users with visual impairments/obstructions while monitoring their environment<br></br><br></br>
-                  Nightlight (right) is a wearable that allows bike users to signal turns at night via motion-sensing technologies which will activate turn lights
+                  VisionSense (left) is an IoT outfit to haptically guide users with visual impairments/obstructions while monitoring their environment.
+                  Nightlight (right) is a wearable that allows bike users to signal turns at night via motion-sensing technologies which will activate turn lights.
                 </p>
                 <button
                   onClick={event =>
@@ -292,7 +292,6 @@ const Project = () => {
                 <h4>Finalists, Alberta Provincial Championship 2017 and 2018</h4>
                 <p>
                 Over the three years, we explored various robotics systems such as holonomic drives, reverse double four bar lifts, and even learned C programming and programed PID controllers from scratch in a team of three.
-                <br></br>Furthermore, we qualified and competed at VEX World Robotics Championship representing Canada twice, and this experience ultimately propelled me towards a career in robotics engineering.
                 </p>
 
                 <button
@@ -319,7 +318,7 @@ const Project = () => {
                 <h3>Pilot</h3>
                 <h4>"Oh! I slipped the surly bonds of earth and danced the skies on bright yellow wings."</h4>
                 <p>
-                   I finally touched the sky when I earned my glider pilot license in grade 10 and private pilot license in grade 11. This was an breathtaking experiences that inspires me to build robotics airplanes to this date.
+                   I finally touched the sky when I earned my glider pilot license in 2016 and private pilot license in 2017. This was an breathtaking experiences that inspires me to build robotics airplanes to this date.
                 </p>
               </Carousel.Caption>
             </Carousel.Item>

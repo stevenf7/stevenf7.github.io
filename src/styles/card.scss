@@ -1,19 +1,19 @@
 .card {
-  width: 100%;
+  width: 100% !important;
   height: 300px !important;
-  min-height: 300px;
+  min-height: 300px !important;
   overflow: hidden !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  position: relative;
-  margin-bottom: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 500ms ease-in-out;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  position: relative !important;
+  margin-bottom: 20px !important;
+  border-radius: 15px !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+  transition: all 500ms ease-in-out !important;
   
   .background-image {
     position: absolute;
@@ -24,6 +24,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    border-radius: 15px !important;
     transition: all 500ms ease-in-out;
     z-index: 1;
   }
@@ -45,7 +46,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 12px;
+    border-radius: 15px !important;
     z-index: 2;
     
     h1 {
