@@ -68,7 +68,7 @@ const Publications = () => {
                     )}
                   </div>
                   <div className="content">
-                    <div className="publication-type">{publication.type}</div>
+                    <div className="publication-type" data-type={publication.type}>{publication.type}</div>
                     <h3 className="header">{publication.title}</h3>
                     <h4 className="subtitle">{publication.subtitle}</h4>
                     <button 

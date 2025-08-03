@@ -6,7 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "../styles/NVIDIA.scss"
 
 // Import NVIDIA images from the nvidia folder
-import h1Gif from "./../images/nvidia/h1.mp4"
 import h1FlipGif from "./../images/nvidia/h1_Flip.mp4"
 import leatherbackVideo from "./../images/nvidia/Leatherback.mp4"
 import h1TrainVideo from "./../images/nvidia/h1_Train.mp4"
@@ -18,6 +17,7 @@ import gtc_lousd from "./../images/nvidia/IMG_2228.jpg"
 import gtc_sil from "./../images/nvidia/gtc_sil.jpg"
 import newton from "./../images/nvidia/newton.jpg"
 import claw from "./../images/nvidia/claw.mp4"
+import urLousdVideo from "./../images/publications/ur_lousd.mp4"
 
 const NVIDIA = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -71,10 +71,10 @@ const NVIDIA = () => {
       description: "H1 robot during training phase."
     },
     {
-      media: h1Gif,
+      media: urLousdVideo,
       type: 'video',
-      title: "H1 humanoid robot walking in Isaac Sim",
-      description: "H1 is able to walk around using a reinforcement learning policy trained from Isaac Lab."
+      title: "Robotics arm pick and place example",
+      description: "Demonstrating OpenUSD integration with Isaac Sim for robotics applications and digital twin workflows."
     },
     {
       media: frankaMoveitVideo,
@@ -223,7 +223,7 @@ const NVIDIA = () => {
               className="nvidia-carousel"
               activeIndex={activeIndex}
               onSelect={handleCarouselSelect}
-              interval={2000} // 2 second auto-advance on both desktop and mobile
+              interval={3000} // 2 second auto-advance on both desktop and mobile
               touch={true} // Enable touch controls for mobile
               indicators={true} // Show indicators for navigation
               controls={true} // Show controls for navigation
