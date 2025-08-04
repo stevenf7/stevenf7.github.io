@@ -167,52 +167,54 @@ const NVIDIA = () => {
         </Fade>
         
         <div className="nvidia-section">
-          <div className="carousel-container">
-            <Carousel 
-              ref={carouselRef}
-              className="nvidia-carousel"
-              activeIndex={activeIndex}
-              onSelect={handleCarouselSelect}
-              interval={3000} // 2 second auto-advance on both desktop and mobile
-              touch={true} // Enable touch controls for mobile
-              indicators={true} // Show indicators for navigation
-              controls={true} // Show controls for navigation
-              slide={true} // Ensure slide transitions work
-              wrap={true} // Allow wrapping from last to first
-              keyboard={false} // Disable keyboard navigation to avoid conflicts
-              variant="dark"
-            >
-              {carouselItems.map((item, index) => (
-                <Carousel.Item key={index}>
-                  {item.type === 'video' ? (
-                    <video
-                      ref={(el) => (videoRefs.current[index] = el)}
-                      className="d-block w-100"
-                      src={item.media}
-                      autoPlay={index === activeIndex} // Autoplay current active video on both mobile and desktop
-                      muted
-                      loop
-                      playsInline
-                      preload={isMobile ? "auto" : "metadata"} // Load full video on mobile, metadata on desktop
-                      onError={() => handleVideoError(index)}
-                      onLoadedData={() => handleVideoLoad(index)}
-                    />
-                  ) : (
-                    <img
-                      className="d-block w-100"
-                      src={item.media}
-                      alt={item.title}
-                      loading="lazy"
-                    />
-                  )}
-                  <Carousel.Caption className={`carousel-caption ${isMobile ? 'mobile-caption' : ''}`}>
-                    <h3>{item.title}</h3>
-                    {!isMobile && <p>{item.description}</p>}
-                  </Carousel.Caption>
-                </Carousel.Item>
-              ))}
-            </Carousel>
-          </div>
+          <Fade bottom distance="20px">
+            <div className="carousel-container">
+              <Carousel 
+                ref={carouselRef}
+                className="nvidia-carousel"
+                activeIndex={activeIndex}
+                onSelect={handleCarouselSelect}
+                interval={3000} // 2 second auto-advance on both desktop and mobile
+                touch={true} // Enable touch controls for mobile
+                indicators={true} // Show indicators for navigation
+                controls={true} // Show controls for navigation
+                slide={true} // Ensure slide transitions work
+                wrap={true} // Allow wrapping from last to first
+                keyboard={false} // Disable keyboard navigation to avoid conflicts
+                variant="dark"
+              >
+                {carouselItems.map((item, index) => (
+                  <Carousel.Item key={index}>
+                    {item.type === 'video' ? (
+                      <video
+                        ref={(el) => (videoRefs.current[index] = el)}
+                        className="d-block w-100"
+                        src={item.media}
+                        autoPlay={index === activeIndex} // Autoplay current active video on both mobile and desktop
+                        muted
+                        loop
+                        playsInline
+                        preload={isMobile ? "auto" : "metadata"} // Load full video on mobile, metadata on desktop
+                        onError={() => handleVideoError(index)}
+                        onLoadedData={() => handleVideoLoad(index)}
+                      />
+                    ) : (
+                      <img
+                        className="d-block w-100"
+                        src={item.media}
+                        alt={item.title}
+                        loading="lazy"
+                      />
+                    )}
+                    <Carousel.Caption className={`carousel-caption ${isMobile ? 'mobile-caption' : ''}`}>
+                      <h3>{item.title}</h3>
+                      {!isMobile && <p>{item.description}</p>}
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                ))}
+              </Carousel>
+            </div>
+          </Fade>
           <div className="content">
             {data.nvidiaExperience.map((exp, index) => (
               <Fade bottom distance="20px" key={index}>

@@ -3,6 +3,13 @@ import { useLanguage } from "../contexts/LanguageContext"
 import data, { getText } from "./../data"
 import "./../css/modal.scss"
 
+// Helper function to detect if file is a video
+const isVideoFile = (url) => {
+  if (!url) return false;
+  const videoExtensions = ['.webm', '.mp4', '.mov', '.avi'];
+  return videoExtensions.some(ext => url.toLowerCase().endsWith(ext));
+};
+
 export default function Modal({ closeModal, id, type = "project" }) {
   const { language } = useLanguage();
   // Determine which data to use based on the type
@@ -58,7 +65,19 @@ export default function Modal({ closeModal, id, type = "project" }) {
           <h2>{type === "project" ? content.date : ""}</h2>
         </div>
         <div className="body">
-        <img src={content.workImg || content.imageSrc} alt="" className="img-fluid" />
+        {isVideoFile(content.workImg || content.imageSrc) ? (
+          <video 
+            src={content.workImg || content.imageSrc} 
+            className="img-fluid" 
+            controls
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        ) : (
+          <img src={content.workImg || content.imageSrc} alt="" className="img-fluid" />
+        )}
 
         <ul>
         {content.description.map((desc, index) => (

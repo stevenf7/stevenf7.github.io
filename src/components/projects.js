@@ -75,59 +75,61 @@ const Project = () => {
         <Fade bottom cascade distance="20px">
           <h1>{getText(data.sections.projects, language)}</h1>
         </Fade>
-        <div className="project-wrapper">
-          <Carousel 
-            className="masterCarousel" 
-            activeIndex={activeIndex}
-            onSelect={handleCarouselSelect}
-            touch={true} 
-            interval={3000}
-            indicators={true}
-            controls={true}
-            keyboard={false}
-            slide={true}
-            wrap={true}
-            variant="dark"
-          >
-            {carouselItems.map((item, index) => (
-              <Carousel.Item key={index} className="CarouselItem">
-                {item.type === 'video' ? (
-                  <div className="video-container">
-                    <video
-                      className="d-block"
+        <Fade bottom distance="20px">
+          <div className="project-wrapper">
+            <Carousel 
+              className="masterCarousel" 
+              activeIndex={activeIndex}
+              onSelect={handleCarouselSelect}
+              touch={true} 
+              interval={3000}
+              indicators={true}
+              controls={true}
+              keyboard={false}
+              slide={true}
+              wrap={true}
+              variant="dark"
+            >
+              {carouselItems.map((item, index) => (
+                <Carousel.Item key={index} className="CarouselItem">
+                  {item.type === 'video' ? (
+                    <div className="video-container">
+                      <video
+                        className="d-block"
+                        src={item.media}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                      />
+                    </div>
+                  ) : (
+                    <img
+                      className="d-block w-100"
                       src={item.media}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
+                      alt={item.title}
                     />
-                  </div>
-                ) : (
-                  <img
-                    className="d-block w-100"
-                    src={item.media}
-                    alt={item.title}
-                  />
-                )}
-                <Carousel.Caption className="carouselCaption">
-                  <h3>{item.title}</h3>
-                  <h4>{item.subtitle}</h4>
-                  <p>{item.description}</p>
-                  {item.buttons.map((button, buttonIndex) => (
-                    <button
-                      key={buttonIndex}
-                      onClick={() => window.open(button.url)}
-                      type="button"
-                      className="btn"
-                    >
-                      {button.text}
-                    </button>
-                  ))}
-                </Carousel.Caption>
-              </Carousel.Item>
-            ))}
-          </Carousel>
-        </div>
+                  )}
+                  <Carousel.Caption className="carouselCaption">
+                    <h3>{item.title}</h3>
+                    <h4>{item.subtitle}</h4>
+                    <p>{item.description}</p>
+                    {item.buttons.map((button, buttonIndex) => (
+                      <button
+                        key={buttonIndex}
+                        onClick={() => window.open(button.url)}
+                        type="button"
+                        className="btn"
+                      >
+                        {button.text}
+                      </button>
+                    ))}
+                  </Carousel.Caption>
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          </div>
+        </Fade>
       </div>
     </div>
   )
