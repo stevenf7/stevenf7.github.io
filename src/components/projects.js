@@ -91,7 +91,7 @@ const Project = () => {
               variant="dark"
             >
               {carouselItems.map((item, index) => (
-                <Carousel.Item key={index} className="CarouselItem">
+                <Carousel.Item key={index}>
                   {item.type === 'video' ? (
                     <div className="video-container">
                       <video

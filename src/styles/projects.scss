@@ -15,6 +15,11 @@
         border-radius: 15px !important;
         overflow: hidden !important;
         
+        // Force custom slide transitions
+        &.carousel.slide .carousel-item {
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        }
+        
         // Force touch events to work properly
         touch-action: pan-y pinch-zoom;
         -webkit-user-select: none;
@@ -38,6 +43,15 @@
             border-radius: 15px !important;
             overflow: hidden !important;
             
+            // Enable smooth hardware acceleration for better performance
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        
+            // Override Bootstrap's default carousel transition
+            .carousel-item {
+              transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+            }
+            
             // Set max-height for very large screens to prevent carousel from becoming too tall
             @media (min-width: 1200px) {
                 max-height: 750px;
@@ -51,8 +65,8 @@
             }
         }
         
-        // Ensure all carousel items have the same height and positioning
-        .CarouselItem {
+        // Ensure all carousel items have the same height and positioning  
+        .carousel-item {
             position: absolute;
             top: 0;
             left: 0;
@@ -60,6 +74,39 @@
             height: 100%;
             border-radius: 15px !important;
             overflow: hidden !important;
+            
+            // Smooth sliding transitions ✨
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            will-change: transform;
+            
+            // Sliding animations for React Bootstrap
+            &.carousel-item-next:not(.carousel-item-start) {
+                transform: translateX(100%);
+            }
+            
+            &.carousel-item-prev:not(.carousel-item-end) {
+                transform: translateX(-100%);
+            }
+            
+            &.carousel-item-next.carousel-item-start,
+            &.carousel-item-prev.carousel-item-end {
+                transform: translateX(0);
+            }
+            
+            &.carousel-item-start {
+                transform: translateX(-100%);
+            }
+            
+            &.carousel-item-end {
+                transform: translateX(100%);
+            }
+            
+            // Enhanced performance for mobile
+            @media (max-width: 768px) {
+                transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+            }
             
             img {
                 position: absolute;
