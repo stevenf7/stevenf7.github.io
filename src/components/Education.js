@@ -19,7 +19,7 @@ const Education = () => {
         </Fade>
         <div className="education-wrapper">
           <div className="grid">
-            <Fade bottom distance="20px">
+            <Fade>
               {data.education.map((school, index) => (
                 <Card
                   key={index}

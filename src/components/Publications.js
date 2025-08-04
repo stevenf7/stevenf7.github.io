@@ -6,8 +6,8 @@ import "../styles/publications.scss"
 
 // Import publication images/videos
 import hriLabGif from "../images/publications/hri_lab.gif"
-import urLousdVideo from "../images/publications/ur_lousd.mp4"
-import h1SilVideo from "../images/publications/h1_sil.mp4"
+import urLousdVideo from "../images/publications/ur_lousd.webm"
+import h1SilVideo from "../images/publications/h1_sil.webm"
 
 const Publications = () => {
   const { language } = useLanguage();
@@ -59,7 +59,7 @@ const Publications = () => {
                         : 'none'
                     }}
                   >
-                    {publication.imageSrc.endsWith('.mp4') && (
+                    {publication.imageSrc.endsWith('.webm') && (
                       <video
                         className="background-video"
                         autoPlay

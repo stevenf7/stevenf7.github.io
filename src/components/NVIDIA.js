@@ -7,18 +7,18 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "../styles/NVIDIA.scss"
 
 // Import NVIDIA images from the nvidia folder
-import h1FlipGif from "./../images/nvidia/h1_Flip.mp4"
-import leatherbackVideo from "./../images/nvidia/Leatherback.mp4"
-import h1TrainVideo from "./../images/nvidia/h1_Train.mp4"
-import frankaMoveitVideo from "./../images/nvidia/Franka Moveit.mp4"
-import frankaDrawerVideo from "./../images/nvidia/Franka Drawer.mp4"
-import carterOutdoorVideo from "./../images/nvidia/Carter Outdoor.mp4"
-import agilityWalkVideo from "./../images/nvidia/Agility Walk.mp4"
-import gtc_lousd from "./../images/nvidia/IMG_2228.jpg"
-import gtc_sil from "./../images/nvidia/gtc_sil.jpg"
-import newton from "./../images/nvidia/newton.jpg"
-import claw from "./../images/nvidia/claw.mp4"
-import urLousdVideo from "./../images/publications/ur_lousd.mp4"
+import h1FlipGif from "./../images/nvidia/h1_Flip.webm"
+import leatherbackVideo from "./../images/nvidia/Leatherback.webm"
+import h1TrainVideo from "./../images/nvidia/h1_Train.webm"
+import frankaMoveitVideo from "./../images/nvidia/Franka Moveit.webm"
+import frankaDrawerVideo from "./../images/nvidia/Franka Drawer.webm"
+import carterOutdoorVideo from "./../images/nvidia/Carter Outdoor.webm"
+import agilityWalkVideo from "./../images/nvidia/Agility Walk.webm"
+import gtc_lousd from "./../images/nvidia/IMG_2228.webp"
+import gtc_sil from "./../images/nvidia/gtc_sil.webp"
+import newton from "./../images/nvidia/newton.webp"
+import claw from "./../images/nvidia/claw.webm"
+import urLousdVideo from "./../images/publications/ur_lousd.webm"
 
 const NVIDIA = () => {
   const { language } = useLanguage();
@@ -167,52 +167,54 @@ const NVIDIA = () => {
         </Fade>
         
         <div className="nvidia-section">
-          <div className="carousel-container">
-            <Carousel 
-              ref={carouselRef}
-              className="nvidia-carousel"
-              activeIndex={activeIndex}
-              onSelect={handleCarouselSelect}
-              interval={3000} // 2 second auto-advance on both desktop and mobile
-              touch={true} // Enable touch controls for mobile
-              indicators={true} // Show indicators for navigation
-              controls={true} // Show controls for navigation
-              slide={true} // Ensure slide transitions work
-              wrap={true} // Allow wrapping from last to first
-              keyboard={false} // Disable keyboard navigation to avoid conflicts
-              variant="dark"
-            >
-              {carouselItems.map((item, index) => (
-                <Carousel.Item key={index}>
-                  {item.type === 'video' ? (
-                    <video
-                      ref={(el) => (videoRefs.current[index] = el)}
-                      className="d-block w-100"
-                      src={item.media}
-                      autoPlay={index === activeIndex} // Autoplay current active video on both mobile and desktop
-                      muted
-                      loop
-                      playsInline
-                      preload={isMobile ? "auto" : "metadata"} // Load full video on mobile, metadata on desktop
-                      onError={() => handleVideoError(index)}
-                      onLoadedData={() => handleVideoLoad(index)}
-                    />
-                  ) : (
-                    <img
-                      className="d-block w-100"
-                      src={item.media}
-                      alt={item.title}
-                      loading="lazy"
-                    />
-                  )}
-                  <Carousel.Caption className="carousel-caption">
-                    <h3>{item.title}</h3>
-                    <p>{item.description}</p>
-                  </Carousel.Caption>
-                </Carousel.Item>
-              ))}
-            </Carousel>
-          </div>
+          <Fade bottom distance="20px">
+            <div className="carousel-container">
+              <Carousel 
+                ref={carouselRef}
+                className="nvidia-carousel"
+                activeIndex={activeIndex}
+                onSelect={handleCarouselSelect}
+                interval={3000} // 2 second auto-advance on both desktop and mobile
+                touch={true} // Enable touch controls for mobile
+                indicators={true} // Show indicators for navigation
+                controls={true} // Show controls for navigation
+                slide={true} // Ensure slide transitions work
+                wrap={true} // Allow wrapping from last to first
+                keyboard={false} // Disable keyboard navigation to avoid conflicts
+                variant="dark"
+              >
+                {carouselItems.map((item, index) => (
+                  <Carousel.Item key={index}>
+                    {item.type === 'video' ? (
+                      <video
+                        ref={(el) => (videoRefs.current[index] = el)}
+                        className="d-block w-100"
+                        src={item.media}
+                        autoPlay={index === activeIndex} // Autoplay current active video on both mobile and desktop
+                        muted
+                        loop
+                        playsInline
+                        preload={isMobile ? "auto" : "metadata"} // Load full video on mobile, metadata on desktop
+                        onError={() => handleVideoError(index)}
+                        onLoadedData={() => handleVideoLoad(index)}
+                      />
+                    ) : (
+                      <img
+                        className="d-block w-100"
+                        src={item.media}
+                        alt={item.title}
+                        loading="lazy"
+                      />
+                    )}
+                    <Carousel.Caption className={`carousel-caption ${isMobile ? 'mobile-caption' : ''}`}>
+                      <h3>{item.title}</h3>
+                      {!isMobile && <p>{item.description}</p>}
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                ))}
+              </Carousel>
+            </div>
+          </Fade>
           <div className="content">
             {data.nvidiaExperience.map((exp, index) => (
               <Fade bottom distance="20px" key={index}>

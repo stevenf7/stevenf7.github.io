@@ -2,7 +2,7 @@ import React from "react"
 import Fade from "react-reveal/Fade"
 import { useLanguage } from "../contexts/LanguageContext"
 import data, { getText } from "../data"
-import selfImage from "./../images/SelfPhoto4.jpg"
+import selfImage from "./../images/SelfPhoto4.webp"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "../styles/about.scss"
 

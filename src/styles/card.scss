@@ -29,13 +29,45 @@
     z-index: 1;
   }
 
+  .background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px !important;
+    overflow: hidden;
+    z-index: 1;
+    
+    .background-video-element {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 15px !important;
+      transition: all 500ms ease-in-out;
+    }
+    
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(0, 0, 0, 0.2));
+      border-radius: 15px !important;
+      z-index: 2;
+    }
+  }
+
   .content {
     font-family: "Open Sans";
     text-align: center;
     padding: 20px;
     opacity: 0;
     transition: all 500ms ease-in-out;
-    transform: translate(0, 20px);
     cursor: pointer;
     position: absolute;
     top: 0;
@@ -86,18 +118,26 @@
       margin-top: auto;
       margin-bottom: 20px;
       border: none;
-      border-radius: 4px;
+      border-radius: 15px;
       cursor: pointer;
     }
 
     &:hover {
       opacity: 1;
-      transform: translate(0, 0px);
-      background-color:rgba(0,0,0,0.6);
+      // Enhanced frosted glass effect with better readability
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     }
   }
   
   &:hover .background-image {
+    filter: blur(3px);
+  }
+  
+  &:hover .background-video .background-video-element {
     filter: blur(3px);
   }
   
