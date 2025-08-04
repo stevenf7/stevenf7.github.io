@@ -1,6 +1,6 @@
 import React from "react"
 import Card from "./atoms/Card"
-import Fade from "react-reveal/Fade"
+import Fade from "./animations/Fade"
 import { useLanguage } from "../contexts/LanguageContext"
 import data, { getText } from "../data"
 import {useState} from "react"
