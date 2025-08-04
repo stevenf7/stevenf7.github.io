@@ -124,6 +124,7 @@
             
             border-radius: 15px;
             bottom: 6%;
+            text-align: center;
             
             // Desktop: 2/3 width, centered
             @media (min-width: 769px) {
@@ -148,8 +149,6 @@
                 margin: 0 15px;
                 padding: 8px 12px; // More aggressive reduction for small screens
             }
-            
-            text-align: center;
             h3{
                 font-size: 1.5rem;
                 line-height: 1.3;

@@ -11,6 +11,7 @@ export default function UwaterlooTATab() {
   return (
     <div>
       <Layout>
+        {/* eslint-disable-next-line react/jsx-pascal-case */}
         <SEO title="TA University of Waterloo" />
         <Container>
           <figure className="position-relative">

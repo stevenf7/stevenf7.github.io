@@ -129,6 +129,8 @@ body.modal-open {
     ul{
       width: 50%;
       margin-top: 0;
+      font-size: 1.5rem;
+      
       @include media(">=phone", "<lgphone") {
         width: 100%;
         font-size: 0.5rem;       
@@ -145,7 +147,6 @@ body.modal-open {
         width: 50%;
         font-size: 2rem;
       }
-      font-size: 1.5rem;
 
       li{
         padding: 0em 0.5em 0.5em 1em;

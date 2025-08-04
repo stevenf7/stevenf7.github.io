@@ -11,6 +11,7 @@ export default function KhazanahTab() {
   return (
     <div>
       <Layout>
+        {/* eslint-disable-next-line react/jsx-pascal-case */}
         <SEO title="Innovation at Khazanah" />
         <Container>
           <figure className="position-relative">

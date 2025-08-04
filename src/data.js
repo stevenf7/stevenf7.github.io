@@ -53,7 +53,7 @@ export const getText = (textObj, language = 'en') => {
   return textObj || '';
 };
 
-export default {
+const siteData = {
 
  
   name: {
@@ -863,3 +863,5 @@ projectsCarouselItems: [
 
   // End Contact Section ---------------
 }
+
+export default siteData;
