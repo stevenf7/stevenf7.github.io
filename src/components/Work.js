@@ -20,7 +20,7 @@ const Work = () => {
         </Fade>
         <div className="work-wrapper">
           <div className="grid">
-            <Fade bottom distance="20px">
+            <Fade>
               {data.projects.map((project, index) => (
                 <Card
                   key={index}
