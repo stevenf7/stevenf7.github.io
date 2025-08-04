@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useEffect, useState, useRef, useCallback, useMemo } from 'react';
 import '../styles/backgroundIcons.scss';
 
 // Import all background icons
@@ -52,13 +52,13 @@ const BackgroundIcons = () => {
   }, []);
 
   
-  // All available icons - moved inside component to fix ESLint warning
-  const allIcons = [
+  // All available icons - memoized to prevent useCallback dependency changes
+  const allIcons = useMemo(() => [
     robot, aerial, hand1, hand2, hand3, pet, computer, rover1, rover2, arms, robot2, arm,
     // Add newly imported icons
     industry, aiResearch, aiSophia, ai, robotAlien, aerialImaging, artificialIntelligence, 
     robot3, petRobot, robot4, robot5, robotAssistant, dummy, robot6
-  ];
+  ], []);
 
   // Helper function to compute header height - simplified to prevent infinite loops
   const getHeaderHeight = useCallback(() => {

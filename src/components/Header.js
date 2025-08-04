@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react"
+// NOTE: react-reveal shows React 18 warnings about legacy contextTypes but works perfectly.
+// These warnings are harmless and the animations function correctly.
 import Fade from "react-reveal/Fade"
 import { useLanguage } from "../contexts/LanguageContext"
 import data, { getText } from "../data"

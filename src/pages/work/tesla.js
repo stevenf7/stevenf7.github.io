@@ -11,6 +11,7 @@ export default function TeslaTab() {
   return (
     <div>
       <Layout>
+        {/* eslint-disable-next-line react/jsx-pascal-case */}
         <SEO title="Software Developer at Tesla" />
         <Container>
           <figure className="position-relative">

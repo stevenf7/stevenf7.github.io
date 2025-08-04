@@ -11,6 +11,7 @@ export default function FordTab() {
   return (
     <div>
       <Layout>
+        {/* eslint-disable-next-line react/jsx-pascal-case */}
         <SEO title="Software Developer at Ford Motor Company" />
         <Container>
           <figure className="position-relative">

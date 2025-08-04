@@ -11,6 +11,7 @@ export default function ecobeeTab() {
   return (
     <div>
       <Layout>
+        {/* eslint-disable-next-line react/jsx-pascal-case */}
         <SEO title="Embedded Developer at Ecobee" />
         <Container>
           <figure className="position-relative">

@@ -11,6 +11,7 @@ export default function NvidiaTab() {
   return (
     <div>
       <Layout>
+        {/* eslint-disable-next-line react/jsx-pascal-case */}
         <SEO title="Robotics Simulation Intern" />
         <Container>
           <figure className="position-relative">
