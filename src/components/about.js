@@ -1,5 +1,5 @@
 import React from "react"
-import Fade from "react-reveal/Fade"
+import Fade from "./animations/Fade"
 import { useLanguage } from "../contexts/LanguageContext"
 import data, { getText } from "../data"
 import selfImage from "./../images/SelfPhoto4.webp"

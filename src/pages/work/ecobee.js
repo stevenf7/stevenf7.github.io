@@ -3,7 +3,7 @@ import "../../css/worksiteStyle.scss"
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Container } from "react-bootstrap"
 import ecobeePic from "../../images/workPhotos/ecobeeProduct.webp"
-import Fade from "react-reveal/Fade"
+import Fade from "../../components/animations/Fade"
 import SEO from "../../components/seo"
 import Layout from "../../components/layout"
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import Fade from "react-reveal/Fade"
+import Fade from "./animations/Fade"
 import { useLanguage } from "../contexts/LanguageContext"
 import { getText } from "../data"
 import "../styles/publications.scss"

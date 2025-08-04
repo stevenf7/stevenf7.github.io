@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import Fade from "react-reveal/Fade"
+import Fade from "./animations/Fade"
 import Carousel from "react-bootstrap/Carousel"
 import { useLanguage } from "../contexts/LanguageContext"
 import data, { getText } from "../data"
