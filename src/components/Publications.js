@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Fade from "react-reveal/Fade"
 import { useLanguage } from "../contexts/LanguageContext"
 import { getText } from "../data"
@@ -11,6 +11,12 @@ import h1SilVideo from "../images/publications/h1_sil.webm"
 
 const Publications = () => {
   const { language } = useLanguage();
+  const [videoErrors, setVideoErrors] = useState({});
+
+  const handleVideoError = (publicationId) => {
+    console.warn(`Video failed to load for publication ${publicationId}`);
+    setVideoErrors(prev => ({ ...prev, [publicationId]: true }));
+  };
   
   // Publication data with actual links
   const publicationsData = [
@@ -59,16 +65,46 @@ const Publications = () => {
                         : 'none'
                     }}
                   >
-                    {publication.imageSrc.endsWith('.webm') && (
+                    {publication.imageSrc.endsWith('.webm') && !videoErrors[publication.id] && (
                       <video
                         className="background-video"
+                        src={publication.imageSrc}
                         autoPlay
                         muted
                         loop
                         playsInline
+                        webkit-playsinline="true"
+                        preload="auto"
+                        controls={false}
+                        disablePictureInPicture
+                        onError={() => handleVideoError(publication.id)}
+                        onLoadStart={() => console.log(`Loading video for publication ${publication.id}`)}
+                        style={{
+                          WebkitTransform: 'translateZ(0)',
+                          transform: 'translateZ(0)',
+                        }}
+                      />
+                    )}
+                    {publication.imageSrc.endsWith('.webm') && videoErrors[publication.id] && (
+                      <div 
+                        className="background-video video-fallback"
+                        data-failed="true"
+                        style={{
+                          backgroundColor: '#e9ecef',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '0.9rem',
+                          color: '#666',
+                          textAlign: 'center',
+                          padding: '20px'
+                        }}
                       >
-                        <source src={publication.imageSrc} type="video/mp4" />
-                      </video>
+                        <div>
+                          🎬<br/>
+                          <small>Video preview<br/>not available on<br/>this device</small>
+                        </div>
+                      </div>
                     )}
                   </div>
                   <div className="content">

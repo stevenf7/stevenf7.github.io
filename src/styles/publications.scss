@@ -109,6 +109,23 @@
     transition: transform 0.3s ease;
     display: block;
     border-radius: 15px 15px 0 0;
+    background-color: #f5f5f5;
+    
+    // iOS-specific optimizations
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    
+    // Fallback for when video fails to load
+    &:empty,
+    &[data-failed="true"] {
+      background-color: #e9ecef;
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23666"><path d="M8 5v14l11-7z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 48px;
+    }
   }
   
   .content {
@@ -172,7 +189,7 @@
       color: white;
       border: none;
       padding: 12px 24px;
-      border-radius: 25px;
+      border-radius: 15px;
       font-weight: 600;
       font-size: 0.9rem;
       cursor: pointer;
