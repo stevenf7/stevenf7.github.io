@@ -3,7 +3,7 @@ import Fade from "react-reveal/Fade"
 import { useLanguage } from "../contexts/LanguageContext"
 import data, { getText } from "../data"
 import { Typewriter } from "react-simple-typewriter"
-import imgUrl from "../images/headerphoto.jpg"
+import imgUrl from "../images/headerphoto.webp"
 
 const Header = () => {
   const { language } = useLanguage();

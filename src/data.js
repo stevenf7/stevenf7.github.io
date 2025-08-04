@@ -15,28 +15,28 @@ import googleScholarIcon from "./images/contactIcon/gscholar.png"
 
 
 // Company icon
-import TeslaIcon from "./images/company/Tesla.png"
-import NVIDIAIcon from "./images/company/NVIDIA.jpg"
-import EcobeeIcon from "./images/company/ecobee.png"
-import UwaterlooIcon from "./images/company/Uwaterloo.png"
-import KhazanahIcon from "./images/company/Khazanah.png"
-import FordIcon from "./images/company/Ford.jpg"
+import TeslaIcon from "./images/company/Tesla.webp"
+import NVIDIAIcon from "./images/company/NVIDIA.webp"
+import EcobeeIcon from "./images/company/ecobee.webp"
+import UwaterlooIcon from "./images/company/Uwaterloo.webp"
+import KhazanahIcon from "./images/company/Khazanah.webp"
+import FordIcon from "./images/company/Ford.webp"
 
 // company image
 import TeslaImg from "./images/workPhotos/TeslaWork_v2.gif"
 import IsaacSim from "./images/workPhotos/isaac_quadruped.gif"
 import Khazanah from "./images/workPhotos/khazanah.gif"
-import uwaterloo from "./images/workPhotos/uwaterlootaImg.jpg"
-import ford from "./images/workPhotos/Ford.jpg"
-import ecobee from "./images/workPhotos/ecobeeProduct.jpg"
+import uwaterloo from "./images/workPhotos/uwaterlootaImg.webp"
+import ford from "./images/workPhotos/Ford.webp"
+import ecobee from "./images/workPhotos/ecobeeProduct.webp"
 
 // School images
 import WaterlooLogo from "./images/school/University-of-Waterloo.png"
 import AirLabLogo from "./images/school/airlab_logo_extended.jpg"
-import StanfordLogo from "./images/school/stanford.png"
-import WaterlooImg from "./images/school/waterloo_eng_img.jpg"
-import AirLabImg from "./images/school/airlab_img.jpg"
-import StanfordImg from "./images/school/stanford_img.jpg"
+import StanfordLogo from "./images/school/stanford.webp"
+import WaterlooImg from "./images/school/waterloo_eng_img.webp"
+import AirLabImg from "./images/school/airlab_img.webp"
+import StanfordImg from "./images/school/stanford_img.webp"
 
 
 // Helper function for getting text in current language
