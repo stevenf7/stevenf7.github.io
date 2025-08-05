@@ -2,7 +2,6 @@ import React from "react"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
 import "../css/resume.scss"
-import { Container } from "react-bootstrap"
 import { useLanguage } from "../contexts/LanguageContext"
 import data, { getText } from "../data"
 
@@ -20,19 +19,19 @@ const ResumeContent = () => {
   const resumeTitle = getText(data.nav.resume, language);
 
   return (
-    <Container>
-      <h1>{resumeTitle}</h1>
-      <iframe 
-        src={resumeUrl} 
-        width="850" 
-        height="1100" 
-        allow="autoplay" 
-        className="Resume" 
-        title={resumeTitle}
-      >
-        {resumeTitle}
-      </iframe>
-    </Container>
+    <div className="section">
+      <div className="container">
+        <h1>{resumeTitle}</h1>
+        <iframe 
+          src={resumeUrl} 
+          allow="autoplay" 
+          className="Resume" 
+          title={resumeTitle}
+        >
+          {resumeTitle}
+        </iframe>
+      </div>
+    </div>
   );
 };
 
