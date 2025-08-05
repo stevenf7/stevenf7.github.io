@@ -35,17 +35,59 @@ jobs:
           cache: 'npm'
           
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: |
+          echo "🔧 Installing dependencies..."
+          npm install --legacy-peer-deps
+          echo "✅ Dependencies installed successfully"
+        
+      - name: Debug node_modules
+        run: |
+          echo "📁 Checking node_modules structure..."
+          ls -la node_modules/@parcel/ 2>/dev/null || echo "❌ @parcel directory not found"
+          echo "🔍 Checking for watcher binaries..."
+          find node_modules -name "*watcher*" -type f 2>/dev/null || echo "❌ No watcher files found"
+          echo "📦 Checking npm list for @parcel/watcher..."
+          npm list @parcel/watcher 2>/dev/null || echo "❌ @parcel/watcher not in npm list"
+        
+      - name: Install native dependencies explicitly
+        run: |
+          echo "🔨 Installing @parcel/watcher explicitly..."
+          npm install @parcel/watcher --legacy-peer-deps
+          echo "🔧 Rebuilding @parcel/watcher..."
+          npm rebuild @parcel/watcher
+          echo "✅ Native dependencies installed"
+        
+      - name: Debug after native install
+        run: |
+          echo "🔍 Checking @parcel/watcher after explicit install..."
+          npm list @parcel/watcher
+          echo "📁 Checking for Linux binaries..."
+          find node_modules -name "*linux*" -type f 2>/dev/null || echo "❌ No Linux binaries found"
+          echo "🐧 Checking platform-specific files..."
+          find node_modules/@parcel -name "*linux*" 2>/dev/null || echo "❌ No Linux-specific files in @parcel"
         
       - name: Clean Gatsby cache
-        run: npx gatsby clean
-        
-      - name: Rebuild native dependencies
-        run: npm rebuild
+        run: |
+          echo "🧹 Cleaning Gatsby cache..."
+          npx gatsby clean
+          echo "✅ Gatsby cache cleaned"
         
       - name: Build website
-        run: GATSBY_DISABLE_FILE_WATCHER=true npm run build
+        run: |
+          echo "🏗️ Starting build process..."
+          echo "🔧 Setting environment variables..."
+          export GATSBY_DISABLE_FILE_WATCHER=true
+          export GATSBY_DISABLE_WATCHER=true
+          export NODE_ENV=production
+          echo "📋 Environment variables set:"
+          echo "  GATSBY_DISABLE_FILE_WATCHER=$GATSBY_DISABLE_FILE_WATCHER"
+          echo "  GATSBY_DISABLE_WATCHER=$GATSBY_DISABLE_WATCHER"
+          echo "  NODE_ENV=$NODE_ENV"
+          echo "🚀 Building with disabled watchers..."
+          npm run build
+          echo "✅ Build completed successfully"
         env:
+          # Pass the secret to the build process
           GATSBY_GA_MEASUREMENT_ID: ${{ secrets.GATSBY_GA_MEASUREMENT_ID }}
 
   build-and-deploy:
@@ -64,16 +106,57 @@ jobs:
           cache: 'npm'
           
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: |
+          echo "🔧 Installing dependencies..."
+          npm install --legacy-peer-deps
+          echo "✅ Dependencies installed successfully"
+        
+      - name: Debug node_modules
+        run: |
+          echo "📁 Checking node_modules structure..."
+          ls -la node_modules/@parcel/ 2>/dev/null || echo "❌ @parcel directory not found"
+          echo "🔍 Checking for watcher binaries..."
+          find node_modules -name "*watcher*" -type f 2>/dev/null || echo "❌ No watcher files found"
+          echo "📦 Checking npm list for @parcel/watcher..."
+          npm list @parcel/watcher 2>/dev/null || echo "❌ @parcel/watcher not in npm list"
+        
+      - name: Install native dependencies explicitly
+        run: |
+          echo "🔨 Installing @parcel/watcher explicitly..."
+          npm install @parcel/watcher --legacy-peer-deps
+          echo "🔧 Rebuilding @parcel/watcher..."
+          npm rebuild @parcel/watcher
+          echo "✅ Native dependencies installed"
+        
+      - name: Debug after native install
+        run: |
+          echo "🔍 Checking @parcel/watcher after explicit install..."
+          npm list @parcel/watcher
+          echo "📁 Checking for Linux binaries..."
+          find node_modules -name "*linux*" -type f 2>/dev/null || echo "❌ No Linux binaries found"
+          echo "🐧 Checking platform-specific files..."
+          find node_modules/@parcel -name "*linux*" 2>/dev/null || echo "❌ No Linux-specific files in @parcel"
         
       - name: Clean Gatsby cache
-        run: npx gatsby clean
-        
-      - name: Rebuild native dependencies
-        run: npm rebuild
+        run: |
+          echo "🧹 Cleaning Gatsby cache..."
+          npx gatsby clean
+          echo "✅ Gatsby cache cleaned"
         
       - name: Build website
-        run: GATSBY_DISABLE_FILE_WATCHER=true npm run build
+        run: |
+          echo "🏗️ Starting build process..."
+          echo "🔧 Setting environment variables..."
+          export GATSBY_DISABLE_FILE_WATCHER=true
+          export GATSBY_DISABLE_WATCHER=true
+          export NODE_ENV=production
+          echo "📋 Environment variables set:"
+          echo "  GATSBY_DISABLE_FILE_WATCHER=$GATSBY_DISABLE_FILE_WATCHER"
+          echo "  GATSBY_DISABLE_WATCHER=$GATSBY_DISABLE_WATCHER"
+          echo "  NODE_ENV=$NODE_ENV"
+          echo "🚀 Building with disabled watchers..."
+          npm run build
+          echo "✅ Build completed successfully"
         env:
           # Pass the secret to the build process
           GATSBY_GA_MEASUREMENT_ID: ${{ secrets.GATSBY_GA_MEASUREMENT_ID }}
