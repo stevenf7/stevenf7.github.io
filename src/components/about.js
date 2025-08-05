@@ -29,7 +29,7 @@ const About = () => {
           </div>
           <Fade bottom duration={1000} distance="20px">
             <div className="image-container">
-              <img src={selfImage} alt="Steven Feng" className="img-fluid" />
+              <img src={selfImage} alt="Steven Feng" className="img-fluid" loading="lazy" />
             </div>
           </Fade>
         </div>

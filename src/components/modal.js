@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react"
+import React, { useEffect, useCallback, useState } from "react"
 import { useLanguage } from "../contexts/LanguageContext"
 import data, { getText } from "./../data"
 import "./../css/modal.scss"
@@ -12,8 +12,19 @@ const isVideoFile = (url) => {
 
 export default function Modal({ closeModal, id, type = "project", totalItems = 0, onPrevious, onNext }) {
   const { language } = useLanguage();
+  const [isClosing, setIsClosing] = useState(false);
+  
   // Determine which data to use based on the type
   const content = type === "project" ? data.projects[id] : data.education[id];
+  
+  // Enhanced close function with animation
+  const handleClose = useCallback(() => {
+    setIsClosing(true);
+    // Wait for animation to complete before actually closing
+    setTimeout(() => {
+      closeModal(false);
+    }, 300); // Match the CSS animation duration
+  }, [closeModal]);
   
   // Navigation handlers with useCallback to prevent re-renders
   const handlePrevious = useCallback(() => {
@@ -39,7 +50,7 @@ export default function Modal({ closeModal, id, type = "project", totalItems = 0
         handleNext();
       } else if (e.key === 'Escape') {
         e.preventDefault();
-        closeModal(false);
+        handleClose();
       }
     };
     
@@ -58,7 +69,7 @@ export default function Modal({ closeModal, id, type = "project", totalItems = 0
         console.warn('Error removing keydown listener:', error);
       }
     };
-  }, [id, totalItems, handlePrevious, handleNext, closeModal]);
+  }, [id, totalItems, handlePrevious, handleNext, handleClose]);
   
   useEffect(() => {
     // Simple approach: just disable scrolling without positioning tricks
@@ -83,23 +94,21 @@ export default function Modal({ closeModal, id, type = "project", totalItems = 0
   return (
     <>
       <div 
-        className="modalBackground" 
-        onClick={() => closeModal(false)}
+        className={`modalBackground ${isClosing ? 'closing' : ''}`}
+        onClick={handleClose}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
-            closeModal(false);
+            handleClose();
           }
         }}
         role="button"
         tabIndex={0}
         aria-label="Close modal"
       ></div>
-      <div className="modalContainer">
+      <div className={`modalContainer ${isClosing ? 'closing' : ''}`}>
         <div className="titleCloseBtn">
           <button
-            onClick={() => {
-              closeModal(false)
-            }}
+            onClick={handleClose}
           >
           <h3>&#215;</h3>
           </button>
@@ -145,9 +154,15 @@ export default function Modal({ closeModal, id, type = "project", totalItems = 0
             loop
             playsInline
             disablePictureInPicture
+            loading="lazy"
           />
         ) : (
-          <img src={content.workImg || content.imageSrc} alt="" className="img-fluid modal-media" />
+          <img 
+            src={content.workImg || content.imageSrc} 
+            alt="" 
+            className="img-fluid modal-media" 
+            loading="lazy"
+          />
         )}
 
         <ul>

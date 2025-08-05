@@ -161,7 +161,8 @@ const Publications = () => {
                         muted
                         loop
                         playsInline
-                        preload="auto"
+                        preload="metadata"
+                        loading="lazy"
                         controls={false}
                         disablePictureInPicture
                         onError={() => {

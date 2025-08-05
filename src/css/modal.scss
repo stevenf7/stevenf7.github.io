@@ -19,9 +19,12 @@ body.modal-open {
     align-items: center;
     z-index: 9999;
     
-    /* Desktop-only entrance animation for background */
-    @include media(">=desktop") {
-      animation: fadeInBackground 0.3s ease-out;
+    /* Entrance animation for background - all devices */
+    animation: fadeInBackground 0.3s ease-out;
+    
+    /* Closing animation - all devices */
+    &.closing {
+      animation: fadeOutBackground 0.3s ease-in forwards;
     }
   }
   
@@ -34,6 +37,18 @@ body.modal-open {
     to {
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
+    }
+  }
+  
+  /* Background fade-out animation */
+  @keyframes fadeOutBackground {
+    from {
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+    }
+    to {
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
     }
   }
   
@@ -69,10 +84,13 @@ body.modal-open {
     z-index: 10000;
     overflow: auto;
     
-    /* Desktop-only entrance animation */
-    @include media(">=desktop") {
-      animation: modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      transform-origin: center;
+    /* Entrance animation - all devices */
+    animation: modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: center;
+    
+    /* Closing animation - all devices */
+    &.closing {
+      animation: modalSlideOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
     
     @include media(">=phone", "<lgphone") {
@@ -100,6 +118,18 @@ body.modal-open {
     }
   }
   
+  /* Modal exit animation - smooth scale + fade */
+  @keyframes modalSlideOut {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.8);
+    }
+  }
+  
   /* Content fade-in animation with upward motion */
   @keyframes contentFadeIn {
     0% {
@@ -119,10 +149,8 @@ body.modal-open {
     
     /* Subtle text enhancement - no longer needed with better background */
     
-    /* Desktop-only content animation */
-    @include media(">=desktop") {
-      animation: contentFadeIn 0.5s ease-out 0.1s both;
-    }
+    /* Content animation - all devices */
+    animation: contentFadeIn 0.5s ease-out 0.1s both;
     h1{
       margin-top: 0px;
       line-height: 1.2;
@@ -237,13 +265,15 @@ body.modal-open {
       display: flex;
       align-items: stretch; /* Make both image and text same height */
       gap: 1.5rem; /* Add space between image and text */
-      animation: contentFadeIn 0.6s ease-out 0.2s both; /* Slight delay for cascade effect */
     }
     
     /* Mobile: stacked layout (default) */
     @include media("<desktop") {
       display: block; /* Ensure stacked layout on mobile */
     }
+    
+    /* Content animation - all devices */
+    animation: contentFadeIn 0.6s ease-out 0.2s both; /* Slight delay for cascade effect */
 
     .modal-media {
       border-radius: 8px; /* Add subtle rounding */

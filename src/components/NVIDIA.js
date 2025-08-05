@@ -166,6 +166,7 @@ const NVIDIA = () => {
                       loop
                       playsInline
                       preload="metadata"
+                      loading="lazy"
                       onLoadedData={() => {
                         try {
                           handleVideoLoad(index);

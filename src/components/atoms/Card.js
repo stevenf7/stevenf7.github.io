@@ -23,6 +23,8 @@ const Card = ({id, heading, paragraph, imgUrl, projectLink, setOpenModal, setId,
             muted
             loop
             playsInline
+            loading="lazy"
+            preload="metadata"
           />
           <div className="video-overlay" />
         </div>

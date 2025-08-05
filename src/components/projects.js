@@ -109,6 +109,8 @@ const Project = () => {
                         muted
                         loop
                         playsInline
+                        loading="lazy"
+                        preload="metadata"
                       />
                     </div>
                   ) : (
@@ -116,6 +118,7 @@ const Project = () => {
                       className="d-block w-100"
                       src={item.media}
                       alt={item.title}
+                      loading="lazy"
                     />
                   )}
                   <Carousel.Caption className="carouselCaption">
