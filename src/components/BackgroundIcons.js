@@ -46,9 +46,19 @@ const BackgroundIcons = () => {
     };
 
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-
-    return () => window.removeEventListener('resize', checkMobile);
+        try {
+      window.addEventListener('resize', checkMobile);
+    } catch (error) {
+      console.warn('Error adding resize listener:', error);
+    }
+    
+    return () => {
+      try {
+        window.removeEventListener('resize', checkMobile);
+      } catch (error) {
+        console.warn('Error removing resize listener:', error);
+      }
+    };
   }, []);
 
   
@@ -217,7 +227,11 @@ const BackgroundIcons = () => {
       }
     };
     
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    try {
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+    } catch (error) {
+      console.warn('Error adding visibility listener:', error);
+    }
     
     // Handle window resize
     const handleResize = () => {
@@ -233,13 +247,25 @@ const BackgroundIcons = () => {
       }, 500);
     };
     
-    window.addEventListener('resize', handleResize);
+    try {
+      window.addEventListener('resize', handleResize);
+    } catch (error) {
+      console.warn('Error adding resize listener:', error);
+    }
     
     // Cleanup
     return () => {
       clearInterval(intervalId);
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('resize', handleResize);
+      try {
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+      } catch (error) {
+        console.warn('Error removing visibility listener:', error);
+      }
+      try {
+        window.removeEventListener('resize', handleResize);
+      } catch (error) {
+        console.warn('Error removing resize listener:', error);
+      }
       if (resizeTimeout.current) {
         clearTimeout(resizeTimeout.current);
       }

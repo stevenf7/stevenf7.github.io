@@ -54,9 +54,19 @@ const Project = () => {
     };
     
     checkMobile();
-    window.addEventListener('resize', checkMobile);
+    try {
+      window.addEventListener('resize', checkMobile);
+    } catch (error) {
+      console.warn('Error adding resize listener:', error);
+    }
     
-    return () => window.removeEventListener('resize', checkMobile);
+    return () => {
+      try {
+        window.removeEventListener('resize', checkMobile);
+      } catch (error) {
+        console.warn('Error removing resize listener:', error);
+      }
+    };
   }, []);
 
   // Handle carousel selection

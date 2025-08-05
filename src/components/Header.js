@@ -34,12 +34,20 @@ const Header = () => {
         setIsDesktop(window.innerWidth >= 1024); // Consider devices with width >= 1024px as desktop
       };
 
-      window.addEventListener("resize", handleResize);
+      try {
+        window.addEventListener("resize", handleResize);
+      } catch (error) {
+        console.warn('Error adding resize listener:', error);
+      }
       // Initial check
       handleResize();
       
       return () => {
-        window.removeEventListener("resize", handleResize);
+        try {
+          window.removeEventListener("resize", handleResize);
+        } catch (error) {
+          console.warn('Error removing resize listener:', error);
+        }
       };
     }
   }, []);

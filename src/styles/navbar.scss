@@ -47,7 +47,10 @@
       gap: 16px; /* Desktop-only 80% scaling from original 20px */
       
       @media (max-width: 768px) {
-        gap: 20px; /* Original mobile value */
+        gap: 8px; /* Reduced mobile spacing */
+      }
+      @media (max-width: 480px) {
+        gap: 6px; /* Even tighter spacing on small phones */
       }
     }
   }
@@ -72,10 +75,12 @@
       @include media(">=phone", "<lgphone") {
         font-size: 12px; /* Reverted to original mobile value */
         line-height: 12px;
+        padding: 4px; /* Reduced padding for mobile */
       }
       @include media(">=lgphone", "<tablet") {
         font-size: 16px; /* Reverted to original mobile value */
         line-height: 16px;
+        padding: 6px; /* Reduced padding for mobile */
       }
       @include media(">=tablet", "<desktop") {
         font-size: 20px; /* Reverted to original mobile value */

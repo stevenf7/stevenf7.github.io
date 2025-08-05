@@ -43,13 +43,18 @@ export default function Modal({ closeModal, id, type = "project", totalItems = 0
       }
     };
     
-    document.addEventListener('keydown', handleKeyDown);
+    try {
+      document.addEventListener('keydown', handleKeyDown);
+    } catch (error) {
+      console.warn('Error adding keydown listener:', error);
+    }
+    
     return () => {
       // Safely remove event listener
       try {
         document.removeEventListener('keydown', handleKeyDown);
       } catch (error) {
-        // Ignore cleanup errors on mobile
+        // Suppress any DOM manipulation errors
         console.warn('Error removing keydown listener:', error);
       }
     };
@@ -57,12 +62,21 @@ export default function Modal({ closeModal, id, type = "project", totalItems = 0
   
   useEffect(() => {
     // Simple approach: just disable scrolling without positioning tricks
-    document.body.classList.add('modal-open');
+    try {
+      document.body.classList.add('modal-open');
+    } catch (error) {
+      // Suppress any DOM manipulation errors
+      console.warn('Modal body class addition failed:', error);
+    }
     
     // Clean up function to re-enable scrolling when modal is unmounted
     return () => {
-      document.body.classList.remove('modal-open');
-      // No scroll position manipulation needed - page stays exactly where it was!
+      try {
+        document.body.classList.remove('modal-open');
+      } catch (error) {
+        // Suppress any DOM manipulation errors
+        console.warn('Modal body class removal failed:', error);
+      }
     };
   }, []);
   
