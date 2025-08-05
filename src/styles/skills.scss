@@ -49,6 +49,19 @@
         border: 1px solid rgba(255, 255, 255, 0.7);
         box-shadow: 0 6px 13px rgba(0, 0, 0, 0.2); /* Reverted to original subtle hover shadow */
       }
+      
+      /* Disable hover effects on mobile for better UX */
+      @media (max-width: 768px) {
+        &:hover {
+          transform: none;
+          z-index: 1;
+          background: rgba(255, 255, 255, 0.3);
+          backdrop-filter: blur(15px);
+          -webkit-backdrop-filter: blur(15px);
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+      }
 
       img {
         width: 64px; /* Reduced from 80px (80% of original) */
@@ -77,12 +90,14 @@
   @media (max-width: 768px) {
     .grid {
       grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+      gap: 16px; /* Smaller gap for mobile */
     }
   }
 
   @media (max-width: 480px) {
     .grid {
-      grid-template-columns: 1fr; /* 1 column on mobile */
+      grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile for cleaner layout */
+      gap: 12px; /* Even smaller gap for small phones */
     }
   }
 }
