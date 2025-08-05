@@ -44,7 +44,15 @@ export default function Modal({ closeModal, id, type = "project", totalItems = 0
     };
     
     document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      // Safely remove event listener
+      try {
+        document.removeEventListener('keydown', handleKeyDown);
+      } catch (error) {
+        // Ignore cleanup errors on mobile
+        console.warn('Error removing keydown listener:', error);
+      }
+    };
   }, [id, totalItems, handlePrevious, handleNext, closeModal]);
   
   useEffect(() => {

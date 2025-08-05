@@ -1,21 +1,31 @@
 .work-wrapper {
   width: 100%;
-  margin-top: 5vh;
+  max-width: 1000px; /* Ensure it doesn't exceed 1000px */
+  margin: 0 auto; /* Center it and ensure it doesn't exceed 1000px */
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+  /* Add mobile horizontal padding */
+  @media (max-width: 768px) {
+    padding: 0 16px;
+  }
+  @media (max-width: 480px) {
+    padding: 0 12px;
+  }
   h1{
+    margin-top: 3rem; /* Standardized 3rem spacing from previous section */
     text-align: center;
-    font-size: 3rem;
+    font-size: 2.4rem; /* Consistent with 80% scaling */
     line-height: 1.2;
-    margin-bottom: 2vh;
+    margin-bottom: 1rem; /* Standardized header bottom spacing */
     white-space: normal;
   }
   .grid {
     display: grid;
-    margin-top: 20px;
+    margin-top: 0.5rem; /* Minimal spacing from header for maximum content space */
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
+    grid-gap: 12px;
     width: 100%;
     align-items: stretch;
   }
@@ -39,7 +49,7 @@
     }
     .grid {
       grid-template-columns: repeat(2, 1fr);
-      grid-gap: 15px;
+      grid-gap: 8px;
     }
   }
 }
@@ -51,7 +61,7 @@
     }
     .grid {
       grid-template-columns: 1fr;
-      grid-gap: 15px;
+      grid-gap: 8px;
     }
   }
 }

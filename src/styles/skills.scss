@@ -2,7 +2,16 @@
 
 .skills-wrapper {
   width: 100%;
-  margin: 32px 0; /* Reduced from 40px (80% of original) - removed auto since container already centers */
+  max-width: 1000px; /* Ensure it doesn't exceed 1000px */
+  margin: 1.5rem auto; /* Smaller spacing from header (less than 3rem from previous section) */
+  
+  /* Add mobile horizontal padding */
+  @media (max-width: 768px) {
+    padding: 0 16px;
+  }
+  @media (max-width: 480px) {
+    padding: 0 12px;
+  }
 
   .grid {
     display: grid;

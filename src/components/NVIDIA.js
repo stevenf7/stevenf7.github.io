@@ -24,6 +24,7 @@ const NVIDIA = () => {
   const { language } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
   const videoRefs = useRef([]);
   const carouselRef = useRef(null);
   
@@ -35,14 +36,53 @@ const NVIDIA = () => {
       setIsMobile(mobileState);
     };
     
+    // Detect Safari for special handling
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    
     // Ensure initial state is set correctly
     if (typeof window !== 'undefined') {
       checkMobile();
+      // Longer delay for Safari due to stricter DOM timing
+      const delay = isSafari ? 300 : 100;
+      setTimeout(() => setIsInitialized(true), delay);
     }
     
     window.addEventListener('resize', checkMobile);
     
     return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Safari-specific cleanup with additional safety
+  useEffect(() => {
+    return () => {
+      // Safari-safe cleanup with double-checking
+      try {
+        if (videoRefs.current) {
+          videoRefs.current.forEach((video, i) => {
+            if (video && video.parentNode) {
+              try {
+                // Only manipulate if element is still in DOM
+                if (video.pause && typeof video.pause === 'function') {
+                  video.pause();
+                }
+                // Safari-specific: clear src to help with memory management
+                if (video.src) {
+                  video.removeAttribute('src');
+                  video.load();
+                }
+              } catch (error) {
+                // Safari might throw errors during cleanup - ignore them
+              }
+            }
+          });
+          // Clear refs array for Safari
+          videoRefs.current = [];
+        }
+      } catch (error) {
+        // Global catch for Safari-specific cleanup issues
+        console.warn('Safari cleanup error:', error);
+      }
+    };
   }, []);
 
   // Performance monitoring - simplified to avoid state update loops
@@ -91,59 +131,92 @@ const NVIDIA = () => {
     // Log performance safely (only to console, no state updates)
     logPerformance('carousel_select', startTime);
     
+    // Only handle video operations after component is initialized
+    if (!isInitialized) {
+      return;
+    }
+    
     // Handle video loading for both mobile and desktop
+    // Use longer timeout for Safari
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    const timeout = isSafari ? 200 : 100;
+    
     setTimeout(() => {
       try {
-        // Pause all other videos first
+        // Safely pause all other videos first
         videoRefs.current.forEach((videoRef, i) => {
-          if (videoRef && i !== index) {
-            videoRef.pause();
+          if (videoRef && videoRef.pause && i !== index) {
+            try {
+              videoRef.pause();
+            } catch (error) {
+              console.warn(`Error pausing video ${i}:`, error);
+            }
           }
         });
         
         // Handle current video based on device type
         const currentVideo = videoRefs.current[index];
-        if (currentVideo) {
-          // Check if video element is ready
+        if (currentVideo && currentVideo.readyState !== undefined) {
+          // Check if video element is ready and still mounted
           if (currentVideo.readyState >= 1) { // HAVE_METADATA or higher
             if (isMobile) {
               // On mobile: Load the video, reset to start, and autoplay
-              currentVideo.currentTime = 0;
-              currentVideo.play().catch((error) => {
-                console.warn('Mobile autoplay failed:', error);
-                // Fallback: just load the video
-                currentVideo.load();
-              });
-              console.log(`Mobile: Playing video ${index}`);
+              try {
+                currentVideo.currentTime = 0;
+                currentVideo.play().catch((error) => {
+                  console.warn('Mobile autoplay failed:', error);
+                  // Fallback: just load the video if it still exists
+                  if (currentVideo && currentVideo.load) {
+                    currentVideo.load();
+                  }
+                });
+                console.log(`Mobile: Playing video ${index}`);
+              } catch (error) {
+                console.warn('Mobile video access error:', error);
+              }
             } else {
               // On desktop: Play the video
-              currentVideo.currentTime = 0;
-              currentVideo.play().catch((error) => {
-                console.warn('Desktop play failed:', error);
-              });
+              try {
+                currentVideo.currentTime = 0;
+                currentVideo.play().catch((error) => {
+                  console.warn('Desktop play failed:', error);
+                });
+              } catch (error) {
+                console.warn('Desktop video access error:', error);
+              }
             }
           } else {
             // Video not ready, wait for it to load
             console.log(`Video ${index} not ready, waiting for load...`);
             const handleLoadedData = () => {
-              currentVideo.removeEventListener('loadeddata', handleLoadedData);
-              if (isMobile) {
-                currentVideo.currentTime = 0;
-                currentVideo.play().catch(() => console.warn('Delayed mobile play failed'));
-              } else {
-                currentVideo.currentTime = 0;
-                currentVideo.play().catch(() => console.warn('Delayed desktop play failed'));
+              // Safely remove event listener only if video element still exists
+              if (currentVideo && currentVideo.removeEventListener) {
+                currentVideo.removeEventListener('loadeddata', handleLoadedData);
+              }
+              // Safely access video properties only if element still exists
+              if (currentVideo && currentVideo.play) {
+                if (isMobile) {
+                  currentVideo.currentTime = 0;
+                  currentVideo.play().catch(() => console.warn('Delayed mobile play failed'));
+                } else {
+                  currentVideo.currentTime = 0;
+                  currentVideo.play().catch(() => console.warn('Delayed desktop play failed'));
+                }
               }
             };
-            currentVideo.addEventListener('loadeddata', handleLoadedData);
-            currentVideo.load();
+            if (currentVideo && currentVideo.addEventListener) {
+              currentVideo.addEventListener('loadeddata', handleLoadedData);
+            }
+            if (currentVideo && currentVideo.load) {
+              currentVideo.load();
+            }
           }
         }
       } catch (error) {
         // Silently handle errors to not interfere with carousel
         console.warn('Video handling error:', error);
       }
-    }, 100);
+    }, timeout);
   };
 
   // Handle video loading errors - simplified to avoid state update loops
@@ -187,14 +260,36 @@ const NVIDIA = () => {
                   <Carousel.Item key={index}>
                     {item.type === 'video' ? (
                       <video
-                        ref={(el) => (videoRefs.current[index] = el)}
+                        ref={(el) => {
+                          // Safari-safe video ref assignment
+                          try {
+                            if (videoRefs.current && el !== null) {
+                              // For Safari, ensure element is properly attached before storing ref
+                              if (el.parentNode) {
+                                videoRefs.current[index] = el;
+                              } else {
+                                // Retry after a short delay for Safari
+                                setTimeout(() => {
+                                  if (el && el.parentNode && videoRefs.current) {
+                                    videoRefs.current[index] = el;
+                                  }
+                                }, 50);
+                              }
+                            } else if (el === null && videoRefs.current) {
+                              // Safely clear ref when element is unmounted
+                              videoRefs.current[index] = null;
+                            }
+                          } catch (error) {
+                            console.warn(`Error setting video ref for index ${index}:`, error);
+                          }
+                        }}
                         className="d-block w-100"
                         src={item.media}
-                        autoPlay={index === activeIndex} // Autoplay current active video on both mobile and desktop
+                        autoPlay={isInitialized && index === activeIndex} // Only autoplay after initialization
                         muted
                         loop
                         playsInline
-                        preload={isMobile ? "auto" : "metadata"} // Load full video on mobile, metadata on desktop
+                        preload={isMobile ? "metadata" : "metadata"} // Safari-safe: use metadata only to prevent issues
                         onError={() => handleVideoError(index)}
                         onLoadedData={() => handleVideoLoad(index)}
                       />

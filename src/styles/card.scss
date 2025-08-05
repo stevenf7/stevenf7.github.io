@@ -63,7 +63,7 @@
   }
 
   .content {
-    font-family: "Open Sans";
+            font-family: "Montserrat", sans-serif !important;
     text-align: center;
     padding: 20px;
     opacity: 0;
@@ -82,23 +82,23 @@
     z-index: 2;
     
     h1 {
-      margin: 15px;
-      font-size: 16px;
+      margin: 4px;
+      font-size: 14px;
       color: white;
-      padding: 15px;
+      padding: 4px;
     }
     
     p {
-      font-size: 14px;
+      font-size: 12px;
       color: white;
-      margin: 0 0 20px 0;
+      margin: 0 0 6px 0;
       max-height: none;
       overflow: hidden;
       display: -webkit-box;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 5;
       -webkit-box-orient: vertical;
-      padding: 0 15px;
-      line-height: 1.4;
+      padding: 0 12px;
+      line-height: 1.25;
 
       a {
         color: inherit;
@@ -113,12 +113,13 @@
     .btn {
       background-color: black;
       color: white;
-      padding: 8px 16px;
+      padding: 4px 10px;
+      font-size: 10px;
       text-decoration: none;
       margin-top: auto;
-      margin-bottom: 20px;
+      margin-bottom: 6px;
       border: none;
-      border-radius: 15px;
+      border-radius: 10px;
       cursor: pointer;
     }
 

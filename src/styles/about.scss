@@ -1,6 +1,7 @@
 .container{
   h1 {
-    margin-top: 8vh; /* Reduced from 10vh (80% of original) */
+    margin-top: 3rem; /* Standardized 3rem spacing from previous section */
+    margin-bottom: 1rem; /* Standardized header bottom spacing */
     font-size: 2.4rem; /* Reduced from 3rem (80% of original) */
     line-height: 1.2;
     position: relative;
@@ -15,12 +16,21 @@
   }
   .about-section {
     width: 100%;
-    margin-top: 2vh;
+    max-width: 1000px; /* Ensure it doesn't exceed 1000px */
+    margin: 1.5rem auto 0; /* Smaller spacing from header (less than 3rem from previous section) */
     font-size: 1rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    
+    /* Add mobile horizontal padding */
+    @media (max-width: 768px) {
+      padding: 0 16px;
+    }
+    @media (max-width: 480px) {
+      padding: 0 12px;
+    }
   
     .content {
       width: 55%;

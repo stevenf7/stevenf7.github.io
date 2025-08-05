@@ -1,6 +1,9 @@
 .container {
+  max-width: 1000px; /* Ensure NVIDIA section doesn't exceed 1000px */
+  margin: 0 auto; /* Center the container */
+  
   h1 {
-    margin-top: 8vh; /* Reduced from 10vh (80% of original) */
+    margin-top: 3rem; /* Standardized 3rem spacing from previous section */
     font-size: 2.4rem; /* Reduced from 3rem (80% of original) */
     line-height: 1.2;
     @media (max-width: 768px) {
@@ -16,7 +19,7 @@
     text-align: center;
     font-size: 1.2rem; /* Reduced from 1.5rem (80% of original) */
     line-height: 1.4;
-    margin-bottom: 1.6vh; /* Reduced from 2vh (80% of original) */
+    margin-bottom: 1rem; /* Standardized header bottom spacing */
     color: #666;
     font-weight: 400;
   }
@@ -25,13 +28,23 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
+    margin-top: 1.5rem; /* Smaller spacing from header (less than 3rem from previous section) */
+    margin-bottom: 2rem;
     width: 100%;
+    max-width: 1000px; /* Ensure it doesn't exceed 1000px */
+    
+    /* Add mobile horizontal padding */
+    @media (max-width: 768px) {
+      padding: 0 16px;
+    }
+    @media (max-width: 480px) {
+      padding: 0 12px;
+    }
   
     .content {
       width: 100%;
-      margin-top: 2rem;
+      max-width: 1000px; /* Ensure content doesn't exceed 1000px */
+      margin: 2rem auto 0; /* Center the content */
       text-align: justify;
   
       h2 {
@@ -85,17 +98,19 @@
   
     .carousel-container {
       width: 100%;
+      max-width: 1000px; /* Ensure carousel doesn't exceed 1000px */
+      margin: 0 auto; /* Center the carousel */
       position: relative;
-      margin: 0 auto;
       @media (max-width: 992px) {
         width: 100%;
         margin-top: 2rem;
       }
     }
 
-    .nvidia-carousel {
-      width: 100%;
-      margin: 0 auto;
+          .nvidia-carousel {
+        width: 100%;
+        max-width: 1000px; /* Ensure carousel itself doesn't exceed 1000px */
+        margin: 0 auto;
       
       // Force custom slide transitions
       &.carousel.slide .carousel-item {
@@ -176,11 +191,11 @@
         }
       }
       
-      // Add fixed height for carousel with 16:10 aspect ratio
+      // Add responsive height for carousel with 16:9 aspect ratio
       .carousel-inner {
         position: relative;
         width: 100%;
-        padding-top: 62.5%; // 10/16 = 0.625 = 62.5% for 16:10 aspect ratio
+        padding-top: 56.25%; // 9/16 = 0.5625 = 56.25% for 16:9 aspect ratio (less boxy)
         border-radius: 15px;
         overflow: hidden;
         
@@ -254,7 +269,7 @@
       }
       
       .carousel-caption {
-        font-family: "Open Sans";
+        font-family: "Montserrat", sans-serif !important;
         padding: 20px 24px;
         opacity: 1;
         
@@ -274,7 +289,7 @@
           transform: translateX(-50%);
           right: auto;
           width: 65%;
-          max-width: 500px;
+          max-width: 650px; /* Increased from 500px to better utilize 1000px container */
         }
         
         // Mobile: keep full width
