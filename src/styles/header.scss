@@ -169,7 +169,7 @@
 
   .heading-wrapper {
     h1 {
-      margin-top: 1.2vh; /* Reduced spacing */
+      margin-top: 0.5vh !important; /* Override global rule with more specific selector */
       margin-bottom: 1.2vh; /* Reduced spacing */
       font-size: 2.2rem; /* Slightly larger desktop size */
       text-align: center;

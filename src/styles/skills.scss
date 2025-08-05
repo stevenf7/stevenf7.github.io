@@ -3,7 +3,7 @@
 .skills-wrapper {
   width: 100%;
   max-width: 1000px; /* Ensure it doesn't exceed 1000px */
-  margin: 1.5rem auto; /* Smaller spacing from header (less than 3rem from previous section) */
+  margin: 0.5rem auto; /* Standardized spacing to match Education section */
   
   /* Add mobile horizontal padding */
   @media (max-width: 768px) {
