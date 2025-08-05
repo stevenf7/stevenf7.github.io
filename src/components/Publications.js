@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import Fade from "./animations/Fade"
 import { useLanguage } from "../contexts/LanguageContext"
 import { getText } from "../data"
@@ -12,10 +12,78 @@ import h1SilVideo from "../images/publications/h1_sil.webm"
 const Publications = () => {
   const { language } = useLanguage();
   const [videoErrors, setVideoErrors] = useState({});
+  const [isIOS, setIsIOS] = useState(false);
+  const videoRefs = useRef([]);
+
+  // Detect iOS/Safari
+  useEffect(() => {
+    const detectIOS = () => {
+      return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+             (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    };
+    setIsIOS(detectIOS());
+  }, []);
+
+  // Force video play when videos come into view (helps with iOS autoplay restrictions)
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const video = entry.target;
+          forceVideoPlay(video);
+        }
+      });
+    }, {
+      threshold: 0.5 // Trigger when 50% of video is visible
+    });
+
+    // Observe all video elements
+    videoRefs.current.forEach(video => {
+      if (video) {
+        observer.observe(video);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [videoRefs.current]);
 
   const handleVideoError = (publicationId) => {
     console.warn(`Video failed to load for publication ${publicationId}`);
     setVideoErrors(prev => ({ ...prev, [publicationId]: true }));
+  };
+
+  const forceVideoPlay = (videoElement) => {
+    if (videoElement) {
+      videoElement.muted = true; // Ensure it's muted for autoplay
+      videoElement.loop = true;  // Ensure looping is enabled
+      
+      const playPromise = videoElement.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          console.log('Autoplay failed, attempting manual play:', error);
+          // Try again after a short delay
+          setTimeout(() => {
+            videoElement.play().catch(e => console.log('Manual play also failed:', e));
+          }, 100);
+        });
+      }
+    }
+  };
+
+  const handleVideoEnded = (videoElement) => {
+    // Fallback for devices where loop attribute might not work
+    if (videoElement) {
+      videoElement.currentTime = 0;
+      videoElement.play().catch(e => console.log('Loop restart failed:', e));
+    }
+  };
+
+  const canPlayVideo = (publication) => {
+    // Only show fallback if there was an actual error, not for iOS WebM incompatibility
+    return !videoErrors[publication.id];
   };
   
   // Publication data with actual links
@@ -65,30 +133,42 @@ const Publications = () => {
                         : 'none'
                     }}
                   >
-                    {publication.imageSrc.endsWith('.webm') && !videoErrors[publication.id] && (
+                    {publication.imageSrc.endsWith('.webm') && canPlayVideo(publication) && (
                       <video
+                        ref={el => videoRefs.current[publication.id] = el}
                         className="background-video"
                         src={publication.imageSrc}
                         autoPlay
                         muted
                         loop
                         playsInline
-                        webkit-playsinline="true"
+                        webkitPlaysinline={true}
                         preload="auto"
                         controls={false}
                         disablePictureInPicture
                         onError={() => handleVideoError(publication.id)}
                         onLoadStart={() => console.log(`Loading video for publication ${publication.id}`)}
+                        onCanPlay={(e) => {
+                          console.log(`Video can play for publication ${publication.id}`);
+                          forceVideoPlay(e.target);
+                        }}
+                        onLoadedData={(e) => {
+                          console.log(`Video loaded for publication ${publication.id}`);
+                          forceVideoPlay(e.target);
+                        }}
+                        onEnded={(e) => {
+                          console.log(`Video ended for publication ${publication.id}, restarting loop`);
+                          handleVideoEnded(e.target);
+                        }}
                         style={{
                           WebkitTransform: 'translateZ(0)',
                           transform: 'translateZ(0)',
                         }}
                       />
                     )}
-                    {publication.imageSrc.endsWith('.webm') && videoErrors[publication.id] && (
+                    {publication.imageSrc.endsWith('.webm') && !canPlayVideo(publication) && (
                       <div 
                         className="background-video video-fallback"
-                        data-failed="true"
                         style={{
                           backgroundColor: '#e9ecef',
                           display: 'flex',
@@ -102,7 +182,7 @@ const Publications = () => {
                       >
                         <div>
                           🎬<br/>
-                          <small>Video preview<br/>not available on<br/>this device</small>
+                          <small>Video preview not available<br/>on this device</small>
                         </div>
                       </div>
                     )}
