@@ -1,4 +1,4 @@
-name: Build and Deploy to Main Branch
+name: Build and Deploy to GitHub Pages
 
 on:
   push:
@@ -8,36 +8,30 @@ on:
 # Sets permissions to push to main branch
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-20.04  # Use older Ubuntu for better legacy compatibility
+    runs-on: ubuntu-latest  # Use latest Ubuntu for better performance
     
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
         
-      - name: Setup Python for node-gyp
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-          
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '14.21.3'  # Match your local development environment
+          node-version: '18'  # Use Node 18 for better compatibility
           cache: 'npm'
           
-      - name: Install build tools for node-sass
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential
-          npm config set python python3
-          
-      - name: Install dependencies with legacy support
-        run: npm ci --legacy-peer-deps
-        env:
-          PYTHON: python3
+      - name: Install dependencies
+        run: npm ci
         
       - name: Build website
         run: npm run build
@@ -45,10 +39,14 @@ jobs:
           # Pass the secret to the build process
           GATSBY_GA_MEASUREMENT_ID: ${{ secrets.GATSBY_GA_MEASUREMENT_ID }}
           
-      - name: Deploy to main branch
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          publish_branch: main
-          force_orphan: true
+          path: './public'
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
