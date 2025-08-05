@@ -3,6 +3,8 @@ name: Build and Deploy to GitHub Pages
 on:
   push:
     branches: [ production ]  # Trigger when you push source code to main
+  pull_request:
+    branches: [ production ]  # Build check for PRs
   workflow_dispatch:
 
 # Sets permissions to push to main branch
@@ -17,7 +19,32 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  build-check:
+    # This job runs on PRs to check if the build works
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build website
+        run: npm run build
+        env:
+          GATSBY_GA_MEASUREMENT_ID: ${{ secrets.GATSBY_GA_MEASUREMENT_ID }}
+
   build-and-deploy:
+    # This job only runs on pushes to production branch
+    if: github.event_name == 'push' && github.ref == 'refs/heads/production'
     runs-on: ubuntu-latest  # Use latest Ubuntu for better performance
     
     steps:

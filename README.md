@@ -23,11 +23,23 @@ npm run build
 
 ## 🚀 Deployment
 
-This site is automatically deployed using GitHub Actions. When you push to the `main` branch, it will:
+This site is automatically deployed using GitHub Actions. When you push to the `production` branch, it will:
 
 1. ✅ Build the Gatsby site
 2. ✅ Deploy to GitHub Pages
 3. ✅ Update your live site
+
+**No manual deployment needed!** Just push your changes to GitHub and they'll be live in a few minutes.
+
+## 🔍 Quality Assurance
+
+### Pull Request Checks
+Every Pull Request automatically triggers a build check to ensure:
+- ✅ Dependencies install correctly
+- ✅ Gatsby builds successfully
+- ✅ No breaking changes are introduced
+
+This helps catch issues before they reach the main branch!
 
 Manual Deployment
 ```bash
