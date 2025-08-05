@@ -74,19 +74,14 @@ function SEO({ description = ``, lang = `en`, meta = [], title }) {
           content: `telephone=no`,
         },
         {
-          name: `apple-mobile-web-app-capable`,
+          name: `mobile-web-app-capable`,
           content: `yes`,
         },
         {
           name: `apple-mobile-web-app-status-bar-style`,
           content: `default`,
         },
-        // Preload critical resources
-        {
-          rel: `preload`,
-          href: `https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;500;600&display=swap`,
-          as: `style`,
-        },
+        // Removed preload for Google Fonts to avoid potential conflicts
       ].concat(meta)}
     >
       {/* Safari font optimization removed - causing conflicts */}

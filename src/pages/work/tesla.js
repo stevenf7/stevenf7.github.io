@@ -1,6 +1,5 @@
 import React from "react"
 import "../../css/worksiteStyle.scss"
-import "bootstrap/dist/css/bootstrap.min.css"
 import { Container } from "react-bootstrap"
 import teslaPhoto from "../../images/workPhotos/TeslaWork.webp"
 import Fade from "../../components/animations/Fade"

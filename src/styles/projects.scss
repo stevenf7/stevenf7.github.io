@@ -42,6 +42,11 @@
           touch-action: manipulation;
           -webkit-touch-callout: none;
           -webkit-tap-highlight-color: transparent;
+          
+          // Hide indicators on mobile for cleaner look
+          .carousel-indicators {
+            display: none !important;
+          }
         }
         
         // Add responsive height for carousel with 16:9 aspect ratio (same as NVIDIA)
@@ -313,5 +318,66 @@
 // Responsive behavior now handled by 16:9 aspect ratio (matching NVIDIA carousel)
 // Automatically scales proportionally on all devices - no fixed heights for consistency
 // Both carousels maintain identical 16:9 aspect ratio for modern, less boxy appearance
+
+// Hide Safari media controls that cause button failed to load errors
+video::-webkit-media-controls {
+  display: none !important;
+}
+
+video::-webkit-media-controls-panel {
+  display: none !important;
+}
+
+video::-webkit-media-controls-play-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-pause-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-volume-slider {
+  display: none !important;
+}
+
+video::-webkit-media-controls-mute-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-fullscreen-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-rewind-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-return-to-realtime-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-timeline {
+  display: none !important;
+}
+
+video::-webkit-media-controls-current-time-display {
+  display: none !important;
+}
+
+video::-webkit-media-controls-time-remaining-display {
+  display: none !important;
+}
+
+video::-webkit-media-controls-airplay-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-picture-in-picture-button {
+  display: none !important;
+}
 
 

@@ -23,9 +23,9 @@ import KhazanahIcon from "./images/company/Khazanah.webp"
 import FordIcon from "./images/company/Ford.webp"
 
 // company image
-import TeslaImg from "./images/workPhotos/TeslaWork_v2.webm"
-import IsaacSim from "./images/workPhotos/isaac_quadruped.webm"
-import Khazanah from "./images/workPhotos/khazanah.webm"
+import TeslaImg from "./images/workPhotos/TeslaWork_v2.mp4"
+import IsaacSim from "./images/workPhotos/isaac_quadruped.mp4"
+import Khazanah from "./images/workPhotos/khazanah.mp4"
 import uwaterloo from "./images/workPhotos/uwaterlootaImg.webp"
 import ford from "./images/workPhotos/Ford.webp"
 import ecobee from "./images/workPhotos/ecobeeProduct.webp"

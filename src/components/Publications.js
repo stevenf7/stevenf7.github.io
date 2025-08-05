@@ -6,48 +6,61 @@ import "../styles/publications.scss"
 
 // Import publication images/videos
 import hriLabGif from "../images/publications/hri_lab.gif"
-import urLousdVideo from "../images/publications/ur_lousd.webm"
-import h1SilVideo from "../images/publications/h1_sil.webm"
+import urLousdVideo from "../images/publications/ur_lousd.mp4"
+import h1SilVideo from "../images/publications/h1_sil.mp4"
+
+// Helper function to detect if file is a video
+const isVideoFile = (url) => {
+  if (!url) return false;
+  const videoExtensions = ['.mp4', '.webm', '.mov', '.avi'];
+  return videoExtensions.some(ext => url.toLowerCase().endsWith(ext));
+};
 
 const Publications = () => {
   const { language } = useLanguage();
   const [videoErrors, setVideoErrors] = useState({});
-  const [isIOS, setIsIOS] = useState(false);
   const videoRefs = useRef([]);
-
-  // Detect iOS/Safari
-  useEffect(() => {
-    const detectIOS = () => {
-      return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-             (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    };
-    setIsIOS(detectIOS());
-  }, []);
 
   // Force video play when videos come into view (helps with iOS autoplay restrictions)
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const video = entry.target;
-          forceVideoPlay(video);
+    try {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const video = entry.target;
+            try {
+              forceVideoPlay(video);
+            } catch (error) {
+              console.warn('Error forcing video play:', error);
+            }
+          }
+        });
+      }, {
+        threshold: 0.5 // Trigger when 50% of video is visible
+      });
+
+      // Observe all video elements
+      videoRefs.current.forEach(video => {
+        if (video) {
+          try {
+            observer.observe(video);
+          } catch (error) {
+            console.warn('Error observing video:', error);
+          }
         }
       });
-    }, {
-      threshold: 0.5 // Trigger when 50% of video is visible
-    });
 
-    // Observe all video elements
-    videoRefs.current.forEach(video => {
-      if (video) {
-        observer.observe(video);
-      }
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [videoRefs.current]);
+      return () => {
+        try {
+          observer.disconnect();
+        } catch (error) {
+          console.warn('Error disconnecting observer:', error);
+        }
+      };
+    } catch (error) {
+      console.warn('Error setting up intersection observer:', error);
+    }
+  }, []); // Remove the mutable dependency
 
   const handleVideoError = (publicationId) => {
     console.warn(`Video failed to load for publication ${publicationId}`);
@@ -133,32 +146,61 @@ const Publications = () => {
                         : 'none'
                     }}
                   >
-                    {publication.imageSrc.endsWith('.webm') && canPlayVideo(publication) && (
+                    {isVideoFile(publication.imageSrc) && canPlayVideo(publication) && (
                       <video
-                        ref={el => videoRefs.current[publication.id] = el}
+                        ref={el => {
+                          try {
+                            videoRefs.current[publication.id] = el;
+                          } catch (error) {
+                            console.warn(`Error setting video ref for publication ${publication.id}:`, error);
+                          }
+                        }}
                         className="background-video"
                         src={publication.imageSrc}
                         autoPlay
                         muted
                         loop
                         playsInline
-                        webkitPlaysinline={true}
                         preload="auto"
                         controls={false}
                         disablePictureInPicture
-                        onError={() => handleVideoError(publication.id)}
-                        onLoadStart={() => console.log(`Loading video for publication ${publication.id}`)}
+                        onError={() => {
+                          try {
+                            handleVideoError(publication.id);
+                          } catch (error) {
+                            console.warn(`Error in video error handler for publication ${publication.id}:`, error);
+                          }
+                        }}
+                        onLoadStart={() => {
+                          try {
+                            console.log(`Loading video for publication ${publication.id}`);
+                          } catch (error) {
+                            console.warn(`Error in video load start handler for publication ${publication.id}:`, error);
+                          }
+                        }}
                         onCanPlay={(e) => {
-                          console.log(`Video can play for publication ${publication.id}`);
-                          forceVideoPlay(e.target);
+                          try {
+                            console.log(`Video can play for publication ${publication.id}`);
+                            forceVideoPlay(e.target);
+                          } catch (error) {
+                            console.warn(`Error in video can play handler for publication ${publication.id}:`, error);
+                          }
                         }}
                         onLoadedData={(e) => {
-                          console.log(`Video loaded for publication ${publication.id}`);
-                          forceVideoPlay(e.target);
+                          try {
+                            console.log(`Video loaded for publication ${publication.id}`);
+                            forceVideoPlay(e.target);
+                          } catch (error) {
+                            console.warn(`Error in video loaded data handler for publication ${publication.id}:`, error);
+                          }
                         }}
                         onEnded={(e) => {
-                          console.log(`Video ended for publication ${publication.id}, restarting loop`);
-                          handleVideoEnded(e.target);
+                          try {
+                            console.log(`Video ended for publication ${publication.id}, restarting loop`);
+                            handleVideoEnded(e.target);
+                          } catch (error) {
+                            console.warn(`Error in video ended handler for publication ${publication.id}:`, error);
+                          }
                         }}
                         style={{
                           WebkitTransform: 'translateZ(0)',
@@ -166,7 +208,7 @@ const Publications = () => {
                         }}
                       />
                     )}
-                    {publication.imageSrc.endsWith('.webm') && !canPlayVideo(publication) && (
+                    {isVideoFile(publication.imageSrc) && !canPlayVideo(publication) && (
                       <div 
                         className="background-video video-fallback"
                         style={{

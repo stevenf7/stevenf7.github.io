@@ -3,7 +3,6 @@ import Fade from "./animations/Fade"
 import { useLanguage } from "../contexts/LanguageContext"
 import data, { getText } from "../data"
 import selfImage from "./../images/SelfPhoto4.webp"
-import "bootstrap/dist/css/bootstrap.min.css"
 import "../styles/about.scss"
 
 const About = () => {
