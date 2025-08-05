@@ -8,7 +8,6 @@ module.exports = {
   // Add development-specific configuration
   flags: {
     FAST_DEV: true,
-    PRESERVE_WEBPACK_CACHE: true,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
