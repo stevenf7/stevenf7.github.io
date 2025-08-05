@@ -134,85 +134,83 @@ const NVIDIA = () => {
         </Fade>
         
         <div className="nvidia-section">
-          <Fade bottom distance="20px">
-            <div className="carousel-container">
-              <Carousel 
-                className="nvidia-carousel"
-                activeIndex={activeIndex}
-                onSelect={handleCarouselSelect}
-                interval={isIOS ? 5000 : 3000} // Back to 5 seconds for iPhone
-                touch={true}
-                indicators={!isMobile} // Hide indicators on mobile
-                controls={true}
-                slide={true}
-                wrap={true}
-                keyboard={false}
-                variant="dark"
-              >
-                {carouselItems.map((item, index) => (
-                  <Carousel.Item key={index}>
-                    {item.type === 'video' ? (
-                      <video
-                        ref={el => {
-                          try {
-                            videoRefs.current[index] = el;
-                          } catch (error) {
-                            console.warn(`Error setting video ref for index ${index}:`, error);
-                          }
-                        }}
-                        className="d-block w-100"
-                        src={item.media}
-                        autoPlay={index === 0}
-                        muted
-                        loop
-                        playsInline
-                        preload="metadata"
-                        onLoadedData={() => {
-                          try {
-                            handleVideoLoad(index);
-                          } catch (error) {
-                            console.warn(`Error in handleVideoLoad for index ${index}:`, error);
-                          }
-                        }}
-                        onPlay={() => {
-                          try {
-                            console.log(`Video ${index} started playing`);
-                          } catch (error) {
-                            console.warn(`Error in video play handler for index ${index}:`, error);
-                          }
-                        }}
-                        onPause={() => {
-                          try {
-                            console.log(`Video ${index} paused`);
-                          } catch (error) {
-                            console.warn(`Error in video pause handler for index ${index}:`, error);
-                          }
-                        }}
-                        onError={(e) => {
-                          try {
-                            console.error(`Video ${index} failed to load:`, e);
-                          } catch (error) {
-                            console.warn(`Error in video error handler for index ${index}:`, error);
-                          }
-                        }}
-                      />
-                    ) : (
-                      <img
-                        className="d-block w-100"
-                        src={item.media}
-                        alt={item.title}
-                        loading="lazy"
-                      />
-                    )}
-                    <Carousel.Caption className={`carousel-caption ${isMobile ? 'mobile-caption' : ''}`}>
-                      <h3>{item.title}</h3>
-                      {!isMobile && <p>{item.description}</p>}
-                    </Carousel.Caption>
-                  </Carousel.Item>
-                ))}
-              </Carousel>
-            </div>
-          </Fade>
+          <div className="carousel-container">
+            <Carousel 
+              className="nvidia-carousel"
+              activeIndex={activeIndex}
+              onSelect={handleCarouselSelect}
+              interval={isIOS ? 5000 : 3000} // Back to 5 seconds for iPhone
+              touch={true}
+              indicators={!isMobile} // Hide indicators on mobile
+              controls={true}
+              slide={true}
+              wrap={true}
+              keyboard={false}
+              variant="dark"
+            >
+              {carouselItems.map((item, index) => (
+                <Carousel.Item key={index}>
+                  {item.type === 'video' ? (
+                    <video
+                      ref={el => {
+                        try {
+                          videoRefs.current[index] = el;
+                        } catch (error) {
+                          console.warn(`Error setting video ref for index ${index}:`, error);
+                        }
+                      }}
+                      className="d-block w-100"
+                      src={item.media}
+                      autoPlay={index === 0}
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      onLoadedData={() => {
+                        try {
+                          handleVideoLoad(index);
+                        } catch (error) {
+                          console.warn(`Error in handleVideoLoad for index ${index}:`, error);
+                        }
+                      }}
+                      onPlay={() => {
+                        try {
+                          console.log(`Video ${index} started playing`);
+                        } catch (error) {
+                          console.warn(`Error in video play handler for index ${index}:`, error);
+                        }
+                      }}
+                      onPause={() => {
+                        try {
+                          console.log(`Video ${index} paused`);
+                        } catch (error) {
+                          console.warn(`Error in video pause handler for index ${index}:`, error);
+                        }
+                      }}
+                      onError={(e) => {
+                        try {
+                          console.error(`Video ${index} failed to load:`, e);
+                        } catch (error) {
+                          console.warn(`Error in video error handler for index ${index}:`, error);
+                        }
+                      }}
+                    />
+                  ) : (
+                    <img
+                      className="d-block w-100"
+                      src={item.media}
+                      alt={item.title}
+                      loading="lazy"
+                    />
+                  )}
+                  <Carousel.Caption className={`carousel-caption ${isMobile ? 'mobile-caption' : ''}`}>
+                    <h3>{item.title}</h3>
+                    {!isMobile && <p>{item.description}</p>}
+                  </Carousel.Caption>
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          </div>
           <div className="content">
             {data.nvidiaExperience.map((exp, index) => (
               <Fade bottom distance="20px" key={index}>

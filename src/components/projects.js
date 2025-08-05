@@ -84,21 +84,20 @@ const Project = () => {
         <Fade bottom cascade distance="20px">
           <h1>{getText(data.sections.projects, language)}</h1>
         </Fade>
-        <Fade bottom distance="20px">
-          <div className="project-wrapper">
-            <Carousel 
-              className="masterCarousel" 
-              activeIndex={activeIndex}
-              onSelect={handleCarouselSelect}
-              touch={true} 
-              interval={3000}
-              indicators={!isMobile} // Hide indicators on mobile
-              controls={true}
-              keyboard={false}
-              slide={true}
-              wrap={true}
-              variant="dark"
-            >
+        <div className="project-wrapper">
+          <Carousel 
+            className="masterCarousel" 
+            activeIndex={activeIndex}
+            onSelect={handleCarouselSelect}
+            touch={true} 
+            interval={3000}
+            indicators={!isMobile} // Hide indicators on mobile
+            controls={true}
+            keyboard={false}
+            slide={true}
+            wrap={true}
+            variant="dark"
+          >
               {carouselItems.map((item, index) => (
                 <Carousel.Item key={index}>
                   {item.type === 'video' ? (
@@ -138,8 +137,7 @@ const Project = () => {
               ))}
             </Carousel>
           </div>
-        </Fade>
-      </div>
+        </div>
     </div>
   )
 }
