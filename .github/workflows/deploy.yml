@@ -44,7 +44,7 @@ jobs:
         run: npm rebuild
         
       - name: Build website
-        run: npm run build
+        run: GATSBY_DISABLE_FILE_WATCHER=true npm run build
         env:
           GATSBY_GA_MEASUREMENT_ID: ${{ secrets.GATSBY_GA_MEASUREMENT_ID }}
 
@@ -73,7 +73,7 @@ jobs:
         run: npm rebuild
         
       - name: Build website
-        run: npm run build
+        run: GATSBY_DISABLE_FILE_WATCHER=true npm run build
         env:
           # Pass the secret to the build process
           GATSBY_GA_MEASUREMENT_ID: ${{ secrets.GATSBY_GA_MEASUREMENT_ID }}
