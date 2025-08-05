@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useCallback } from "react"
 import { useLanguage } from "../contexts/LanguageContext"
 import data, { getText } from "./../data"
 import "./../css/modal.scss"
@@ -10,29 +10,51 @@ const isVideoFile = (url) => {
   return videoExtensions.some(ext => url.toLowerCase().endsWith(ext));
 };
 
-export default function Modal({ closeModal, id, type = "project" }) {
+export default function Modal({ closeModal, id, type = "project", totalItems = 0, onPrevious, onNext }) {
   const { language } = useLanguage();
   // Determine which data to use based on the type
   const content = type === "project" ? data.projects[id] : data.education[id];
   
+  // Navigation handlers with useCallback to prevent re-renders
+  const handlePrevious = useCallback(() => {
+    if (onPrevious && id > 0) {
+      onPrevious();
+    }
+  }, [onPrevious, id]);
+  
+  const handleNext = useCallback(() => {
+    if (onNext && id < totalItems - 1) {
+      onNext();
+    }
+  }, [onNext, id, totalItems]);
+  
+  // Keyboard navigation
   useEffect(() => {
-    // Save the current scroll position
-    const scrollY = window.scrollY;
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        handlePrevious();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        handleNext();
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        closeModal(false);
+      }
+    };
     
-    // Disable scrolling when modal is mounted and keep the visual position
-    document.body.style.top = `-${scrollY}px`;
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [id, totalItems, handlePrevious, handleNext, closeModal]);
+  
+  useEffect(() => {
+    // Simple approach: just disable scrolling without positioning tricks
     document.body.classList.add('modal-open');
     
     // Clean up function to re-enable scrolling when modal is unmounted
     return () => {
-      // Remove the modal-open class
       document.body.classList.remove('modal-open');
-      
-      // Reset the body position
-      document.body.style.top = '';
-      
-      // Restore the scroll position
-      window.scrollTo(0, scrollY);
+      // No scroll position manipulation needed - page stays exactly where it was!
     };
   }, []);
   
@@ -60,6 +82,33 @@ export default function Modal({ closeModal, id, type = "project" }) {
           <h3>&#215;</h3>
           </button>
         </div>
+        
+        {/* Navigation arrows - desktop only */}
+        {totalItems > 1 && (
+          <>
+            {/* Previous arrow */}
+            {id > 0 && (
+              <button 
+                className="modal-nav-btn modal-prev"
+                onClick={handlePrevious}
+                aria-label="Previous item"
+              >
+                <span>&#8249;</span>
+              </button>
+            )}
+            
+            {/* Next arrow */}
+            {id < totalItems - 1 && (
+              <button 
+                className="modal-nav-btn modal-next"
+                onClick={handleNext}
+                aria-label="Next item"
+              >
+                <span>&#8250;</span>
+              </button>
+            )}
+          </>
+        )}
         <div className="title">
           <h1>{type === "project" ? getText(content.position, language) : getText(content.title, language)}</h1>
           <h2>{type === "project" ? content.date : ""}</h2>
@@ -69,11 +118,11 @@ export default function Modal({ closeModal, id, type = "project" }) {
           <video 
             src={content.workImg || content.imageSrc} 
             className="img-fluid modal-media" 
-            controls
             autoPlay
             muted
             loop
             playsInline
+            disablePictureInPicture
           />
         ) : (
           <img src={content.workImg || content.imageSrc} alt="" className="img-fluid modal-media" />
