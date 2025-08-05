@@ -1,22 +1,22 @@
 .container {
   h1 {
-    margin-top: 10vh;
-    font-size: 3rem;
+    margin-top: 8vh; /* Reduced from 10vh (80% of original) */
+    font-size: 2.4rem; /* Reduced from 3rem (80% of original) */
     line-height: 1.2;
     @media (max-width: 768px) {
       text-align: center;
-      font-size: 2.5rem;
+      font-size: 2.5rem; /* Reverted to original mobile value */
     }
     @media (max-width: 480px) {
-      font-size: 2rem;
+      font-size: 2rem; /* Reverted to original mobile value */
     }
   }
   
   h3 {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Reduced from 1.5rem (80% of original) */
     line-height: 1.4;
-    margin-bottom: 2vh;
+    margin-bottom: 1.6vh; /* Reduced from 2vh (80% of original) */
     color: #666;
     font-weight: 400;
   }
@@ -35,50 +35,50 @@
       text-align: justify;
   
       h2 {
-        font-size: 2.5rem;
+        font-size: 2rem; /* Reduced from 2.5rem (80% of original) */
         margin-bottom: 1vh;
         @media (max-width: 992px) {
           text-align: center;
-          font-size: 2rem;
+          font-size: 2rem; /* Reverted to original mobile value */
         }
         @media (max-width: 768px) {
-          font-size: 1.8rem;
+          font-size: 1.8rem; /* Reverted to original mobile value */
         }
         @media (max-width: 480px) {
-          font-size: 1.5rem;
+          font-size: 1.5rem; /* Reverted to original mobile value */
         }
       }
   
       .carousel-description {
-        font-size: 1.1rem;
+        font-size: 0.88rem; /* Reduced from 1.1rem (80% of original) */
         line-height: 1.5;
         color: #333;
-        margin-bottom: 2rem;
-        padding: 0 2rem;
+        margin-bottom: 1.6rem; /* Reduced from 2rem (80% of original) */
+        padding: 0 1.6rem; /* Reduced from 2rem (80% of original) */
         
         @media (max-width: 768px) {
-          font-size: 1rem;
-          padding: 0 1rem;
+          font-size: 1rem; /* Reverted to original mobile value */
+          padding: 0 1rem; /* Reverted to original mobile value */
         }
         
         @media (max-width: 480px) {
-          font-size: 0.9rem;
-          padding: 0 0.5rem;
+          font-size: 0.9rem; /* Reverted to original mobile value */
+          padding: 0 0.5rem; /* Reverted to original mobile value */
         }
       }
   
       p {
-        font-size: 1.5rem;
+        font-size: 1.2rem; /* Reduced from 1.5rem (80% of original) */
         line-height: 1.5;
         @media (max-width: 992px) {
           text-align: justify;
-          font-size: 1.2rem;
+          font-size: 1.2rem; /* Reverted to original mobile value */
         }
         @media (max-width: 768px) {
-          font-size: 1rem;
+          font-size: 1rem; /* Reverted to original mobile value */
         }
         @media (max-width: 480px) {
-          font-size: 0.9rem;
+          font-size: 0.9rem; /* Reverted to original mobile value */
         }
       }
     }

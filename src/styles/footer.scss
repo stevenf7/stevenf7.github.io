@@ -1,48 +1,71 @@
 #contact {
   h1 {
-    font-size: 3rem !important;
+    font-size: 2.4rem !important; /* Desktop-only 80% scaling from original 3rem */
     line-height: 1.2;
-    margin: 10vh 0 2vh 0;
+    margin: 8vh 0 1.6vh 0; /* Desktop-only 80% scaling from original 10vh 0 2vh 0 */
+    
+    /* Revert to original mobile values */
+    @media (max-width: 768px) {
+      font-size: 3rem !important; /* Original mobile value */
+      margin: 10vh 0 2vh 0; /* Original mobile value */
+    }
     text-align: center;
     position: relative;
     overflow: hidden;
     
     @media (max-width: 768px) {
-      font-size: 2.5rem !important;
+      font-size: 2.5rem !important; /* Reverted to original mobile value */
     }
     @media (max-width: 480px) {
-      font-size: 2rem !important;
+      font-size: 2rem !important; /* Reverted to original mobile value */
     }
   }
   
   h2 {
-    font-size: 2rem !important;
+    font-size: 1.6rem !important; /* Desktop-only 80% scaling from original 2rem */
+    
+    /* Revert to original mobile values */
+    @media (max-width: 768px) {
+      font-size: 2rem !important; /* Original mobile value */
+    }
     line-height: 1.5;
     margin: 1vh 0;
     text-align: center;
     color: #4a4a4a;
     
     @media (max-width: 768px) {
-      font-size: 1.5rem !important;
+      font-size: 1.5rem !important; /* Reverted to original mobile value */
     }
     @media (max-width: 480px) {
-      font-size: 1.2rem !important;
+      font-size: 1.2rem !important; /* Reverted to original mobile value */
     }
   }
 }
 
 .footer-container {
   width: 80vw;
-  max-width: 1200px;
-  margin: 3vh auto 5vh;
+  max-width: 960px; /* Desktop-only 80% scaling from original 1200px */
+  margin: 2.4vh auto 4vh; /* Desktop-only 80% scaling from original 3vh auto 5vh */
+  
+  /* Revert to original mobile values */
+  @media (max-width: 768px) {
+    max-width: 1200px; /* Original mobile value */
+    margin: 3vh auto 5vh; /* Original mobile value */
+  }
   display: flex;
   flex-direction: column;
   align-items: center;
   
   .email-link {
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Desktop-only 80% scaling from original 1.5rem */
     color: black;
-    margin: 2vh 0;
+    margin: 1.6vh 0; /* Desktop-only 80% scaling from original 2vh 0 */
+    
+    /* Revert to original mobile values */
+    @media (max-width: 768px) {
+      font-size: 1.5rem; /* Original mobile value */
+      margin: 2vh 0; /* Original mobile value */
+    }
     text-decoration: none;
     transition: color 0.3s ease;
     
@@ -52,10 +75,16 @@
   }
   
   .social-icons {
-    margin-top: 20px;
+    margin-top: 16px; /* Desktop-only 80% scaling from original 20px */
     img {
-      height: 2rem;
-      margin: 10px;
+      height: 1.6rem; /* Desktop-only 80% scaling from original 2rem */
+      margin: 8px; /* Desktop-only 80% scaling from original 10px */
+      
+      /* Revert to original mobile values */
+      @media (max-width: 768px) {
+        height: 2rem; /* Original mobile value */
+        margin: 10px; /* Original mobile value */
+      }
       transition: transform 0.3s ease;
       
       &:hover {
@@ -65,8 +94,14 @@
   }
   
   span {
-    margin-top: 10px;
-    font-size: 1rem;
+    margin-top: 8px; /* Desktop-only 80% scaling from original 10px */
+    font-size: 0.8rem; /* Desktop-only 80% scaling from original 1rem */
+    
+    /* Revert to original mobile values */
+    @media (max-width: 768px) {
+      margin-top: 10px; /* Original mobile value */
+      font-size: 1rem; /* Original mobile value */
+    }
     
     a {
       color: black;

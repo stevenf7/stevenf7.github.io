@@ -68,7 +68,7 @@ export default function Modal({ closeModal, id, type = "project" }) {
         {isVideoFile(content.workImg || content.imageSrc) ? (
           <video 
             src={content.workImg || content.imageSrc} 
-            className="img-fluid" 
+            className="img-fluid modal-media" 
             controls
             autoPlay
             muted
@@ -76,7 +76,7 @@ export default function Modal({ closeModal, id, type = "project" }) {
             playsInline
           />
         ) : (
-          <img src={content.workImg || content.imageSrc} alt="" className="img-fluid" />
+          <img src={content.workImg || content.imageSrc} alt="" className="img-fluid modal-media" />
         )}
 
         <ul>

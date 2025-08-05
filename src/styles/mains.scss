@@ -38,27 +38,40 @@ body {
 
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 960px; /* Desktop-only 80% scaling from original 1200px */
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 16px; /* Desktop-only 80% scaling from original 20px */
   box-sizing: border-box;
+  
+  /* Revert to original mobile padding */
+  @media (max-width: 768px) {
+    padding: 0 20px; /* Original mobile value */
+  }
 }
 
 .primary-btn {
-  margin: 16px;
-  padding: 16px;
+  margin: 13px; /* Desktop-only 80% scaling from original 16px */
+  padding: 13px; /* Desktop-only 80% scaling from original 16px */
   background-color: black;
   color: white;
   border: 0px;
-  border-radius: 15px;
+  border-radius: 12px; /* Desktop-only 80% scaling from original 15px */
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   cursor: pointer;
+  
+  /* Revert to original mobile values */
+  @media (max-width: 768px) {
+    margin: 16px; /* Original mobile value */
+    padding: 16px; /* Original mobile value */
+    border-radius: 15px; /* Original mobile value */
+  }
+  
   &:hover {
     transform: scale(1.1);
   }

@@ -103,53 +103,83 @@ body.modal-open {
   
   .modalContainer .body {
     justify-content: center;
-    align-items: flex-start;
+    
+    /* Desktop: side-by-side layout with equal heights */
     @include media(">=desktop") {
       display: flex;
+      align-items: stretch; /* Make both image and text same height */
+      gap: 1.5rem; /* Add space between image and text */
+    }
+    
+    /* Mobile: stacked layout (default) */
+    @include media("<desktop") {
+      display: block; /* Ensure stacked layout on mobile */
     }
 
-    img{
-      width: 50%;
-      justify-content: center;
-      overflow: hidden;
-      max-height: 60vh;
-      margin-bottom: 1rem;
-      object-fit: contain;
-      padding: 1rem;
+    .modal-media {
+      border-radius: 8px; /* Add subtle rounding */
+      
+      /* Desktop: flex layout with equal heights */
+      @include media(">=desktop") {
+        width: 50%;
+        flex: 1; /* Allow to grow and match text height */
+        object-fit: contain; /* Don't crop the media */
+        align-self: stretch; /* Match container height */
+        min-height: 0; /* Allow flex shrinking */
+      }
+      
+      /* Mobile: full width stacked */
       @include media(">=phone", "<lgphone") {
-        width: 100%;       
+        width: 100%;
+        margin-bottom: 1rem;
+        max-height: 60vh; /* Prevent oversized media on mobile */      
       }
       @include media(">=lgphone", "<tablet") {
         width: 100%;
+        margin-bottom: 1rem;
+        max-height: 60vh;
       }
       @include media(">=tablet", "<desktop") {
         width: 100%;
+        margin-bottom: 1rem;
+        max-height: 60vh;
       }
     }
     ul{
-      width: 50%;
       margin-top: 0;
-      font-size: 1.5rem;
+      
+      /* Desktop: flex layout with equal heights */
+      @include media(">=desktop") {
+        width: 50%;
+        flex: 1; /* Allow to grow and match image height */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        font-size: 1.2rem; /* Desktop: matches site body text after 80% scaling */
+      }
+      
+      /* Mobile: standard block layout */
+      @include media("<desktop") {
+        width: 100%;
+        display: block;
+      }
+      
+      /* Consistent font sizes and improved readability */
+      line-height: 1.6; /* Better readability across all devices */
       
       @include media(">=phone", "<lgphone") {
-        width: 100%;
-        font-size: 0.5rem;       
+        font-size: 0.9rem; /* Original mobile value */       
       }
       @include media(">=lgphone", "<tablet") {
-        width: 100%;
-        font-size: 0.75rem;
+        font-size: 1rem; /* Original mobile value */
       }
       @include media(">=tablet", "<desktop") {
-        width: 100%;
-        font-size: 1rem;
-      }
-      @include media(">desktop", "<=2550") {
-        width: 50%;
-        font-size: 2rem;
+        font-size: 1.1rem; /* Original mobile value */
       }
 
       li{
-        padding: 0em 0.5em 0.5em 1em;
+        padding: 0.5em 0.5em 0.8em 1em; /* Increased spacing for better readability */
+        margin-bottom: 0.4em; /* Add space between list items */
         
         a {
           color: #333;

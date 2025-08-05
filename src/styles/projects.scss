@@ -5,14 +5,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 3vh;
+    margin-top: 2.4vh; /* Reduced from 3vh (80% of original) */
     
     flex-direction: column;
     font-family: "Open Sans";
-    .masterCarousel{
+            .masterCarousel{
         width: 100%;
         margin: 0 auto;
-        border-radius: 15px !important;
+        border-radius: 12px !important; /* Reduced from 15px (80% of original) */
         overflow: hidden !important;
         
         // Force custom slide transitions
@@ -40,7 +40,7 @@
             position: relative;
             width: 100%;
             padding-top: 62.5%; // 10/16 = 0.625 = 62.5% for 16:10 aspect ratio
-            border-radius: 15px !important;
+            border-radius: 12px !important; /* Reduced from 15px (80% of original) */
             overflow: hidden !important;
             
             // Enable smooth hardware acceleration for better performance
