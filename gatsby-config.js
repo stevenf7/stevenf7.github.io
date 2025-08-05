@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix:"/stevenf7.github.io",
+  // Remove pathPrefix for custom domain setup
   siteMetadata: {
     title: `Hi, I'm Steven`,
     description: `Here is my personal website`,
@@ -8,7 +8,6 @@ module.exports = {
   // Add development-specific configuration
   flags: {
     FAST_DEV: true,
-    PRESERVE_WEBPACK_CACHE: true,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

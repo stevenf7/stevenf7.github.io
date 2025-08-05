@@ -1,0 +1,45 @@
+name: Pull Request Build Check
+
+on:
+  pull_request:
+    branches: [ production, main, master ]
+
+jobs:
+  build-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+        
+      - name: Install native dependencies explicitly
+        run: |
+          npm install @parcel/watcher --legacy-peer-deps
+          npm rebuild @parcel/watcher
+        
+      - name: Clean Gatsby cache
+        run: npx gatsby clean
+        
+      - name: Build website
+        run: |
+          export GATSBY_DISABLE_FILE_WATCHER=true
+          export GATSBY_DISABLE_WATCHER=true
+          export NODE_ENV=production
+          npm run build
+        env:
+          GATSBY_GA_MEASUREMENT_ID: ${{ secrets.GATSBY_GA_MEASUREMENT_ID }}
+          
+      - name: Check build output
+        run: |
+          echo "✅ Build completed successfully!"
+          echo "📁 Build output size: $(du -sh public | cut -f1)"
+          echo "📄 Number of pages built: $(find public -name "*.html" | wc -l)" 
