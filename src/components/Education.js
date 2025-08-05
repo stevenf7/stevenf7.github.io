@@ -10,6 +10,19 @@ const Education = () => {
   const { language } = useLanguage();
   const [openModal, setOpenModal] = useState(false);
   const [id, setId] = useState(0);
+  
+  // Navigation functions for modal
+  const handlePrevious = () => {
+    if (id > 0) {
+      setId(id - 1);
+    }
+  };
+  
+  const handleNext = () => {
+    if (id < data.education.length - 1) {
+      setId(id + 1);
+    }
+  };
 
   return (
     <div className="section" id="education">
@@ -35,7 +48,14 @@ const Education = () => {
               ))}
             </Fade>
           </div>
-          {openModal && <Modal closeModal={setOpenModal} id={id} type="education" />}
+          {openModal && <Modal 
+            closeModal={setOpenModal} 
+            id={id} 
+            type="education"
+            totalItems={data.education.length}
+            onPrevious={handlePrevious}
+            onNext={handleNext}
+          />}
         </div>
       </div>
     </div>

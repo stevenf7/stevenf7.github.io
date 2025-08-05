@@ -9,7 +9,8 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-function SEO({ description = "", lang = "en", meta = [], title }) {
+
+function SEO({ description = ``, lang = `en`, meta = [], title }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -67,10 +68,28 @@ function SEO({ description = "", lang = "en", meta = [], title }) {
           name: `twitter:description`,
           content: metaDescription,
         },
+        // Safari-specific optimizations
+        {
+          name: `format-detection`,
+          content: `telephone=no`,
+        },
+        {
+          name: `mobile-web-app-capable`,
+          content: `yes`,
+        },
+        {
+          name: `apple-mobile-web-app-status-bar-style`,
+          content: `default`,
+        },
+        // Removed preload for Google Fonts to avoid potential conflicts
       ].concat(meta)}
-    />
+    >
+      {/* Safari font optimization removed - causing conflicts */}
+    </Helmet>
   )
 }
+
+// Default props removed - using JavaScript default parameters instead
 
 SEO.propTypes = {
   description: PropTypes.string,

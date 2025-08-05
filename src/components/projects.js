@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react"
 import Fade from "./animations/Fade"
-import Carousel from "react-bootstrap/Carousel"
+import { Carousel } from "react-bootstrap"
 import { useLanguage } from "../contexts/LanguageContext"
 import data, { getText } from "../data"
-import "bootstrap/dist/css/bootstrap.min.css"
 import "../styles/projects.scss"
 
 import airplaneImage from "../images/ProjectPhotos/airplane.webp"
@@ -14,7 +13,7 @@ import vexImg from "../images/ProjectPhotos/VEX.webp"
 import wearableImg from "../images/ProjectPhotos/wearableHacks.webp"
 import webappImg from "../images/ProjectPhotos/WebappProjects.webp"
 import mte380Img from "../images/ProjectPhotos/mte380.webp"
-import capstoneVideo from "../images/ProjectPhotos/capstone.webm"
+import capstoneVideo from "../images/ProjectPhotos/capstone.mp4"
 
 const Project = () => {
   const { language } = useLanguage();
@@ -54,9 +53,19 @@ const Project = () => {
     };
     
     checkMobile();
-    window.addEventListener('resize', checkMobile);
+    try {
+      window.addEventListener('resize', checkMobile);
+    } catch (error) {
+      console.warn('Error adding resize listener:', error);
+    }
     
-    return () => window.removeEventListener('resize', checkMobile);
+    return () => {
+      try {
+        window.removeEventListener('resize', checkMobile);
+      } catch (error) {
+        console.warn('Error removing resize listener:', error);
+      }
+    };
   }, []);
 
   // Handle carousel selection
@@ -83,7 +92,7 @@ const Project = () => {
               onSelect={handleCarouselSelect}
               touch={true} 
               interval={3000}
-              indicators={true}
+              indicators={!isMobile} // Hide indicators on mobile
               controls={true}
               keyboard={false}
               slide={true}

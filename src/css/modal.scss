@@ -2,35 +2,63 @@
 
 /* This class will be added to the body when modal is open */
 body.modal-open {
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-  /* height is not set to allow for the top offset to work properly */
-  top: 0;
-  left: 0;
-  right: 0;
-  /* We don't set bottom to allow for the saved scroll position */
+  overflow: hidden; /* Simply prevent scrolling, no positioning tricks */
 }
 
 .modalBackground {
     top: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #0e0e0ecb;
+    /* Pure blur effect - no darkening */
+    background: transparent;
+    backdrop-filter: blur(15px); /* Strong blur to direct focus to modal */
+    -webkit-backdrop-filter: blur(15px);
     position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    
+    /* Desktop-only entrance animation for background */
+    @include media(">=desktop") {
+      animation: fadeInBackground 0.3s ease-out;
+    }
+  }
+  
+  /* Background fade-in animation */
+  @keyframes fadeInBackground {
+    from {
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+    }
+    to {
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+    }
   }
   
   .modalContainer {
     width: 80vw;
-    max-width: 1200px;
+    max-width: 1000px; /* Set to 1000px as requested */
     max-height: 90vh;
     border-radius: 12px;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.6) 0px 5px 15px;
+    
+    /* Balanced frosted glass effect - readable but stylish */
+    background: rgba(255, 255, 255, 0.65); /* More opaque for readability */
+    backdrop-filter: blur(25px) saturate(120%);
+    -webkit-backdrop-filter: blur(25px) saturate(120%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3), 
+                0 10px 40px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    
+    /* Fallback for browsers that don't support backdrop-filter */
+    @supports not (backdrop-filter: blur(25px)) {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+    
     display: flex;
     flex-direction: column;
     padding: 25px;
@@ -40,6 +68,12 @@ body.modal-open {
     transform: translate(-50%, -50%);
     z-index: 10000;
     overflow: auto;
+    
+    /* Desktop-only entrance animation */
+    @include media(">=desktop") {
+      animation: modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-origin: center;
+    }
     
     @include media(">=phone", "<lgphone") {
       width: 95vw;
@@ -54,37 +88,68 @@ body.modal-open {
     }
   }
   
+  /* Modal entrance animation - smooth scale + fade */
+  @keyframes modalSlideIn {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+  
+  /* Content fade-in animation with upward motion */
+  @keyframes contentFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
   .modalContainer .title {
     display: inline-block;
     text-align: center;
     margin-bottom: 1em;
+    
+    /* Subtle text enhancement - no longer needed with better background */
+    
+    /* Desktop-only content animation */
+    @include media(">=desktop") {
+      animation: contentFadeIn 0.5s ease-out 0.1s both;
+    }
     h1{
       margin-top: 0px;
-      line-height: 1em;
-      font-size: 3em;
+      line-height: 1.2;
+      font-size: 2.4rem; /* Consistent with main page 80% scaling */
 
       @include media(">=phone", "<lgphone") {
-        font-size: 1em;       
+        font-size: 1.6rem;       
       }
       @include media(">=lgphone", "<tablet") {
-        font-size: 1.5em;
+        font-size: 1.8rem;
       }
       @include media(">=tablet", "<desktop") {
-        font-size: 2em;
+        font-size: 2rem;
       }
     }
 
     h2{
-      line-height: 1em;
-      font-size: 2em;
+      line-height: 1.2;
+      font-size: 1.2rem; /* Consistent with site subtitle sizing */
       @include media(">=phone", "<lgphone") {
-        font-size: 0.8em;       
+        font-size: 0.9rem;       
       }
       @include media(">=lgphone", "<tablet") {
-        font-size: 1em;
+        font-size: 1rem;
       }
       @include media(">=tablet", "<desktop") {
-        font-size: 1.5em;
+        font-size: 1.1rem;
       }
     }
   }
@@ -97,59 +162,161 @@ body.modal-open {
   .titleCloseBtn button {
     background-color: transparent;
     border: none;
-    font-size: 2rem;
+    font-size: 1.5rem; /* Reduced from 2rem for consistency */
     cursor: pointer;
+    
+    h3 {
+      margin: 0;
+      font-size: 1.5rem; /* Match button font size for close icon */
+      line-height: 1;
+    }
   }
+  
+  /* Modal navigation arrows - simplified inside design */
+  .modal-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    
+    /* More transparent frosted glass effect */
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #333;
+    z-index: 10001;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    
+    /* Desktop only */
+    @include media("<desktop") {
+      display: none;
+    }
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.6);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-50%) scale(1.05);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    &:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+    
+    span {
+      font-weight: bold;
+      line-height: 1;
+    }
+  }
+  
+  .modal-prev {
+    left: 15px; /* Inside modal, left side */
+  }
+  
+  .modal-next {
+    right: 15px; /* Inside modal, right side */
+  }
+  
+  /* Modal counter - removed per user request */
   
   .modalContainer .body {
     justify-content: center;
-    align-items: flex-start;
+    
+    /* Desktop: side-by-side layout with equal heights */
     @include media(">=desktop") {
       display: flex;
+      align-items: stretch; /* Make both image and text same height */
+      gap: 1.5rem; /* Add space between image and text */
+      animation: contentFadeIn 0.6s ease-out 0.2s both; /* Slight delay for cascade effect */
+    }
+    
+    /* Mobile: stacked layout (default) */
+    @include media("<desktop") {
+      display: block; /* Ensure stacked layout on mobile */
     }
 
-    img{
-      width: 50%;
-      justify-content: center;
-      overflow: hidden;
-      max-height: 60vh;
-      margin-bottom: 1rem;
-      object-fit: contain;
-      padding: 1rem;
+    .modal-media {
+      border-radius: 8px; /* Add subtle rounding */
+      
+      /* Display-only styling for videos */
+      &[autoplay] {
+        cursor: default; /* No pointer cursor since videos aren't interactive */
+        user-select: none; /* Prevent text selection on video */
+      }
+      
+      /* Desktop: flex layout with equal heights */
+      @include media(">=desktop") {
+        width: 50%;
+        flex: 1; /* Allow to grow and match text height */
+        object-fit: contain; /* Don't crop the media */
+        align-self: stretch; /* Match container height */
+        min-height: 0; /* Allow flex shrinking */
+      }
+      
+      /* Mobile: full width stacked */
       @include media(">=phone", "<lgphone") {
-        width: 100%;       
+        width: 100%;
+        margin-bottom: 1rem;
+        max-height: 60vh; /* Prevent oversized media on mobile */      
       }
       @include media(">=lgphone", "<tablet") {
         width: 100%;
+        margin-bottom: 1rem;
+        max-height: 60vh;
       }
       @include media(">=tablet", "<desktop") {
         width: 100%;
+        margin-bottom: 1rem;
+        max-height: 60vh;
       }
     }
     ul{
-      width: 50%;
       margin-top: 0;
-      font-size: 1.5rem;
+      
+      /* Desktop: flex layout with equal heights */
+      @include media(">=desktop") {
+        width: 50%;
+        flex: 1; /* Allow to grow and match image height */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        font-size: 1.2rem; /* Desktop: matches site body text after 80% scaling */
+        
+        /* Text is now readable with improved background */
+      }
+      
+      /* Mobile: standard block layout */
+      @include media("<desktop") {
+        width: 100%;
+        display: block;
+      }
+      
+      /* Consistent font sizes and improved readability */
+      line-height: 1.6; /* Better readability across all devices */
       
       @include media(">=phone", "<lgphone") {
-        width: 100%;
-        font-size: 0.5rem;       
+        font-size: 0.9rem; /* Original mobile value */       
       }
       @include media(">=lgphone", "<tablet") {
-        width: 100%;
-        font-size: 0.75rem;
+        font-size: 1rem; /* Original mobile value */
       }
       @include media(">=tablet", "<desktop") {
-        width: 100%;
-        font-size: 1rem;
-      }
-      @include media(">desktop", "<=2550") {
-        width: 50%;
-        font-size: 2rem;
+        font-size: 1.1rem; /* Original mobile value */
       }
 
       li{
-        padding: 0em 0.5em 0.5em 1em;
+        padding: 0.5em 0.5em 0.8em 1em; /* Increased spacing for better readability */
+        margin-bottom: 0.4em; /* Add space between list items */
         
         a {
           color: #333;

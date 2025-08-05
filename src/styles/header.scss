@@ -1,11 +1,23 @@
 .header-wrapper {
   width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end !important; /* Force text at bottom */
+  padding-bottom: 2vh !important; /* Very minimal padding - text should be very low */
+  
+  /* Ensure bottom alignment on all mobile devices */
+  @include media("<desktop") {
+    justify-content: flex-end !important;
+    align-items: center !important;
+    padding-bottom: 3vh !important; /* Slightly more padding on mobile for better spacing */
+  }
+  margin-top: 0 !important; /* Remove negative margin to allow more spacing */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  position: relative;
   
   // Default to scroll for safety
   background-attachment: scroll;
@@ -17,28 +29,37 @@
     background-position: center;
   }
   
-  // Mobile-specific styling
+  // Mobile-specific styling with bottom alignment
   &.mobile {
     background-attachment: scroll;
     background-size: cover;
     background-position: center;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    padding-bottom: 3vh !important; /* Consistent mobile bottom padding */
   }
   
-  // Default mobile settings
+  // Default mobile settings with bottom alignment
   @include media(">=phone", "<lgphone") {
     background-attachment: scroll;
     background-size: cover;
     background-position: center;
+    justify-content: flex-end !important;
+    padding-bottom: 4vh !important; /* Extra space on smallest phones */
   }
   @include media(">=lgphone", "<tablet") {
     background-attachment: scroll;
     background-size: cover;
     background-position: center;
+    justify-content: flex-end !important;
+    padding-bottom: 3vh !important;
   }
   @include media(">=tablet", "<desktop") {
     background-attachment: scroll;
     background-size: cover;
     background-position: center;
+    justify-content: flex-end !important;
+    padding-bottom: 2.5vh !important;
   }
   
   // Specific iOS device fixes (iPhone and iPad)
@@ -87,20 +108,25 @@
     min-height: 100vh; // Ensure the header covers the full viewport height
   }
   
-  // Specific classes for orientation
+    // Specific classes for orientation with bottom alignment
   &.landscape {
     background-attachment: scroll;
     background-size: cover;
     background-position: center;
     min-height: 100vh;
+    justify-content: flex-end !important;
+    padding-bottom: 2vh !important;
   }
-  
+
   &.portrait {
     background-attachment: scroll; // Changed from fixed to scroll for better compatibility
     background-size: cover;
     background-position: center;
+    justify-content: flex-end !important;
+    padding-bottom: 3vh !important; /* More space in portrait for better mobile UX */
     @include media(">=tablet", "<desktop") {
       background-attachment: scroll;
+      padding-bottom: 2.5vh !important;
     }
   }
   
@@ -120,46 +146,46 @@
   }
   
   h2 {
-    margin-top: 70vh;
-    line-height: 70px;
-    font-size: 70px;
+    margin-top: 0;
+    line-height: 1.2;
+    font-size: 3.5rem; /* Back to larger desktop size */
     text-align: center;
     font-weight: bold;
     color: white;
     @include media(">=phone", "<lgphone") {
-      font-size: 36px;
-      line-height: 36px;
+      font-size: 1.8rem; /* Keep new smaller mobile size */
+      line-height: 1.2;
     }
     @include media(">=lgphone", "<tablet") {
-      font-size: 42px;
-      line-height: 42px;
+      font-size: 2rem; /* Keep new mobile size */
+      line-height: 1.2;
     }
     @include media(">=tablet", "<desktop") {
-      font-size: 50px;
-      line-height: 50px;
+      font-size: 2.2rem; /* Keep new tablet size */
+      line-height: 1.2;
     }
   }
 
 
   .heading-wrapper {
     h1 {
-      margin-top: 2vh;
-      margin-bottom: 2vh;
-      font-size: 50px;
+      margin-top: 1.2vh; /* Reduced spacing */
+      margin-bottom: 1.2vh; /* Reduced spacing */
+      font-size: 2.2rem; /* Slightly larger desktop size */
       text-align: center;
-      line-height: 40px;
+      line-height: 1.3;
       color: white;
       @include media(">=phone", "<lgphone") {
-        font-size: 20px;
-        line-height: 20px;
+        font-size: 1.4rem; /* Slightly larger mobile size */
+        line-height: 1.3;
       }
       @include media(">=lgphone", "<tablet") {
-        font-size: 30px;
-        line-height: 30px;
+        font-size: 1.6rem; /* Slightly larger mobile size */
+        line-height: 1.3;
       }
       @include media(">=tablet", "<desktop") {
-        font-size: 40px;
-        line-height: 40px;
+        font-size: 1.9rem; /* Slightly larger tablet size */
+        line-height: 1.3;
       }
     }
   }
@@ -168,23 +194,26 @@
     width: 40%;
     text-align: center;
     overflow: visible;
-    line-height: 30px;
-    font-size: 28px;
-    margin-top: 2vh;
+    line-height: 1.4;
+    font-size: 1.2rem; /* Consistent with site body text */
+    margin-top: 1.2vh; /* Reduced spacing */
     color: white;
     @include media(">=phone", "<lgphone") {
-      font-size: 16px;
-      line-height: 16px;
-      width: 100%;
+      font-size: 0.9rem; /* Compact mobile size */
+      line-height: 1.4;
+      width: 85%; /* Better mobile width with horizontal space */
+      padding: 0 20px; /* Add horizontal padding */
     }
     @include media(">=lgphone", "<tablet") {
-      font-size: 20px;
-      line-height: 20px;
-      width: 100%;
+      font-size: 1rem; /* Progressive scaling */
+      line-height: 1.4;
+      width: 80%;
+      padding: 0 16px; /* Add horizontal padding */
     }
     @include media(">=tablet", "<desktop") {
-      font-size: 24px;
-      width: 100%;
+      font-size: 1.1rem; /* Tablet size */
+      line-height: 1.4;
+      width: 70%;
     }
     
   }
@@ -218,6 +247,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: flex-end; /* Bottom align text for iOS mobile */
+      padding-bottom: 2vh; /* Consistent bottom padding */
       z-index: 1;
     }
   }

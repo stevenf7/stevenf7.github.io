@@ -1,6 +1,12 @@
-@charset "utf-8";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
+
+/* CRITICAL: Ensure Google Fonts load and override everything */
+html {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
 @import "./include-media.scss";
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap");
 
 // Atoms
 @import "./card.scss";
@@ -20,45 +26,111 @@
 
 
 * {
-  font-family: "Montserrat";
-}
-
-body {
   margin: 0;
   padding: 0;
-  overflow-y: scroll;
+  box-sizing: border-box;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+/* Layout containers should have zero spacing - handled below in individual definitions */
+
+body {
   overflow-x: hidden;
+  background-color: #ffffff;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  margin: 0 !important;
+  padding: 20px 0 0 0 !important; /* More top padding to give navbar breathing room */
+}
+
+/* This is now redundant - handled below */
+
+/* FORCE Montserrat on ALL text AND eliminate any framework spacing */
+html *, body *, 
+p, span, div, a, button, li, ul, h1, h2, h3, h4, h5, h6,
+.container p, .content p, .about-section p, section p, article p,
+.container, .row, .col, .col-md-6, .col-12, .col-sm-12,
+.text, .description, .content, .caption, .paragraph {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+/* Standardized spacing for ALL section headers */
+section h1, .section h1, .container h1 {
+  margin-top: 3rem !important; /* Standardized 3rem spacing from previous section */
+}
+
+/* Override any Bootstrap/framework spacing on navbar and layout */
+.navbar, .navbar-wrapper, .nav, .navigation, 
+.container, .container-fluid, .row, .col,
+.layout-container, .content-wrapper, .section {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .section {
   width: 100vw;
-  height: auto;
-  overflow: hidden;
+  min-height: auto; /* Changed from 100vh to auto to reduce spacing */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 0; /* Much more spacing between sections */
+  
+  /* Add mobile horizontal padding to all sections */
+  @media (max-width: 768px) {
+    padding: 3rem 16px; /* Horizontal padding for mobile sections */
+  }
+  @media (max-width: 480px) {
+    padding: 2.5rem 12px; /* Tighter padding on small phones */
+  }
+  
+  /* Header section gets full height and negative margin to pull up */
+  &#home {
+    min-height: 100vh;
+    padding: 0; /* Remove padding for hero section */
+    margin: 0; /* Remove negative margin to allow more spacing */
+  }
 }
 
 .container {
   width: 100%;
-  max-width: 1200px;
-  height: 100%;
+  max-width: 1000px; /* Set to 1000px as requested */
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto; /* Ensure no unexpected margins */
+  padding: 0; /* Remove any container padding */
   justify-content: center;
-  margin: 0 auto;
-  padding: 0 20px;
   box-sizing: border-box;
+  
+  /* Enhanced mobile padding for all screen sizes */
+  @media (max-width: 768px) {
+    padding: 0 24px; /* Increased horizontal padding */
+  }
+  @media (max-width: 480px) {
+    padding: 0 20px; /* Comfortable padding on small phones */
+  }
 }
 
 .primary-btn {
-  margin: 16px;
-  padding: 16px;
+  margin: 13px; /* Desktop-only 80% scaling from original 16px */
+  padding: 13px; /* Desktop-only 80% scaling from original 16px */
   background-color: black;
   color: white;
   border: 0px;
-  border-radius: 15px;
+  border-radius: 12px; /* Desktop-only 80% scaling from original 15px */
+  font-size: 1rem; /* Consistent with smaller header typography */
+  font-weight: 600;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   cursor: pointer;
+  
+  /* Revert to original mobile values */
+  @media (max-width: 768px) {
+    margin: 16px; /* Original mobile value */
+    padding: 16px; /* Original mobile value */
+    border-radius: 15px; /* Original mobile value */
+    font-size: 0.9rem; /* Smaller mobile font */
+  }
+  
   &:hover {
     transform: scale(1.1);
   }
@@ -69,10 +141,14 @@ body {
   z-index: 1; /* Ensure content is above the background */
   width: 100%;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 .layout-container {
   position: relative;
   width: 100%;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }

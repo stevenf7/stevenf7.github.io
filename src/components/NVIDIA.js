@@ -1,62 +1,69 @@
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import Fade from "./animations/Fade"
-import Carousel from "react-bootstrap/Carousel"
+import { Carousel } from "react-bootstrap"
 import { useLanguage } from "../contexts/LanguageContext"
 import data, { getText } from "../data"
-import "bootstrap/dist/css/bootstrap.min.css"
 import "../styles/NVIDIA.scss"
 
 // Import NVIDIA images from the nvidia folder
-import h1FlipGif from "./../images/nvidia/h1_Flip.webm"
-import leatherbackVideo from "./../images/nvidia/Leatherback.webm"
-import h1TrainVideo from "./../images/nvidia/h1_Train.webm"
-import frankaMoveitVideo from "./../images/nvidia/Franka Moveit.webm"
-import frankaDrawerVideo from "./../images/nvidia/Franka Drawer.webm"
-import carterOutdoorVideo from "./../images/nvidia/Carter Outdoor.webm"
-import agilityWalkVideo from "./../images/nvidia/Agility Walk.webm"
+import h1FlipGif from "./../images/nvidia/h1_Flip.mp4"
+import leatherbackVideo from "./../images/nvidia/Leatherback.mp4"
+import h1TrainVideo from "./../images/nvidia/h1_Train.mp4"
+import frankaMoveitVideo from "./../images/nvidia/Franka Moveit.mp4"
+import frankaDrawerVideo from "./../images/nvidia/Franka Drawer.mp4"
+import carterOutdoorVideo from "./../images/nvidia/Carter Outdoor.mp4"
+import agilityWalkVideo from "./../images/nvidia/Agility Walk.mp4"
 import gtc_lousd from "./../images/nvidia/IMG_2228.webp"
 import gtc_sil from "./../images/nvidia/gtc_sil.webp"
 import newton from "./../images/nvidia/newton.webp"
-import claw from "./../images/nvidia/claw.webm"
-import urLousdVideo from "./../images/publications/ur_lousd.webm"
+import claw from "./../images/nvidia/claw.mp4"
+import urLousdVideo from "./../images/publications/ur_lousd.mp4"
 
 const NVIDIA = () => {
   const { language } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const videoRefs = useRef([]);
-  const carouselRef = useRef(null);
+  const [isIOS, setIsIOS] = useState(false);
+  const videoRefs = useRef({});
   
-  // Detect mobile device with better initialization
+  // Enhanced mobile and iOS detection
   useEffect(() => {
-    const checkMobile = () => {
-      const mobileState = window.innerWidth <= 768;
-      console.log(`Mobile state detected: ${mobileState}, width: ${window.innerWidth}`);
-      setIsMobile(mobileState);
+    const checkDevice = () => {
+      try {
+        const mobile = window.innerWidth <= 768;
+        const ios = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        
+        setIsMobile(mobile);
+        setIsIOS(ios);
+        
+        // Log device info for debugging
+        if (ios) {
+          console.log('iPhone detected - applying performance optimizations');
+        }
+        if (isSafari) {
+          console.log('Safari detected - MP4 videos should work well');
+        }
+      } catch (error) {
+        console.warn('Error in device detection:', error);
+      }
     };
     
-    // Ensure initial state is set correctly
-    if (typeof window !== 'undefined') {
-      checkMobile();
+    try {
+      checkDevice();
+      window.addEventListener('resize', checkDevice);
+    } catch (error) {
+      console.warn('Error setting up device detection:', error);
     }
     
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
+    return () => {
+      try {
+        window.removeEventListener('resize', checkDevice);
+      } catch (error) {
+        console.warn('Error removing resize listener:', error);
+      }
+    };
   }, []);
-
-  // Performance monitoring - simplified to avoid state update loops
-  const logPerformance = (action, startTime) => {
-    const endTime = performance.now();
-    const duration = endTime - startTime;
-    
-    // Just log to console instead of updating state to prevent loops
-    console.log(`Performance: ${action} took ${duration.toFixed(2)}ms`);
-    
-    if (duration > 100) {
-      console.warn(`Slow operation detected: ${action} took ${duration.toFixed(2)}ms`);
-    }
-  };
   
   // Media mapping for carousel items
   const mediaMap = {
@@ -82,80 +89,40 @@ const NVIDIA = () => {
     description: getText(item.description, language)
   }));
 
-  // Handle carousel selection with minimal video handling
-  const handleCarouselSelect = (index) => {
-    const startTime = performance.now();
-    console.log(`Carousel select triggered: ${index}, isMobile: ${isMobile}`);
-    setActiveIndex(index);
+  // Handle carousel selection with video preloading
+  const handleCarouselSelect = (selectedIndex, e) => {
+    setActiveIndex(selectedIndex);
     
-    // Log performance safely (only to console, no state updates)
-    logPerformance('carousel_select', startTime);
-    
-    // Handle video loading for both mobile and desktop
-    setTimeout(() => {
+    // Handle video playback
+    const currentVideo = videoRefs.current[selectedIndex];
+    if (currentVideo && currentVideo.tagName === 'VIDEO') {
       try {
-        // Pause all other videos first
-        videoRefs.current.forEach((videoRef, i) => {
-          if (videoRef && i !== index) {
-            videoRef.pause();
-          }
+        currentVideo.play().catch(error => {
+          console.warn(`Could not autoplay video ${selectedIndex}:`, error);
         });
-        
-        // Handle current video based on device type
-        const currentVideo = videoRefs.current[index];
-        if (currentVideo) {
-          // Check if video element is ready
-          if (currentVideo.readyState >= 1) { // HAVE_METADATA or higher
-            if (isMobile) {
-              // On mobile: Load the video, reset to start, and autoplay
-              currentVideo.currentTime = 0;
-              currentVideo.play().catch((error) => {
-                console.warn('Mobile autoplay failed:', error);
-                // Fallback: just load the video
-                currentVideo.load();
-              });
-              console.log(`Mobile: Playing video ${index}`);
-            } else {
-              // On desktop: Play the video
-              currentVideo.currentTime = 0;
-              currentVideo.play().catch((error) => {
-                console.warn('Desktop play failed:', error);
-              });
-            }
-          } else {
-            // Video not ready, wait for it to load
-            console.log(`Video ${index} not ready, waiting for load...`);
-            const handleLoadedData = () => {
-              currentVideo.removeEventListener('loadeddata', handleLoadedData);
-              if (isMobile) {
-                currentVideo.currentTime = 0;
-                currentVideo.play().catch(() => console.warn('Delayed mobile play failed'));
-              } else {
-                currentVideo.currentTime = 0;
-                currentVideo.play().catch(() => console.warn('Delayed desktop play failed'));
-              }
-            };
-            currentVideo.addEventListener('loadeddata', handleLoadedData);
-            currentVideo.load();
-          }
-        }
       } catch (error) {
-        // Silently handle errors to not interfere with carousel
-        console.warn('Video handling error:', error);
+        console.warn(`Error playing video ${selectedIndex}:`, error);
       }
-    }, 100);
+    }
+    
+    // Pause other videos
+    Object.keys(videoRefs.current).forEach(index => {
+      const video = videoRefs.current[index];
+      if (video && video.tagName === 'VIDEO' && parseInt(index) !== selectedIndex) {
+        try {
+          video.pause();
+        } catch (error) {
+          console.warn(`Error pausing video ${index}:`, error);
+        }
+      }
+    });
   };
 
-  // Handle video loading errors - simplified to avoid state update loops
-  const handleVideoError = (index) => {
-    console.warn(`Failed to load video at index ${index}`);
-    // Remove setPerformanceData to prevent infinite loops
-  };
-
-  // Handle video load success - simplified to avoid state update loops
+  // Handle video load events
   const handleVideoLoad = (index) => {
-    console.log(`Video loaded successfully at index ${index}`);
-    // Remove setPerformanceData to prevent infinite loops
+    if (isIOS) {
+      console.log(`iPhone: Video ${index} loaded successfully`);
+    }
   };
 
   return (
@@ -170,33 +137,64 @@ const NVIDIA = () => {
           <Fade bottom distance="20px">
             <div className="carousel-container">
               <Carousel 
-                ref={carouselRef}
                 className="nvidia-carousel"
                 activeIndex={activeIndex}
                 onSelect={handleCarouselSelect}
-                interval={3000} // 2 second auto-advance on both desktop and mobile
-                touch={true} // Enable touch controls for mobile
-                indicators={true} // Show indicators for navigation
-                controls={true} // Show controls for navigation
-                slide={true} // Ensure slide transitions work
-                wrap={true} // Allow wrapping from last to first
-                keyboard={false} // Disable keyboard navigation to avoid conflicts
+                interval={isIOS ? 5000 : 3000} // Back to 5 seconds for iPhone
+                touch={true}
+                indicators={!isMobile} // Hide indicators on mobile
+                controls={true}
+                slide={true}
+                wrap={true}
+                keyboard={false}
                 variant="dark"
               >
                 {carouselItems.map((item, index) => (
                   <Carousel.Item key={index}>
                     {item.type === 'video' ? (
                       <video
-                        ref={(el) => (videoRefs.current[index] = el)}
+                        ref={el => {
+                          try {
+                            videoRefs.current[index] = el;
+                          } catch (error) {
+                            console.warn(`Error setting video ref for index ${index}:`, error);
+                          }
+                        }}
                         className="d-block w-100"
                         src={item.media}
-                        autoPlay={index === activeIndex} // Autoplay current active video on both mobile and desktop
+                        autoPlay={index === 0}
                         muted
                         loop
                         playsInline
-                        preload={isMobile ? "auto" : "metadata"} // Load full video on mobile, metadata on desktop
-                        onError={() => handleVideoError(index)}
-                        onLoadedData={() => handleVideoLoad(index)}
+                        preload="metadata"
+                        onLoadedData={() => {
+                          try {
+                            handleVideoLoad(index);
+                          } catch (error) {
+                            console.warn(`Error in handleVideoLoad for index ${index}:`, error);
+                          }
+                        }}
+                        onPlay={() => {
+                          try {
+                            console.log(`Video ${index} started playing`);
+                          } catch (error) {
+                            console.warn(`Error in video play handler for index ${index}:`, error);
+                          }
+                        }}
+                        onPause={() => {
+                          try {
+                            console.log(`Video ${index} paused`);
+                          } catch (error) {
+                            console.warn(`Error in video pause handler for index ${index}:`, error);
+                          }
+                        }}
+                        onError={(e) => {
+                          try {
+                            console.error(`Video ${index} failed to load:`, e);
+                          } catch (error) {
+                            console.warn(`Error in video error handler for index ${index}:`, error);
+                          }
+                        }}
                       />
                     ) : (
                       <img

@@ -11,6 +11,19 @@ const Work = () => {
   const [openModal, setOpenModal] = useState(false);
 
   const [id, setId] = useState(0);
+  
+  // Navigation functions for modal
+  const handlePrevious = () => {
+    if (id > 0) {
+      setId(id - 1);
+    }
+  };
+  
+  const handleNext = () => {
+    if (id < data.projects.length - 1) {
+      setId(id + 1);
+    }
+  };
 
   return (
     <div className="section" id="work">
@@ -36,7 +49,13 @@ const Work = () => {
             </Fade>
           </div>
 
-          {openModal&&<Modal closeModal={setOpenModal} id={id} />}
+          {openModal&&<Modal 
+            closeModal={setOpenModal} 
+            id={id} 
+            totalItems={data.projects.length}
+            onPrevious={handlePrevious}
+            onNext={handleNext}
+          />}
     
         </div>
       </div>

@@ -1,22 +1,25 @@
 .container {
+  max-width: 1000px; /* Ensure NVIDIA section doesn't exceed 1000px */
+  margin: 0 auto; /* Center the container */
+  
   h1 {
-    margin-top: 10vh;
-    font-size: 3rem;
+    margin-top: 3rem; /* Standardized 3rem spacing from previous section */
+    font-size: 2.4rem; /* Reduced from 3rem (80% of original) */
     line-height: 1.2;
     @media (max-width: 768px) {
       text-align: center;
-      font-size: 2.5rem;
+      font-size: 2.5rem; /* Reverted to original mobile value */
     }
     @media (max-width: 480px) {
-      font-size: 2rem;
+      font-size: 2rem; /* Reverted to original mobile value */
     }
   }
   
   h3 {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Reduced from 1.5rem (80% of original) */
     line-height: 1.4;
-    margin-bottom: 2vh;
+    margin-bottom: 1rem; /* Standardized header bottom spacing */
     color: #666;
     font-weight: 400;
   }
@@ -25,77 +28,89 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
+    margin-top: 1.5rem; /* Smaller spacing from header (less than 3rem from previous section) */
+    margin-bottom: 2rem;
     width: 100%;
+    max-width: 1000px; /* Ensure it doesn't exceed 1000px */
+    
+    /* Add mobile horizontal padding */
+    @media (max-width: 768px) {
+      padding: 0 16px;
+    }
+    @media (max-width: 480px) {
+      padding: 0 12px;
+    }
   
     .content {
       width: 100%;
-      margin-top: 2rem;
+      max-width: 1000px; /* Ensure content doesn't exceed 1000px */
+      margin: 2rem auto 0; /* Center the content */
       text-align: justify;
   
       h2 {
-        font-size: 2.5rem;
+        font-size: 2rem; /* Reduced from 2.5rem (80% of original) */
         margin-bottom: 1vh;
         @media (max-width: 992px) {
           text-align: center;
-          font-size: 2rem;
+          font-size: 2rem; /* Reverted to original mobile value */
         }
         @media (max-width: 768px) {
-          font-size: 1.8rem;
+          font-size: 1.8rem; /* Reverted to original mobile value */
         }
         @media (max-width: 480px) {
-          font-size: 1.5rem;
+          font-size: 1.5rem; /* Reverted to original mobile value */
         }
       }
   
       .carousel-description {
-        font-size: 1.1rem;
+        font-size: 0.88rem; /* Reduced from 1.1rem (80% of original) */
         line-height: 1.5;
         color: #333;
-        margin-bottom: 2rem;
-        padding: 0 2rem;
+        margin-bottom: 1.6rem; /* Reduced from 2rem (80% of original) */
+        padding: 0 1.6rem; /* Reduced from 2rem (80% of original) */
         
         @media (max-width: 768px) {
-          font-size: 1rem;
-          padding: 0 1rem;
+          font-size: 1rem; /* Reverted to original mobile value */
+          padding: 0 1rem; /* Reverted to original mobile value */
         }
         
         @media (max-width: 480px) {
-          font-size: 0.9rem;
-          padding: 0 0.5rem;
+          font-size: 0.9rem; /* Reverted to original mobile value */
+          padding: 0 0.5rem; /* Reverted to original mobile value */
         }
       }
   
       p {
-        font-size: 1.5rem;
+        font-size: 1.2rem; /* Reduced from 1.5rem (80% of original) */
         line-height: 1.5;
         @media (max-width: 992px) {
           text-align: justify;
-          font-size: 1.2rem;
+          font-size: 1.2rem; /* Reverted to original mobile value */
         }
         @media (max-width: 768px) {
-          font-size: 1rem;
+          font-size: 1rem; /* Reverted to original mobile value */
         }
         @media (max-width: 480px) {
-          font-size: 0.9rem;
+          font-size: 0.9rem; /* Reverted to original mobile value */
         }
       }
     }
   
     .carousel-container {
       width: 100%;
+      max-width: 1000px; /* Ensure carousel doesn't exceed 1000px */
+      margin: 0 auto; /* Center the carousel */
       position: relative;
-      margin: 0 auto;
       @media (max-width: 992px) {
         width: 100%;
         margin-top: 2rem;
       }
     }
 
-    .nvidia-carousel {
-      width: 100%;
-      margin: 0 auto;
+          .nvidia-carousel {
+        width: 100%;
+        max-width: 1000px; /* Ensure carousel itself doesn't exceed 1000px */
+        margin: 0 auto;
       
       // Force custom slide transitions
       &.carousel.slide .carousel-item {
@@ -174,13 +189,64 @@
             margin: 0 4px;
           }
         }
+        
+        // Hide indicators on mobile for cleaner look
+        .carousel-indicators {
+          display: none !important;
+        }
       }
       
-      // Add fixed height for carousel with 16:10 aspect ratio
+      // iPhone-specific optimizations
+      @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+        .carousel-inner {
+          // Reduce quality for better performance on iPhone
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
+        }
+        
+        .carousel-item {
+          // Faster transitions for iPhone
+          transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        }
+        
+        img, video {
+          // Optimize video rendering on iPhone
+          transform: translateZ(0);
+          backface-visibility: hidden;
+          -webkit-transform: translateZ(0);
+          -webkit-backface-visibility: hidden;
+          
+          // Reduce video quality for better performance
+          image-rendering: -webkit-optimize-contrast;
+          
+          // Additional iPhone optimizations
+          will-change: auto;
+          -webkit-will-change: auto;
+          
+          // Reduce memory usage
+          object-fit: cover;
+          object-position: center;
+        }
+        
+        // Reduce carousel interval for faster response on iPhone
+        .nvidia-carousel {
+          .carousel-item {
+            // Disable hardware acceleration for videos on iPhone
+            video {
+              will-change: auto;
+              -webkit-will-change: auto;
+              transform: translateZ(0);
+              -webkit-transform: translateZ(0);
+            }
+          }
+        }
+      }
+      
+      // Add responsive height for carousel with 16:9 aspect ratio
       .carousel-inner {
         position: relative;
         width: 100%;
-        padding-top: 62.5%; // 10/16 = 0.625 = 62.5% for 16:10 aspect ratio
+        padding-top: 56.25%; // 9/16 = 0.5625 = 56.25% for 16:9 aspect ratio (less boxy)
         border-radius: 15px;
         overflow: hidden;
         
@@ -235,6 +301,11 @@
           transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
         }
         
+        // iPhone-specific optimizations
+        @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+          transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        }
+        
         img, video {
           position: absolute;
           top: 0;
@@ -250,11 +321,23 @@
             transform: translateZ(0);
             backface-visibility: hidden;
           }
+          
+          // iPhone-specific video optimizations
+          @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            
+            // Reduce video quality for iPhone
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+          }
         }
       }
       
       .carousel-caption {
-        font-family: "Open Sans";
+        font-family: "Montserrat", sans-serif !important;
         padding: 20px 24px;
         opacity: 1;
         
@@ -274,7 +357,7 @@
           transform: translateX(-50%);
           right: auto;
           width: 65%;
-          max-width: 500px;
+          max-width: 650px; /* Increased from 500px to better utilize 1000px container */
         }
         
         // Mobile: keep full width
@@ -344,4 +427,65 @@
       }
     }
   }
+}
+
+// Hide Safari media controls that cause button failed to load errors
+video::-webkit-media-controls {
+  display: none !important;
+}
+
+video::-webkit-media-controls-panel {
+  display: none !important;
+}
+
+video::-webkit-media-controls-play-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-pause-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-volume-slider {
+  display: none !important;
+}
+
+video::-webkit-media-controls-mute-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-fullscreen-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-rewind-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-return-to-realtime-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-timeline {
+  display: none !important;
+}
+
+video::-webkit-media-controls-current-time-display {
+  display: none !important;
+}
+
+video::-webkit-media-controls-time-remaining-display {
+  display: none !important;
+}
+
+video::-webkit-media-controls-airplay-button {
+  display: none !important;
+}
+
+video::-webkit-media-controls-picture-in-picture-button {
+  display: none !important;
 }

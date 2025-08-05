@@ -1,6 +1,5 @@
 import React from "react"
 import "../../css/worksiteStyle.scss"
-import "bootstrap/dist/css/bootstrap.min.css"
 import { Container } from "react-bootstrap"
 import TAlogo from "../../images/workPhotos/uwaterlootaImg.webp"
 import Fade from "../../components/animations/Fade"

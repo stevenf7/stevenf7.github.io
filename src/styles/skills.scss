@@ -1,67 +1,39 @@
-.skills-container {
-  width: 80vw;
-  max-width: 1200px;
-  margin: 3vh auto 5vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  h1 {
-    font-size: 3rem;
-    line-height: 20px;
-  }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin-top: 50px;
-    grid-gap: 30px;
-    @include media(">=phone", "<lgphone") {
-      grid-template-columns: 1fr;
-    }
-    @include media(">=lgphone", "<tablet") {
-      grid-template-columns: 1fr;
-    }
-    @include media(">=tablet", "<desktop") {
-      grid-template-columns: 1fr 1fr;
-    }
-    .skill {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      img {
-        height: 4rem;
-      }
-      img:hover{
-        transform: scale(1.1);
-      }
-      p {
-        font-size: 20px;
-      }
-    }
-  }
-}
+/* Legacy skills styling - keeping for compatibility */
 
 .skills-wrapper {
   width: 100%;
-  max-width: 1200px;
-  margin: 40px auto;
+  max-width: 1000px; /* Ensure it doesn't exceed 1000px */
+  margin: 1.5rem auto; /* Smaller spacing from header (less than 3rem from previous section) */
+  
+  /* Add mobile horizontal padding */
+  @media (max-width: 768px) {
+    padding: 0 16px;
+  }
+  @media (max-width: 480px) {
+    padding: 0 12px;
+  }
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    padding: 20px;
+    grid-template-columns: repeat(4, 1fr); /* Fixed 4 columns per row */
+    gap: 24px; /* Reduced from 30px (80% of original) */
+    padding: 16px; /* Reduced from 20px (80% of original) */
 
     .skill-item {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 20px;
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 16px; /* Reduced from 20px (80% of original) */
+      
+      /* Enhanced frosted glass effect - more visible */
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Reverted to original subtle shadow */
+      
+      border-radius: 12px; /* Reduced from 15px (80% of original) */
       transition: all 0.3s ease;
       position: relative;
       z-index: 1;
@@ -69,39 +41,63 @@
       &:hover {
         transform: scale(1.1);
         z-index: 2;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        
+        /* Enhanced frosted glass on hover - more visible */
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        box-shadow: 0 6px 13px rgba(0, 0, 0, 0.2); /* Reverted to original subtle hover shadow */
+      }
+      
+      /* Disable hover effects on mobile for better UX */
+      @media (max-width: 768px) {
+        &:hover {
+          transform: none;
+          z-index: 1;
+          background: rgba(255, 255, 255, 0.3);
+          backdrop-filter: blur(15px);
+          -webkit-backdrop-filter: blur(15px);
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
       }
 
       img {
-        width: 80px;
-        height: 80px;
+        width: 64px; /* Reduced from 80px (80% of original) */
+        height: 64px; /* Reduced from 80px (80% of original) */
         object-fit: contain;
-        margin-bottom: 15px;
+        margin-bottom: 12px; /* Reduced from 15px (80% of original) */
         transition: transform 0.3s ease;
       }
 
       h3 {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
+        font-size: 16px; /* Increased to 16px as requested */
+        margin-bottom: 8px; /* Reduced from 10px (80% of original) */
+        color: rgba(0, 0, 0, 0.9); /* Darker for better contrast on frosted glass */
+        font-weight: 600;
       }
 
       p {
-        font-size: 1rem;
-        color: #666;
+        font-size: 14px; /* Increased for better readability */
+        color: rgba(0, 0, 0, 0.75); /* Darker for better contrast on frosted glass */
         line-height: 1.4;
+        font-weight: 500;
       }
     }
   }
 
   @media (max-width: 768px) {
     .grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+      gap: 16px; /* Smaller gap for mobile */
     }
   }
 
   @media (max-width: 480px) {
     .grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile for cleaner layout */
+      gap: 12px; /* Even smaller gap for small phones */
     }
   }
 }
