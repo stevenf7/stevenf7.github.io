@@ -117,6 +117,29 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     
+    // Fallback styling for iOS and unsupported formats
+    &.video-fallback {
+      background-color: #e9ecef;
+      border: 2px dashed #ccc;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: #d6d8db;
+        border-color: #999;
+        transform: scale(1.02);
+      }
+      
+      div {
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      
+      small {
+        opacity: 0.8;
+        line-height: 1.4;
+      }
+    }
+    
     // Fallback for when video fails to load
     &:empty,
     &[data-failed="true"] {
