@@ -58,6 +58,9 @@ jobs:
     # This job only runs on pushes to production branch
     if: github.event_name == 'push' && github.ref == 'refs/heads/production'
     runs-on: ubuntu-latest  # Use latest Ubuntu for better performance
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     
     steps:
       - name: Checkout source code
