@@ -97,15 +97,15 @@ const siteData = {
       },
       para: {
         en: "Bachelor of Applied Science in Mechatronics Engineering with AI Option, with Distinction",
-        zh: "机电工程应用科学学士学位, 人工智能精修, 优秀毕业生"
+        zh: "机械电子工程应用科学学士学位, 人工智能精修, 优秀毕业生"
       },
       imageSrc: WaterlooLogo,
       workImg: WaterlooImg,
       url: "https://uwaterloo.ca/mechanical-mechatronics-engineering/",
       description: [
         {
-          en: "GPA: 3.7, specialized in robotics, control systems, and embedded systems",
-          zh: "GPA: 3.7, 专攻机器人, 控制系统和嵌入式系统"
+          en: "GPA: 3.7, specialized in robotics, artificial intelligence, control systems, and embedded systems",
+          zh: "GPA: 3.7, 专攻机器人, 人工智能, 控制系统和嵌入式系统"
         },
         {
           en: "Clubs: SAE AutoDrive Challenge (Level 4 Autonomous Vehicle), Waterloop (Hyperloop)",
@@ -120,7 +120,7 @@ const siteData = {
     {
       title: {
         en: "Active Robotics Interaction Lab",
-        zh: "主动机器人交互实验室"
+        zh: "主动机器人交互 (Active Robotics Interaction) 实验室"
       },
       para: {
         en: "Researched human perception of robot behaviors under Dr. Yue Hu, paper published in IEEE Robotics and Automation Letters",
@@ -159,7 +159,7 @@ const siteData = {
       description: [
         {
           en: "Classes focus on classical control theories and reinforcement learning for mobile robots",
-          zh: "课程专注于移动机器人的经典控制理论和强化学习"
+          zh: "课程专注于移动机器人的经典控制理论和基于强化学习的移动机器人控制"
         },
         {
           en: "Classes: CS 237A Principles or Robot Autonomy I, CS 237B Principles or Robot Autonomy II",
@@ -193,7 +193,7 @@ const siteData = {
       description: [
         {
           en: 'Designed "Semi LightTest" feature for controlling 19 unique light groups across 4 controllers in C, displayed at the Tesla Semi Delivery Event by Elon Musk',
-          zh: '使用C语言设计"Semi Light Test"功能,通过4个控制器同时控制19个独特灯组,在埃隆·马斯克的Tesla Semi交付活动中亲自展示'
+          zh: '使用C语言设计"Semi Light Test"功能,通过4个控制器同时控制19个独特灯组,由埃隆·马斯克在Tesla Semi交付活动中亲自展示'
         },
         {
           en: 'Set up simulations for the Semi Truck lighting controllers in Python and created Software In a Loop tests using Python, drafted "Semi Light Test" specs on Polarion',
@@ -239,7 +239,7 @@ const siteData = {
         },
         {
           en: "Created Isaac Sensor extension for simulating physic based sensors such as the contact sensor and IMU sensors using C++ and Python, written USD schema for the sensors, enabling visualization and modification of sensor parameters during runtime from the GUI",
-          zh: "使用C++和Python创建Isaac传感器应用,用于模拟基于物理的传感器,如接触传感器和IMU传感器。并且为传感器编写USD格式,来允许在运行时从窗口可视化和修改传感器参数"
+          zh: "使用C++和Python创建Isaac Sim传感器应用,用于模拟基于物理的传感器,如接触传感器和IMU传感器。并且为传感器编写USD格式,来允许在运行时从窗口可视化和修改传感器参数"
         },
         {
           en: "Drafted user manual and extension documentations using Sphinx, and created unit tests for the quadruped and Isaac sensor extension.",
@@ -318,7 +318,7 @@ const siteData = {
       description: [
         {
           en: "Designed questions on quizzes, midterm, and final and created automated testing using C++ and python to grade 300+ submissions per assessment and provide instantaneous feedback using Python expect library and regular expression based on the SOLID design principle",
-          zh: "设计测验、期中和期末考试题目,使用C++和Python创建自动化测试系统,基于SOLID设计原则使用Python expect库和正则表达式为每次评估的300+份提交提供即时反馈"
+          zh: "设计测验、期中和期末考试题目,使用C++和Python创建自动化测试系统,基于SOLID设计原则使用Python为每次评估的300+份提交提供即时反馈"
         },
         {
           en: "Lead lab and help sessions for 300+ students assisted with teaching concepts in C++, such as dynamic memory allocation, Object-Oriented Programming, pointers, and linked lists, leads to a significant increase in student grades",
@@ -424,7 +424,7 @@ aboutParaTwo: {
 },
 aboutParaThree: {
   en: "When I'm not building robots, you can find me hiking, playing my clarinet and accordion, or exploring new cuisines around the city.",
-          zh: "在工作之余, 我喜欢去爬山, 吹黑管, 弹手风琴, 和在城市里探索新的食物。"
+          zh: "在工作之余, 我喜欢去爬山, 吹黑管, 拉手风琴, 和探索新的事物。"
 },
 
 nvidiaTime: {
@@ -435,7 +435,7 @@ nvidiaTime: {
 nvidiaExperience: [
   {
     en: "At NVIDIA, I worked on both Isaac Lab and Isaac Sim, focusing on distinct facets of robotic simulation. In Isaac Lab, I developed scalable humanoid and legged robot models and designed reinforcement learning-based locomotion policies. In Isaac Sim, I concentrated on high-fidelity simulation, building realistic digital twins, synthetic sensor models, and inference pipelines for deploying trained policies through ROS and Isaac Sim. I also presented several talks at NVIDIA GTC on robot composition and software-in-the-loop simulation pipelines.",
-    zh: "在英伟达,我负责Isaac Lab和Isaac Sim的开发研究工作。在Isaac Lab中,我开发了可应用的人形和足式机器人模型,并设计了基于强化学习的运动策略。在Isaac Sim中,我专注于高保真仿真,构建逼真的数字孪生、合成传感器模型,以及通过ROS和Isaac Sim部署训练策略的推理管道。我还在NVIDIA GTC和SIGGRAPH上就机器人组合和软件在环仿真管道发表了多次演讲。"
+    zh: "在英伟达,我负责Isaac Lab和Isaac Sim的开发研究工作。在Isaac Lab中,我开发了可应用的人形和足式机器人模型,并设计了基于强化学习的运动策略。在Isaac Sim中,我专注于高保真仿真,构建逼真的数字孪生、合成传感器模型,以及通过ROS和Isaac Sim部署训练策略的推理管道。我还在NVIDIA GTC和SIGGRAPH上就建立机器人数字孪生和软件在环(SIL)仿真管道发表了多次演讲。"
   }
 ],
 
@@ -506,11 +506,11 @@ nvidiaCarouselItems: [
     type: 'video',
     title: {
       en: "High fidelity claw simulation",
-      zh: "高保真爪子仿真"
+      zh: "高精度机械爪仿真"
     },
     description: {
       en: "Claw robot grasping task.",
-      zh: "爪式机器人抓取任务。"
+      zh: "机械臂抓取任务。"
     }
   },
   {
@@ -716,7 +716,7 @@ projectsCarouselItems: [
     },
     subtitle: {
       en: "2nd highest competition mark",
-      zh: "竞赛第二高分"
+      zh: "竞赛第二名"
     },
     description: {
       en: "Lead the mechanical design for a line following robot using SolidWorks, drafted Bill of Material, and oversee software, mechanical, and electrical developments as project manager",
