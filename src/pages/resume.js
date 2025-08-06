@@ -1,6 +1,7 @@
 import React from "react"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
+import Fade from "../components/animations/Fade"
 import "../css/resume.scss"
 import { useLanguage } from "../contexts/LanguageContext"
 import data, { getText } from "../data"
@@ -21,15 +22,19 @@ const ResumeContent = () => {
   return (
     <div className="section">
       <div className="container">
-        <h1>{resumeTitle}</h1>
-        <iframe 
-          src={resumeUrl} 
-          allow="autoplay" 
-          className="Resume" 
-          title={resumeTitle}
-        >
-          {resumeTitle}
-        </iframe>
+        <Fade bottom cascade distance="20px">
+          <h1>{resumeTitle}</h1>
+        </Fade>
+        <Fade bottom duration={1000} distance="20px">
+          <iframe 
+            src={resumeUrl} 
+            allow="autoplay" 
+            className="Resume" 
+            title={resumeTitle}
+          >
+            {resumeTitle}
+          </iframe>
+        </Fade>
       </div>
     </div>
   );

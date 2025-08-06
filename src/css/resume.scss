@@ -14,6 +14,7 @@ h1{
     z-index: 2; /* Ensure resume displays above background */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: none;
+    border-radius: 12px; /* Add rounded edges to match site design - desktop only */
 }
 
 /* Add responsive adjustments */
@@ -22,6 +23,7 @@ h1{
         width: 100%;
         height: 800px;
         max-width: 100%;
+        border-radius: 12px; /* Keep rounded edges on tablets */
     }
 }
 
@@ -29,5 +31,6 @@ h1{
     .Resume {
         width: 100%;
         height: 600px;
+        border-radius: 0; /* Remove rounded edges on mobile for better space usage */
     }
 }

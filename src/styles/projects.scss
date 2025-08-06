@@ -307,9 +307,30 @@
 
     h2{
         text-align: center;
-        font-size: 3rem;
-        line-height: 3rem;
-        margin-bottom: 2vh;
+        font-size: 2.4rem; /* Match other sections instead of 3rem */
+        line-height: 1.2; /* Match other sections */
+        margin-bottom: 1rem; /* Standardized header bottom spacing */
+        margin-top: 3rem; /* Standardized 3rem spacing from previous section */
+        white-space: normal;
+    }
+    
+    /* Responsive header sizing to match other sections */
+    @media (max-width: 992px) {
+      h2 {
+        font-size: 2.5rem; /* Match Work and Education */
+      }
+    }
+    
+    @media (max-width: 768px) {
+      h2 {
+        font-size: 2.2rem; /* Match Work and Education */
+      }
+    }
+    
+    @media (max-width: 480px) {
+      h2 {
+        font-size: 2rem; /* Match Work and Education */
+      }
     }
 
 

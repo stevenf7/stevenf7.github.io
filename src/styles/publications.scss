@@ -59,19 +59,19 @@
 // Mobile responsive styles for Publications header (consistent with other sections)
 @media (max-width: 992px) {
   #publications .container h1 {
-    font-size: 2rem; /* Reduced to match other sections */
+    font-size: 2.5rem; /* Match Work and Education */
   }
 }
 
 @media (max-width: 768px) {
   #publications .container h1 {
-    font-size: 1.8rem; /* Reduced to match other sections */
+    font-size: 2.2rem; /* Match Work and Education */
   }
 }
 
 @media (max-width: 480px) {
   #publications .container h1 {
-    font-size: 1.6rem; /* Reduced to match other sections */
+    font-size: 2rem; /* Match Work and Education */
   }
 }
 

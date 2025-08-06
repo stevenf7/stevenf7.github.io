@@ -5,13 +5,17 @@
     font-size: 2.4rem; /* Reduced from 3rem (80% of original) */
     line-height: 1.2;
     position: relative;
+    text-align: center; /* Ensure consistent centering */
+    white-space: normal;
     
+    @media (max-width: 992px) {
+      font-size: 2.5rem; /* Match Work and Education */
+    }
     @media (max-width: 768px) {
-      text-align: center;
-      font-size: 2.5rem; /* Reverted to original mobile value */
+      font-size: 2.2rem; /* Match Work and Education */
     }
     @media (max-width: 480px) {
-      font-size: 2rem; /* Reverted to original mobile value */
+      font-size: 2rem; /* Match Work and Education */
     }
   }
   .about-section {
