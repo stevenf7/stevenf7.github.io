@@ -6,6 +6,7 @@ import data, { getText } from "../data"
 import "../styles/NVIDIA.scss"
 
 // Import NVIDIA images from the nvidia folder
+import gr1ImitationVideo from "./../images/nvidia/gr1_imitation.mp4"
 import h1FlipGif from "./../images/nvidia/h1_Flip.mp4"
 import leatherbackVideo from "./../images/nvidia/Leatherback.mp4"
 import h1TrainVideo from "./../images/nvidia/h1_Train.mp4"
@@ -67,6 +68,7 @@ const NVIDIA = () => {
   
   // Media mapping for carousel items
   const mediaMap = {
+    gr1ImitationVideo,
     h1FlipGif,
     h1TrainVideo,
     urLousdVideo,
@@ -206,7 +208,6 @@ const NVIDIA = () => {
                   )}
                   <Carousel.Caption className={`carousel-caption ${isMobile ? 'mobile-caption' : ''}`}>
                     <h3>{item.title}</h3>
-                    {!isMobile && <p>{item.description}</p>}
                   </Carousel.Caption>
                 </Carousel.Item>
               ))}

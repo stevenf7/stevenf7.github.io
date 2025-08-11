@@ -442,6 +442,18 @@ nvidiaExperience: [
 // NVIDIA Carousel Items
 nvidiaCarouselItems: [
   {
+    media: "gr1ImitationVideo",
+    type: 'video',
+    title: {
+      en: "GR1 humanoid robot imitation learning policy",
+      zh: "GR1人形机器人模仿学习策略"
+    },
+    description: {
+      en: "GR1 humanoid robot demonstrating imitation learning capabilities for human-like movements.",
+      zh: "GR1人形机器人展示模仿学习能力,实现类人动作。"
+    }
+  },
+  {
     media: "h1FlipGif", // Will be imported in component
     type: 'video',
     title: {
@@ -481,8 +493,8 @@ nvidiaCarouselItems: [
     media: "frankaMoveitVideo",
     type: 'video',
     title: {
-      en: "Franka robot simulation",
-      zh: "Franka机器人仿真"
+      en: "Franka robot moveit integration",
+      zh: "Franka机器人MoveIt集成"
     },
     description: {
       en: "Franka robot demonstrating MoveIt integration.",
@@ -517,8 +529,8 @@ nvidiaCarouselItems: [
     media: "leatherbackVideo",
     type: 'video',
     title: {
-      en: "Ackermann steering simulation",
-      zh: "阿克曼转向算法模拟"
+      en: "Ackermann steering simulation for RC car",
+      zh: "遥控车阿克曼转向算法模拟"
     },
     description: {
       en: "RC car simulation",
