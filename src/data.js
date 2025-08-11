@@ -596,6 +596,18 @@ nvidiaCarouselItems: [
       en: "Presenting Newton, next generation robotics simulator at our both at NVIDIA GTC 2025.",
       zh: "在NVIDIA GTC 2025的展台上展示Newton下一代机器人模拟器。"
     }
+  },
+  {
+    media: "siggraphTalk",
+    type: 'image',
+    title: {
+      en: "Giving a talk on controlling humanoids at SIGGRAPH",
+      zh: "在SIGGRAPH上发表关于控制人形机器人的演讲"
+    },
+    description: {
+      en: "Presenting research on humanoid robot control at SIGGRAPH conference.",
+      zh: "在SIGGRAPH会议上发表关于人形机器人控制的研究。"
+    }
   }
 ],
 

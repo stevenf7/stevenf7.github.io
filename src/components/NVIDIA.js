@@ -19,6 +19,7 @@ import gtc_sil from "./../images/nvidia/gtc_sil.webp"
 import newton from "./../images/nvidia/newton.webp"
 import claw from "./../images/nvidia/claw.mp4"
 import urLousdVideo from "./../images/publications/ur_lousd.mp4"
+import siggraphTalk from "./../images/nvidia/IMG_2877.webp"
 
 const NVIDIA = () => {
   const { language } = useLanguage();
@@ -80,7 +81,8 @@ const NVIDIA = () => {
     agilityWalkVideo,
     gtc_lousd,
     gtc_sil,
-    newton
+    newton,
+    siggraphTalk
   };
 
   // Get carousel items from data with translated content
