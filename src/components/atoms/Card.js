@@ -1,4 +1,6 @@
 import React from "react";
+import { useLanguage } from "../../contexts/LanguageContext";
+import data, { getText } from "../../data";
 
 // Helper function to detect if file is a video
 const isVideoFile = (url) => {
@@ -8,6 +10,7 @@ const isVideoFile = (url) => {
 };
 
 const Card = ({id, heading, paragraph, imgUrl, projectLink, setOpenModal, setId, type = "project"}) => {
+  const { language } = useLanguage();
   const isVideo = isVideoFile(imgUrl);
   
   return (
@@ -46,7 +49,7 @@ const Card = ({id, heading, paragraph, imgUrl, projectLink, setOpenModal, setId,
             setOpenModal(true);
             setId(id);
           }}
-          type="button" className="btn"> Explore
+          type="button" className="btn"> {getText(data.buttons.explore, language)}
         </button>
         
       </div>

@@ -87,6 +87,13 @@ const siteData = {
     contact: { en: "Contact", zh: "联系" }
   },
 
+  // Button text translations
+  buttons: {
+    explore: { en: "Explore", zh: "了解更多" },
+    readMore: { en: "Read More", zh: "了解更多" },
+    close: { en: "Close", zh: "关闭" }
+  },
+
   contactEmail: "jy5feng@uwaterloo.ca",
 
   education: [
@@ -589,8 +596,8 @@ nvidiaCarouselItems: [
     media: "newton",
     type: 'image',
     title: {
-      en: "Presenting the next generation simulator Newton at GTC 2025",
-      zh: "在GTC 2025上展示下一代仿真器Newton"
+      en: "Presenting the next generation physics engine Newton at GTC 2025",
+      zh: "在GTC 2025上展示下一代物理引擎Newton"
     },
     description: {
       en: "Presenting Newton, next generation robotics simulator at our both at NVIDIA GTC 2025.",
@@ -601,12 +608,12 @@ nvidiaCarouselItems: [
     media: "siggraphTalk",
     type: 'image',
     title: {
-      en: "Giving a talk on controlling humanoids at SIGGRAPH",
-      zh: "在SIGGRAPH上发表关于控制人形机器人的演讲"
+      en: "Giving a talk on reinforcement learning for humanoids at SIGGRAPH 2025",
+      zh: "在SIGGRAPH 2025上发表关于人形机器人强化学习的演讲"
     },
     description: {
-      en: "Presenting research on humanoid robot control at SIGGRAPH conference.",
-      zh: "在SIGGRAPH会议上发表关于人形机器人控制的研究。"
+      en: "Presenting research on humanoid robot control at SIGGRAPH 2025.",
+      zh: "在SIGGRAPH 2025会议上发表关于人形机器人控制的研究。"
     }
   }
 ],
