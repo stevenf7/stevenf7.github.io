@@ -1,22 +1,39 @@
+/* Resume page specific styles */
+#resume {
+  .section {
+    padding: 5rem 32px; /* Add horizontal padding to the resume section */
+    
+    @media (max-width: 768px) {
+      padding: 3rem 24px; /* Standard mobile padding */
+    }
+    @media (max-width: 480px) {
+      padding: 2rem 20px; /* Comfortable padding on small phones */
+    }
+    @media (max-width: 360px) {
+      padding: 2rem 16px; /* Minimal padding on very small screens */
+    }
+  }
+}
+
+/* Direct targeting for resume section */
+.section#resume {
+  padding: 5rem 32px !important; /* Force horizontal padding */
+  
+  @media (max-width: 768px) {
+    padding: 3rem 24px !important;
+  }
+  @media (max-width: 480px) {
+    padding: 2rem 20px !important;
+  }
+  @media (max-width: 360px) {
+    padding: 2rem 16px !important;
+  }
+}
+
 h1{
     text-align: center;
     display: block;
     margin-bottom: 2rem;
-    margin-left: 32px; /* Add horizontal margin to ensure spacing from edges */
-    margin-right: 32px; /* Add horizontal margin to ensure spacing from edges */
-    
-    @media (max-width: 768px) {
-        margin-left: 24px; /* Standard mobile margin */
-        margin-right: 24px;
-    }
-    @media (max-width: 480px) {
-        margin-left: 20px; /* Comfortable margin on small phones */
-        margin-right: 20px;
-    }
-    @media (max-width: 360px) {
-        margin-left: 16px; /* Minimal margin on very small screens */
-        margin-right: 16px;
-    }
 }
 
 .Resume{
@@ -30,21 +47,6 @@ h1{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: none;
     border-radius: 12px; /* Add rounded edges to match site design - desktop only */
-    margin-left: 32px; /* Add horizontal margin to ensure spacing from edges */
-    margin-right: 32px; /* Add horizontal margin to ensure spacing from edges */
-    
-    @media (max-width: 768px) {
-        margin-left: 24px; /* Standard mobile margin */
-        margin-right: 24px;
-    }
-    @media (max-width: 480px) {
-        margin-left: 20px; /* Comfortable margin on small phones */
-        margin-right: 20px;
-    }
-    @media (max-width: 360px) {
-        margin-left: 16px; /* Minimal margin on very small screens */
-        margin-right: 16px;
-    }
 }
 
 /* Add responsive adjustments */
