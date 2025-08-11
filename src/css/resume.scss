@@ -2,6 +2,21 @@ h1{
     text-align: center;
     display: block;
     margin-bottom: 2rem;
+    margin-left: 32px; /* Add horizontal margin to ensure spacing from edges */
+    margin-right: 32px; /* Add horizontal margin to ensure spacing from edges */
+    
+    @media (max-width: 768px) {
+        margin-left: 24px; /* Standard mobile margin */
+        margin-right: 24px;
+    }
+    @media (max-width: 480px) {
+        margin-left: 20px; /* Comfortable margin on small phones */
+        margin-right: 20px;
+    }
+    @media (max-width: 360px) {
+        margin-left: 16px; /* Minimal margin on very small screens */
+        margin-right: 16px;
+    }
 }
 
 .Resume{
@@ -15,6 +30,21 @@ h1{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: none;
     border-radius: 12px; /* Add rounded edges to match site design - desktop only */
+    margin-left: 32px; /* Add horizontal margin to ensure spacing from edges */
+    margin-right: 32px; /* Add horizontal margin to ensure spacing from edges */
+    
+    @media (max-width: 768px) {
+        margin-left: 24px; /* Standard mobile margin */
+        margin-right: 24px;
+    }
+    @media (max-width: 480px) {
+        margin-left: 20px; /* Comfortable margin on small phones */
+        margin-right: 20px;
+    }
+    @media (max-width: 360px) {
+        margin-left: 16px; /* Minimal margin on very small screens */
+        margin-right: 16px;
+    }
 }
 
 /* Add responsive adjustments */

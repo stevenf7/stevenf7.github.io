@@ -74,15 +74,26 @@ section h1, .section h1, .container h1 {
   justify-content: center;
   padding: 5rem 0; /* Much more spacing between sections */
   
-  /* Add mobile horizontal padding to all sections */
-  @media (max-width: 768px) {
-    padding: 3rem 16px; /* Horizontal padding for mobile sections */
-  }
-  @media (max-width: 480px) {
-    padding: 2.5rem 12px; /* Tighter padding on small phones */
+  /* Add horizontal padding to content sections (not header) */
+  &:not(#home) {
+    padding-left: 32px;
+    padding-right: 32px;
+    
+    @media (max-width: 768px) {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    @media (max-width: 480px) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    @media (max-width: 360px) {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
   }
   
-  /* Header section gets full height and negative margin to pull up */
+  /* Header section gets full height and no horizontal padding */
   &#home {
     min-height: 100vh;
     padding: 0; /* Remove padding for hero section */
@@ -97,7 +108,7 @@ section h1, .section h1, .container h1 {
   flex-direction: column;
   align-items: center;
   margin: 0 auto; /* Ensure no unexpected margins */
-  padding: 0; /* Remove any container padding */
+  padding: 0 32px; /* Consistent horizontal padding for all screen sizes */
   justify-content: center;
   box-sizing: border-box;
   
@@ -107,6 +118,9 @@ section h1, .section h1, .container h1 {
   }
   @media (max-width: 480px) {
     padding: 0 20px; /* Comfortable padding on small phones */
+  }
+  @media (max-width: 360px) {
+    padding: 0 16px; /* Minimal padding on very small screens */
   }
 }
 

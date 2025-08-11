@@ -46,6 +46,17 @@
       max-width: 1000px; /* Ensure content doesn't exceed 1000px */
       margin: 2rem auto 0; /* Center the content */
       text-align: justify;
+      padding: 0 32px; /* Add horizontal padding to ensure spacing from edges */
+      
+      @media (max-width: 768px) {
+        padding: 0 24px; /* Reduced padding on mobile */
+      }
+      @media (max-width: 480px) {
+        padding: 0 20px; /* Further reduced padding on small screens */
+      }
+      @media (max-width: 360px) {
+        padding: 0 16px; /* Minimal padding on very small screens */
+      }
   
       h2 {
         font-size: 2rem; /* Reduced from 2.5rem (80% of original) */
@@ -101,6 +112,18 @@
       max-width: 1000px; /* Ensure carousel doesn't exceed 1000px */
       margin: 0 auto; /* Center the carousel */
       position: relative;
+      padding: 0 32px; /* Add horizontal padding to ensure spacing from edges */
+      
+      @media (max-width: 768px) {
+        padding: 0 24px; /* Reduced padding on mobile */
+      }
+      @media (max-width: 480px) {
+        padding: 0 20px; /* Further reduced padding on small screens */
+      }
+      @media (max-width: 360px) {
+        padding: 0 16px; /* Minimal padding on very small screens */
+      }
+      
       @media (max-width: 992px) {
         width: 100%;
         margin-top: 2rem;
