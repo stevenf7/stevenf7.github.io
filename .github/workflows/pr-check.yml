@@ -4,11 +4,13 @@ on:
   pull_request:
     branches: [ production, main, master ]
 
-# Add permissions for GitHub Pages
+# Add permissions for GitHub Pages and PR commenting
 permissions:
   contents: read
   pages: write
   id-token: write
+  pull-requests: write  # Add permission to comment on PRs
+  issues: write         # Add permission to comment on issues
 
 jobs:
   build-check:
@@ -72,6 +74,9 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
+        with:
+          # Ensure we have access to the PR context
+          token: ${{ secrets.GITHUB_TOKEN }}
         
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -124,14 +129,39 @@ jobs:
         with:
           environment_name: preview
           
-      - name: Comment preview URL
+      - name: Comment preview URL (Primary Method)
         uses: actions/github-script@v7
         with:
+          # Ensure we have the right permissions
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const previewUrl = `${{ steps.deployment.outputs.page_url }}`;
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `🎉 **Preview Deployment Ready!**\n\nYour changes are now available for preview at:\n🔗 **${previewUrl}**\n\nThis preview will be automatically cleaned up when the PR is closed or merged.`
-            }); 
+            try {
+              const previewUrl = `${{ steps.deployment.outputs.page_url }}`;
+              console.log(`Attempting to comment with preview URL: ${previewUrl}`);
+              
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: `🎉 **Preview Deployment Ready!**\n\nYour changes are now available for preview at:\n🔗 **${previewUrl}**\n\nThis preview will be automatically cleaned up when the PR is closed or merged.`
+              });
+              
+              console.log('✅ Comment added successfully!');
+            } catch (error) {
+              console.error('❌ Failed to add comment:', error.message);
+              // Don't fail the workflow if commenting fails
+              console.log('Continuing with deployment...');
+            }
+          
+      - name: Comment preview URL (Fallback Method)
+        if: failure() && steps.deployment.outputs.page_url
+        run: |
+          echo "🎉 **Preview Deployment Ready!**" > comment.md
+          echo "" >> comment.md
+          echo "Your changes are now available for preview at:" >> comment.md
+          echo "🔗 **${{ steps.deployment.outputs.page_url }}**" >> comment.md
+          echo "" >> comment.md
+          echo "This preview will be automatically cleaned up when the PR is closed or merged." >> comment.md
+          
+          # Try to use GitHub CLI as fallback
+          gh pr comment ${{ github.event.number }} --body-file comment.md || echo "Fallback commenting also failed, but deployment succeeded" 
