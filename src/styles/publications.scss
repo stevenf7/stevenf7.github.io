@@ -88,7 +88,6 @@
   height: 400px;
   display: flex;
   flex-direction: column;
-  padding: 0 16px; /* Add horizontal padding to publication cards */
   
   &:hover {
     transform: translateY(-6px);
@@ -148,7 +147,7 @@
     z-index: 2;
     background: linear-gradient(to bottom, transparent 0%, transparent 35%, rgba(240, 248, 255, 0.85) 50%, rgba(240, 248, 255, 0.92) 70%, rgba(240, 248, 255, 1.0) 85%);
     height: 100%;
-    padding: 120px 25px 25px;
+    padding: 120px 20px 25px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -238,7 +237,7 @@
     height: 380px;
     
     .content {
-      padding: 100px 20px 20px;
+      padding: 100px 18px 20px;
       
       .header {
         font-size: 1.04rem; /* Reduced by 20% from 1.3rem */
@@ -263,7 +262,7 @@
     height: 360px;
     
     .content {
-      padding: 80px 18px 18px;
+      padding: 80px 16px 18px;
       
       .header {
         font-size: 0.96rem; /* Reduced by 20% from 1.2rem */
@@ -294,7 +293,7 @@
     height: 320px;
     
     .content {
-      padding: 60px 15px 15px;
+      padding: 60px 14px 15px;
       
       .header {
         font-size: 0.88rem; /* Reduced by 20% from 1.1rem */
@@ -330,7 +329,7 @@
     height: 350px;
     
     .content {
-      padding: 80px 20px 20px;
+      padding: 80px 18px 20px;
       
       .header {
         font-size: 0.96rem; /* Reduced by 20% from 1.2rem */
