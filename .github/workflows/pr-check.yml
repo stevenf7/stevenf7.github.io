@@ -67,9 +67,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-check
     if: github.event_name == 'pull_request'
-    environment:
-      name: preview
-      url: ${{ steps.deployment.outputs.page_url }}
     
     steps:
       - name: Checkout source code
@@ -115,28 +112,21 @@ jobs:
         env:
           GATSBY_GA_MEASUREMENT_ID: ${{ secrets.GATSBY_GA_MEASUREMENT_ID }}
           
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-        
-      - name: Upload preview artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to preview branch
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          path: './public'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          destination_dir: preview/pr-${{ github.event.number }}
           
-      - name: Deploy preview
-        id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-          environment_name: preview
-          
-      - name: Comment preview URL (Primary Method)
+      - name: Comment preview URL
         uses: actions/github-script@v7
         with:
           # Ensure we have the right permissions
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             try {
-              const previewUrl = `${{ steps.deployment.outputs.page_url }}`;
+              const previewUrl = `https://${context.repo.owner}.github.io/${context.repo.repo}/preview/pr-${context.issue.number}/`;
               console.log(`Attempting to comment with preview URL: ${previewUrl}`);
               
               await github.rest.issues.createComment({
@@ -151,17 +141,4 @@ jobs:
               console.error('❌ Failed to add comment:', error.message);
               // Don't fail the workflow if commenting fails
               console.log('Continuing with deployment...');
-            }
-          
-      - name: Comment preview URL (Fallback Method)
-        if: failure() && steps.deployment.outputs.page_url
-        run: |
-          echo "🎉 **Preview Deployment Ready!**" > comment.md
-          echo "" >> comment.md
-          echo "Your changes are now available for preview at:" >> comment.md
-          echo "🔗 **${{ steps.deployment.outputs.page_url }}**" >> comment.md
-          echo "" >> comment.md
-          echo "This preview will be automatically cleaned up when the PR is closed or merged." >> comment.md
-          
-          # Try to use GitHub CLI as fallback
-          gh pr comment ${{ github.event.number }} --body-file comment.md || echo "Fallback commenting also failed, but deployment succeeded" 
+            } 
