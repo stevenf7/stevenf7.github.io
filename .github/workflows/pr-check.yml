@@ -4,6 +4,12 @@ on:
   pull_request:
     branches: [ production, main, master ]
 
+# Add permissions for GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build-check:
     runs-on: ubuntu-latest
@@ -48,6 +54,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-check
     if: github.event_name == 'pull_request'
+    environment:
+      name: preview
+      url: ${{ steps.deployment.outputs.page_url }}
     
     steps:
       - name: Checkout source code
@@ -74,18 +83,25 @@ jobs:
         env:
           GATSBY_GA_MEASUREMENT_ID: ${{ secrets.GATSBY_GA_MEASUREMENT_ID }}
           
-      - name: Deploy to preview branch
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        
+      - name: Upload preview artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          destination_dir: preview/pr-${{ github.event.number }}
+          path: './public'
+          
+      - name: Deploy preview
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          environment_name: preview
           
       - name: Comment preview URL
         uses: actions/github-script@v7
         with:
           script: |
-            const previewUrl = `https://${context.repo.owner}.github.io/preview/pr-${context.issue.number}/`;
+            const previewUrl = `${{ steps.deployment.outputs.page_url }}`;
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
