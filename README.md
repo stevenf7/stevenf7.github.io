@@ -1,10 +1,12 @@
-# Hi, this is my personal website! 🚀
+# Hi, this is my personal website!
 
-My name is Steven, I am a mechatronics engineering student at the University of Waterloo. This repo contains the source code to my personal website. 
+My name is Ji Yuan "Steven" Feng, I am a robotics engineer at NVIDIA, building the next generation simulation platforms for training and deploying sophisticated robots.
+
+This repo contains the source code to my personal website. 
 
 Checkout my site at: https://stevenf7.github.io/
 
-## 🛠️ Development
+## Development
 
 To install dependencies: 
 ```bash
@@ -21,27 +23,26 @@ To build for production:
 npm run build
 ```
 
-## 🚀 Deployment
+## Deployment
 
 This site is automatically deployed using GitHub Actions. When you push to the `production` branch, it will:
 
-1. ✅ Build the Gatsby site
-2. ✅ Deploy to GitHub Pages
-3. ✅ Update your live site
+1. Build the Gatsby site
+2. Deploy to GitHub Pages
+3. Update your live site
 
-**No manual deployment needed!** Just push your changes to GitHub and they'll be live in a few minutes.
-
-## 🔍 Quality Assurance
+## Quality Assurance
 
 ### Pull Request Checks
 Every Pull Request automatically triggers a build check to ensure:
-- ✅ Dependencies install correctly
-- ✅ Gatsby builds successfully
-- ✅ No breaking changes are introduced
+- Dependencies install correctly
+- Gatsby builds successfully
+- No breaking changes are introduced
 
-This helps catch issues before they reach the main branch!
+## Manual Deployment
 
-Manual Deployment
+Running this command in your local terminal will deploy your current branch to "main" branch and update gh pages. There is no checks, and forces update immediately
+
 ```bash
 npm run deploy
 ```
