@@ -1,3 +1,35 @@
+/* Resume page specific styles */
+#resume {
+  .section {
+    padding: 5rem 32px; /* Add horizontal padding to the resume section */
+    
+    @media (max-width: 768px) {
+      padding: 3rem 24px; /* Standard mobile padding */
+    }
+    @media (max-width: 480px) {
+      padding: 2rem 20px; /* Comfortable padding on small phones */
+    }
+    @media (max-width: 360px) {
+      padding: 2rem 16px; /* Minimal padding on very small screens */
+    }
+  }
+}
+
+/* Direct targeting for resume section */
+.section#resume {
+  padding: 5rem 32px !important; /* Force horizontal padding */
+  
+  @media (max-width: 768px) {
+    padding: 3rem 24px !important;
+  }
+  @media (max-width: 480px) {
+    padding: 2rem 20px !important;
+  }
+  @media (max-width: 360px) {
+    padding: 2rem 16px !important;
+  }
+}
+
 h1{
     text-align: center;
     display: block;

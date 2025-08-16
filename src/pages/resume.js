@@ -20,7 +20,7 @@ const ResumeContent = () => {
   const resumeTitle = getText(data.nav.resume, language);
 
   return (
-    <div className="section">
+    <div className="section" id="resume">
       <div className="container">
         <Fade bottom cascade distance="20px">
           <h1>{resumeTitle}</h1>

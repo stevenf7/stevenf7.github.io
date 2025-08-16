@@ -133,4 +133,21 @@
       gap: 12px; /* Even smaller gap for small phones */
     }
   }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    padding: 0 32px; /* Add horizontal padding to ensure spacing from edges */
+    
+    @media (max-width: 768px) {
+      padding: 0 24px; /* Reduced padding on mobile */
+    }
+    @media (max-width: 480px) {
+      padding: 0 20px; /* Further reduced padding on small screens */
+    }
+    @media (max-width: 360px) {
+      padding: 0 16px; /* Minimal padding on very small screens */
+    }
+  }
 }

@@ -4,13 +4,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 32px; /* Add horizontal padding to ensure spacing from edges */
   
-  /* Add mobile horizontal padding */
+  /* Responsive padding for all screen sizes */
   @media (max-width: 768px) {
-    padding: 0 16px;
+    padding: 0 24px; /* Standard mobile padding */
   }
   @media (max-width: 480px) {
-    padding: 0 12px;
+    padding: 0 20px; /* Comfortable padding on small phones */
+  }
+  @media (max-width: 360px) {
+    padding: 0 16px; /* Minimal padding on very small screens */
   }
   
   h2 {
@@ -84,6 +88,7 @@
   height: 400px;
   display: flex;
   flex-direction: column;
+  padding: 0 16px; /* Add horizontal padding to publication cards */
   
   &:hover {
     transform: translateY(-6px);

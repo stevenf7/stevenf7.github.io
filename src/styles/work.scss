@@ -5,13 +5,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 32px; /* Add horizontal padding to ensure spacing from edges */
   
-  /* Add mobile horizontal padding */
+  /* Responsive padding for all screen sizes */
   @media (max-width: 768px) {
-    padding: 0 16px;
+    padding: 0 24px; /* Standard mobile padding */
   }
   @media (max-width: 480px) {
-    padding: 0 12px;
+    padding: 0 20px; /* Comfortable padding on small phones */
+  }
+  @media (max-width: 360px) {
+    padding: 0 16px; /* Minimal padding on very small screens */
   }
   h1{
     margin-top: 3rem; /* Standardized 3rem spacing from previous section */
@@ -28,6 +32,43 @@
     grid-gap: 12px;
     width: 100%;
     align-items: stretch;
+  }
+  .work-item {
+    display: flex;
+    align-items: stretch;
+    padding: 0 32px; /* Add horizontal padding to ensure spacing from edges */
+    
+    @media (max-width: 768px) {
+      padding: 0 24px; /* Reduced padding on mobile */
+    }
+    @media (max-width: 480px) {
+      padding: 0 20px; /* Further reduced padding on small screens */
+    }
+    @media (max-width: 360px) {
+      padding: 0 16px; /* Minimal padding on very small screens */
+    }
+  }
+  .work-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding-left: calc(2rem + 32px); /* Add left padding for edge spacing */
+    padding-right: calc(2rem + 32px); /* Add right padding for edge spacing */
+    
+    @media (max-width: 768px) {
+      padding-left: calc(2rem + 24px); /* Reduced padding on mobile */
+      padding-right: calc(2rem + 24px);
+    }
+    @media (max-width: 480px) {
+      padding-left: calc(2rem + 20px); /* Further reduced padding on small screens */
+      padding-right: calc(2rem + 20px);
+    }
+    @media (max-width: 360px) {
+      padding-left: calc(2rem + 16px); /* Minimal padding on very small screens */
+      padding-right: calc(2rem + 16px);
+    }
   }
 }
 
