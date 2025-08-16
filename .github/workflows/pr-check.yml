@@ -62,11 +62,6 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
         
-      - name: Install native dependencies explicitly
-        run: |
-          npm install @parcel/watcher --legacy-peer-deps
-          npm rebuild @parcel/watcher
-        
       - name: Clean Gatsby cache
         run: npx gatsby clean
         
