@@ -31,16 +31,22 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'  # Use Node 20 for better native dependency support
           cache: 'npm'
           
       - name: Install dependencies
         run: npm install --legacy-peer-deps
         
-      - name: Install native dependencies explicitly
+      - name: Handle native dependencies
         run: |
-          npm install @parcel/watcher --legacy-peer-deps
-          npm rebuild @parcel/watcher
+          # Try to install @parcel/watcher, but don't fail if it doesn't work
+          npm install @parcel/watcher --legacy-peer-deps || echo "Warning: @parcel/watcher installation failed, continuing..."
+          # If installation succeeded, try to rebuild
+          if npm list @parcel/watcher > /dev/null 2>&1; then
+            npm rebuild @parcel/watcher || echo "Warning: @parcel/watcher rebuild failed, continuing..."
+          fi
+          # Alternative: try to install platform-specific version
+          npm install @parcel/watcher-linux-x64-glibc --legacy-peer-deps || echo "Warning: Linux-specific watcher installation failed, continuing..."
         
       - name: Clean Gatsby cache
         run: npx gatsby clean
@@ -50,6 +56,11 @@ jobs:
           export GATSBY_DISABLE_FILE_WATCHER=true
           export GATSBY_DISABLE_WATCHER=true
           export NODE_ENV=production
+          # Set additional environment variables to avoid watcher issues
+          export GATSBY_EXPERIMENTAL_DEV_SSR=false
+          export GATSBY_EXPERIMENTAL_FAST_DEV=false
+          # Try to disable any remaining watcher functionality
+          export GATSBY_DISABLE_ESLINT_PLUGIN=true
           npm run build
         env:
           GATSBY_GA_MEASUREMENT_ID: ${{ secrets.GATSBY_GA_MEASUREMENT_ID }}
@@ -69,16 +80,22 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'  # Use Node 18 for better compatibility
+          node-version: '20'  # Use Node 20 for better native dependency support
           cache: 'npm'
           
       - name: Install dependencies
         run: npm install --legacy-peer-deps
         
-      - name: Install native dependencies explicitly
+      - name: Handle native dependencies
         run: |
-          npm install @parcel/watcher --legacy-peer-deps
-          npm rebuild @parcel/watcher
+          # Try to install @parcel/watcher, but don't fail if it doesn't work
+          npm install @parcel/watcher --legacy-peer-deps || echo "Warning: @parcel/watcher installation failed, continuing..."
+          # If installation succeeded, try to rebuild
+          if npm list @parcel/watcher > /dev/null 2>&1; then
+            npm rebuild @parcel/watcher || echo "Warning: @parcel/watcher rebuild failed, continuing..."
+          fi
+          # Alternative: try to install platform-specific version
+          npm install @parcel/watcher-linux-x64-glibc --legacy-peer-deps || echo "Warning: Linux-specific watcher installation failed, continuing..."
         
       - name: Clean Gatsby cache
         run: npx gatsby clean
@@ -88,6 +105,11 @@ jobs:
           export GATSBY_DISABLE_FILE_WATCHER=true
           export GATSBY_DISABLE_WATCHER=true
           export NODE_ENV=production
+          # Set additional environment variables to avoid watcher issues
+          export GATSBY_EXPERIMENTAL_DEV_SSR=false
+          export GATSBY_EXPERIMENTAL_FAST_DEV=false
+          # Try to disable any remaining watcher functionality
+          export GATSBY_DISABLE_ESLINT_PLUGIN=true
           npm run build
         env:
           GATSBY_GA_MEASUREMENT_ID: ${{ secrets.GATSBY_GA_MEASUREMENT_ID }}
