@@ -83,8 +83,30 @@
         box-shadow: 0 6px 13px rgba(0, 0, 0, 0.2); /* Reverted to original subtle hover shadow */
       }
       
+      /* Desktop drag-and-drop styles (only on desktop > 768px) */
+      &.desktop-draggable {
+        cursor: grab;
+        user-select: none;
+        
+        &:active {
+          cursor: grabbing;
+        }
+        
+        &.dragging {
+          opacity: 0.5;
+          transform: scale(0.95);
+          cursor: grabbing;
+          z-index: 100;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+          border: 2px dashed rgba(0, 0, 0, 0.4);
+        }
+      }
+      
       /* Disable hover effects on mobile for better UX */
       @media (max-width: 768px) {
+        cursor: default;
+        user-select: auto;
+        
         &:hover {
           transform: none;
           z-index: 1;
