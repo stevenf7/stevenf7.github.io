@@ -133,7 +133,7 @@ const Publications = () => {
       title: "Isaac Lab: A GPU-Accelerated Simulation Framework for Multi-Modal Robot Learning",
       subtitle: "NVIDIA White Paper, 2025",
       imageSrc: h1TrainVideo,
-      projectLink: "https://d1qx31qr3h6wln.cloudfront.net/publications/Isaac%20Lab%2C%20A%20GPU-Accelerated%20Simulation%20Framework%20for%20Multi-Modal%20Robot%20Learning.pdf",
+      projectLink: "https://arxiv.org/abs/2511.04831",
       type: "NVIDIA"
     },
     {
