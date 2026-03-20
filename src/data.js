@@ -497,6 +497,18 @@ nvidiaCarouselItems: [
     }
   },
   {
+    media: "destrahVideo",
+    type: 'video',
+    title: {
+      en: "Dextrah manipulation task",
+      zh: "Dextrah 操作任务"
+    },
+    description: {
+      en: "Dextrah robot demonstrating manipulation task.",
+      zh: "Dextrah机器人展示操作任务。"
+    }
+  },
+  {
     media: "frankaMoveitVideo",
     type: 'video',
     title: {
@@ -614,6 +626,18 @@ nvidiaCarouselItems: [
     description: {
       en: "Presenting research on humanoid robot control at SIGGRAPH 2025.",
       zh: "在SIGGRAPH 2025会议上发表关于人形机器人控制的研究。"
+    }
+  },
+  {
+    media: "gtcDexterousHands",
+    type: 'image',
+    title: {
+      en: "Presentation on tuning dexterous hands at GTC 2026",
+      zh: "GTC 2026：灵巧手调参演讲"
+    },
+    description: {
+      en: "GTC 2026 talk on configuring and tuning dexterous robotic hands.",
+      zh: "在GTC 2026上介绍灵巧机械手的配置与调优。"
     }
   }
 ],

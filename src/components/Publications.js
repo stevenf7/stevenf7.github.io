@@ -6,6 +6,7 @@ import "../styles/publications.scss"
 
 // Import publication images/videos
 import hriLabGif from "../images/publications/hri_lab.gif"
+import destrahVideo from "../images/publications/destrah.mp4"
 import urLousdVideo from "../images/publications/ur_lousd.mp4"
 import h1SilVideo from "../images/publications/h1_sil.mp4"
 import h1TrainVideo from "../images/nvidia/h1_Train.mp4"
@@ -106,6 +107,14 @@ const Publications = () => {
   const publicationsData = [
     {
       id: 0,
+      title: "Configure and Tune Robot Assets With OpenUSD and PhysX",
+      subtitle: "NVIDIA GTC 2026",
+      imageSrc: destrahVideo,
+      projectLink: "https://www.nvidia.com/gtc/session-catalog/sessions/gtc26-dlit81697/",
+      type: "NVIDIA"
+    },
+    {
+      id: 1,
       title: "Quantifying Human Mental State in Interactive pHRI: Maintaining Balancing",
       subtitle: "IEEE Robotics and Automation Letters, 2025",
       imageSrc: hriLabGif,
@@ -113,7 +122,7 @@ const Publications = () => {
       type: "IEEE"
     },
     {
-      id: 1,
+      id: 2,
       title: "Learn OpenUSD: Robotics Best Practices",
       subtitle: "ACM SIGGRAPH, 2025",
       imageSrc: urLousdVideo,
@@ -121,7 +130,7 @@ const Publications = () => {
       type: "ACM"
     },
     {
-      id: 2,
+      id: 3,
       title: "Digital Twin Robotics: Immersive Software-in-the-Loop Testing with OpenUSD, Isaac Sim, and ROS",
       subtitle: "ACM SIGGRAPH, 2025",
       imageSrc: h1SilVideo,
@@ -129,7 +138,7 @@ const Publications = () => {
       type: "ACM"
     },
     {
-      id: 3,
+      id: 4,
       title: "Isaac Lab: A GPU-Accelerated Simulation Framework for Multi-Modal Robot Learning",
       subtitle: "NVIDIA White Paper, 2025",
       imageSrc: h1TrainVideo,
@@ -137,7 +146,7 @@ const Publications = () => {
       type: "NVIDIA"
     },
     {
-      id: 4,
+      id: 5,
       title: "Software-in-the-Loop Testing for Robots With OpenUSD, Isaac Sim, and ROS I",
       subtitle: "NVIDIA GTC 2025",
       imageSrc: carterOutdoorVideo,
@@ -145,7 +154,7 @@ const Publications = () => {
       type: "NVIDIA"
     },
     {
-      id: 5,
+      id: 6,
       title: "Learn OpenUSD: Robotics Best Practices I",
       subtitle: "NVIDIA GTC 2025",
       imageSrc: clawVideo,

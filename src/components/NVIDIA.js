@@ -19,7 +19,9 @@ import gtc_sil from "./../images/nvidia/gtc_sil.webp"
 import newton from "./../images/nvidia/newton.webp"
 import claw from "./../images/nvidia/claw.mp4"
 import urLousdVideo from "./../images/publications/ur_lousd.mp4"
+import destrahVideo from "./../images/publications/destrah.mp4"
 import siggraphTalk from "./../images/nvidia/IMG_2877.webp"
+import gtcDexterousHands from "./../images/nvidia/IMG_8301.webp"
 
 const NVIDIA = () => {
   const { language } = useLanguage();
@@ -73,6 +75,7 @@ const NVIDIA = () => {
     h1FlipGif,
     h1TrainVideo,
     urLousdVideo,
+    destrahVideo,
     frankaMoveitVideo,
     frankaDrawerVideo,
     claw,
@@ -82,7 +85,8 @@ const NVIDIA = () => {
     gtc_lousd,
     gtc_sil,
     newton,
-    siggraphTalk
+    siggraphTalk,
+    gtcDexterousHands
   };
 
   // Get carousel items from data with translated content
