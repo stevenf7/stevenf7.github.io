@@ -464,12 +464,12 @@ nvidiaCarouselItems: [
     media: "h1FlipGif", // Will be imported in component
     type: 'video',
     title: {
-      en: "H1 humanoid robot tries to backflip",
-      zh: "H1人形机器人尝试后空翻"
+      en: "H1 humanoid robot tries to front flip",
+      zh: "H1人形机器人尝试前空翻"
     },
     description: {
-      en: "H1 attempted a backflip, but it didn't go as planned.",
-      zh: "H1机器人尝试后空翻,但硬着陆了。"
+      en: "H1 attempted a front flip, but it didn't go as planned.",
+      zh: "H1机器人尝试前空翻,但硬着陆了。"
     }
   },
   {
