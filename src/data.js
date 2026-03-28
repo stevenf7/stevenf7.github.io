@@ -157,20 +157,20 @@ const siteData = {
         zh: "斯坦福大学"
       },
       para: {
-        en: "Robotics and Autonomous Systems Graduate Certificate (In Progress)",
-        zh: "机器人与智能系统研究证书 (进行中)"
+        en: "Master of Science in Electrical Engineering (In Progress)",
+        zh: "电子工程理学硕士学位 (进行中)"
       },
       imageSrc: StanfordLogo,
       workImg: StanfordImg,
       url: "https://www.stanford.edu/",
       description: [
         {
-          en: "Classes focus on classical control theories and reinforcement learning for mobile robots",
+          en: "Classes focus on control systems and reinforcement learning for mobile robots",
           zh: "课程专注于移动机器人的经典控制理论和基于强化学习的移动机器人控制"
         },
         {
-          en: "Classes: CS 237A Principles or Robot Autonomy I, CS 237B Principles or Robot Autonomy II",
-          zh: "课程: CS 237A 机器人自主原理I, CS 237B 机器人自主原理II"
+          en: "Classes: CS 237A Principles or Robot Autonomy I, CS 237B Principles or Robot Autonomy II, EE 227 Robot Perception",
+          zh: "课程: CS 237A 机器人自主原理I, CS 237B 机器人自主原理II, EE 227 机器人感知"
         }
       ],
     }
@@ -426,12 +426,12 @@ aboutParaOne: {
           zh: "我是一名机器人工程师, 专精于仿真开发, 通过创建高保真虚拟环境缩小仿真到现实的差距, 加速机器人测试和部署。我热衷于强化学习和模仿学习, 探索能够实现更安全, 更人性化的交互控制策略。"
 },
 aboutParaTwo: {
-  en: "I earned my Bachelor's degree in Mechatronics Engineering from the University of Waterloo. I also conducted human-robot interaction research at the Active Robotics Interaction Lab under Dr. Yue Hu, with a publication on IEEE Robotics and Automation Letters.",
-          zh: "我在滑铁卢大学获得了机电工程学士学位。我还在Hu Yue教授指导下的Active Interactive Robotics Lab进行了人机交互研究, 并在IEEE机器人与自动化快报 (IEEE Robotics and Automation Letters) 上发表了论文。"
+  en: "I am currently pursuing my Master's degree in Electrical Engineering at Stanford University. Previously, I earned my Bachelor's degree in Mechatronics Engineering from the University of Waterloo. I also conducted human-robot interaction research at the Active Robotics Interaction Lab under Dr. Yue Hu, with a publication on IEEE Robotics and Automation Letters.",
+          zh: "我在斯坦福大学攻读电子工程理学硕士学位。之前,我在滑铁卢大学获得了机电工程学士学位。我还在Hu Yue教授指导下的Active Interactive Robotics Lab进行了人机交互研究, 并在IEEE机器人与自动化快报 (IEEE Robotics and Automation Letters) 上发表了论文。"
 },
 aboutParaThree: {
   en: "When I'm not building robots, you can find me hiking, playing my clarinet and accordion, or exploring new cuisines around the city.",
-          zh: "在工作之余, 我喜欢去爬山, 吹黑管, 拉手风琴, 和探索新的事物。"
+          zh: "工作之余, 我喜欢去爬山, 吹黑管, 拉手风琴, 探索新的事物。"
 },
 
 nvidiaTime: {
@@ -633,7 +633,7 @@ nvidiaCarouselItems: [
     type: 'image',
     title: {
       en: "Presentation on tuning dexterous hands at GTC 2026",
-      zh: "GTC 2026：灵巧手调参演讲"
+      zh: "GTC 2026: 灵巧手调参演讲"
     },
     description: {
       en: "GTC 2026 talk on configuring and tuning dexterous robotic hands.",
