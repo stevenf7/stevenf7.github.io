@@ -256,6 +256,11 @@
         border-radius: 15px;
         overflow: hidden;
         
+        // Phone portrait: switch to 1:1 aspect ratio for better visibility
+        @media (max-width: 480px) and (orientation: portrait) {
+          padding-top: 100%;
+        }
+        
         // Enable smooth hardware acceleration for better performance
         transform: translateZ(0);
         backface-visibility: hidden;
