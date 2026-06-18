@@ -12,6 +12,8 @@ import h1SilVideo from "../images/publications/h1_sil.mp4"
 import h1TrainVideo from "../images/nvidia/h1_Train.mp4"
 import carterOutdoorVideo from "../images/nvidia/Carter Outdoor.mp4"
 import clawVideo from "../images/nvidia/claw.mp4"
+import dextrousHandImage from "../images/nvidia/IMG_8301.webp"
+import frankaMoveitVideo from "../images/nvidia/Franka Moveit.mp4"
 
 // Helper function to detect if file is a video
 const isVideoFile = (url) => {
@@ -106,6 +108,24 @@ const Publications = () => {
   // Publication data with actual links
   const publicationsData = [
     {
+      id: 7,
+      title: "Simulating a Dextrous Hand For Robotics With OpenUSD",
+      subtitle: "ACM SIGGRAPH, 2026",
+      imageSrc: dextrousHandImage,
+      projectLink: null,
+      type: "ACM",
+      upcoming: true
+    },
+    {
+      id: 8,
+      title: "From URDF to USD: A Complete Pipeline for High-Fidelity ROS 2 Simulation in NVIDIA Isaac Sim",
+      subtitle: "ROScon 2026",
+      imageSrc: frankaMoveitVideo,
+      projectLink: null,
+      type: "ROScon",
+      upcoming: true
+    },
+    {
       id: 0,
       title: "Configure and Tune Robot Assets With OpenUSD and PhysX",
       subtitle: "NVIDIA GTC 2026",
@@ -177,7 +197,7 @@ const Publications = () => {
                   <div 
                     className="background-media"
                     style={{
-                      backgroundImage: publication.imageSrc.endsWith('.gif') 
+                      backgroundImage: !isVideoFile(publication.imageSrc)
                         ? `linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(240, 248, 255, 0.5) 70%, rgba(240, 248, 255, 0.9) 85%, rgba(240, 248, 255, 1.0) 100%), url(${publication.imageSrc})`
                         : 'none'
                     }}
@@ -270,15 +290,25 @@ const Publications = () => {
                     <div className="publication-type" data-type={publication.type}>{publication.type}</div>
                     <h3 className="header">{publication.title}</h3>
                     <h4 className="subtitle">{publication.subtitle}</h4>
-                    <button 
-                      onClick={() => {
-                        window.open(publication.projectLink, "_blank");
-                      }}
-                      type="button" 
-                      className="btn"
-                    > 
-                      {getText({ en: "View Publication", zh: "查看论文" }, language)}
-                    </button>
+                    {publication.upcoming || !publication.projectLink ? (
+                      <button
+                        type="button"
+                        className="btn btn-upcoming"
+                        disabled
+                      >
+                        {getText({ en: "Upcoming", zh: "即将发表" }, language)}
+                      </button>
+                    ) : (
+                      <button 
+                        onClick={() => {
+                          window.open(publication.projectLink, "_blank");
+                        }}
+                        type="button" 
+                        className="btn"
+                      > 
+                        {getText({ en: "View Publication", zh: "查看论文" }, language)}
+                      </button>
+                    )}
                   </div>
                 </div>
               ))}
