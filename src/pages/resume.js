@@ -45,7 +45,7 @@ export default function Resume() {
     <div>
       <Layout>
         {/* eslint-disable-next-line react/jsx-pascal-case */}
-        <SEO title="Resume" />
+        <SEO title={data.seo.resumeTitle} description={data.seo.description} />
         <ResumeContent />
       </Layout>
     </div>

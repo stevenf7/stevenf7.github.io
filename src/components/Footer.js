@@ -36,8 +36,8 @@ const Footer = () => {
           </Fade>
           <Fade bottom>
           <span>
-            Made by <span role="img" aria-label="duck">🦆</span>
-            <a href="https://www.linkedin.com/in/stevenfeng7/"> Ji Yuan "Steven" Feng</a>
+            {getText(data.footer.madeBy, language)} <span role="img" aria-label="duck">🦆</span>
+            <a href="https://www.linkedin.com/in/stevenfeng7/"> {getText(data.name, language)}</a>
           </span>
           </Fade>
         </div>
