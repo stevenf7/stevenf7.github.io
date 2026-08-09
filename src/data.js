@@ -55,7 +55,22 @@ export const getText = (textObj, language = 'en') => {
 
 const siteData = {
 
- 
+  // SEO / document metadata translations
+  seo: {
+    title: {
+      en: "Ji Yuan (Steven) Feng Portfolio",
+      zh: "冯纪元作品集"
+    },
+    resumeTitle: {
+      en: "Resume",
+      zh: "简历"
+    },
+    description: {
+      en: "Personal portfolio of Ji Yuan (Steven) Feng — a robotics systems engineer building autonomous and biomimetic robots.",
+      zh: "冯纪元的作品集 —— 一名致力于打造自主与仿生机器人的机器人系统工程师。"
+    }
+  },
+
   name: {
     en: "Ji Yuan 'Steven' Feng",
     zh: "冯纪元"
@@ -92,6 +107,11 @@ const siteData = {
     explore: { en: "Explore", zh: "了解更多" },
     readMore: { en: "Read More", zh: "了解更多" },
     close: { en: "Close", zh: "关闭" }
+  },
+
+  // Footer text translations
+  footer: {
+    madeBy: { en: "Made by", zh: "作者" }
   },
 
   contactEmail: "jy5feng@uwaterloo.ca",

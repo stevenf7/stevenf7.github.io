@@ -5,18 +5,19 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React from "react"
+import React, { useContext } from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import { LanguageContext } from "../contexts/LanguageContext"
+import { getText } from "../data"
 
-function SEO({ description = ``, lang = `en`, meta = [], title }) {
+function SEO({ description = ``, lang, meta = [], title }) {
   const { site } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
-            title
             description
             author
           }
@@ -25,28 +26,43 @@ function SEO({ description = ``, lang = `en`, meta = [], title }) {
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+  // Read language from context when available; fall back to `lang` prop or `en`.
+  // Using useContext directly (instead of useLanguage) avoids throwing when SEO
+  // is rendered outside of a LanguageProvider (e.g. during SSR of 404 pages).
+  const languageContext = useContext(LanguageContext)
+  const activeLanguage = languageContext?.language || lang || `en`
+
+  // Support either a plain string or a { en, zh } translations object for
+  // title / description so pages can pass multi-language values.
+  const resolvedTitle = getText(title, activeLanguage)
+  const resolvedDescription =
+    getText(description, activeLanguage) || site.siteMetadata.description
+
+  // Intentionally no `titleTemplate` — pages provide the full translated
+  // title so we don't append a hard-coded English suffix from siteMetadata.
 
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang: activeLanguage,
       }}
-      title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      title={resolvedTitle}
       meta={[
         {
           name: `description`,
-          content: metaDescription,
+          content: resolvedDescription,
         },
         {
           property: `og:title`,
-          content: title,
+          content: resolvedTitle,
         },
         {
           property: `og:description`,
-          content: metaDescription,
+          content: resolvedDescription,
+        },
+        {
+          property: `og:locale`,
+          content: activeLanguage === `zh` ? `zh_CN` : `en_US`,
         },
         {
           property: `og:type`,
@@ -62,11 +78,11 @@ function SEO({ description = ``, lang = `en`, meta = [], title }) {
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: resolvedTitle,
         },
         {
           name: `twitter:description`,
-          content: metaDescription,
+          content: resolvedDescription,
         },
         // Safari-specific optimizations
         {
@@ -92,10 +108,10 @@ function SEO({ description = ``, lang = `en`, meta = [], title }) {
 // Default props removed - using JavaScript default parameters instead
 
 SEO.propTypes = {
-  description: PropTypes.string,
+  description: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
 }
 
 export default SEO

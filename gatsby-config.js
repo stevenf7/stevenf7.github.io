@@ -1,8 +1,14 @@
 module.exports = {
   // Remove pathPrefix for custom domain setup
+  //
+  // NOTE: This file runs in Node at build time so it can't consume the
+  // language-aware strings from `src/data.js` (which imports image assets).
+  // These fields are only used as fallbacks — the visible <title>, meta
+  // description, and Open Graph tags are set per-page (and per-language) by
+  // `src/components/seo.js` using values from `src/data.js`.
   siteMetadata: {
-    title: `Hi, I'm Ji Yuan (Steven) Feng`,
-    description: `Here is my personal website`,
+    title: `Steven Feng Portfolio`,
+    description: `Personal portfolio of Ji Yuan (Steven) Feng.`,
     author: `Ji Yuan (Steven) Feng`,
   },
   // Add development-specific configuration
@@ -23,8 +29,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Ji Yuan (Steven) Feng Portfolio`,
-        short_name: `Ji Yuan`,
+        // PWA manifest is baked at build time and can only hold one value;
+        // using a language-neutral, Latin-script name that reads acceptably
+        // for both English and Chinese users.
+        name: `Steven Feng Portfolio`,
+        short_name: `Steven Feng`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,

@@ -2,6 +2,7 @@ import React from "react"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import data from "../data"
 // Components
 import Header from "../components/Header"
 import Work from "../components/Work"
@@ -16,7 +17,7 @@ import Publications from "../components/Publications"
 const IndexPage = () => (
   <Layout>
     {/* eslint-disable-next-line react/jsx-pascal-case */}
-    <SEO title="Ji Yuan (Steven) Feng Portfolio" />
+    <SEO title={data.seo.title} description={data.seo.description} />
     <Header></Header>
     <About></About>
     <Nvidia></Nvidia>
