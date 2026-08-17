@@ -112,7 +112,7 @@ const Publications = () => {
       title: "Simulating a Dextrous Hand For Robotics With OpenUSD",
       subtitle: "ACM SIGGRAPH, 2026",
       imageSrc: dextrousHandImage,
-      projectLink: "https://s2026.conference-schedule.org/presentation/?id=gensub_403&sess=sess266",
+      projectLink: "https://dl.acm.org/doi/10.1145/3799820.3812501",
       type: "ACM",
     },
     {
