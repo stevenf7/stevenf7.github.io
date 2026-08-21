@@ -17,6 +17,9 @@ const Footer = () => {
           <Fade bottom distance="20px" delay={300} duration={1000}>
             <h2>{getText(data.contactSubHeading, language)}</h2>
           </Fade>
+          <Fade bottom distance="20px" delay={500} duration={1000}>
+            <p className="personal-note">{getText(data.personalNote, language)}</p>
+          </Fade>
           <Fade bottom>
             <a className="email-link" href={`mailto:${data.contactEmail}`}>
               {data.contactEmail}

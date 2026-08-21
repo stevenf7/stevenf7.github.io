@@ -92,7 +92,6 @@ const siteData = {
 
   // Section titles  
   sections: {
-    about: { en: "About", zh: "关于我" },
     nvidia: { en: "NVIDIA", zh: "英伟达" },
     publications: { en: "Publications", zh: "论文" },
     education: { en: "Education", zh: "学历" },
@@ -436,16 +435,11 @@ const siteData = {
 
   ],
 
-// About Section --------------
-// Credentials deliberately left out here - the Education and Publications
-// sections already cover them, so this section stays on the "why" and the person.
-aboutParaOne: {
-  en: "Most of my work lives in simulation: building high-fidelity virtual environments that close the sim-to-real gap so robots can be tested and deployed long before the hardware is ready. I am especially drawn to reinforcement learning and imitation learning, and to control strategies that make robots safer and more natural to be around.",
-          zh: "我的工作大多围绕仿真展开: 构建高保真的虚拟环境, 缩小仿真与现实之间的差距, 让机器人在硬件就绪之前就能完成测试与部署。我尤其着迷于强化学习和模仿学习, 以及让机器人更安全, 与人相处更自然的控制策略。"
-},
-aboutParaTwo: {
-  en: "Away from the workstation, you will usually find me on a hiking trail or in the air with a flight lesson. I have been playing the clarinet and the accordion for years and still cannot decide which one is really mine. I am also a relentless eater, and I will happily cross the city for a dish I have never tried before.",
-          zh: "离开工位后, 我通常在山间徒步, 或者在天上练习飞行。黑管和手风琴我都吹拉了很多年, 至今也没想清楚哪一个才算是我真正的乐器。我还是个不折不扣的吃货, 愿意为了一道没吃过的菜横穿整座城市。"
+// Personal note - shown in the contact footer, the one spot on the site
+// that is about the person rather than the work.
+personalNote: {
+  en: "Outside of work, I play clarinet with the San Jose Metropolitan Band, keep up with my accordion, and am back in the classroom taking courses at Stanford. The rest of the time I am out on a hiking trail, scouting good spots to fly my drone, or wandering around the city.",
+          zh: "工作之余, 我在圣何塞市立管乐团 (San Jose Metropolitan Band) 吹黑管, 平时也会拉拉手风琴, 同时还在斯坦福继续上课。其余的时间, 我大多在山间徒步, 寻找适合飞无人机的地方, 或者在城市里四处闲逛。"
 },
 
 nvidiaTime: {
@@ -854,8 +848,8 @@ projectsCarouselItems: [
       zh: "\"大鹏一日同风起，扶摇直上九万里。\" - 李白"
     },
     description: {
-      en: "I finally touched the sky when I earned my glider pilot license in 2016 and private pilot license in 2017. This was an breathtaking experiences that inspires me to build robotics airplanes to this date.",
-      zh: "当我在2016年获得滑翔机执照和2017年获得飞机执照时,我终于划破天际。"
+      en: "I finally touched the sky when I earned my Transport Canada glider pilot license in 2016 and my private pilot license in 2017. I am also a licensed drone operator in both Canada and the United States. It remains a breathtaking experience, and it is what inspires me to build robotic aircraft to this day.",
+      zh: "2016年我考取了加拿大交通部 (Transport Canada) 颁发的滑翔机飞行执照, 2017年又拿到了私人飞行执照, 终于得以划破天际。我同时持有加拿大和美国的无人机操作执照。这份经历至今仍让我心潮澎湃, 也一直激励着我去打造会飞的机器人。"
     },
     buttons: []
   }
@@ -900,8 +894,10 @@ projectsCarouselItems: [
     },
     {
       img: airplaneIcon,
-      para:
-        "Private Pilot, Glider Pilot License",
+      para: {
+        en: "Private Pilot, Glider Pilot, Drone Operator (CA + US)",
+        zh: "私人飞行执照, 滑翔机飞行执照, 无人机操作执照 (加拿大 + 美国)"
+      },
     },
     
   ],
