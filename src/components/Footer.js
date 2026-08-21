@@ -31,8 +31,9 @@ const Footer = () => {
                   href={socialLink.url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={socialLink.label}
                 >
-                  <img src={socialLink.img} alt="icons" loading="lazy"></img>
+                  <img src={socialLink.img} alt={socialLink.label} loading="lazy"></img>
                 </a>
               ))}
             </div>

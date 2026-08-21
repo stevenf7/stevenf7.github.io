@@ -12,6 +12,7 @@ import airplaneIcon from "./images/skillsIcon/airplane.svg"
 import githubIcon from "./images/contactIcon/github.svg"
 import linkedinIcon from "./images/contactIcon/linkedin.png"
 import googleScholarIcon from "./images/contactIcon/gscholar.png"
+import orcidIcon from "./images/contactIcon/orcid.svg"
 
 
 // Company icon
@@ -912,15 +913,23 @@ projectsCarouselItems: [
 },
   social: [
 
-    { img: githubIcon, 
+    { img: githubIcon,
+      label: "GitHub",
       url: "https://github.com/stevenf7"
     },
     {
       img: googleScholarIcon,
+      label: "Google Scholar",
       url: "https://scholar.google.com/citations?hl=en&user=0YSkT7UAAAAJ",
     },
     {
+      img: orcidIcon,
+      label: "ORCID",
+      url: "https://orcid.org/0009-0006-0001-1668",
+    },
+    {
       img: linkedinIcon,
+      label: "LinkedIn",
       url: "https://www.linkedin.com/in/stevenfeng7/",
     },
 

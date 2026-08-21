@@ -18,9 +18,9 @@ const IndexPage = () => (
     {/* eslint-disable-next-line react/jsx-pascal-case */}
     <SEO title={data.seo.title} description={data.seo.description} />
     <Header></Header>
-    <Nvidia></Nvidia>
     <Education></Education>
     <Publications></Publications>
+    <Nvidia></Nvidia>
     <Work></Work>
     <Project></Project>
     <Skills></Skills>
