@@ -6,7 +6,6 @@ import data from "../data"
 // Components
 import Header from "../components/Header"
 import Work from "../components/Work"
-import About from "../components/about"
 import Skills from "../components/skills"
 import Footer from "../components/Footer"
 import Project from "../components/projects"
@@ -19,10 +18,9 @@ const IndexPage = () => (
     {/* eslint-disable-next-line react/jsx-pascal-case */}
     <SEO title={data.seo.title} description={data.seo.description} />
     <Header></Header>
-    <About></About>
-    <Nvidia></Nvidia>
     <Education></Education>
     <Publications></Publications>
+    <Nvidia></Nvidia>
     <Work></Work>
     <Project></Project>
     <Skills></Skills>

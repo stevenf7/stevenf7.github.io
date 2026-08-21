@@ -6,358 +6,470 @@ body.modal-open {
 }
 
 .modalBackground {
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    /* Pure blur effect - no darkening */
-    background: transparent;
-    backdrop-filter: blur(15px); /* Strong blur to direct focus to modal */
-    -webkit-backdrop-filter: blur(15px);
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    
-    /* Entrance animation for background - all devices */
-    animation: fadeInBackground 0.3s ease-out;
-    
-    /* Closing animation - all devices */
-    &.closing {
-      animation: fadeOutBackground 0.3s ease-in forwards;
-    }
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(20, 28, 38, 0.35);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  position: fixed;
+  z-index: 9999;
+
+  animation: fadeInBackground 0.3s ease-out;
+
+  &.closing {
+    animation: fadeOutBackground 0.3s ease-in forwards;
   }
-  
-  /* Background fade-in animation */
-  @keyframes fadeInBackground {
-    from {
-      backdrop-filter: blur(0px);
-      -webkit-backdrop-filter: blur(0px);
-    }
-    to {
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-    }
+}
+
+@keyframes fadeInBackground {
+  from {
+    opacity: 0;
   }
-  
-  /* Background fade-out animation */
-  @keyframes fadeOutBackground {
-    from {
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-    }
-    to {
-      backdrop-filter: blur(0px);
-      -webkit-backdrop-filter: blur(0px);
-    }
+  to {
+    opacity: 1;
   }
-  
-  .modalContainer {
-    width: 80vw;
-    max-width: 1000px; /* Set to 1000px as requested */
-    max-height: 90vh;
-    border-radius: 12px;
-    
-    /* Balanced frosted glass effect - readable but stylish */
-    background: rgba(255, 255, 255, 0.65); /* More opaque for readability */
-    backdrop-filter: blur(25px) saturate(120%);
-    -webkit-backdrop-filter: blur(25px) saturate(120%);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3), 
-                0 10px 40px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8),
-                inset 0 0 0 1px rgba(255, 255, 255, 0.2);
-    
-    /* Fallback for browsers that don't support backdrop-filter */
-    @supports not (backdrop-filter: blur(25px)) {
-      background: rgba(255, 255, 255, 0.96);
-      border: 1px solid rgba(255, 255, 255, 0.8);
-    }
-    
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10000;
-    overflow: auto;
-    
-    /* Entrance animation - all devices */
-    animation: modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    transform-origin: center;
-    
-    /* Closing animation - all devices */
-    &.closing {
-      animation: modalSlideOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-    
-    @include media(">=phone", "<lgphone") {
-      width: 95vw;
-      padding: 15px;
+}
+
+@keyframes fadeOutBackground {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.modalContainer {
+  width: 80vw;
+  max-width: 1000px;
+  max-height: 90vh;
+  border-radius: 15px;
+
+  background: rgba(248, 250, 252, 0.9);
+  backdrop-filter: blur(25px) saturate(120%);
+  -webkit-backdrop-filter: blur(25px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 25px 80px rgba(15, 25, 40, 0.28),
+              0 10px 30px rgba(15, 25, 40, 0.14);
+
+  display: flex;
+  flex-direction: column;
+  padding: 22px 26px 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  overflow-y: auto;
+  outline: none;
+
+  animation: modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center;
+
+  @supports not (backdrop-filter: blur(25px)) {
+    background: rgba(248, 250, 252, 0.98);
+  }
+
+  &.closing {
+    animation: modalSlideOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @include media(">=phone", "<lgphone") {
+    width: 94vw;
+    padding: 14px 16px 16px;
+  }
+  @include media(">=lgphone", "<tablet") {
+    width: 92vw;
+    padding: 16px 18px 18px;
+  }
+  @include media(">=tablet", "<desktop") {
+    width: 88vw;
+    padding: 20px 22px;
+  }
+}
+
+@keyframes modalSlideIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes modalSlideOut {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+}
+
+@keyframes contentFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Top bar: logo + organization, counter, close ---------- */
+
+.modal-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(44, 62, 80, 0.1);
+}
+
+.modal-org {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.modal-org-logo {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid rgba(44, 62, 80, 0.1);
+  box-shadow: 0 2px 6px rgba(15, 25, 40, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 4px;
+  }
+
+  @include media("<lgphone") {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.modal-org-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  letter-spacing: 0.3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @include media("<lgphone") {
+    font-size: 0.9rem;
+  }
+}
+
+.modal-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.modal-counter {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #5b6b7c;
+  background: rgba(52, 152, 219, 0.1);
+  border-radius: 20px;
+  padding: 4px 12px;
+  letter-spacing: 0.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.modal-close {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(44, 62, 80, 0.12);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  color: #2c3e50;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: #fff;
+    color: #000;
+    transform: rotate(90deg);
+  }
+}
+
+/* ---------- Heading: role, date, summary ---------- */
+
+.modal-heading {
+  padding: 18px 0 16px;
+  animation: contentFadeIn 0.5s ease-out 0.1s both;
+
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #2c3e50;
+
+    @include media("<lgphone") {
+      font-size: 1.35rem;
     }
     @include media(">=lgphone", "<tablet") {
-      width: 90vw;
-      padding: 20px;
+      font-size: 1.5rem;
     }
     @include media(">=tablet", "<desktop") {
-      width: 85vw;
+      font-size: 1.75rem;
     }
   }
-  
-  /* Modal entrance animation - smooth scale + fade */
-  @keyframes modalSlideIn {
-    0% {
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0.8);
-    }
-    100% {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-  }
-  
-  /* Modal exit animation - smooth scale + fade */
-  @keyframes modalSlideOut {
-    0% {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-    100% {
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0.8);
-    }
-  }
-  
-  /* Content fade-in animation with upward motion */
-  @keyframes contentFadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .modalContainer .title {
-    display: inline-block;
-    text-align: center;
-    margin-bottom: 1em;
-    
-    /* Subtle text enhancement - no longer needed with better background */
-    
-    /* Content animation - all devices */
-    animation: contentFadeIn 0.5s ease-out 0.1s both;
-    h1{
-      margin-top: 0px;
-      line-height: 1.2;
-      font-size: 2.4rem; /* Consistent with main page 80% scaling */
+}
 
-      @include media(">=phone", "<lgphone") {
-        font-size: 1.6rem;       
-      }
-      @include media(">=lgphone", "<tablet") {
-        font-size: 1.8rem;
-      }
-      @include media(">=tablet", "<desktop") {
-        font-size: 2rem;
-      }
-    }
+.modal-date {
+  margin: 8px 0 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #3498db;
+  letter-spacing: 0.4px;
+  font-variant-numeric: tabular-nums;
 
-    h2{
-      line-height: 1.2;
-      font-size: 1.2rem; /* Consistent with site subtitle sizing */
-      @include media(">=phone", "<lgphone") {
-        font-size: 0.9rem;       
-      }
-      @include media(">=lgphone", "<tablet") {
-        font-size: 1rem;
-      }
-      @include media(">=tablet", "<desktop") {
-        font-size: 1.1rem;
-      }
-    }
+  @include media("<tablet") {
+    font-size: 0.85rem;
   }
-  
-  .titleCloseBtn {
-    display: flex;
-    justify-content: flex-end;
+}
+
+.modal-summary {
+  margin: 12px 0 0;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: #52606d;
+  max-width: 70ch;
+
+  @include media("<tablet") {
+    font-size: 0.92rem;
   }
-  
-  .titleCloseBtn button {
-    background-color: transparent;
-    border: none;
-    font-size: 1.5rem; /* Reduced from 2rem for consistency */
-    cursor: pointer;
-    
-    h3 {
-      margin: 0;
-      font-size: 1.5rem; /* Match button font size for close icon */
-      line-height: 1;
-    }
+}
+
+/* ---------- Body: media on top, highlights underneath ---------- */
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: contentFadeIn 0.6s ease-out 0.2s both;
+
+  @include media("<desktop") {
+    gap: 16px;
   }
-  
-  /* Modal navigation arrows - simplified inside design */
-  .modal-nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    
-    /* More transparent frosted glass effect */
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.2rem;
-    color: #333;
-    z-index: 10001;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    
-    /* Desktop only */
-    @include media("<desktop") {
-      display: none;
-    }
-    
+}
+
+.modal-media-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.modal-media {
+  width: 100%;
+  /* Full-width media needs a height cap, otherwise it pushes the
+     highlights below the fold on every screen size. */
+  aspect-ratio: 16 / 9;
+  max-height: 40vh;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #eef2f6;
+  border: 1px solid rgba(44, 62, 80, 0.08);
+  display: block;
+
+  /* Videos here are decorative, not interactive */
+  &[autoplay] {
+    cursor: default;
+    user-select: none;
+  }
+
+  @include media("<desktop") {
+    aspect-ratio: 16 / 10;
+    max-height: 34vh;
+  }
+}
+
+.modal-external-link {
+  align-self: flex-start;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #2980b9;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(41, 128, 185, 0.4);
+  padding-bottom: 2px;
+  transition: all 0.25s ease;
+
+  &:hover {
+    color: #1f4e79;
+    border-bottom-color: #1f4e79;
+  }
+}
+
+.modal-highlights {
+  min-width: 0;
+}
+
+.modal-highlights-title {
+  margin: 0 0 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #8a97a4;
+}
+
+.modal-highlights ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+
+  /* Two columns keeps the line length readable now that the list
+     spans the full modal width instead of sitting beside the media. */
+  @include media(">=desktop") {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  @include media("<desktop") {
+    grid-template-columns: 1fr;
+  }
+}
+
+.modal-highlights li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(44, 62, 80, 0.07);
+  border-left: 3px solid #3498db;
+  border-radius: 10px;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: #3d4a57;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: #fff;
+    transform: translateX(3px);
+  }
+
+  @include media("<lgphone") {
+    font-size: 0.85rem;
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  @include media(">=lgphone", "<desktop") {
+    font-size: 0.92rem;
+  }
+
+  a {
+    color: #2980b9;
+    text-decoration: underline;
+
     &:hover {
-      background: rgba(255, 255, 255, 0.6);
-      border-color: rgba(255, 255, 255, 0.5);
-      transform: translateY(-50%) scale(1.05);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    }
-    
-    &:active {
-      transform: translateY(-50%) scale(0.95);
-    }
-    
-    span {
-      font-weight: bold;
-      line-height: 1;
+      color: #1f4e79;
     }
   }
-  
-  .modal-prev {
-    left: 15px; /* Inside modal, left side */
-  }
-  
-  .modal-next {
-    right: 15px; /* Inside modal, right side */
-  }
-  
-  /* Modal counter - removed per user request */
-  
-  .modalContainer .body {
-    justify-content: center;
-    
-    /* Desktop: side-by-side layout with equal heights */
-    @include media(">=desktop") {
-      display: flex;
-      align-items: stretch; /* Make both image and text same height */
-      gap: 1.5rem; /* Add space between image and text */
-    }
-    
-    /* Mobile: stacked layout (default) */
-    @include media("<desktop") {
-      display: block; /* Ensure stacked layout on mobile */
-    }
-    
-    /* Content animation - all devices */
-    animation: contentFadeIn 0.6s ease-out 0.2s both; /* Slight delay for cascade effect */
+}
 
-    .modal-media {
-      border-radius: 8px; /* Add subtle rounding */
-      
-      /* Display-only styling for videos */
-      &[autoplay] {
-        cursor: default; /* No pointer cursor since videos aren't interactive */
-        user-select: none; /* Prevent text selection on video */
-      }
-      
-      /* Desktop: flex layout with equal heights */
-      @include media(">=desktop") {
-        width: 50%;
-        flex: 1; /* Allow to grow and match text height */
-        object-fit: contain; /* Don't crop the media */
-        align-self: stretch; /* Match container height */
-        min-height: 0; /* Allow flex shrinking */
-      }
-      
-      /* Mobile: full width stacked */
-      @include media(">=phone", "<lgphone") {
-        width: 100%;
-        margin-bottom: 1rem;
-        max-height: 60vh; /* Prevent oversized media on mobile */      
-      }
-      @include media(">=lgphone", "<tablet") {
-        width: 100%;
-        margin-bottom: 1rem;
-        max-height: 60vh;
-      }
-      @include media(">=tablet", "<desktop") {
-        width: 100%;
-        margin-bottom: 1rem;
-        max-height: 60vh;
-      }
-    }
-    ul{
-      margin-top: 0;
-      
-      /* Desktop: flex layout with equal heights */
-      @include media(">=desktop") {
-        width: 50%;
-        flex: 1; /* Allow to grow and match image height */
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        font-size: 1.2rem; /* Desktop: matches site body text after 80% scaling */
-        
-        /* Text is now readable with improved background */
-      }
-      
-      /* Mobile: standard block layout */
-      @include media("<desktop") {
-        width: 100%;
-        display: block;
-      }
-      
-      /* Consistent font sizes and improved readability */
-      line-height: 1.6; /* Better readability across all devices */
-      
-      @include media(">=phone", "<lgphone") {
-        font-size: 0.9rem; /* Original mobile value */       
-      }
-      @include media(">=lgphone", "<tablet") {
-        font-size: 1rem; /* Original mobile value */
-      }
-      @include media(">=tablet", "<desktop") {
-        font-size: 1.1rem; /* Original mobile value */
-      }
+.modal-highlight-index {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(52, 152, 219, 0.12);
+  color: #2980b9;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
 
-      li{
-        padding: 0.5em 0.5em 0.8em 1em; /* Increased spacing for better readability */
-        margin-bottom: 0.4em; /* Add space between list items */
-        
-        a {
-          color: #333;
-          text-decoration: underline;
-          transition: color 0.3s ease;
-          
-          &:hover {
-            color: #000;
-            text-decoration: underline;
-          }
-        }
-      }
-    }
+.modal-highlight-text {
+  min-width: 0;
+}
+
+/* ---------- Footer navigation (available on every screen size) ---------- */
+
+.modal-footer-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(44, 62, 80, 0.1);
+}
+
+.modal-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border: none;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  span {
+    font-size: 1.1rem;
+    line-height: 1;
   }
+
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, #2980b9, #1f4e79);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background: rgba(44, 62, 80, 0.12);
+    color: rgba(44, 62, 80, 0.4);
+    cursor: not-allowed;
+  }
+
+  @include media("<lgphone") {
+    padding: 8px 14px;
+    font-size: 0.75rem;
+  }
+}

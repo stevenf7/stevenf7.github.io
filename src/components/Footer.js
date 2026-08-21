@@ -17,6 +17,9 @@ const Footer = () => {
           <Fade bottom distance="20px" delay={300} duration={1000}>
             <h2>{getText(data.contactSubHeading, language)}</h2>
           </Fade>
+          <Fade bottom distance="20px" delay={500} duration={1000}>
+            <p className="personal-note">{getText(data.personalNote, language)}</p>
+          </Fade>
           <Fade bottom>
             <a className="email-link" href={`mailto:${data.contactEmail}`}>
               {data.contactEmail}
@@ -28,8 +31,9 @@ const Footer = () => {
                   href={socialLink.url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={socialLink.label}
                 >
-                  <img src={socialLink.img} alt="icons" loading="lazy"></img>
+                  <img src={socialLink.img} alt={socialLink.label} loading="lazy"></img>
                 </a>
               ))}
             </div>

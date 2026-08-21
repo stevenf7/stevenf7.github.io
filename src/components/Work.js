@@ -41,7 +41,6 @@ const Work = () => {
                   heading={getText(project.title, language)}
                   paragraph={getText(project.para, language)}
                   imgUrl={project.imageSrc}
-                  projectLink={project.url}
                   setOpenModal = {setOpenModal}
                   setId = {setId}
                 ></Card>

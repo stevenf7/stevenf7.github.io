@@ -15,14 +15,12 @@ html {
 @import "./navbar.scss";
 @import "./header.scss";
 @import "./work.scss";
-@import "./about.scss";
 @import "./skills.scss";
 @import "./footer.scss";
 @import "./projects.scss";
 @import "./education.scss";
 @import "./languageToggle.scss";
 @import "./../css/resume.scss";
-@import "./../css/worksiteStyle.scss";
 
 
 * {
@@ -47,7 +45,7 @@ body {
 /* FORCE Montserrat on ALL text AND eliminate any framework spacing */
 html *, body *, 
 p, span, div, a, button, li, ul, h1, h2, h3, h4, h5, h6,
-.container p, .content p, .about-section p, section p, article p,
+.container p, .content p, section p, article p,
 .container, .row, .col, .col-md-6, .col-12, .col-sm-12,
 .text, .description, .content, .caption, .paragraph {
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;

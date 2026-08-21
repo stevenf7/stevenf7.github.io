@@ -12,6 +12,7 @@ import airplaneIcon from "./images/skillsIcon/airplane.svg"
 import githubIcon from "./images/contactIcon/github.svg"
 import linkedinIcon from "./images/contactIcon/linkedin.png"
 import googleScholarIcon from "./images/contactIcon/gscholar.png"
+import orcidIcon from "./images/contactIcon/orcid.svg"
 
 
 // Company icon
@@ -92,7 +93,6 @@ const siteData = {
 
   // Section titles  
   sections: {
-    about: { en: "About", zh: "关于我" },
     nvidia: { en: "NVIDIA", zh: "英伟达" },
     publications: { en: "Publications", zh: "论文" },
     education: { en: "Education", zh: "学历" },
@@ -112,6 +112,14 @@ const siteData = {
   // Footer text translations
   footer: {
     madeBy: { en: "Made by", zh: "作者" }
+  },
+
+  // Modal UI labels
+  modal: {
+    highlights: { en: "Highlights", zh: "工作亮点" },
+    previous: { en: "Prev", zh: "上一个" },
+    next: { en: "Next", zh: "下一个" },
+    visitSite: { en: "Visit site", zh: "访问网站" }
   },
 
   contactEmail: "jy5feng@uwaterloo.ca",
@@ -213,8 +221,6 @@ const siteData = {
       imageSrc:
         TeslaIcon,
       
-      url: "/work/tesla/",
-
       date: "05/2022 - 08/2022 ",
 
       description: [
@@ -255,8 +261,6 @@ const siteData = {
       imageSrc:
         NVIDIAIcon,
    
-      url: "/work/nvidia/",
-      
       date: "01/2022 - 04/2022 ",
 
       description: [
@@ -295,8 +299,6 @@ const siteData = {
       imageSrc:
         EcobeeIcon  ,    
      
-      url: "/work/ecobee/",
-
       date: "05/2021 - 08/2021 ",
 
       description: [
@@ -338,8 +340,6 @@ const siteData = {
       imageSrc:
         UwaterlooIcon,
       
-      url: "/work/uwaterloo/",
-
       date: "09/2020 - 12/2020 ",
 
       description: [
@@ -374,8 +374,6 @@ const siteData = {
       imageSrc:
         KhazanahIcon,
       
-      url: "/work/khazanah/",
-
       date: "01/2020 - 04/2020 ",
 
       description: [
@@ -413,8 +411,6 @@ const siteData = {
       imageSrc:
         FordIcon,
      
-      url: "/work/ford/",
-
       date: "05/2019 - 08/2019 ",
 
       description: [
@@ -440,18 +436,11 @@ const siteData = {
 
   ],
 
-// About Section --------------
-aboutParaOne: {
-  en: "I am a robotics engineer with expertise in simulation development, narrowing the sim-to-real gap by creation of high-fidelity virtual environments to accelerate robotic testing and deployment. I am particularly passionate about reinforcement learning and imitation learning, exploring control strategies that enable safer, more human-like interactions.",
-          zh: "我是一名机器人工程师, 专精于仿真开发, 通过创建高保真虚拟环境缩小仿真到现实的差距, 加速机器人测试和部署。我热衷于强化学习和模仿学习, 探索能够实现更安全, 更人性化的交互控制策略。"
-},
-aboutParaTwo: {
-  en: "I am currently pursuing my Master's degree in Electrical Engineering at Stanford University. Previously, I earned my Bachelor's degree in Mechatronics Engineering from the University of Waterloo. I also conducted human-robot interaction research at the Active Robotics Interaction Lab under Dr. Yue Hu, with a publication on IEEE Robotics and Automation Letters.",
-          zh: "我在斯坦福大学攻读电子工程理学硕士学位。之前,我在滑铁卢大学获得了机电工程学士学位。我还在Hu Yue教授指导下的Active Interactive Robotics Lab进行了人机交互研究, 并在IEEE机器人与自动化快报 (IEEE Robotics and Automation Letters) 上发表了论文。"
-},
-aboutParaThree: {
-  en: "When I'm not building robots, you can find me hiking, playing my clarinet and accordion, or exploring new cuisines around the city.",
-          zh: "工作之余, 我喜欢去爬山, 吹黑管, 拉手风琴, 探索新的事物。"
+// Personal note - shown in the contact footer, the one spot on the site
+// that is about the person rather than the work.
+personalNote: {
+  en: "Outside of work, I play clarinet with the San Jose Metropolitan Band, keep up with my accordion, and am back in the classroom taking courses at Stanford. The rest of the time I am out on a hiking trail, scouting good spots to fly my drone, or wandering around the city.",
+          zh: "工作之余, 我在圣何塞市立管乐团 (San Jose Metropolitan Band) 吹黑管, 平时也会拉拉手风琴, 同时还在斯坦福继续上课。其余的时间, 我大多在山间徒步, 寻找适合飞无人机的地方, 或者在城市里四处闲逛。"
 },
 
 nvidiaTime: {
@@ -860,8 +849,8 @@ projectsCarouselItems: [
       zh: "\"大鹏一日同风起，扶摇直上九万里。\" - 李白"
     },
     description: {
-      en: "I finally touched the sky when I earned my glider pilot license in 2016 and private pilot license in 2017. This was an breathtaking experiences that inspires me to build robotics airplanes to this date.",
-      zh: "当我在2016年获得滑翔机执照和2017年获得飞机执照时,我终于划破天际。"
+      en: "I finally touched the sky when I earned my Transport Canada glider pilot license in 2016 and my private pilot license in 2017. I am also a licensed drone operator in both Canada and the United States. It remains a breathtaking experience, and it is what inspires me to build robotic aircraft to this day.",
+      zh: "2016年我考取了加拿大交通部 (Transport Canada) 颁发的滑翔机飞行执照, 2017年又拿到了私人飞行执照, 终于得以划破天际。我同时持有加拿大和美国的无人机操作执照。这份经历至今仍让我心潮澎湃, 也一直激励着我去打造会飞的机器人。"
     },
     buttons: []
   }
@@ -906,8 +895,10 @@ projectsCarouselItems: [
     },
     {
       img: airplaneIcon,
-      para:
-        "Private Pilot, Glider Pilot License",
+      para: {
+        en: "Private Pilot, Glider Pilot, Drone Operator (CA + US)",
+        zh: "私人飞行执照, 滑翔机飞行执照, 无人机操作执照 (加拿大 + 美国)"
+      },
     },
     
   ],
@@ -922,15 +913,23 @@ projectsCarouselItems: [
 },
   social: [
 
-    { img: githubIcon, 
+    { img: githubIcon,
+      label: "GitHub",
       url: "https://github.com/stevenf7"
     },
     {
       img: googleScholarIcon,
+      label: "Google Scholar",
       url: "https://scholar.google.com/citations?hl=en&user=0YSkT7UAAAAJ",
     },
     {
+      img: orcidIcon,
+      label: "ORCID",
+      url: "https://orcid.org/0009-0006-0001-1668",
+    },
+    {
       img: linkedinIcon,
+      label: "LinkedIn",
       url: "https://www.linkedin.com/in/stevenfeng7/",
     },
 
