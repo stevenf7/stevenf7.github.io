@@ -114,6 +114,14 @@ const siteData = {
     madeBy: { en: "Made by", zh: "作者" }
   },
 
+  // Modal UI labels
+  modal: {
+    highlights: { en: "Highlights", zh: "工作亮点" },
+    previous: { en: "Prev", zh: "上一个" },
+    next: { en: "Next", zh: "下一个" },
+    visitSite: { en: "Visit site", zh: "访问网站" }
+  },
+
   contactEmail: "jy5feng@uwaterloo.ca",
 
   education: [
@@ -213,8 +221,6 @@ const siteData = {
       imageSrc:
         TeslaIcon,
       
-      url: "/work/tesla/",
-
       date: "05/2022 - 08/2022 ",
 
       description: [
@@ -255,8 +261,6 @@ const siteData = {
       imageSrc:
         NVIDIAIcon,
    
-      url: "/work/nvidia/",
-      
       date: "01/2022 - 04/2022 ",
 
       description: [
@@ -295,8 +299,6 @@ const siteData = {
       imageSrc:
         EcobeeIcon  ,    
      
-      url: "/work/ecobee/",
-
       date: "05/2021 - 08/2021 ",
 
       description: [
@@ -338,8 +340,6 @@ const siteData = {
       imageSrc:
         UwaterlooIcon,
       
-      url: "/work/uwaterloo/",
-
       date: "09/2020 - 12/2020 ",
 
       description: [
@@ -374,8 +374,6 @@ const siteData = {
       imageSrc:
         KhazanahIcon,
       
-      url: "/work/khazanah/",
-
       date: "01/2020 - 04/2020 ",
 
       description: [
@@ -413,8 +411,6 @@ const siteData = {
       imageSrc:
         FordIcon,
      
-      url: "/work/ford/",
-
       date: "05/2019 - 08/2019 ",
 
       description: [
@@ -441,17 +437,15 @@ const siteData = {
   ],
 
 // About Section --------------
+// Credentials deliberately left out here - the Education and Publications
+// sections already cover them, so this section stays on the "why" and the person.
 aboutParaOne: {
-  en: "I am a robotics engineer with expertise in simulation development, narrowing the sim-to-real gap by creation of high-fidelity virtual environments to accelerate robotic testing and deployment. I am particularly passionate about reinforcement learning and imitation learning, exploring control strategies that enable safer, more human-like interactions.",
-          zh: "我是一名机器人工程师, 专精于仿真开发, 通过创建高保真虚拟环境缩小仿真到现实的差距, 加速机器人测试和部署。我热衷于强化学习和模仿学习, 探索能够实现更安全, 更人性化的交互控制策略。"
+  en: "Most of my work lives in simulation: building high-fidelity virtual environments that close the sim-to-real gap so robots can be tested and deployed long before the hardware is ready. I am especially drawn to reinforcement learning and imitation learning, and to control strategies that make robots safer and more natural to be around.",
+          zh: "我的工作大多围绕仿真展开: 构建高保真的虚拟环境, 缩小仿真与现实之间的差距, 让机器人在硬件就绪之前就能完成测试与部署。我尤其着迷于强化学习和模仿学习, 以及让机器人更安全, 与人相处更自然的控制策略。"
 },
 aboutParaTwo: {
-  en: "I am currently pursuing my Master's degree in Electrical Engineering at Stanford University. Previously, I earned my Bachelor's degree in Mechatronics Engineering from the University of Waterloo. I also conducted human-robot interaction research at the Active Robotics Interaction Lab under Dr. Yue Hu, with a publication on IEEE Robotics and Automation Letters.",
-          zh: "我在斯坦福大学攻读电子工程理学硕士学位。之前,我在滑铁卢大学获得了机电工程学士学位。我还在Hu Yue教授指导下的Active Interactive Robotics Lab进行了人机交互研究, 并在IEEE机器人与自动化快报 (IEEE Robotics and Automation Letters) 上发表了论文。"
-},
-aboutParaThree: {
-  en: "When I'm not building robots, you can find me hiking, playing my clarinet and accordion, or exploring new cuisines around the city.",
-          zh: "工作之余, 我喜欢去爬山, 吹黑管, 拉手风琴, 探索新的事物。"
+  en: "Away from the workstation, you will usually find me on a hiking trail or in the air with a flight lesson. I have been playing the clarinet and the accordion for years and still cannot decide which one is really mine. I am also a relentless eater, and I will happily cross the city for a dish I have never tried before.",
+          zh: "离开工位后, 我通常在山间徒步, 或者在天上练习飞行。黑管和手风琴我都吹拉了很多年, 至今也没想清楚哪一个才算是我真正的乐器。我还是个不折不扣的吃货, 愿意为了一道没吃过的菜横穿整座城市。"
 },
 
 nvidiaTime: {

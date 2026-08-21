@@ -21,15 +21,12 @@ const About = () => {
                 <br />
                 <br />
                 {getText(data.aboutParaTwo, language)}
-                <br />
-                <br />
-                {getText(data.aboutParaThree, language)}
               </p>
             </Fade>
           </div>
           <Fade bottom duration={1000} distance="20px">
             <div className="image-container">
-              <img src={selfImage} alt="Steven Feng" className="img-fluid" loading="lazy" />
+              <img src={selfImage} alt={getText(data.name, language)} className="img-fluid" loading="lazy" />
             </div>
           </Fade>
         </div>

@@ -40,7 +40,6 @@ const Education = () => {
                   heading={getText(school.title, language)}
                   paragraph={getText(school.para, language)}
                   imgUrl={school.imageSrc}
-                  projectLink={school.url}
                   setOpenModal={setOpenModal}
                   setId={setId}
                   type="education"

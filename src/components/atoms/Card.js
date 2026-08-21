@@ -9,7 +9,7 @@ const isVideoFile = (url) => {
   return videoExtensions.some(ext => url.toLowerCase().endsWith(ext));
 };
 
-const Card = ({id, heading, paragraph, imgUrl, projectLink, setOpenModal, setId, type = "project"}) => {
+const Card = ({id, heading, paragraph, imgUrl, setOpenModal, setId, type = "project"}) => {
   const { language } = useLanguage();
   const isVideo = isVideoFile(imgUrl);
   
