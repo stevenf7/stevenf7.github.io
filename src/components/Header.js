@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import Fade from "./animations/Fade";
@@ -9,6 +9,12 @@ import imgUrl from "../images/headerphoto2.webp";
 const Header = () => {
   const { language, getLanguageUrl } = useLanguage();
   const prefersReducedMotion = useReducedMotion();
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
   const specialtyWords = getText(data.heroSpecialties, language);
   const primarySpecialty = Array.isArray(specialtyWords)
     ? specialtyWords[0]
@@ -43,7 +49,7 @@ const Header = () => {
                   {getText({ en: "Focused on", zh: "深耕于" }, language)}{" "}
                 </span>
                 <strong className="hero-specialty">
-                  {prefersReducedMotion || !Array.isArray(specialtyWords) ? (
+                  {!hasMounted || prefersReducedMotion || !Array.isArray(specialtyWords) ? (
                     primarySpecialty
                   ) : (
                     <Typewriter

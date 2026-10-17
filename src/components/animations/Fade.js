@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 const Fade = ({
@@ -14,13 +14,18 @@ const Fade = ({
   ...props
 }) => {
   const prefersReducedMotion = useReducedMotion();
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   const normalizeSeconds = (value, fallback) => {
     if (typeof value !== "number" || Number.isNaN(value)) return fallback;
     return value > 10 ? value / 1000 : value;
   };
 
-  if (prefersReducedMotion) {
+  if (hasMounted && prefersReducedMotion) {
     return <>{children}</>;
   }
 

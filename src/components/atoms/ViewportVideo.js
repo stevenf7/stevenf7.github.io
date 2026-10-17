@@ -22,11 +22,17 @@ const ViewportVideo = ({
   const containerRef = useRef(null);
   const videoRef = useRef(null);
   const prefersReducedMotion = useReducedMotion();
+  const [hasMounted, setHasMounted] = useState(false);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  const shouldAutoPlay = Boolean(autoPlay && !prefersReducedMotion);
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  const reducedMotionActive = Boolean(hasMounted && prefersReducedMotion);
+  const shouldAutoPlay = Boolean(autoPlay && !reducedMotionActive);
 
   useEffect(() => {
     setHasError(false);
@@ -114,7 +120,7 @@ const ViewportVideo = ({
         muted
         loop
         playsInline
-        controls={controls || Boolean(prefersReducedMotion)}
+        controls={controls || reducedMotionActive}
         preload={shouldLoad ? "metadata" : "none"}
         disablePictureInPicture
         aria-label={alt || undefined}
