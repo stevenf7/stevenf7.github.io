@@ -34,7 +34,7 @@ body {
   background-color: #ffffff;
   color: #16202a;
   margin: 0;
-  padding: 20px 0 0 0;
+  padding: 0;
 }
 
 :focus-visible {
@@ -145,13 +145,13 @@ section h2,
 }
 
 .primary-btn {
-  background-color: #76b900;
-  color: #0b1400;
-  border: 1px solid #76b900;
+  background-color: #0f172a;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
 
   &:hover {
-    background-color: #88d108;
-    color: #0b1400;
+    background-color: #000000;
+    color: #ffffff;
   }
 }
 

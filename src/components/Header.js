@@ -33,12 +33,6 @@ const Header = () => {
         >
           <div className="hero-content">
             <Fade bottom distance="20px">
-              <p className="hero-eyebrow">
-                {getText(data.heroEyebrow, language)}
-              </p>
-            </Fade>
-
-            <Fade bottom distance="20px">
               <h1 className="hero-name">
                 {getText({ en: "Hi, I'm", zh: "你好，我是" }, language)}{" "}
                 {getText(data.name, language)}
@@ -48,7 +42,7 @@ const Header = () => {
             <Fade bottom distance="20px">
               <p className="hero-role-line">
                 <span>
-                  {getText({ en: "Focused on", zh: "深耕于" }, language)}{" "}
+                  {getText({ en: "I am a", zh: "我是一名" }, language)}{" "}
                 </span>
                 <strong className="hero-specialty">
                   {!hasMounted || !Array.isArray(specialtyWords) ? (
@@ -58,9 +52,9 @@ const Header = () => {
                       loop={0}
                       cursor
                       cursorStyle="_"
-                      typeSpeed={65}
-                      deleteSpeed={42}
-                      delaySpeed={1600}
+                      typeSpeed={70}
+                      deleteSpeed={50}
+                      delaySpeed={1200}
                       words={specialtyWords}
                     />
                   )}

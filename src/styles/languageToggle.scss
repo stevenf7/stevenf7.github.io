@@ -1,14 +1,19 @@
 .language-toggle {
   position: relative;
-  background: rgba(22, 32, 42, 0.06);
-  border: 1px solid rgba(22, 32, 42, 0.2);
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 999px;
   padding: 6px 12px;
-  color: #16202a;
+  color: #0f172a;
   font-size: 0.85rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    box-shadow 0.2s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -16,12 +21,13 @@
   height: 34px;
 
   &:hover {
-    background: rgba(22, 32, 42, 0.12);
-    border-color: rgba(22, 32, 42, 0.4);
+    background: rgba(255, 255, 255, 0.72);
+    border-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
   }
 
   .active-lang {
-    color: #16202a;
+    color: #0f172a;
     font-weight: 700;
   }
 

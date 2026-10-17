@@ -41,7 +41,6 @@ const Education = () => {
                 <Card
                   id={index}
                   heading={getText(school.title, language)}
-                  subtitle={school.date || ""}
                   paragraph={getText(school.para, language)}
                   imgUrl={school.imageSrc}
                   setOpenModal={setOpenModal}

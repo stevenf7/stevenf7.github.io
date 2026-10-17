@@ -94,18 +94,22 @@ const siteData = {
 
   heroSpecialties: {
     en: [
-      "Robotics Simulation Engineer",
-      "Isaac Sim & Isaac Lab Developer",
-      "Humanoid & Legged Robot Learning",
-      "OpenUSD & ROS 2 Digital Twins",
-      "Licensed Pilot & Drone Operator"
+      "Robotics Engineer",
+      "Pilot",
+      "Code Monkey",
+      "Accordionist",
+      "Simulation Developer",
+      "Student",
+      "Clarinetist",
+      "Firmware Developer"
     ],
     zh: [
-      "机器人仿真工程师",
-      "Isaac Sim 与 Isaac Lab 开发",
-      "人形与足式机器人学习",
-      "OpenUSD 与 ROS 2 数字孪生",
-      "持照飞行员与无人机飞手"
+      "机器人工程师",
+      "飞行员",
+      "程序猿",
+      "学生",
+      "单簧管演奏者",
+      "固件开发工程师"
     ]
   },
 
@@ -336,7 +340,7 @@ const siteData = {
     {
       media: "gr1ImitationVideo",
       type: "video",
-      category: { en: "Humanoid RL", zh: "人形学习" },
+      category: { en: "Humanoid IL", zh: "人形模仿学习" },
       title: {
         en: "GR1 humanoid robot imitation-learning policy",
         zh: "GR1 人形机器人模仿学习策略"
