@@ -13,7 +13,7 @@ import h1TrainVideo from "../images/nvidia/h1_Train.mp4"
 import carterOutdoorVideo from "../images/nvidia/Carter Outdoor.mp4"
 import clawVideo from "../images/nvidia/claw.mp4"
 import dextrousHandImage from "../images/nvidia/IMG_8301.webp"
-import frankaMoveitVideo from "../images/nvidia/Franka Moveit.mp4"
+import robotStackVideo from "../images/nvidia/Robot Stack2.mp4"
 
 // Helper function to detect if file is a video
 const isVideoFile = (url) => {
@@ -119,10 +119,9 @@ const Publications = () => {
       id: 8,
       title: "From URDF to USD: A Complete Pipeline for High-Fidelity ROS 2 Simulation in NVIDIA Isaac Sim",
       subtitle: "ROScon 2026",
-      imageSrc: frankaMoveitVideo,
+      imageSrc: robotStackVideo,
       projectLink: null,
-      type: "ROScon",
-      upcoming: true
+      type: "ROScon"
     },
     {
       id: 0,
@@ -289,15 +288,7 @@ const Publications = () => {
                     <div className="publication-type" data-type={publication.type}>{publication.type}</div>
                     <h3 className="header">{publication.title}</h3>
                     <h4 className="subtitle">{publication.subtitle}</h4>
-                    {publication.upcoming || !publication.projectLink ? (
-                      <button
-                        type="button"
-                        className="btn btn-upcoming"
-                        disabled
-                      >
-                        {getText({ en: "Upcoming", zh: "即将发表" }, language)}
-                      </button>
-                    ) : (
+                    {publication.projectLink && (
                       <button 
                         onClick={() => {
                           window.open(publication.projectLink, "_blank");
