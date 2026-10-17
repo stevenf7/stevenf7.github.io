@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useReducedMotion } from "framer-motion";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 
 const VIDEO_EXTENSIONS = [".mp4", ".webm", ".mov", ".avi"];
 
@@ -19,32 +18,49 @@ const ViewportVideo = ({
   fallbackText = "Video preview unavailable on this device",
   style,
 }) => {
-  const containerRef = useRef(null);
   const videoRef = useRef(null);
-  const prefersReducedMotion = useReducedMotion();
-  const [hasMounted, setHasMounted] = useState(false);
-  const [shouldLoad, setShouldLoad] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
+  const forcePlay = useCallback(
+    (videoElement) => {
+      const video = videoElement || videoRef.current;
+      if (!video || !autoPlay) return;
 
-  const reducedMotionActive = Boolean(hasMounted && prefersReducedMotion);
-  const shouldAutoPlay = Boolean(autoPlay && !reducedMotionActive);
+      video.defaultMuted = true;
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {
+          setTimeout(() => {
+            if (videoRef.current) {
+              videoRef.current.defaultMuted = true;
+              videoRef.current.muted = true;
+              videoRef.current.play().catch(() => {});
+            }
+          }, 120);
+        });
+      }
+    },
+    [autoPlay]
+  );
 
   useEffect(() => {
     setHasError(false);
   }, [src]);
 
   useEffect(() => {
-    if (typeof window === "undefined") return undefined;
+    const video = videoRef.current;
+    if (!video || hasError) return undefined;
 
-    const target = containerRef.current;
-    if (!target || typeof IntersectionObserver === "undefined") {
-      setShouldLoad(true);
-      setIsVisible(true);
+    forcePlay(video);
+
+    if (
+      typeof window === "undefined" ||
+      typeof IntersectionObserver === "undefined"
+    ) {
       return undefined;
     }
 
@@ -52,49 +68,26 @@ const ViewportVideo = ({
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setShouldLoad(true);
+            forcePlay(video);
           }
-          setIsVisible(entry.isIntersecting && entry.intersectionRatio >= 0.25);
         });
       },
       {
-        rootMargin: "240px 0px",
-        threshold: [0, 0.25, 0.6],
+        rootMargin: "300px 0px",
+        threshold: 0.1,
       }
     );
 
-    observer.observe(target);
+    observer.observe(video);
 
     return () => {
       observer.disconnect();
     };
-  }, []);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !shouldLoad || hasError) return;
-
-    video.muted = true;
-    video.loop = true;
-
-    if (isVisible && shouldAutoPlay) {
-      const playPromise = video.play();
-      if (playPromise && typeof playPromise.catch === "function") {
-        playPromise.catch(() => {});
-      }
-    } else {
-      try {
-        video.pause();
-      } catch (error) {
-        // Ignore browser media pause timing issues.
-      }
-    }
-  }, [hasError, isVisible, shouldAutoPlay, shouldLoad, src]);
+  }, [forcePlay, hasError, src]);
 
   if (hasError || !src) {
     return (
       <div
-        ref={containerRef}
         className={`${className} video-fallback`.trim()}
         role="img"
         aria-label={alt || fallbackText}
@@ -106,35 +99,30 @@ const ViewportVideo = ({
   }
 
   return (
-    <div
-      ref={containerRef}
-      className="viewport-video-shell"
-      style={{ width: "100%", height: "100%", ...style }}
-    >
-      <video
-        ref={videoRef}
-        className={className}
-        src={shouldLoad ? src : undefined}
-        poster={poster}
-        autoPlay={shouldAutoPlay && isVisible}
-        muted
-        loop
-        playsInline
-        controls={controls || reducedMotionActive}
-        preload={shouldLoad ? "metadata" : "none"}
-        disablePictureInPicture
-        aria-label={alt || undefined}
-        onLoadedData={(event) => {
-          if (isVisible && shouldAutoPlay) {
-            const playPromise = event.currentTarget.play();
-            if (playPromise && typeof playPromise.catch === "function") {
-              playPromise.catch(() => {});
-            }
-          }
-        }}
-        onError={() => setHasError(true)}
-      />
-    </div>
+    <video
+      ref={videoRef}
+      className={className}
+      src={src}
+      poster={poster}
+      autoPlay={autoPlay}
+      muted
+      loop
+      playsInline
+      controls={controls}
+      preload="metadata"
+      disablePictureInPicture
+      aria-label={alt || undefined}
+      style={style}
+      onLoadedMetadata={(event) => forcePlay(event.currentTarget)}
+      onLoadedData={(event) => forcePlay(event.currentTarget)}
+      onCanPlay={(event) => forcePlay(event.currentTarget)}
+      onEnded={(event) => {
+        const video = event.currentTarget;
+        video.currentTime = 0;
+        forcePlay(video);
+      }}
+      onError={() => setHasError(true)}
+    />
   );
 };
 

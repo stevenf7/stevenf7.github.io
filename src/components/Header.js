@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useReducedMotion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
 import Fade from "./animations/Fade";
 import { useLanguage } from "../contexts/LanguageContext";
@@ -8,7 +7,6 @@ import imgUrl from "../images/headerphoto2.webp";
 
 const Header = () => {
   const { language, getLanguageUrl } = useLanguage();
-  const prefersReducedMotion = useReducedMotion();
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
@@ -21,12 +19,16 @@ const Header = () => {
     : specialtyWords;
 
   return (
-    <section className="section" id="home" aria-label={getText(data.name, language)}>
+    <section
+      className="section"
+      id="home"
+      aria-label={getText(data.name, language)}
+    >
       <div className="container">
         <div
           className="header-wrapper"
           style={{
-            backgroundImage: `linear-gradient(180deg, rgba(10, 18, 28, 0.22) 0%, rgba(10, 18, 28, 0.52) 56%, rgba(10, 18, 28, 0.84) 100%), url(${imgUrl})`,
+            backgroundImage: `linear-gradient(to bottom, rgba(245, 246, 252, 0) 0%, rgba(10, 18, 28, 0.18) 58%, rgba(10, 18, 28, 0.72) 100%), url(${imgUrl})`,
           }}
         >
           <div className="hero-content">
@@ -49,7 +51,7 @@ const Header = () => {
                   {getText({ en: "Focused on", zh: "深耕于" }, language)}{" "}
                 </span>
                 <strong className="hero-specialty">
-                  {!hasMounted || prefersReducedMotion || !Array.isArray(specialtyWords) ? (
+                  {!hasMounted || !Array.isArray(specialtyWords) ? (
                     primarySpecialty
                   ) : (
                     <Typewriter

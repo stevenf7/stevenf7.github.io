@@ -89,8 +89,15 @@ section h2,
   padding: 3.5rem 0;
 
   &#home {
-    min-height: calc(100vh - 80px);
+    min-height: 100vh;
     padding: 0;
+    margin: 0;
+
+    > .container {
+      max-width: none;
+      width: 100%;
+      padding: 0;
+    }
   }
 }
 
@@ -190,18 +197,4 @@ video:not([controls])::-webkit-media-controls-panel,
 video:not([controls])::-webkit-media-controls-play-button,
 video:not([controls])::-webkit-media-controls-start-playback-button {
   display: none !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
 }

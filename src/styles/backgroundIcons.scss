@@ -40,9 +40,3 @@
     height: 30px;
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .wallpaper-icon {
-    animation: none !important;
-  }
-}

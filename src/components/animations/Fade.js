@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 
 const Fade = ({
   children,
@@ -13,21 +13,10 @@ const Fade = ({
   cascade = false,
   ...props
 }) => {
-  const prefersReducedMotion = useReducedMotion();
-  const [hasMounted, setHasMounted] = useState(false);
-
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
-
   const normalizeSeconds = (value, fallback) => {
     if (typeof value !== "number" || Number.isNaN(value)) return fallback;
     return value > 10 ? value / 1000 : value;
   };
-
-  if (hasMounted && prefersReducedMotion) {
-    return <>{children}</>;
-  }
 
   const parseDistance = (dist) => {
     if (typeof dist === "string" && dist.includes("px")) {
