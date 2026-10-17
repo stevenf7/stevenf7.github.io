@@ -1,62 +1,60 @@
 import React from "react";
+import ViewportVideo, { isVideoFile } from "./ViewportVideo";
 import { useLanguage } from "../../contexts/LanguageContext";
 import data, { getText } from "../../data";
 
-// Helper function to detect if file is a video
-const isVideoFile = (url) => {
-  if (!url) return false;
-  const videoExtensions = ['.webm', '.mp4', '.mov', '.avi'];
-  return videoExtensions.some(ext => url.toLowerCase().endsWith(ext));
-};
-
-const Card = ({id, heading, paragraph, imgUrl, setOpenModal, setId, type = "project"}) => {
+const Card = ({
+  id,
+  heading,
+  subtitle,
+  paragraph,
+  imgUrl,
+  setOpenModal,
+  setId,
+}) => {
   const { language } = useLanguage();
   const isVideo = isVideoFile(imgUrl);
-  
+
+  const openCardModal = () => {
+    setId(id);
+    setOpenModal(true);
+  };
+
   return (
-   
-    <div className="card">
-      {isVideo ? (
-        // Video background
-        <div className="background-video">
-          <video
-            className="background-video-element"
+    <article className="card">
+      <div className="card-media" aria-hidden="true">
+        {isVideo ? (
+          <ViewportVideo
             src={imgUrl}
-            autoPlay
-            muted
-            loop
-            playsInline
-            loading="lazy"
-            preload="metadata"
+            alt={heading}
+            className="card-media-element"
           />
-          <div className="video-overlay" />
-        </div>
-      ) : (
-        // Image background
-        <div 
-          className="background-image"
-          style={{
-            backgroundImage: "linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(0, 0, 0, 0.2)),url(" + imgUrl + ")"
-          }}
-        />
-      )}
-      <div className="content">
-        <h1 className="header">{heading}</h1>
-        <p className="text" dangerouslySetInnerHTML={{ __html: paragraph }}></p>
-
-        <button 
-          onClick= {()=>{
-            setOpenModal(true);
-            setId(id);
-          }}
-          type="button" className="btn"> {getText(data.buttons.explore, language)}
-        </button>
-        
+        ) : (
+          <img
+            src={imgUrl}
+            alt=""
+            className="card-media-element card-logo-image"
+            loading="lazy"
+          />
+        )}
       </div>
-      
-    </div>
-    
-  )
-}
 
-export default Card
+      <div className="content">
+        {subtitle && <p className="card-meta">{subtitle}</p>}
+        <h3 className="header">{heading}</h3>
+        <p className="text">{paragraph}</p>
+
+        <button
+          onClick={openCardModal}
+          type="button"
+          className="btn"
+          aria-label={`${getText(data.buttons.explore, language)}: ${heading}`}
+        >
+          {getText(data.buttons.explore, language)}
+        </button>
+      </div>
+    </article>
+  );
+};
+
+export default Card;

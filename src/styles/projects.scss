@@ -1,413 +1,145 @@
-@import "include-media.scss";
-
 .project-wrapper {
-    width: 100%;
-    max-width: 1000px; /* Ensure it doesn't exceed 1000px */
-    margin: 0.5rem auto 0; /* Standardized spacing to match Education section */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    flex-direction: column;
-    font-family: "Montserrat", sans-serif !important;
-    padding: 0 32px; /* Add horizontal padding to ensure spacing from edges */
-    
-    /* Add mobile horizontal padding */
-    @media (max-width: 768px) {
-      padding: 0 24px; /* Reduced padding on mobile */
-    }
-    @media (max-width: 480px) {
-      padding: 0 20px; /* Further reduced padding on small screens */
-    }
-    @media (max-width: 360px) {
-      padding: 0 16px; /* Minimal padding on very small screens */
-    }
-            .masterCarousel{
-        width: 100%;
-        margin: 0 auto;
-        border-radius: 12px !important; /* Reduced from 15px (80% of original) */
-        overflow: hidden !important;
-        
-        // Force custom slide transitions
-        &.carousel.slide .carousel-item {
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-        }
-        
-        // Force touch events to work properly
-        touch-action: pan-y pinch-zoom;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        
-        // Optimize for mobile performance
-        @media (max-width: 768px) {
-          // Ensure touch interactions work
-          touch-action: manipulation;
-          -webkit-touch-callout: none;
-          -webkit-tap-highlight-color: transparent;
-          
-          // Hide indicators on mobile for cleaner look
-          .carousel-indicators {
-            display: none !important;
-          }
-        }
-        
-        // Add responsive height for carousel with 16:9 aspect ratio (same as NVIDIA)
-        .carousel-inner {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%; // 9/16 = 0.5625 = 56.25% for 16:9 aspect ratio (less boxy)
-            border-radius: 12px !important; /* Reduced from 15px (80% of original) */
-            overflow: hidden !important;
-            
-            // Phone portrait: switch to 1:1 aspect ratio for better visibility
-            @media (max-width: 480px) and (orientation: portrait) {
-              padding-top: 100%;
-            }
-            
-            // Enable smooth hardware acceleration for better performance
-            transform: translateZ(0);
-            backface-visibility: hidden;
-        
-            // Override Bootstrap's default carousel transition
-            .carousel-item {
-              transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-            }
-        }
-        
-        // Ensure all carousel items have the same height and positioning  
-        .carousel-item {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 15px !important;
-            overflow: hidden !important;
-            
-            // Smooth sliding transitions ✨
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-            transform: translateZ(0);
-            backface-visibility: hidden;
-            will-change: transform;
-            
-            // Sliding animations for React Bootstrap
-            &.carousel-item-next:not(.carousel-item-start) {
-                transform: translateX(100%);
-            }
-            
-            &.carousel-item-prev:not(.carousel-item-end) {
-                transform: translateX(-100%);
-            }
-            
-            &.carousel-item-next.carousel-item-start,
-            &.carousel-item-prev.carousel-item-end {
-                transform: translateX(0);
-            }
-            
-            &.carousel-item-start {
-                transform: translateX(-100%);
-            }
-            
-            &.carousel-item-end {
-                transform: translateX(100%);
-            }
-            
-            // Enhanced performance for mobile
-            @media (max-width: 768px) {
-                transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-            }
-            
-            img {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover; // Changed back to cover for better visual consistency
-                background-color: #f5f5f5; // Light background for images that don't fill the space
-                border-radius: 15px !important;
-            }
-            
-            .video-container {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: #f5f5f5;
-                border-radius: 15px !important;
-                overflow: hidden;
-                
-                video {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    border-radius: 15px !important;
-                }
-            }
-            
-            video {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                background-color: #f5f5f5;
-                border-radius: 15px !important;
-            }
-        }
-        
-        &:hover .carouselCaption{
-            opacity: 1;
-        }
-        .carouselCaption{
-            font-family: "Montserrat", sans-serif !important;
-            cursor: pointer;
-            padding: 24px 28px;
-            opacity: 0;
-            transition: opacity 500ms ease-in-out;
-            
-            // Enhanced frosted glass effect with better contrast
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            
-            border-radius: 15px;
-            bottom: 6%;
-            text-align: center;
-            
-            // Desktop: 2/3 width, centered
-            @media (min-width: 769px) {
-                left: 50%;
-                transform: translateX(-50%);
-                right: auto;
-                width: 66.67%;
-                // max-width removed - let it use full 2/3 of container (up to 1000px naturally)
-                margin: 0;
-            }
-            
-            // Mobile: full width with reduced padding
-            @media (max-width: 768px) {
-                left: 0;
-                right: 0;
-                margin: 0 20px;
-                padding: 12px 16px; // Reduced from 24px 28px
-            }
-            
-            // Extra small phones: even smaller padding
-            @media (max-width: 480px) {
-                margin: 0 15px;
-                padding: 8px 12px; // More aggressive reduction for small screens
-            }
-            h3{
-                font-size: 1.5rem;
-                line-height: 1.3;
-                margin-bottom: 8px;
-                color: rgba(255, 255, 255, 0.98);
-                font-weight: 600;
-                text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.9);
-                @include media(">=phone", "<lgphone") {
-                    font-size: 10px;
-                    line-height: 10px;
-                  }
-                  @include media(">=lgphone", "<tablet") {
-                    font-size: 14px;
-                    line-height: 14px;
-                  }
-                  @include media(">=tablet", "<desktop") {
-                    font-size: 18px;
-                    line-height: 18px;
-                  }
-            }
-        
-            p{
-                font-size: 0.9rem;
-                line-height: 1.4;
-                margin-bottom: 15px;
-                color: rgba(255, 255, 255, 0.92);
-                font-weight: 400;
-                text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.8);
-                @include media(">=phone", "<lgphone") {
-                    font-size: 0px;
-                    line-height: 0px;
-                    display: none;
-                  }
-        
-                  @include media(">=lgphone", "<tablet") {
-                    font-size: 8px;
-                    line-height: 8px;
-                    display: none;
-                  }
-                  @include media(">=tablet", "<desktop") {
-                    font-size: 12px;
-                    line-height: 12px;
-                }
-            }
+  width: 100%;
+  max-width: 1000px;
+  margin: 0.75rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0;
+}
 
-            h4{
-                font-size: 1.1rem;
-                line-height: 1.3;
-                font-style: oblique;
-                margin-bottom: 10px;
-                color: rgba(255, 255, 255, 0.95);
-                font-weight: 500;
-                text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.8);
-                @include media(">=phone", "<lgphone") {
-                    font-size: 7px;
-                    line-height: 7px;
-                    
-                  }
-        
-                  @include media(">=lgphone", "<tablet") {
-                    font-size: 9px;
-                    line-height: 9px;
-                  }
-                  @include media(">=tablet", "<desktop") {
-                    font-size: 12px;
-                    line-height: 12px;
-                }
-            }
+.projects-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.35rem;
+  align-items: stretch;
 
-            .btn {
-                margin: 0 8px;
-                padding: 6px 16px;
-                background-color: rgba(255, 255, 255, 0.95);
-                color: #333;
-                border: 1px solid rgba(255, 255, 255, 0.8);
-                border-radius: 4px;
-                transition: all 0.3s ease;
-                font-size: 0.85rem;
-                font-weight: 600;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-                
-                &:hover {
-                  background-color: rgba(255, 255, 255, 1);
-                  transform: translateY(-1px);
-                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-                }
-                @include media(">=phone", "<lgphone") {
-                    font-size: 7px;
-                    line-height: 7px;
-                    padding: 4px 12px;
-                  }
-        
-                  @include media(">=lgphone", "<tablet") {
-                    font-size: 8px;
-                    line-height: 8px;
-                    padding: 5px 14px;
-                  }
-                  @include media(">=tablet", "<desktop") {
-                    font-size: 12px;
-                    line-height: 12px;
-                    padding: 6px 16px;
-                }
-              }
-          
-        }
-    }
-
-    h2{
-        text-align: center;
-        font-size: 2.4rem; /* Match other sections instead of 3rem */
-        line-height: 1.2; /* Match other sections */
-        margin-bottom: 1rem; /* Standardized header bottom spacing */
-        margin-top: 3rem; /* Standardized 3rem spacing from previous section */
-        white-space: normal;
-    }
-    
-    /* Responsive header sizing to match other sections */
-    @media (max-width: 992px) {
-      h2 {
-        font-size: 2.5rem; /* Match Work and Education */
-      }
-    }
-    
-    @media (max-width: 768px) {
-      h2 {
-        font-size: 2.2rem; /* Match Work and Education */
-      }
-    }
-    
-    @media (max-width: 480px) {
-      h2 {
-        font-size: 2rem; /* Match Work and Education */
-      }
-    }
-
-
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-// Responsive behavior now handled by 16:9 aspect ratio (matching NVIDIA carousel)
-// Automatically scales proportionally on all devices - no fixed heights for consistency
-// Both carousels maintain identical 16:9 aspect ratio for modern, less boxy appearance
-
-// Hide Safari media controls that cause button failed to load errors
-video::-webkit-media-controls {
-  display: none !important;
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 }
 
-video::-webkit-media-controls-panel {
-  display: none !important;
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(22, 32, 42, 0.12);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
 }
 
-video::-webkit-media-controls-play-button {
-  display: none !important;
+.project-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: #0f172a;
+  overflow: hidden;
 }
 
-video::-webkit-media-controls-start-playback-button {
-  display: none !important;
+.project-media-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-video::-webkit-media-controls-pause-button {
-  display: none !important;
+.project-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  padding: 0.28rem 0.68rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.84);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
-video::-webkit-media-controls-volume-slider {
-  display: none !important;
+.project-body {
+  padding: 1.15rem 1.2rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.55rem;
+
+  h3 {
+    margin: 0;
+    font-size: 1.12rem;
+    line-height: 1.32;
+    font-weight: 700;
+    color: #16202a;
+    text-align: left;
+  }
+
+  .project-subtitle {
+    margin: 0;
+    font-size: 0.86rem;
+    line-height: 1.4;
+    font-weight: 600;
+    color: #2563eb;
+    text-align: left;
+  }
+
+  .project-description {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: #364152;
+    text-align: left;
+  }
 }
 
-video::-webkit-media-controls-mute-button {
-  display: none !important;
+.project-links {
+  margin-top: auto;
+  padding-top: 0.55rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
 }
 
-video::-webkit-media-controls-fullscreen-button {
-  display: none !important;
+.project-link-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.9rem;
+  border-radius: 10px;
+  background: #16202a;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    background: #2b3d4f;
+    color: #ffffff;
+    transform: translateY(-1px);
+  }
 }
 
-video::-webkit-media-controls-rewind-button {
-  display: none !important;
+.projects-toggle-wrap {
+  display: flex;
+  justify-content: center;
 }
 
-video::-webkit-media-controls-return-to-realtime-button {
-  display: none !important;
+.projects-toggle-btn {
+  padding: 0.78rem 1.35rem;
+  border-radius: 999px;
+  border: 1px solid #16202a;
+  background: #ffffff;
+  color: #16202a;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background: #16202a;
+    color: #ffffff;
+  }
 }
-
-video::-webkit-media-controls-timeline {
-  display: none !important;
-}
-
-video::-webkit-media-controls-current-time-display {
-  display: none !important;
-}
-
-video::-webkit-media-controls-time-remaining-display {
-  display: none !important;
-}
-
-video::-webkit-media-controls-airplay-button {
-  display: none !important;
-}
-
-video::-webkit-media-controls-picture-in-picture-button {
-  display: none !important;
-}
-
-

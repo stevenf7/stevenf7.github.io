@@ -63,7 +63,11 @@ body.modal-open {
   transform: translate(-50%, -50%);
   z-index: 10000;
   overflow-y: auto;
-  outline: none;
+
+  &:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 2px;
+  }
 
   animation: modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   transform-origin: center;
@@ -227,7 +231,8 @@ body.modal-open {
   padding: 18px 0 16px;
   animation: contentFadeIn 0.5s ease-out 0.1s both;
 
-  h1 {
+  h1,
+  h2 {
     margin: 0;
     font-size: 2rem;
     line-height: 1.25;

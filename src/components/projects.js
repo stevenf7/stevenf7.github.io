@@ -1,148 +1,134 @@
-import React, { useState, useEffect } from "react"
-import Fade from "./animations/Fade"
-import { Carousel } from "react-bootstrap"
-import { useLanguage } from "../contexts/LanguageContext"
-import data, { getText } from "../data"
-import "../styles/projects.scss"
+import React, { useState } from "react";
+import Fade from "./animations/Fade";
+import ViewportVideo from "./atoms/ViewportVideo";
+import { useLanguage } from "../contexts/LanguageContext";
+import data, { getText } from "../data";
+import "../styles/projects.scss";
 
-import airplaneImage from "../images/ProjectPhotos/airplane.webp"
-import watoImage from "../images/ProjectPhotos/Wato.webp"
-import hisecurityImage from "../images/ProjectPhotos/HiSecurity2.webp"
-import pilotImg from "../images/ProjectPhotos/Pilot.webp"
-import vexImg from "../images/ProjectPhotos/VEX.webp"
-import wearableImg from "../images/ProjectPhotos/wearableHacks.webp"
-import webappImg from "../images/ProjectPhotos/WebappProjects.webp"
-import mte380Img from "../images/ProjectPhotos/mte380.webp"
-import capstoneVideo from "../images/ProjectPhotos/capstone.mp4"
+import airplaneImage from "../images/ProjectPhotos/airplane.webp";
+import watoImage from "../images/ProjectPhotos/Wato.webp";
+import hisecurityImage from "../images/ProjectPhotos/HiSecurity2.webp";
+import pilotImg from "../images/ProjectPhotos/Pilot.webp";
+import vexImg from "../images/ProjectPhotos/VEX.webp";
+import wearableImg from "../images/ProjectPhotos/wearableHacks.webp";
+import webappImg from "../images/ProjectPhotos/WebappProjects.webp";
+import mte380Img from "../images/ProjectPhotos/mte380.webp";
+import capstoneVideo from "../images/ProjectPhotos/capstone.mp4";
+
+const MEDIA_MAP = {
+  airplaneImage,
+  watoImage,
+  capstoneVideo,
+  webappImg,
+  wearableImg,
+  mte380Img,
+  hisecurityImage,
+  vexImg,
+  pilotImg,
+};
 
 const Project = () => {
   const { language } = useLanguage();
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
-  // Media mapping for carousel items
-  const mediaMap = {
-    airplaneImage,
-    watoImage,
-    capstoneVideo,
-    webappImg,
-    wearableImg,
-    mte380Img,
-    hisecurityImage,
-    vexImg,
-    pilotImg
-  };
-
-  // Get carousel items from data with translated content
-  const carouselItems = data.projectsCarouselItems.map(item => ({
+  const projectItems = data.projectsCarouselItems.map((item) => ({
     ...item,
-    media: mediaMap[item.media],
+    media: MEDIA_MAP[item.media],
+    tag: getText(item.tag, language),
     title: getText(item.title, language),
     subtitle: getText(item.subtitle, language),
     description: getText(item.description, language),
-    buttons: item.buttons.map(btn => ({
+    buttons: item.buttons.map((btn) => ({
       ...btn,
-      text: getText(btn.text, language)
-    }))
+      text: getText(btn.text, language),
+    })),
   }));
 
-  // Detect mobile device
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    
-    checkMobile();
-    try {
-      window.addEventListener('resize', checkMobile);
-    } catch (error) {
-      console.warn('Error adding resize listener:', error);
-    }
-    
-    return () => {
-      try {
-        window.removeEventListener('resize', checkMobile);
-      } catch (error) {
-        console.warn('Error removing resize listener:', error);
-      }
-    };
-  }, []);
-
-  // Handle carousel selection
-  const handleCarouselSelect = (selectedIndex) => {
-    console.log(`Projects carousel select: ${selectedIndex}, isMobile: ${isMobile}`);
-    try {
-      setActiveIndex(selectedIndex);
-    } catch (error) {
-      console.error('Error in projects carousel selection:', error);
-    }
-  };
+  const featuredProjects = projectItems.filter((item) => item.featured);
+  const additionalProjects = projectItems.filter((item) => !item.featured);
+  const visibleProjects = showAllProjects
+    ? projectItems
+    : featuredProjects;
 
   return (
-    <div className="section" id="projects">
+    <section className="section" id="projects" aria-labelledby="projects-heading">
       <div className="container">
-        <Fade bottom cascade distance="20px">
-          <h1>{getText(data.sections.projects, language)}</h1>
+        <Fade bottom distance="20px">
+          <h2 id="projects-heading">{getText(data.sections.projects, language)}</h2>
         </Fade>
-        <div className="project-wrapper">
-          <Carousel 
-            className="masterCarousel" 
-            activeIndex={activeIndex}
-            onSelect={handleCarouselSelect}
-            touch={true} 
-            interval={3000}
-            indicators={!isMobile} // Hide indicators on mobile
-            controls={true}
-            keyboard={false}
-            slide={true}
-            wrap={true}
-            variant="dark"
-          >
-              {carouselItems.map((item, index) => (
-                <Carousel.Item key={index}>
-                  {item.type === 'video' ? (
-                    <div className="video-container">
-                      <video
-                        className="d-block"
-                        src={item.media}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        loading="lazy"
-                        preload="metadata"
-                      />
-                    </div>
-                  ) : (
-                    <img
-                      className="d-block w-100"
-                      src={item.media}
-                      alt={item.title}
-                      loading="lazy"
-                    />
-                  )}
-                  <Carousel.Caption className="carouselCaption">
-                    <h3>{item.title}</h3>
-                    <h4>{item.subtitle}</h4>
-                    <p>{item.description}</p>
-                    {item.buttons.map((button, buttonIndex) => (
-                      <button
-                        key={buttonIndex}
-                        onClick={() => window.open(button.url)}
-                        type="button"
-                        className="btn"
-                      >
-                        {button.text}
-                      </button>
-                    ))}
-                  </Carousel.Caption>
-                </Carousel.Item>
-              ))}
-            </Carousel>
-          </div>
-        </div>
-    </div>
-  )
-}
 
-export default Project
+        <div className="project-wrapper">
+          <div className="projects-grid">
+            {visibleProjects.map((item) => (
+              <Fade bottom distance="20px" key={item.title}>
+                <article className="project-card">
+                  <div className="project-media">
+                    {item.type === "video" ? (
+                      <ViewportVideo
+                        src={item.media}
+                        alt={item.title}
+                        className="project-media-element"
+                      />
+                    ) : (
+                      <img
+                        src={item.media}
+                        alt={item.title}
+                        className="project-media-element"
+                        loading="lazy"
+                      />
+                    )}
+                    {item.tag && <span className="project-tag">{item.tag}</span>}
+                  </div>
+
+                  <div className="project-body">
+                    <h3>{item.title}</h3>
+                    {item.subtitle && (
+                      <p className="project-subtitle">{item.subtitle}</p>
+                    )}
+                    <p className="project-description">{item.description}</p>
+
+                    {item.buttons.length > 0 && (
+                      <div className="project-links">
+                        {item.buttons.map((button) => (
+                          <a
+                            key={button.url}
+                            href={button.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="project-link-btn"
+                          >
+                            {button.text}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </article>
+              </Fade>
+            ))}
+          </div>
+
+          {additionalProjects.length > 0 && (
+            <div className="projects-toggle-wrap">
+              <button
+                type="button"
+                className="projects-toggle-btn"
+                aria-expanded={showAllProjects}
+                onClick={() => setShowAllProjects((prev) => !prev)}
+              >
+                {getText(
+                  showAllProjects
+                    ? data.buttons.showFewerProjects
+                    : data.buttons.viewAllProjects,
+                  language
+                )}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Project;

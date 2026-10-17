@@ -1,18 +1,12 @@
-/**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
-
 import React, { useContext } from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 import { LanguageContext } from "../contexts/LanguageContext"
 import { getText } from "../data"
+import socialPreviewImage from "../images/SelfPhoto4.jpg"
 
-function SEO({ description = ``, lang, meta = [], title }) {
+function SEO({ description = ``, lang, meta = [], pathname = `/`, title }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -20,26 +14,29 @@ function SEO({ description = ``, lang, meta = [], title }) {
           siteMetadata {
             description
             author
+            siteUrl
           }
         }
       }
     `
   )
 
-  // Read language from context when available; fall back to `lang` prop or `en`.
-  // Using useContext directly (instead of useLanguage) avoids throwing when SEO
-  // is rendered outside of a LanguageProvider (e.g. during SSR of 404 pages).
   const languageContext = useContext(LanguageContext)
   const activeLanguage = languageContext?.language || lang || `en`
 
-  // Support either a plain string or a { en, zh } translations object for
-  // title / description so pages can pass multi-language values.
   const resolvedTitle = getText(title, activeLanguage)
   const resolvedDescription =
     getText(description, activeLanguage) || site.siteMetadata.description
 
-  // Intentionally no `titleTemplate` — pages provide the full translated
-  // title so we don't append a hard-coded English suffix from siteMetadata.
+  const siteUrl = (
+    site.siteMetadata?.siteUrl || `https://stevenf7.github.io`
+  ).replace(/\/$/, ``)
+  const normalizedPath = pathname.startsWith(`/`) ? pathname : `/${pathname}`
+  const canonicalUrl = `${siteUrl}${normalizedPath}`
+  const zhAlternateUrl = `${canonicalUrl}?lang=zh`
+  const socialImageUrl = socialPreviewImage.startsWith(`http`)
+    ? socialPreviewImage
+    : `${siteUrl}${socialPreviewImage}`
 
   return (
     <Helmet
@@ -47,6 +44,27 @@ function SEO({ description = ``, lang, meta = [], title }) {
         lang: activeLanguage,
       }}
       title={resolvedTitle}
+      link={[
+        {
+          rel: `canonical`,
+          href: activeLanguage === `zh` ? zhAlternateUrl : canonicalUrl,
+        },
+        {
+          rel: `alternate`,
+          hrefLang: `en`,
+          href: canonicalUrl,
+        },
+        {
+          rel: `alternate`,
+          hrefLang: `zh`,
+          href: zhAlternateUrl,
+        },
+        {
+          rel: `alternate`,
+          hrefLang: `x-default`,
+          href: canonicalUrl,
+        },
+      ]}
       meta={[
         {
           name: `description`,
@@ -61,6 +79,18 @@ function SEO({ description = ``, lang, meta = [], title }) {
           content: resolvedDescription,
         },
         {
+          property: `og:url`,
+          content: activeLanguage === `zh` ? zhAlternateUrl : canonicalUrl,
+        },
+        {
+          property: `og:image`,
+          content: socialImageUrl,
+        },
+        {
+          property: `og:image:alt`,
+          content: resolvedTitle,
+        },
+        {
           property: `og:locale`,
           content: activeLanguage === `zh` ? `zh_CN` : `en_US`,
         },
@@ -70,7 +100,7 @@ function SEO({ description = ``, lang, meta = [], title }) {
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
           name: `twitter:creator`,
@@ -84,33 +114,24 @@ function SEO({ description = ``, lang, meta = [], title }) {
           name: `twitter:description`,
           content: resolvedDescription,
         },
-        // Safari-specific optimizations
+        {
+          name: `twitter:image`,
+          content: socialImageUrl,
+        },
         {
           name: `format-detection`,
           content: `telephone=no`,
         },
-        {
-          name: `mobile-web-app-capable`,
-          content: `yes`,
-        },
-        {
-          name: `apple-mobile-web-app-status-bar-style`,
-          content: `default`,
-        },
-        // Removed preload for Google Fonts to avoid potential conflicts
       ].concat(meta)}
-    >
-      {/* Safari font optimization removed - causing conflicts */}
-    </Helmet>
+    />
   )
 }
-
-// Default props removed - using JavaScript default parameters instead
 
 SEO.propTypes = {
   description: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
+  pathname: PropTypes.string,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
 }
 

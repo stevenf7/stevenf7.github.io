@@ -1,42 +1,53 @@
-import React from "react"
-import LanguageToggle from "./LanguageToggle"
-import { useLanguage } from "../contexts/LanguageContext"
-import data, { getText } from "../data"
+import React from "react";
+import LanguageToggle from "./LanguageToggle";
+import { useLanguage } from "../contexts/LanguageContext";
+import data, { getText } from "../data";
 
 const Navbar = () => {
   const { language, getLanguageUrl } = useLanguage();
-  let resumelink = getLanguageUrl(language, "/resume");
-  
+  const resumeHref = getLanguageUrl(language, "/resume");
+
+  const navItems = [
+    { key: "home", label: data.nav.home, hash: "#home" },
+    { key: "nvidia", label: data.nav.nvidia, hash: "#nvidia" },
+    { key: "publications", label: data.nav.publications, hash: "#publications" },
+    { key: "work", label: data.nav.work, hash: "#work" },
+    { key: "projects", label: data.nav.projects, hash: "#projects" },
+    { key: "education", label: data.nav.education, hash: "#education" },
+    { key: "contact", label: data.nav.contact, hash: "#contact" },
+  ];
+
   return (
-    <div className="section">
+    <header className="site-header">
       <div className="container">
-        <div className="navbar-wrapper">
+        <nav
+          className="navbar-wrapper"
+          aria-label={language === "zh" ? "主导航" : "Primary navigation"}
+        >
           <div className="left-nav">
-            <button 
-              onClick= {event =>  window.location.href=resumelink } 
-              type="button" className="btn">
+            <a href={resumeHref} className="nav-link resume-nav-link">
               {getText(data.nav.resume, language)}
-            </button>
+            </a>
           </div>
-          
+
           <div className="center-nav">
             <div className="links-wrapper">
-              <button onClick= {event =>  window.location.href=getLanguageUrl(language, '/') + '#home'} type="button">
-                {getText(data.nav.home, language)}
-              </button>
-              <button onClick= {event =>  window.location.href=getLanguageUrl(language, '/') + '#nvidia'} type="button">
-                {getText(data.nav.work, language)}
-              </button>
-              <button onClick= {event =>  window.location.href=getLanguageUrl(language, '/') + '#contact'} type="button">
-                {getText(data.nav.contact, language)}
-              </button>
+              {navItems.map((item) => (
+                <a
+                  key={item.key}
+                  href={getLanguageUrl(language, "/", item.hash)}
+                  className="nav-link"
+                >
+                  {getText(item.label, language)}
+                </a>
+              ))}
               <LanguageToggle />
             </div>
           </div>
-        </div>
+        </nav>
       </div>
-    </div>
-  )
-}
+    </header>
+  );
+};
 
-export default Navbar
+export default Navbar;

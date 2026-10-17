@@ -1,296 +1,187 @@
-import React, { useEffect, useState, useRef, useCallback, useMemo } from 'react';
-import '../styles/backgroundIcons.scss';
+import React, { useEffect, useState, useRef, useCallback, useMemo } from "react";
+import "../styles/backgroundIcons.scss";
 
-// Import all background icons
-import robot from '../images/backgroundIcons/robot.svg';
-import aerial from '../images/backgroundIcons/aerial.svg';
-import hand1 from '../images/backgroundIcons/hand1.svg';
-import hand2 from '../images/backgroundIcons/hand2.svg';
-import hand3 from '../images/backgroundIcons/hand3.svg';
-import pet from '../images/backgroundIcons/pet.svg';
-import computer from '../images/backgroundIcons/computer.svg';
-import rover1 from '../images/backgroundIcons/rover1.svg';
-import rover2 from '../images/backgroundIcons/rover2.svg';
-import arms from '../images/backgroundIcons/arms.svg';
-import robot2 from '../images/backgroundIcons/robot2.svg';
-import arm from '../images/backgroundIcons/arm.svg';
-// Import newly added icons
-import industry from '../images/backgroundIcons/industry.svg';
-import aiResearch from '../images/backgroundIcons/ai-research.svg';
-import aiSophia from '../images/backgroundIcons/ai-sophia.svg';
-import ai from '../images/backgroundIcons/ai.svg';
-import robotAlien from '../images/backgroundIcons/robot-alien.svg';
-import aerialImaging from '../images/backgroundIcons/aerial-imaging.svg';
-import artificialIntelligence from '../images/backgroundIcons/artificial-intelligence.svg';
-import robot3 from '../images/backgroundIcons/robot3.svg';
-import petRobot from '../images/backgroundIcons/pet-robot.svg';
-import robot4 from '../images/backgroundIcons/robot4.png';
-import robot5 from '../images/backgroundIcons/robot5.png';
-import robotAssistant from '../images/backgroundIcons/robot-assistant.png';
-import dummy from '../images/backgroundIcons/dummy.svg';
-import robot6 from '../images/backgroundIcons/robot6.svg';
+import robot from "../images/backgroundIcons/robot.svg";
+import aerial from "../images/backgroundIcons/aerial.svg";
+import hand1 from "../images/backgroundIcons/hand1.svg";
+import hand2 from "../images/backgroundIcons/hand2.svg";
+import hand3 from "../images/backgroundIcons/hand3.svg";
+import pet from "../images/backgroundIcons/pet.svg";
+import computer from "../images/backgroundIcons/computer.svg";
+import rover1 from "../images/backgroundIcons/rover1.svg";
+import rover2 from "../images/backgroundIcons/rover2.svg";
+import arms from "../images/backgroundIcons/arms.svg";
+import robot2 from "../images/backgroundIcons/robot2.svg";
+import arm from "../images/backgroundIcons/arm.svg";
+import industry from "../images/backgroundIcons/industry.svg";
+import aiResearch from "../images/backgroundIcons/ai-research.svg";
+import aiSophia from "../images/backgroundIcons/ai-sophia.svg";
+import ai from "../images/backgroundIcons/ai.svg";
+import robotAlien from "../images/backgroundIcons/robot-alien.svg";
+import aerialImaging from "../images/backgroundIcons/aerial-imaging.svg";
+import artificialIntelligence from "../images/backgroundIcons/artificial-intelligence.svg";
+import robot3 from "../images/backgroundIcons/robot3.svg";
+import petRobot from "../images/backgroundIcons/pet-robot.svg";
+import robot4 from "../images/backgroundIcons/robot4.png";
+import robot5 from "../images/backgroundIcons/robot5.png";
+import robotAssistant from "../images/backgroundIcons/robot-assistant.png";
+import dummy from "../images/backgroundIcons/dummy.svg";
+import robot6 from "../images/backgroundIcons/robot6.svg";
 
 const BackgroundIcons = () => {
   const [icons, setIcons] = useState([]);
   const [isMobile, setIsMobile] = useState(false);
   const resizeTimeout = useRef(null);
-  const generatedGrid = useRef(false);
-  const lastGridSize = useRef(0);
+  const lastViewportKey = useRef("");
 
-  // Handle mobile detection separately to avoid infinite loops
-  useEffect(() => {
-    const checkMobile = () => {
-      if (typeof window !== 'undefined') {
-        setIsMobile(window.innerWidth <= 768);
-      }
-    };
+  const allIcons = useMemo(
+    () => [
+      robot,
+      aerial,
+      hand1,
+      hand2,
+      hand3,
+      pet,
+      computer,
+      rover1,
+      rover2,
+      arms,
+      robot2,
+      arm,
+      industry,
+      aiResearch,
+      aiSophia,
+      ai,
+      robotAlien,
+      aerialImaging,
+      artificialIntelligence,
+      robot3,
+      petRobot,
+      robot4,
+      robot5,
+      robotAssistant,
+      dummy,
+      robot6,
+    ],
+    []
+  );
 
-    checkMobile();
-        try {
-      window.addEventListener('resize', checkMobile);
-    } catch (error) {
-      console.warn('Error adding resize listener:', error);
-    }
-    
-    return () => {
-      try {
-        window.removeEventListener('resize', checkMobile);
-      } catch (error) {
-        console.warn('Error removing resize listener:', error);
-      }
-    };
-  }, []);
-
-  
-  // All available icons - memoized to prevent useCallback dependency changes
-  const allIcons = useMemo(() => [
-    robot, aerial, hand1, hand2, hand3, pet, computer, rover1, rover2, arms, robot2, arm,
-    // Add newly imported icons
-    industry, aiResearch, aiSophia, ai, robotAlien, aerialImaging, artificialIntelligence, 
-    robot3, petRobot, robot4, robot5, robotAssistant, dummy, robot6
-  ], []);
-
-  // Helper function to compute header height - simplified to prevent infinite loops
   const getHeaderHeight = useCallback(() => {
-    if (typeof window === 'undefined' || typeof document === 'undefined') return 0;
-    
-    // Simplified header detection - just use a fixed percentage
+    if (typeof window === "undefined") return 0;
     const viewportHeight = window.innerHeight;
     const headerHeight = Math.max(80, viewportHeight * 0.15);
-    
-    // Get the current path to consider special cases
     const currentPath = window.location.pathname;
-    
-    // For resume page, use a smaller header area
-    if (currentPath.includes('resume')) {
+    if (currentPath.includes("resume")) {
       return Math.min(headerHeight, 60);
     }
-    
     return headerHeight;
-  }, []); // Empty dependency array since we don't need to recreate this function
-  
-  // Generate the grid based on current dimensions and path
+  }, []);
+
   const generateGrid = useCallback(() => {
-    // Only run in browser
-    if (typeof window === 'undefined') return;
-    
-    const grid = [];
-    
-    // Get current dimensions
+    if (typeof window === "undefined") return;
+
     const width = window.innerWidth;
     const height = window.innerHeight;
-    
-    // Get current path
     const path = window.location.pathname;
-    
-    // Use the isMobile state instead of recalculating
-    const isMobileView = isMobile;
-    
-    // If on a very small screen, don't show icons at all
+    const mobileView = width <= 768;
+    setIsMobile(mobileView);
+
     if (width <= 480) {
-      if (lastGridSize.current !== 0) {
+      if (lastViewportKey.current !== "hidden") {
         setIcons([]);
-        lastGridSize.current = 0;
+        lastViewportKey.current = "hidden";
       }
       return;
     }
-    
-    // Set spacing based on screen size and path
-    let horizontalSpacing = 400; // Default spacing
-    let verticalSpacing = 80;    // Default spacing
-    
-    // Increase spacing on resume page
-    if (path.includes('resume')) {
-      verticalSpacing = 300;
+
+    const viewportKey = `${width}x${height}:${path}`;
+    if (viewportKey === lastViewportKey.current) {
+      return;
     }
-    
-    // Adjust spacing for mobile
-    if (isMobileView) {
-      horizontalSpacing = path.includes('resume') ? 350 : 200;
-      verticalSpacing = path.includes('resume') ? 200 : 60;
+    lastViewportKey.current = viewportKey;
+
+    let horizontalSpacing = 420;
+    let verticalSpacing = path.includes("resume") ? 300 : 120;
+
+    if (mobileView) {
+      horizontalSpacing = path.includes("resume") ? 350 : 240;
+      verticalSpacing = path.includes("resume") ? 220 : 110;
     }
-    
-    // Calculate number of columns and rows
-    const numCols = Math.ceil(width / horizontalSpacing); 
+
+    const numCols = Math.ceil(width / horizontalSpacing);
     const numRows = Math.ceil(height / verticalSpacing);
-    
-    // Dynamically compute header height
     const headerHeight = getHeaderHeight();
     const headerHeightPercent = (headerHeight / height) * 100;
-    
-    // Generate grid of icons
+    const grid = [];
+
     for (let row = 0; row < numRows; row++) {
       for (let col = 0; col < numCols; col++) {
-        // Calculate position
-        const x = (col * horizontalSpacing / width) * 100;
-        const y = headerHeightPercent + ((row * verticalSpacing / height) * 100);
-        
-        // Skip if in header area
+        const x = ((col * horizontalSpacing) / width) * 100;
+        const y = headerHeightPercent + ((row * verticalSpacing) / height) * 100;
         if (y < headerHeightPercent) continue;
-        
-        // Set properties
-        const initialRotation = Math.random() * 360;
-        const opacity = 0.3;
-        const iconIndex = Math.floor(Math.random() * allIcons.length);
-        
-        // Add icon to grid
+
+        const seed = row * 17 + col * 31;
+        const iconIndex = seed % allIcons.length;
+        const initialRotation = (seed * 47) % 360;
+
         grid.push({
           id: `${row}-${col}`,
           src: allIcons[iconIndex],
           x,
           y,
           initialRotation,
-          opacity
+          opacity: 0.22,
         });
       }
     }
-    
-    // Add extra icons on right edge
-    const rightEdgeIcons = isMobileView ? 1 : 3;
-    for (let i = 0; i < rightEdgeIcons; i++) {
-      const row = Math.floor(Math.random() * numRows);
-      const y = headerHeightPercent + ((row * verticalSpacing / height) * 100);
-      
-      if (y < headerHeightPercent) continue;
-      
-      const x = 100 + (Math.random() * 5);
-      const initialRotation = Math.random() * 360;
-      const opacity = 0.3;
-      const iconIndex = Math.floor(Math.random() * allIcons.length);
-      
-      grid.push({
-        id: `right-${i}`,
-        src: allIcons[iconIndex],
-        x,
-        y,
-        initialRotation,
-        opacity
-      });
-    }
-    
-    // Update icons state only if grid size changed to prevent unnecessary renders
-    if (grid.length !== lastGridSize.current) {
-      setIcons(grid);
-      lastGridSize.current = grid.length;
-    }
-    
-    // Mark that we've generated the grid
-    generatedGrid.current = true;
-    
-    // Reset the flag
-    if (typeof window !== 'undefined') {
-      window.shouldRegenerateBackgroundGrid = false;
-    }
-  }, [getHeaderHeight, allIcons, isMobile]); // Include isMobile in dependencies
 
-  // Check if we need to regenerate the grid
+    setIcons(grid);
+  }, [allIcons, getHeaderHeight]);
+
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    
-    // Helper function to check if we need to regenerate
-    const checkRegeneration = () => {
-      if (window.shouldRegenerateBackgroundGrid === true) {
-        generateGrid();
-      }
-    };
-    
-    // Initial generation
-    checkRegeneration();
-    
-    // Set up interval to check if we need to regenerate - use a longer interval to reduce CPU usage
-    const intervalId = setInterval(checkRegeneration, 2000);
-    
-    // Also check on visibility change (when tab becomes active)
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible') {
-        checkRegeneration();
-      }
-    };
-    
-    try {
-      document.addEventListener('visibilitychange', handleVisibilityChange);
-    } catch (error) {
-      console.warn('Error adding visibility listener:', error);
-    }
-    
-    // Handle window resize
+    if (typeof window === "undefined") return undefined;
+
+    generateGrid();
+
     const handleResize = () => {
       if (resizeTimeout.current) {
         clearTimeout(resizeTimeout.current);
       }
-      
       resizeTimeout.current = setTimeout(() => {
-        // Force regeneration on resize
-        if (typeof window !== 'undefined') {
-          window.shouldRegenerateBackgroundGrid = true;
-        }
-      }, 500);
+        generateGrid();
+      }, 250);
     };
-    
-    try {
-      window.addEventListener('resize', handleResize);
-    } catch (error) {
-      console.warn('Error adding resize listener:', error);
-    }
-    
-    // Cleanup
+
+    window.addEventListener("resize", handleResize);
+
     return () => {
-      clearInterval(intervalId);
-      try {
-        document.removeEventListener('visibilitychange', handleVisibilityChange);
-      } catch (error) {
-        console.warn('Error removing visibility listener:', error);
-      }
-      try {
-        window.removeEventListener('resize', handleResize);
-      } catch (error) {
-        console.warn('Error removing resize listener:', error);
-      }
+      window.removeEventListener("resize", handleResize);
       if (resizeTimeout.current) {
         clearTimeout(resizeTimeout.current);
       }
     };
   }, [generateGrid]);
 
-  // Don't render on very small screens
-  if (isMobile && typeof window !== 'undefined' && window.innerWidth <= 480) {
+  if (isMobile && typeof window !== "undefined" && window.innerWidth <= 480) {
     return null;
   }
 
   return (
-    <div className="background-wallpaper">
-      {icons.map(icon => (
+    <div className="background-wallpaper" aria-hidden="true">
+      {icons.map((icon) => (
         <img
           key={icon.id}
           src={icon.src}
-          alt="Background Icon"
+          alt=""
+          aria-hidden="true"
           className="wallpaper-icon"
+          loading="lazy"
           style={{
-            position: 'absolute',
+            position: "absolute",
             left: `${icon.x}%`,
             top: `${icon.y}%`,
             transform: `rotate(${icon.initialRotation}deg)`,
-            opacity: icon.opacity
+            opacity: icon.opacity,
           }}
         />
       ))}
@@ -298,4 +189,4 @@ const BackgroundIcons = () => {
   );
 };
 
-export default BackgroundIcons; 
+export default BackgroundIcons;

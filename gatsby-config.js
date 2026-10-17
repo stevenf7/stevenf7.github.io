@@ -7,9 +7,10 @@ module.exports = {
   // description, and Open Graph tags are set per-page (and per-language) by
   // `src/components/seo.js` using values from `src/data.js`.
   siteMetadata: {
-    title: `Steven Feng Portfolio`,
-    description: `Personal portfolio of Ji Yuan (Steven) Feng.`,
+    title: `Steven Feng — Robotics Simulation Engineer at NVIDIA`,
+    description: `Portfolio of Ji Yuan (Steven) Feng — Robotics Simulation Engineer at NVIDIA building Isaac Sim, Isaac Lab, and OpenUSD physical AI workflows. Stanford M.S. in Mechanical Engineering (Robotics).`,
     author: `Ji Yuan (Steven) Feng`,
+    siteUrl: `https://stevenf7.github.io`,
   },
   // Add development-specific configuration
   flags: {
@@ -35,8 +36,8 @@ module.exports = {
         name: `Steven Feng Portfolio`,
         short_name: `Steven Feng`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#ffffff`,
+        theme_color: `#16202a`,
         display: `minimal-ui`,
         icon: `./src/images/GoosePhoto.jpg`, // This path is relative to the root of the site.
       },
@@ -52,8 +53,5 @@ module.exports = {
         anonymize: true,
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
 }

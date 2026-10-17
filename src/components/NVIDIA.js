@@ -1,235 +1,246 @@
-import React, { useState, useEffect, useRef } from "react"
-import Fade from "./animations/Fade"
-import { Carousel } from "react-bootstrap"
-import { useLanguage } from "../contexts/LanguageContext"
-import data, { getText } from "../data"
-import "../styles/NVIDIA.scss"
+import React, { useState } from "react";
+import Fade from "./animations/Fade";
+import ViewportVideo from "./atoms/ViewportVideo";
+import { useLanguage } from "../contexts/LanguageContext";
+import data, { getText } from "../data";
+import "../styles/NVIDIA.scss";
 
-// Import NVIDIA images from the nvidia folder
-import gr1ImitationVideo from "./../images/nvidia/gr1_imitation.mp4"
-import h1FlipGif from "./../images/nvidia/h1_Flip.mp4"
-import leatherbackVideo from "./../images/nvidia/Leatherback.mp4"
-import h1TrainVideo from "./../images/nvidia/h1_Train.mp4"
-import frankaMoveitVideo from "./../images/nvidia/Franka Moveit.mp4"
-import frankaDrawerVideo from "./../images/nvidia/Franka Drawer.mp4"
-import carterOutdoorVideo from "./../images/nvidia/Carter Outdoor.mp4"
-import agilityWalkVideo from "./../images/nvidia/Agility Walk.mp4"
-import gtc_lousd from "./../images/nvidia/IMG_2228.webp"
-import gtc_sil from "./../images/nvidia/gtc_sil.webp"
-import newton from "./../images/nvidia/newton.webp"
-import claw from "./../images/nvidia/claw.mp4"
-import urLousdVideo from "./../images/publications/ur_lousd.mp4"
-import destrahVideo from "./../images/publications/destrah.mp4"
-import siggraphTalk from "./../images/nvidia/IMG_2877.webp"
-import gtcDexterousHands from "./../images/nvidia/IMG_8301.webp"
+import gr1ImitationVideo from "../images/nvidia/gr1_imitation.mp4";
+import h1FlipGif from "../images/nvidia/h1_Flip.mp4";
+import leatherbackVideo from "../images/nvidia/Leatherback.mp4";
+import h1TrainVideo from "../images/nvidia/h1_Train.mp4";
+import frankaMoveitVideo from "../images/nvidia/Franka Moveit.mp4";
+import frankaDrawerVideo from "../images/nvidia/Franka Drawer.mp4";
+import carterOutdoorVideo from "../images/nvidia/Carter Outdoor.mp4";
+import agilityWalkVideo from "../images/nvidia/Agility Walk.mp4";
+import robotStackVideo from "../images/nvidia/Robot Stack2.mp4";
+import gtc_lousd from "../images/nvidia/IMG_2228.webp";
+import gtc_sil from "../images/nvidia/gtc_sil.webp";
+import newton from "../images/nvidia/newton.webp";
+import claw from "../images/nvidia/claw.mp4";
+import urLousdVideo from "../images/publications/ur_lousd.mp4";
+import destrahVideo from "../images/publications/destrah.mp4";
+import siggraphTalk from "../images/nvidia/IMG_2877.webp";
+import gtcDexterousHands from "../images/nvidia/IMG_8301.webp";
+
+const MEDIA_MAP = {
+  gr1ImitationVideo,
+  h1FlipGif,
+  h1TrainVideo,
+  urLousdVideo,
+  destrahVideo,
+  frankaMoveitVideo,
+  frankaDrawerVideo,
+  claw,
+  leatherbackVideo,
+  carterOutdoorVideo,
+  agilityWalkVideo,
+  robotStackVideo,
+  gtc_lousd,
+  gtc_sil,
+  newton,
+  siggraphTalk,
+  gtcDexterousHands,
+};
 
 const NVIDIA = () => {
   const { language } = useLanguage();
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-  const [isIOS, setIsIOS] = useState(false);
-  const videoRefs = useRef({});
-  
-  // Enhanced mobile and iOS detection
-  useEffect(() => {
-    const checkDevice = () => {
-      try {
-        const mobile = window.innerWidth <= 768;
-        const ios = /iPad|iPhone|iPod/.test(navigator.userAgent);
-        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-        
-        setIsMobile(mobile);
-        setIsIOS(ios);
-        
-        // Log device info for debugging
-        if (ios) {
-          console.log('iPhone detected - applying performance optimizations');
-        }
-        if (isSafari) {
-          console.log('Safari detected - MP4 videos should work well');
-        }
-      } catch (error) {
-        console.warn('Error in device detection:', error);
-      }
-    };
-    
-    try {
-      checkDevice();
-      window.addEventListener('resize', checkDevice);
-    } catch (error) {
-      console.warn('Error setting up device detection:', error);
-    }
-    
-    return () => {
-      try {
-        window.removeEventListener('resize', checkDevice);
-      } catch (error) {
-        console.warn('Error removing resize listener:', error);
-      }
-    };
-  }, []);
-  
-  // Media mapping for carousel items
-  const mediaMap = {
-    gr1ImitationVideo,
-    h1FlipGif,
-    h1TrainVideo,
-    urLousdVideo,
-    destrahVideo,
-    frankaMoveitVideo,
-    frankaDrawerVideo,
-    claw,
-    leatherbackVideo,
-    carterOutdoorVideo,
-    agilityWalkVideo,
-    gtc_lousd,
-    gtc_sil,
-    newton,
-    siggraphTalk,
-    gtcDexterousHands
+  const [showAllDemos, setShowAllDemos] = useState(false);
+
+  const featuredDemo = {
+    ...data.nvidiaFeaturedDemo,
+    media: MEDIA_MAP[data.nvidiaFeaturedDemo.media],
+    badge: getText(data.nvidiaFeaturedDemo.badge, language),
+    title: getText(data.nvidiaFeaturedDemo.title, language),
+    description: getText(data.nvidiaFeaturedDemo.description, language),
   };
 
-  // Get carousel items from data with translated content
-  const carouselItems = data.nvidiaCarouselItems.map(item => ({
-    ...item,
-    media: mediaMap[item.media],
-    title: getText(item.title, language),
-    description: getText(item.description, language)
+  const caseStudies = data.nvidiaCaseStudies.map((study) => ({
+    ...study,
+    media: MEDIA_MAP[study.media],
+    category: getText(study.category, language),
+    title: getText(study.title, language),
+    summary: getText(study.summary, language),
+    highlights: getText(study.highlights, language) || [],
+    link: study.link
+      ? {
+          ...study.link,
+          text: getText(study.link.text, language),
+        }
+      : null,
   }));
 
-  // Handle carousel selection with video preloading
-  const handleCarouselSelect = (selectedIndex, e) => {
-    setActiveIndex(selectedIndex);
-    
-    // Handle video playback
-    const currentVideo = videoRefs.current[selectedIndex];
-    if (currentVideo && currentVideo.tagName === 'VIDEO') {
-      try {
-        currentVideo.play().catch(error => {
-          console.warn(`Could not autoplay video ${selectedIndex}:`, error);
-        });
-      } catch (error) {
-        console.warn(`Error playing video ${selectedIndex}:`, error);
-      }
-    }
-    
-    // Pause other videos
-    Object.keys(videoRefs.current).forEach(index => {
-      const video = videoRefs.current[index];
-      if (video && video.tagName === 'VIDEO' && parseInt(index) !== selectedIndex) {
-        try {
-          video.pause();
-        } catch (error) {
-          console.warn(`Error pausing video ${index}:`, error);
-        }
-      }
-    });
-  };
-
-  // Handle video load events
-  const handleVideoLoad = (index) => {
-    if (isIOS) {
-      console.log(`iPhone: Video ${index} loaded successfully`);
-    }
-  };
+  const galleryItems = data.nvidiaCarouselItems.map((item) => ({
+    ...item,
+    media: MEDIA_MAP[item.media],
+    category: getText(item.category, language),
+    title: getText(item.title, language),
+    description: getText(item.description, language),
+  }));
 
   return (
-    <div className="section" id="nvidia">
+    <section className="section" id="nvidia" aria-labelledby="nvidia-heading">
       <div className="container">
-        <Fade bottom cascade distance="20px">
-          <h1>{getText(data.sections.nvidia, language)}</h1>
-          <h3>{getText(data.nvidiaTime, language)}</h3>
-        </Fade>
-        
-        <div className="nvidia-section">
-          <div className="carousel-container">
-            <Carousel 
-              className="nvidia-carousel"
-              activeIndex={activeIndex}
-              onSelect={handleCarouselSelect}
-              interval={isIOS ? 5000 : 3000} // Back to 5 seconds for iPhone
-              touch={true}
-              indicators={!isMobile} // Hide indicators on mobile
-              controls={true}
-              slide={true}
-              wrap={true}
-              keyboard={false}
-              variant="dark"
-            >
-              {carouselItems.map((item, index) => (
-                <Carousel.Item key={index}>
-                  {item.type === 'video' ? (
-                    <video
-                      ref={el => {
-                        try {
-                          videoRefs.current[index] = el;
-                        } catch (error) {
-                          console.warn(`Error setting video ref for index ${index}:`, error);
-                        }
-                      }}
-                      className="d-block w-100"
-                      src={item.media}
-                      autoPlay={index === 0}
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                      loading="lazy"
-                      onLoadedData={() => {
-                        try {
-                          handleVideoLoad(index);
-                        } catch (error) {
-                          console.warn(`Error in handleVideoLoad for index ${index}:`, error);
-                        }
-                      }}
-                      onPlay={() => {
-                        try {
-                          console.log(`Video ${index} started playing`);
-                        } catch (error) {
-                          console.warn(`Error in video play handler for index ${index}:`, error);
-                        }
-                      }}
-                      onPause={() => {
-                        try {
-                          console.log(`Video ${index} paused`);
-                        } catch (error) {
-                          console.warn(`Error in video pause handler for index ${index}:`, error);
-                        }
-                      }}
-                      onError={(e) => {
-                        try {
-                          console.error(`Video ${index} failed to load:`, e);
-                        } catch (error) {
-                          console.warn(`Error in video error handler for index ${index}:`, error);
-                        }
-                      }}
-                    />
-                  ) : (
-                    <img
-                      className="d-block w-100"
-                      src={item.media}
-                      alt={item.title}
-                      loading="lazy"
-                    />
-                  )}
-                  <Carousel.Caption className={`carousel-caption ${isMobile ? 'mobile-caption' : ''}`}>
-                    <h3>{item.title}</h3>
-                  </Carousel.Caption>
-                </Carousel.Item>
-              ))}
-            </Carousel>
+        <Fade bottom distance="20px">
+          <div className="nvidia-header">
+            <h2 id="nvidia-heading">{getText(data.sections.nvidia, language)}</h2>
+            <p className="nvidia-role-subtitle">
+              {getText(data.nvidiaTime, language)}
+            </p>
+            <p className="nvidia-lead">{getText(data.nvidiaLead, language)}</p>
           </div>
-          <div className="content">
-            {data.nvidiaExperience.map((exp, index) => (
-              <Fade bottom distance="20px" key={index}>
-                <p>{getText(exp, language)}</p>
+        </Fade>
+
+        <div className="nvidia-section">
+          <Fade bottom distance="20px">
+            <div className="nvidia-featured-showcase">
+              <div className="nvidia-featured-media">
+                <ViewportVideo
+                  src={featuredDemo.media}
+                  alt={featuredDemo.title}
+                  className="nvidia-media-element"
+                />
+              </div>
+              <div className="nvidia-featured-copy">
+                <span className="nvidia-eyebrow-pill">{featuredDemo.badge}</span>
+                <h3>{featuredDemo.title}</h3>
+                <p>{featuredDemo.description}</p>
+
+                <ul className="nvidia-impact-list">
+                  {data.nvidiaExperience.map((item, index) => (
+                    <li key={index}>{getText(item, language)}</li>
+                  ))}
+                </ul>
+
+                <div className="nvidia-tag-row" aria-label="NVIDIA technologies">
+                  {featuredDemo.tags.map((tag) => (
+                    <span key={tag} className="nvidia-tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Fade>
+
+          <div className="nvidia-case-grid">
+            {caseStudies.map((study) => (
+              <Fade bottom distance="20px" key={study.id}>
+                <article className="nvidia-case-card">
+                  <div className="nvidia-case-media">
+                    {study.type === "video" ? (
+                      <ViewportVideo
+                        src={study.media}
+                        alt={study.title}
+                        className="nvidia-media-element"
+                      />
+                    ) : (
+                      <img
+                        src={study.media}
+                        alt={study.title}
+                        className="nvidia-media-element"
+                        loading="lazy"
+                      />
+                    )}
+                    <span className="nvidia-case-category">{study.category}</span>
+                  </div>
+
+                  <div className="nvidia-case-body">
+                    <h3>{study.title}</h3>
+                    <p>{study.summary}</p>
+
+                    <ul className="nvidia-case-highlights">
+                      {Array.isArray(study.highlights) &&
+                        study.highlights.map((point, index) => (
+                          <li key={index}>{point}</li>
+                        ))}
+                    </ul>
+
+                    <div className="nvidia-card-footer">
+                      <div className="nvidia-tag-row">
+                        {study.tags.map((tag) => (
+                          <span key={tag} className="nvidia-tag">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      {study.link && (
+                        <a
+                          href={study.link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="nvidia-case-link"
+                        >
+                          {study.link.text}
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </article>
               </Fade>
             ))}
           </div>
+
+          <div className="nvidia-gallery-toggle-wrap">
+            <button
+              type="button"
+              className="nvidia-gallery-toggle"
+              aria-expanded={showAllDemos}
+              aria-controls="nvidia-full-gallery"
+              onClick={() => setShowAllDemos((prev) => !prev)}
+            >
+              {getText(
+                showAllDemos
+                  ? data.buttons.showFewerDemos
+                  : data.buttons.viewAllDemos,
+                language
+              )}
+            </button>
+          </div>
+
+          {showAllDemos && (
+            <div
+              id="nvidia-full-gallery"
+              className="nvidia-gallery-grid"
+              aria-label={
+                language === "zh"
+                  ? "全部 NVIDIA 仿真演示与演讲"
+                  : "All NVIDIA simulation demos and talks"
+              }
+            >
+              {galleryItems.map((item, index) => (
+                <article className="nvidia-gallery-card" key={`${item.title}-${index}`}>
+                  <div className="nvidia-gallery-media">
+                    {item.type === "video" ? (
+                      <ViewportVideo
+                        src={item.media}
+                        alt={item.title}
+                        className="nvidia-media-element"
+                      />
+                    ) : (
+                      <img
+                        src={item.media}
+                        alt={item.title}
+                        className="nvidia-media-element"
+                        loading="lazy"
+                      />
+                    )}
+                    {item.category && (
+                      <span className="nvidia-gallery-badge">{item.category}</span>
+                    )}
+                  </div>
+                  <div className="nvidia-gallery-body">
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
         </div>
       </div>
-    </div>
-  )
-}
+    </section>
+  );
+};
 
-export default NVIDIA
+export default NVIDIA;
