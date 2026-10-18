@@ -20,7 +20,7 @@
     font-size: 1.25rem;
     line-height: 1.45;
     font-weight: 600;
-    color: #364152;
+    color: var(--text-secondary, #364152);
   }
 
   .personal-note {
@@ -29,19 +29,19 @@
     text-align: center;
     font-size: 0.98rem;
     line-height: 1.65;
-    color: #475467;
+    color: var(--text-muted, #475467);
   }
 
   .email-link {
     font-size: 1.15rem;
     font-weight: 700;
-    color: #16202a;
+    color: var(--text-primary, #16202a);
     margin: 0.5rem 0;
     text-decoration: underline;
     text-underline-offset: 4px;
 
     &:hover {
-      color: #2563eb;
+      color: var(--accent-blue, #2563eb);
     }
   }
 
@@ -61,7 +61,7 @@
     img {
       height: 1.75rem;
       width: auto;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, filter 0.2s ease;
 
       &:hover {
         transform: scale(1.12);
@@ -72,10 +72,10 @@
   span {
     margin-top: 6px;
     font-size: 0.88rem;
-    color: #475467;
+    color: var(--text-muted, #475467);
 
     a {
-      color: #16202a;
+      color: var(--text-primary, #16202a);
       font-weight: 600;
       text-decoration: none;
 
@@ -83,5 +83,12 @@
         text-decoration: underline;
       }
     }
+  }
+}
+
+[data-theme="dark"] {
+  .footer-container .social-icons img[alt="GitHub"],
+  .footer-container .social-icons img[src*="github"] {
+    filter: invert(1) brightness(1.2);
   }
 }

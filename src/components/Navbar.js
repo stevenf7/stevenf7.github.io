@@ -1,5 +1,6 @@
 import React from "react";
 import LanguageToggle from "./LanguageToggle";
+import ThemeToggle from "./ThemeToggle";
 import { useLanguage } from "../contexts/LanguageContext";
 import data, { getText } from "../data";
 
@@ -41,6 +42,7 @@ const Navbar = () => {
                 </a>
               ))}
               <LanguageToggle />
+              <ThemeToggle />
             </div>
           </div>
         </nav>

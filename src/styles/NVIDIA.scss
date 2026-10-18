@@ -27,7 +27,7 @@
     font-size: 2.4rem;
     line-height: 1.2;
     font-weight: 700;
-    color: #16202a;
+    color: var(--text-primary, #16202a);
 
     @media (max-width: 768px) {
       font-size: 2.2rem;
@@ -42,14 +42,14 @@
     margin: 0 0 0.75rem;
     font-size: 1.05rem;
     font-weight: 600;
-    color: #4f7f00;
+    color: var(--accent-green, #4f7f00);
   }
 
   .nvidia-lead {
     margin: 0 auto;
     font-size: 1.05rem;
     line-height: 1.65;
-    color: #364152;
+    color: var(--text-secondary, #364152);
   }
 }
 
@@ -65,11 +65,11 @@
   grid-template-columns: 1.15fr 0.85fr;
   gap: 1.5rem;
   align-items: stretch;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(22, 32, 42, 0.12);
+  background: var(--bg-elevated, rgba(255, 255, 255, 0.92));
+  border: 1px solid var(--border-subtle, rgba(22, 32, 42, 0.12));
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
+  box-shadow: var(--card-shadow, 0 14px 36px rgba(15, 23, 42, 0.08));
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
@@ -111,7 +111,7 @@
     font-size: 1.45rem;
     line-height: 1.3;
     font-weight: 700;
-    color: #16202a;
+    color: var(--text-primary, #16202a);
     text-align: left;
   }
 
@@ -119,7 +119,7 @@
     margin: 0;
     font-size: 0.98rem;
     line-height: 1.55;
-    color: #364152;
+    color: var(--text-secondary, #364152);
     text-align: left;
   }
 }
@@ -128,8 +128,8 @@
   align-self: flex-start;
   padding: 0.3rem 0.75rem;
   border-radius: 999px;
-  background: rgba(118, 185, 0, 0.15);
-  color: #3d6400;
+  background: rgba(118, 185, 0, 0.18);
+  color: var(--accent-green, #3d6400);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.03em;
@@ -142,7 +142,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
-  color: #243242;
+  color: var(--text-secondary, #243242);
   font-size: 0.92rem;
   line-height: 1.5;
   text-align: left;
@@ -161,11 +161,11 @@
 .nvidia-case-card {
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(22, 32, 42, 0.12);
+  background: var(--bg-elevated, rgba(255, 255, 255, 0.94));
+  border: 1px solid var(--border-subtle, rgba(22, 32, 42, 0.12));
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--card-shadow, 0 10px 28px rgba(15, 23, 42, 0.06));
 }
 
 .nvidia-case-media {
@@ -201,7 +201,7 @@
     font-size: 1.2rem;
     line-height: 1.35;
     font-weight: 700;
-    color: #16202a;
+    color: var(--text-primary, #16202a);
     text-align: left;
   }
 
@@ -209,7 +209,7 @@
     margin: 0;
     font-size: 0.95rem;
     line-height: 1.55;
-    color: #364152;
+    color: var(--text-secondary, #364152);
     text-align: left;
   }
 }
@@ -220,7 +220,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
-  color: #2b3948;
+  color: var(--text-secondary, #2b3948);
   font-size: 0.88rem;
   line-height: 1.5;
   text-align: left;
@@ -243,8 +243,8 @@
 .nvidia-tag {
   padding: 0.24rem 0.62rem;
   border-radius: 999px;
-  background: #eef4f8;
-  color: #243b53;
+  background: var(--tag-bg, #eef4f8);
+  color: var(--tag-text, #243b53);
   font-size: 0.76rem;
   font-weight: 600;
 }
@@ -255,16 +255,17 @@
   align-items: center;
   padding: 0.55rem 0.95rem;
   border-radius: 10px;
-  background: #16202a;
-  color: #ffffff;
+  background: var(--btn-primary-bg, #16202a);
+  color: var(--btn-primary-text, #ffffff);
+  border: 1px solid var(--border-subtle, transparent);
   font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
   transition: background-color 0.2s ease, transform 0.2s ease;
 
   &:hover {
-    background: #2b3d4f;
-    color: #ffffff;
+    background: var(--btn-primary-hover-bg, #2b3d4f);
+    color: var(--btn-primary-text, #ffffff);
     transform: translateY(-1px);
   }
 }
@@ -277,17 +278,17 @@
 .nvidia-gallery-toggle {
   padding: 0.78rem 1.35rem;
   border-radius: 999px;
-  border: 1px solid #16202a;
-  background: #ffffff;
-  color: #16202a;
+  border: 1px solid var(--text-primary, #16202a);
+  background: var(--bg-surface, #ffffff);
+  color: var(--text-primary, #16202a);
   font-size: 0.92rem;
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background: #16202a;
-    color: #ffffff;
+    background: var(--text-primary, #16202a);
+    color: var(--bg-primary, #ffffff);
   }
 }
 
@@ -308,8 +309,8 @@
 .nvidia-gallery-card {
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(22, 32, 42, 0.12);
+  background: var(--bg-elevated, rgba(255, 255, 255, 0.94));
+  border: 1px solid var(--border-subtle, rgba(22, 32, 42, 0.12));
   border-radius: 14px;
   overflow: hidden;
 }
@@ -332,7 +333,7 @@
     font-size: 1rem;
     line-height: 1.35;
     font-weight: 700;
-    color: #16202a;
+    color: var(--text-primary, #16202a);
     text-align: left;
   }
 
@@ -340,7 +341,7 @@
     margin: 0;
     font-size: 0.86rem;
     line-height: 1.48;
-    color: #475467;
+    color: var(--text-muted, #475467);
     text-align: left;
   }
 }

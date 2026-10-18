@@ -27,11 +27,11 @@
 .project-card {
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(22, 32, 42, 0.12);
+  background: var(--bg-elevated, rgba(255, 255, 255, 0.94));
+  border: 1px solid var(--border-subtle, rgba(22, 32, 42, 0.12));
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--card-shadow, 0 10px 26px rgba(15, 23, 42, 0.06));
 }
 
 .project-media {
@@ -73,7 +73,7 @@
     font-size: 1.12rem;
     line-height: 1.32;
     font-weight: 700;
-    color: #16202a;
+    color: var(--text-primary, #16202a);
     text-align: left;
   }
 
@@ -82,7 +82,7 @@
     font-size: 0.86rem;
     line-height: 1.4;
     font-weight: 600;
-    color: #2563eb;
+    color: var(--accent-blue, #2563eb);
     text-align: left;
   }
 
@@ -90,7 +90,7 @@
     margin: 0;
     font-size: 0.9rem;
     line-height: 1.55;
-    color: #364152;
+    color: var(--text-secondary, #364152);
     text-align: left;
   }
 }
@@ -108,16 +108,17 @@
   align-items: center;
   padding: 0.5rem 0.9rem;
   border-radius: 10px;
-  background: #16202a;
-  color: #ffffff;
+  background: var(--btn-primary-bg, #16202a);
+  color: var(--btn-primary-text, #ffffff);
+  border: 1px solid var(--border-subtle, transparent);
   font-size: 0.82rem;
   font-weight: 600;
   text-decoration: none;
   transition: background-color 0.2s ease, transform 0.2s ease;
 
   &:hover {
-    background: #2b3d4f;
-    color: #ffffff;
+    background: var(--btn-primary-hover-bg, #2b3d4f);
+    color: var(--btn-primary-text, #ffffff);
     transform: translateY(-1px);
   }
 }
@@ -139,7 +140,7 @@
     font-size: 1.65rem;
     line-height: 1.25;
     font-weight: 700;
-    color: #16202a;
+    color: var(--text-primary, #16202a);
     text-align: center;
   }
 }
@@ -147,16 +148,16 @@
 .projects-toggle-btn {
   padding: 0.78rem 1.35rem;
   border-radius: 999px;
-  border: 1px solid #16202a;
-  background: #ffffff;
-  color: #16202a;
+  border: 1px solid var(--text-primary, #16202a);
+  background: var(--bg-surface, #ffffff);
+  color: var(--text-primary, #16202a);
   font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background: #16202a;
-    color: #ffffff;
+    background: var(--text-primary, #16202a);
+    color: var(--bg-primary, #ffffff);
   }
 }

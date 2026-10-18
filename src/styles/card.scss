@@ -4,26 +4,26 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: #ffffff;
-  border: 1px solid rgba(22, 32, 42, 0.1);
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border-subtle, rgba(22, 32, 42, 0.1));
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  box-shadow: var(--card-shadow, 0 8px 24px rgba(15, 23, 42, 0.06));
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 
   &:hover,
   &:focus-within {
     transform: translateY(-3px);
-    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
+    box-shadow: var(--card-hover-shadow, 0 14px 32px rgba(15, 23, 42, 0.12));
   }
 
   .card-media {
     position: relative;
     width: 100%;
     height: 156px;
-    background-color: #ffffff;
+    background-color: var(--card-media-bg, #ffffff);
     overflow: hidden;
-    border-bottom: 1px solid rgba(22, 32, 42, 0.08);
+    border-bottom: 1px solid var(--border-subtle, rgba(22, 32, 42, 0.08));
   }
 
   .card-media-element {
@@ -42,7 +42,7 @@
     align-items: flex-start;
     text-align: left;
     gap: 0.45rem;
-    background: #ffffff;
+    background: var(--card-bg, #ffffff);
 
     .card-meta {
       margin: 0;
@@ -50,7 +50,7 @@
       font-weight: 700;
       letter-spacing: 0.03em;
       text-transform: uppercase;
-      color: #2563eb;
+      color: var(--accent-blue, #2563eb);
     }
 
     .header {
@@ -58,23 +58,23 @@
       font-size: 1.05rem;
       line-height: 1.3;
       font-weight: 700;
-      color: #16202a;
+      color: var(--text-primary, #16202a);
     }
 
     .text {
       margin: 0;
       font-size: 0.88rem;
       line-height: 1.5;
-      color: #475467;
+      color: var(--text-muted, #475467);
     }
 
     .btn {
       margin-top: auto;
       padding: 0.48rem 0.9rem;
-      border: none;
+      border: 1px solid var(--border-subtle, transparent);
       border-radius: 10px;
-      background-color: #16202a;
-      color: #ffffff;
+      background-color: var(--btn-primary-bg, #16202a);
+      color: var(--btn-primary-text, #ffffff);
       font-size: 0.82rem;
       font-weight: 600;
       text-decoration: none;
@@ -82,7 +82,7 @@
       transition: background-color 0.2s ease;
 
       &:hover {
-        background-color: #2b3d4f;
+        background-color: var(--btn-primary-hover-bg, #2b3d4f);
       }
     }
   }

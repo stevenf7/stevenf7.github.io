@@ -8,7 +8,9 @@
 let currentPathname = typeof window !== 'undefined' ? window.location.pathname : '/';
 
 // Store a flag to track if we need to regenerate the background grid
-window.shouldRegenerateBackgroundGrid = true;
+if (typeof window !== 'undefined') {
+  window.shouldRegenerateBackgroundGrid = true;
+}
 
 // This function is called when a page is created
 export const onRouteUpdate = ({ location }) => {

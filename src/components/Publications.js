@@ -58,7 +58,7 @@ const Publications = () => {
                     className="background-media"
                     style={{
                       backgroundImage: !isVideoFile(publication.imageSrc)
-                        ? `linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(240, 248, 255, 0.5) 70%, rgba(240, 248, 255, 0.9) 85%, rgba(240, 248, 255, 1.0) 100%), url(${publication.imageSrc})`
+                        ? `var(--pub-media-bottom-gradient, linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(240, 248, 255, 0.5) 70%, rgba(240, 248, 255, 0.9) 85%, rgba(240, 248, 255, 1.0) 100%)), url(${publication.imageSrc})`
                         : "none",
                     }}
                   >

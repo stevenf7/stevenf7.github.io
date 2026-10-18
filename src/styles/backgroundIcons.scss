@@ -40,3 +40,10 @@
     height: 30px;
   }
 }
+
+[data-theme="dark"] {
+  .wallpaper-icon {
+    opacity: 0.16;
+    filter: brightness(0.95) contrast(1.05);
+  }
+}
