@@ -9,37 +9,6 @@
   z-index: -1;
 }
 
-.wallpaper-row {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 33.33%; /* Each row takes up 1/3 of the viewport height */
-  position: relative;
-}
-
-.icon-cell {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.3s ease-in-out;
-  pointer-events: auto;
-  flex: 1;
-  padding: 1rem;
-
-  &.left {
-    justify-content: flex-start;
-  }
-
-  &.right {
-    justify-content: flex-end;
-  }
-
-  &:hover {
-    opacity: 0.7 !important;
-  }
-}
-
-// Define the rotation animation
 @keyframes slowRotate {
   from {
     transform: rotate(0deg);
@@ -51,18 +20,17 @@
 
 .wallpaper-icon {
   position: absolute;
-  opacity: 0.3;
-  width: 100px;
-  height: 100px;
+  opacity: 0.22;
+  width: 88px;
+  height: 88px;
   pointer-events: none;
-  animation: slowRotate 60s linear infinite; /* 60 seconds for one full rotation */
+  animation: slowRotate 60s linear infinite;
 }
 
-// Media queries for responsive sizing
 @media (max-width: 768px) {
   .wallpaper-icon {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
   }
 }
 
@@ -71,4 +39,4 @@
     width: 30px;
     height: 30px;
   }
-} 
+}

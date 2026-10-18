@@ -1,176 +1,102 @@
-import React, { useEffect, useState } from "react"
-import Fade from "./animations/Fade"
-import { useLanguage } from "../contexts/LanguageContext"
-import data, { getText } from "../data"
-import { Typewriter } from "react-simple-typewriter"
-import imgUrl from "../images/headerphoto2.webp"
+import React, { useEffect, useState } from "react";
+import { Typewriter } from "react-simple-typewriter";
+import Fade from "./animations/Fade";
+import { useLanguage } from "../contexts/LanguageContext";
+import data, { getText } from "../data";
+import imgUrl from "../images/headerphoto2.webp";
 
 const Header = () => {
-  const { language } = useLanguage();
-  // Track orientation for responsive adjustments, initialize with a default value
-  const [isLandscape, setIsLandscape] = useState(false);
-  const [isIOS, setIsIOS] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const { language, getLanguageUrl } = useLanguage();
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
-    // This code only runs in the browser after component mounts
-    // Check if window is defined (browser environment)
-    if (typeof window !== 'undefined') {
-      // Detect iOS
-      const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      setIsIOS(iOS);
-      
-      // Detect if desktop
-      const userAgent = navigator.userAgent.toLowerCase();
-      const isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i.test(userAgent);
-      setIsDesktop(!isMobile);
-      
-      // Set initial value
-      setIsLandscape(window.innerWidth > window.innerHeight);
-      
-      const handleResize = () => {
-        setIsLandscape(window.innerWidth > window.innerHeight);
-        setIsDesktop(window.innerWidth >= 1024); // Consider devices with width >= 1024px as desktop
-      };
-
-      try {
-        window.addEventListener("resize", handleResize);
-      } catch (error) {
-        console.warn('Error adding resize listener:', error);
-      }
-      // Initial check
-      handleResize();
-      
-      return () => {
-        try {
-          window.removeEventListener("resize", handleResize);
-        } catch (error) {
-          console.warn('Error removing resize listener:', error);
-        }
-      };
-    }
+    setHasMounted(true);
   }, []);
 
-  // For iOS devices, use an img tag approach
-  if (isIOS) {
-    return (
-      <div className="section" id="home">
-        <div className="container">
-          <div className="header-wrapper ios-device">
-            {/* Background image for iOS */}
-            <div 
-              className="ios-background" 
-              style={{
-                backgroundImage: `linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(0, 0, 0, 0.2)),url(${imgUrl})`,
-              }}
-            />
-            
-            <div className="content-wrapper">
-              <Fade bottom>
-                <h2>
-                  {getText({ en: "Hi, I am", zh: "你好,我是" }, language)} {getText(data.name, language)}{" "}
-                </h2>
-              </Fade>
+  const specialtyWords = getText(data.heroSpecialties, language);
+  const primarySpecialty = Array.isArray(specialtyWords)
+    ? specialtyWords[0]
+    : specialtyWords;
 
-              <Fade bottom>
-                <div className="heading-wrapper">
-                  <h1>
-                    {getText({ en: "I am a", zh: "我是一名" }, language)}{" "}
-                    <span style={{ color: "red", fontWeight: "bold" }}>
-                      <Typewriter
-                        loop
-                        cursor
-                        cursorStyle="_"
-                        typeSpeed={70}
-                        deleteSpeed={50}
-                        delaySpeed={1200}
-                        words={language === 'zh' ? 
-                          ["机器人工程师", "飞行员", "程序猿", "学生", "单簧管演奏者", "固件开发工程师"] :
-                          ["Robotics Engineer", "Pilot", "Code Monkey", "Accordionist", "Simulation Developer", "Student", "Clarinetist", "Firmware Developer"]
-                        }
-                      />
-                    </span>
-                  </h1>
-                </div>
-              </Fade>
+  return (
+    <section
+      className="section"
+      id="home"
+      aria-label={getText(data.name, language)}
+    >
+      <div className="container">
+        <div
+          className="header-wrapper"
+          style={{
+            backgroundImage: `linear-gradient(to bottom, rgba(245, 246, 252, 0) 0%, rgba(10, 18, 28, 0.18) 58%, rgba(10, 18, 28, 0.72) 100%), url(${imgUrl})`,
+          }}
+        >
+          <div className="hero-content">
+            <Fade bottom distance="20px">
+              <h1 className="hero-name">
+                {getText({ en: "Hi, I'm", zh: "你好，我是" }, language)}{" "}
+                {getText(data.name, language)}
+              </h1>
+            </Fade>
 
-              <Fade bottom>
-                <p>{getText(data.headerParagraph, language)}</p>
-              </Fade>
+            <Fade bottom distance="20px">
+              <p className="hero-role-line">
+                <span>
+                  {getText({ en: "I am a", zh: "我是一名" }, language)}{" "}
+                </span>
+                <strong className="hero-specialty">
+                  {!hasMounted || !Array.isArray(specialtyWords) ? (
+                    primarySpecialty
+                  ) : (
+                    <Typewriter
+                      loop={0}
+                      cursor
+                      cursorStyle="_"
+                      typeSpeed={70}
+                      deleteSpeed={50}
+                      delaySpeed={1200}
+                      words={specialtyWords}
+                    />
+                  )}
+                </strong>
+              </p>
+            </Fade>
 
-              <Fade bottom>
+            <Fade bottom distance="20px">
+              <p className="hero-summary">
+                {getText(data.headerParagraph, language)}
+              </p>
+            </Fade>
+
+            <Fade bottom distance="20px">
+              <div className="hero-actions">
                 <a
-                  href={`https://www.linkedin.com/in/stevenfeng7/`}
-                  className="primary-btn"
+                  href={getLanguageUrl(language, "/", "#nvidia")}
+                  className="primary-btn hero-primary-cta"
                 >
-                  {getText({ en: "CONNECT WITH ME!", zh: "与我联系！" }, language)}
+                  {getText(data.buttons.selectedWork, language)}
                 </a>
-              </Fade>
-            </div>
+                <a
+                  href={getLanguageUrl(language, "/resume")}
+                  className="secondary-btn hero-secondary-cta"
+                >
+                  {getText(data.buttons.resumeCta, language)}
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/stevenfeng7/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="secondary-btn hero-tertiary-cta"
+                >
+                  {getText(data.buttons.connect, language)}
+                </a>
+              </div>
+            </Fade>
           </div>
         </div>
       </div>
-    );
-  }
-
-  // For non-iOS devices, use the original implementation
-  return (
-    <div className="section" id="home">
-      <div className="container">
-        <div 
-          className={`header-wrapper ${isLandscape ? 'landscape' : 'portrait'} ${isDesktop ? 'desktop' : 'mobile'}`}
-          style={{
-            backgroundImage:
-              "linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(0, 0, 0, 0.2)),url(" +
-              imgUrl +
-              ")",
-          }}
-        >
-          <Fade bottom>
-            <h2>
-              {getText({ en: "Hi, I am", zh: "你好,我是" }, language)} {getText(data.name, language)}{" "}
-            </h2>
-          </Fade>
-
-          <Fade bottom>
-            <div className="heading-wrapper">
-              <h1>
-                {getText({ en: "I am a", zh: "我是一名" }, language)}{" "}
-                <span style={{ color: "red", fontWeight: "bold" }}>
-                  <Typewriter
-                    loop
-                    cursor
-                    cursorStyle="_"
-                    typeSpeed={70}
-                    deleteSpeed={50}
-                    delaySpeed={1200}
-                    words={language === 'zh' ? 
-                      ["机器人工程师", "飞行员", "程序猿", "学生", "单簧管演奏者", "固件开发工程师"] :
-                      ["Robotics Engineer", "Pilot", "Code Monkey", "Accordionist", "Simulation Developer", "Student", "Clarinetist", "Firmware Developer"]
-                    }
-                  />
-                </span>
-              </h1>
-            </div>
-          </Fade>
-
-          <Fade bottom>
-            <p>{getText(data.headerParagraph, language)}</p>
-          </Fade>
-
-          <Fade bottom>
-            <a
-              href={`https://www.linkedin.com/in/stevenfeng7/`}
-              className="primary-btn"
-            >
-              {getText({ en: "CONNECT WITH ME!", zh: "与我联系！" }, language)}
-            </a>
-          </Fade>
-        </div>
-      </div>
-    </div>
+    </section>
   );
-}
+};
 
-export default Header
+export default Header;

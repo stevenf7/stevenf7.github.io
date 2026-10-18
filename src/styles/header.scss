@@ -1,255 +1,108 @@
 .header-wrapper {
   width: 100vw;
   height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end !important; /* Force text at bottom */
-  padding-bottom: 2vh !important; /* Very minimal padding - text should be very low */
-  
-  /* Ensure bottom alignment on all mobile devices */
-  @include media("<desktop") {
-    justify-content: flex-end !important;
-    align-items: center !important;
-    padding-bottom: 3vh !important; /* Slightly more padding on mobile for better spacing */
-  }
-  margin-top: 0 !important; /* Remove negative margin to allow more spacing */
+  justify-content: flex-end !important;
+  padding: 2rem 1.5rem 3vh !important;
+  margin-top: 0 !important;
+  border-radius: 0;
+  overflow: hidden;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  position: relative;
-  
-  // Default to scroll for safety
   background-attachment: scroll;
-  
-  // Desktop-specific styling
-  &.desktop {
-    background-attachment: fixed !important;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  // Mobile-specific styling with bottom alignment
-  &.mobile {
-    background-attachment: scroll;
-    background-size: cover;
-    background-position: 70% center; /* Center on subject who is at 70% from left */
-    justify-content: flex-end !important;
-    align-items: center !important;
-    padding-bottom: 3vh !important; /* Consistent mobile bottom padding */
-  }
-  
-  // Default mobile settings with bottom alignment
-  @include media(">=phone", "<lgphone") {
-    background-attachment: scroll;
-    background-size: cover;
-    background-position: 70% center; /* Center on subject who is at 70% from left */
-    justify-content: flex-end !important;
-    padding-bottom: 4vh !important; /* Extra space on smallest phones */
-  }
-  @include media(">=lgphone", "<tablet") {
-    background-attachment: scroll;
-    background-size: cover;
-    background-position: 70% center; /* Center on subject who is at 70% from left */
-    justify-content: flex-end !important;
-    padding-bottom: 3vh !important;
-  }
-  @include media(">=tablet", "<desktop") {
-    background-attachment: scroll;
-    background-size: cover;
-    background-position: 70% center; /* Center on subject who is at 70% from left */
-    justify-content: flex-end !important;
-    padding-bottom: 2.5vh !important;
-  }
-  
-  // Specific iOS device fixes (iPhone and iPad)
-  @supports (-webkit-touch-callout: none) {
-    /* iOS devices */
-    background-attachment: scroll;
-    -webkit-background-size: cover;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  // Specific media query for desktop
+  position: relative;
+
   @media only screen and (min-width: 1024px) {
-    &:not(.ios-device) {
-      background-attachment: fixed;
-    }
-  }
-  
-  // Specific iPhone fix
-  @media only screen 
-    and (min-device-width: 320px) 
-    and (max-device-width: 812px) 
-    and (-webkit-min-device-pixel-ratio: 2) {
-    background-attachment: scroll;
-    background-size: cover;
-    background-position: 70% center; /* Center on subject who is at 70% from left */
-    min-height: 100vh;
-  }
-  
-  // iPhone X, XS, 11 Pro
-  @media only screen 
-    and (min-device-width: 375px) 
-    and (max-device-width: 812px) 
-    and (-webkit-min-device-pixel-ratio: 3) {
-    background-attachment: scroll;
-    background-size: cover;
-    background-position: 70% center; /* Center on subject who is at 70% from left */
-    min-height: 100vh;
-  }
-  
-  // Specific iPad landscape fix
-  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-    background-attachment: scroll;
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh; // Ensure the header covers the full viewport height
-  }
-  
-    // Specific classes for orientation with bottom alignment
-  &.landscape {
-    background-attachment: scroll;
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
-    justify-content: flex-end !important;
-    padding-bottom: 2vh !important;
+    background-attachment: fixed;
   }
 
-  &.portrait {
-    background-attachment: scroll; // Changed from fixed to scroll for better compatibility
-    background-size: cover;
-    background-position: 70% center; /* Center on subject who is at 70% from left */
-    justify-content: flex-end !important;
-    padding-bottom: 3vh !important; /* More space in portrait for better mobile UX */
-    @include media(">=tablet", "<desktop") {
-      background-attachment: scroll;
-      padding-bottom: 2.5vh !important;
-    }
+  @supports (-webkit-touch-callout: none) {
+    background-attachment: scroll !important;
   }
-  
-  // iPad Pro
-  @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (orientation: landscape) {
+
+  @media (max-width: 1023px) {
     background-attachment: scroll;
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
-  }
-  
-  // General fix for all mobile devices with high pixel ratio (retina displays)
-  @media only screen and (-webkit-min-device-pixel-ratio: 2) {
-    background-attachment: scroll;
-    background-size: cover;
-    background-position: 70% center; /* Center on subject who is at 70% from left */
-  }
-  
-  h2 {
-    margin-top: 0;
-    line-height: 1.2;
-    font-size: 3.5rem; /* Back to larger desktop size */
-    text-align: center;
-    font-weight: bold;
-    color: white;
-    @include media(">=phone", "<lgphone") {
-      font-size: 1.8rem; /* Keep new smaller mobile size */
-      line-height: 1.2;
-    }
-    @include media(">=lgphone", "<tablet") {
-      font-size: 2rem; /* Keep new mobile size */
-      line-height: 1.2;
-    }
-    @include media(">=tablet", "<desktop") {
-      font-size: 2.2rem; /* Keep new tablet size */
-      line-height: 1.2;
-    }
+    background-position: 70% center;
+    padding: 1.75rem 1.15rem 3vh !important;
   }
 
+  @media (max-width: 480px) {
+    background-position: 70% center;
+    padding: 1.35rem 1rem 4vh !important;
+  }
+}
 
-  .heading-wrapper {
-    h1 {
-      margin-top: 0.5vh !important; /* Override global rule with more specific selector */
-      margin-bottom: 1.2vh; /* Reduced spacing */
-      font-size: 2.2rem; /* Slightly larger desktop size */
-      text-align: center;
-      line-height: 1.3;
-      color: white;
-      @include media(">=phone", "<lgphone") {
-        font-size: 1.4rem; /* Slightly larger mobile size */
-        line-height: 1.3;
-      }
-      @include media(">=lgphone", "<tablet") {
-        font-size: 1.6rem; /* Slightly larger mobile size */
-        line-height: 1.3;
-      }
-      @include media(">=tablet", "<desktop") {
-        font-size: 1.9rem; /* Slightly larger tablet size */
-        line-height: 1.3;
-      }
-    }
+.hero-content {
+  width: 100%;
+  max-width: 820px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.65rem;
+  color: #ffffff;
+}
+
+.hero-name {
+  margin: 0;
+  font-size: 3.4rem;
+  line-height: 1.15;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+
+  @media (max-width: 768px) {
+    font-size: 2.15rem;
   }
 
-  p {
-    width: 40%;
-    text-align: center;
-    overflow: visible;
-    line-height: 1.4;
-    font-size: 1.2rem; /* Consistent with site body text */
-    margin-top: 1.2vh; /* Reduced spacing */
-    color: white;
-    @include media(">=phone", "<lgphone") {
-      font-size: 0.9rem; /* Compact mobile size */
-      line-height: 1.4;
-      width: 85%; /* Better mobile width with horizontal space */
-      padding: 0 20px; /* Add horizontal padding */
-    }
-    @include media(">=lgphone", "<tablet") {
-      font-size: 1rem; /* Progressive scaling */
-      line-height: 1.4;
-      width: 80%;
-      padding: 0 16px; /* Add horizontal padding */
-    }
-    @include media(">=tablet", "<desktop") {
-      font-size: 1.1rem; /* Tablet size */
-      line-height: 1.4;
-      width: 70%;
-    }
-    
+  @media (max-width: 480px) {
+    font-size: 1.8rem;
+  }
+}
+
+.hero-role-line {
+  margin: 0;
+  min-height: 2.2rem;
+  font-size: 2rem;
+  line-height: 1.3;
+  color: #f8fafc;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
   }
 
-  // iOS-specific class
-  &.ios-device {
-    background-attachment: scroll !important; // Force scroll on iOS
-    background-size: cover !important;
-    background-position: center !important;
-    -webkit-background-size: cover !important;
-    min-height: 100vh;
-    position: relative;
-    overflow: hidden;
-    
-    // iOS specific background element
-    .ios-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background-size: cover;
-      background-position: 70% center; /* Center on subject who is at 70% from left */
-    }
-    
-    // Content wrapper for iOS
-    .content-wrapper {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end; /* Bottom align text for iOS mobile */
-      padding-bottom: 2vh; /* Consistent bottom padding */
-      z-index: 1;
-    }
+  @media (max-width: 480px) {
+    font-size: 1.25rem;
   }
+}
+
+.hero-specialty {
+  color: red;
+  font-weight: 700;
+}
+
+.hero-summary {
+  margin: 0;
+  max-width: 64ch;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: rgba(248, 250, 252, 0.96);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 768px) {
+    font-size: 0.98rem;
+  }
+}
+
+.hero-actions {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
 }

@@ -1,17 +1,9 @@
-import React, { useEffect, useCallback, useState, useRef } from "react"
-import { useLanguage } from "../contexts/LanguageContext"
-import data, { getText } from "./../data"
-import "./../css/modal.scss"
+import React, { useEffect, useCallback, useState, useRef } from "react";
+import ViewportVideo, { isVideoFile } from "./atoms/ViewportVideo";
+import { useLanguage } from "../contexts/LanguageContext";
+import data, { getText } from "./../data";
+import "./../css/modal.scss";
 
-// Helper function to detect if file is a video
-const isVideoFile = (url) => {
-  if (!url) return false;
-  const videoExtensions = ['.webm', '.mp4', '.mov', '.avi'];
-  return videoExtensions.some(ext => url.toLowerCase().endsWith(ext));
-};
-
-// Positions are authored as "Role - Organization". The organization is shown
-// beside the logo, so peel it off the headline instead of repeating it.
 const splitPosition = (positionText, fallbackOrg) => {
   const separatorIndex = positionText.lastIndexOf(" - ");
   if (separatorIndex === -1) return { role: positionText, org: fallbackOrg };
@@ -21,9 +13,17 @@ const splitPosition = (positionText, fallbackOrg) => {
   };
 };
 
-const FOCUSABLE = 'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])';
+const FOCUSABLE =
+  'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])';
 
-export default function Modal({ closeModal, id, type = "project", totalItems = 0, onPrevious, onNext }) {
+export default function Modal({
+  closeModal,
+  id,
+  type = "project",
+  totalItems = 0,
+  onPrevious,
+  onNext,
+}) {
   const { language } = useLanguage();
   const [isClosing, setIsClosing] = useState(false);
   const containerRef = useRef(null);
@@ -38,21 +38,19 @@ export default function Modal({ closeModal, id, type = "project", totalItems = 0
     : { role: organization, org: "" };
 
   const summary = getText(content.para, language);
-  const dateLabel = isProject ? (content.date || "").trim() : "";
+  const dateLabel = (content.date || "").trim();
   const media = content.workImg || content.imageSrc;
-  // The internal /work/* routes are unused, so only surface real external links.
-  const externalUrl = content.url && content.url.startsWith("http") ? content.url : null;
+  const externalUrl =
+    content.url && content.url.startsWith("http") ? content.url : null;
 
   const hasPrevious = id > 0;
   const hasNext = id < totalItems - 1;
 
-  // Enhanced close function with animation
   const handleClose = useCallback(() => {
     setIsClosing(true);
-    // Wait for animation to complete before actually closing
     setTimeout(() => {
       closeModal(false);
-    }, 300); // Match the CSS animation duration
+    }, 250);
   }, [closeModal]);
 
   const handlePrevious = useCallback(() => {
@@ -67,20 +65,21 @@ export default function Modal({ closeModal, id, type = "project", totalItems = 0
     }
   }, [onNext, id, totalItems]);
 
-  // Keyboard navigation, plus a tab trap so focus can't escape the dialog
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'ArrowLeft') {
+      if (e.key === "ArrowLeft") {
         e.preventDefault();
         handlePrevious();
-      } else if (e.key === 'ArrowRight') {
+      } else if (e.key === "ArrowRight") {
         e.preventDefault();
         handleNext();
-      } else if (e.key === 'Escape') {
+      } else if (e.key === "Escape") {
         e.preventDefault();
         handleClose();
-      } else if (e.key === 'Tab' && containerRef.current) {
-        const focusable = Array.from(containerRef.current.querySelectorAll(FOCUSABLE));
+      } else if (e.key === "Tab" && containerRef.current) {
+        const focusable = Array.from(
+          containerRef.current.querySelectorAll(FOCUSABLE)
+        );
         if (focusable.length === 0) return;
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
@@ -94,55 +93,32 @@ export default function Modal({ closeModal, id, type = "project", totalItems = 0
       }
     };
 
-    try {
-      document.addEventListener('keydown', handleKeyDown);
-    } catch (error) {
-      console.warn('Error adding keydown listener:', error);
-    }
-
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
-      // Safely remove event listener
-      try {
-        document.removeEventListener('keydown', handleKeyDown);
-      } catch (error) {
-        // Suppress any DOM manipulation errors
-        console.warn('Error removing keydown listener:', error);
-      }
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [handlePrevious, handleNext, handleClose]);
 
   useEffect(() => {
-    // Simple approach: just disable scrolling without positioning tricks
-    try {
-      restoreFocusRef.current = document.activeElement;
-      document.body.classList.add('modal-open');
-      containerRef.current?.focus();
-    } catch (error) {
-      // Suppress any DOM manipulation errors
-      console.warn('Modal setup failed:', error);
-    }
+    restoreFocusRef.current = document.activeElement;
+    document.body.classList.add("modal-open");
+    containerRef.current?.focus();
 
-    // Clean up function to re-enable scrolling when modal is unmounted
     return () => {
-      try {
-        document.body.classList.remove('modal-open');
-        restoreFocusRef.current?.focus?.();
-      } catch (error) {
-        // Suppress any DOM manipulation errors
-        console.warn('Modal teardown failed:', error);
-      }
+      document.body.classList.remove("modal-open");
+      restoreFocusRef.current?.focus?.();
     };
   }, []);
 
   return (
     <>
       <div
-        className={`modalBackground ${isClosing ? 'closing' : ''}`}
+        className={`modalBackground ${isClosing ? "closing" : ""}`}
         onClick={handleClose}
         aria-hidden="true"
-      ></div>
+      />
       <div
-        className={`modalContainer ${isClosing ? 'closing' : ''}`}
+        className={`modalContainer ${isClosing ? "closing" : ""}`}
         ref={containerRef}
         role="dialog"
         aria-modal="true"
@@ -153,7 +129,7 @@ export default function Modal({ closeModal, id, type = "project", totalItems = 0
           <div className="modal-org">
             {content.imageSrc && (
               <span className="modal-org-logo">
-                <img src={content.imageSrc} alt="" loading="lazy" />
+                <img src={content.imageSrc} alt="" aria-hidden="true" loading="lazy" />
               </span>
             )}
             {org && <span className="modal-org-name">{org}</span>}
@@ -177,7 +153,7 @@ export default function Modal({ closeModal, id, type = "project", totalItems = 0
         </div>
 
         <div className="modal-heading">
-          <h1 id="modal-role">{role}</h1>
+          <h2 id="modal-role">{role}</h2>
           {dateLabel && <p className="modal-date">{dateLabel}</p>}
           {summary && <p className="modal-summary">{summary}</p>}
         </div>
@@ -185,17 +161,18 @@ export default function Modal({ closeModal, id, type = "project", totalItems = 0
         <div className="modal-body">
           <div className="modal-media-panel">
             {isVideoFile(media) ? (
-              <video
+              <ViewportVideo
                 src={media}
+                alt={role}
                 className="modal-media"
-                autoPlay
-                muted
-                loop
-                playsInline
-                disablePictureInPicture
               />
             ) : (
-              <img src={media} alt="" className="modal-media" loading="lazy" />
+              <img
+                src={media}
+                alt={`${role}${org ? ` at ${org}` : ""}`}
+                className="modal-media"
+                loading="lazy"
+              />
             )}
             {externalUrl && (
               <a
@@ -210,9 +187,9 @@ export default function Modal({ closeModal, id, type = "project", totalItems = 0
           </div>
 
           <div className="modal-highlights">
-            <h2 className="modal-highlights-title">
+            <h3 className="modal-highlights-title">
               {getText(data.modal.highlights, language)}
-            </h2>
+            </h3>
             <ol>
               {content.description.map((desc, index) => (
                 <li key={index}>
@@ -252,5 +229,5 @@ export default function Modal({ closeModal, id, type = "project", totalItems = 0
         )}
       </div>
     </>
-  )
+  );
 }

@@ -1,96 +1,123 @@
+.site-header {
+  position: fixed;
+  top: 14px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  pointer-events: none;
+}
+
 .navbar-wrapper {
-  position: sticky; /* Stick to top when scrolling */
-  top: 0; /* Stick to very top */
-  width: 90vw;
-  max-width: 1000px; /* Set to 1000px as requested */
-  margin: 15px auto 20px; /* Increased vertical spacing for navbar */
+  pointer-events: auto;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0rem 1.6rem; /* Zero vertical padding */
-  font-size: 16px; /* Desktop-only 80% scaling from original 20px */
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  z-index: 1000;
-  
-  /* Force override any framework styles */
-  margin-top: 15px !important;
-  margin-bottom: 20px !important;
-  
-  /* Mobile navbar adjustments */
+  gap: 12px;
+  padding: 0.55rem 1.1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.58) 0%,
+    rgba(240, 247, 255, 0.36) 52%,
+    rgba(255, 255, 255, 0.48) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow: 0 12px 34px rgba(15, 23, 42, 0.16),
+    0 2px 8px rgba(15, 23, 42, 0.06),
+    inset 0 1px 1px rgba(255, 255, 255, 0.92),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.38);
+  backdrop-filter: blur(22px) saturate(190%) brightness(1.03);
+  -webkit-backdrop-filter: blur(22px) saturate(190%) brightness(1.03);
+  border-radius: 16px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.42) 0%,
+      rgba(255, 255, 255, 0.06) 48%,
+      rgba(255, 255, 255, 0.16) 100%
+    );
+    pointer-events: none;
+  }
+
   @media (max-width: 768px) {
-    width: 92vw; /* Slightly narrower to add horizontal padding */
-    margin: 15px auto 20px; /* Increased vertical spacing for mobile too */
-    padding: 0rem 1rem; /* Zero vertical mobile padding */
-    font-size: 16px; /* Consistent font size */
+    flex-wrap: wrap;
+    padding: 0.5rem 0.75rem;
   }
-  @media (max-width: 480px) {
-    width: 90vw; /* Even narrower on small phones */
-    margin: 12px auto 16px; /* Tighter spacing on small phones */
-  }
-  
-  .left-nav {
-    flex: 1;
-    display: flex;
-    justify-content: flex-start;
-  }
-  
+
+  .left-nav,
   .center-nav {
-    flex: 2;
+    position: relative;
+    z-index: 1;
+  }
+
+  .left-nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .center-nav {
     display: flex;
     justify-content: flex-end;
-    
+    flex: 1;
+
     .links-wrapper {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      gap: 16px; /* Desktop-only 80% scaling from original 20px */
-      
-      @media (max-width: 768px) {
-        gap: 8px; /* Reduced mobile spacing */
-      }
-      @media (max-width: 480px) {
-        gap: 6px; /* Even tighter spacing on small phones */
-      }
+      justify-content: flex-end;
+      gap: 6px;
     }
   }
-  .name {
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 11px;
+    border-radius: 10px;
+    color: #0f172a;
+    font-size: 0.92rem;
     font-weight: 600;
-  }
-  
-    button {
-      text-decoration: none;
-      padding: 8px; /* Reduced from 10px (80% of original) */
-      font-family: "Montserrat", sans-serif !important;
-      opacity: 0.6;
-      transition: all 0.2s ease-in-out;
-      font-size: 16px; /* Reduced from 20px (80% of original) */
-      background-color: transparent;
-      outline: none;
-      border: 0px;
-      cursor: pointer;
-      &:hover {
-        opacity: 1;
-      }
-      @include media(">=phone", "<lgphone") {
-        font-size: 12px; /* Reverted to original mobile value */
-        line-height: 12px;
-        padding: 4px; /* Reduced padding for mobile */
-      }
-      @include media(">=lgphone", "<tablet") {
-        font-size: 16px; /* Reverted to original mobile value */
-        line-height: 16px;
-        padding: 6px; /* Reduced padding for mobile */
-      }
-      @include media(">=tablet", "<desktop") {
-        font-size: 20px; /* Reverted to original mobile value */
-        line-height: 20px;
-      }
+    text-decoration: none;
+    text-shadow: 0 1px 6px rgba(255, 255, 255, 0.75);
+    transition: background-color 0.2s ease, color 0.2s ease,
+      box-shadow 0.2s ease, border-color 0.2s ease;
+    border: 1px solid transparent;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.52);
+      border-color: rgba(255, 255, 255, 0.75);
+      color: #000000;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.85);
     }
-    .active {
-      color: black;
+
+    @media (max-width: 640px) {
+      padding: 5px 8px;
+      font-size: 0.82rem;
     }
   }
 
-/* Mobile styles now handled above in main .navbar-wrapper block */
+  .resume-nav-link {
+    background: rgba(22, 32, 42, 0.84);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    color: #ffffff;
+    text-shadow: none;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22);
 
+    &:hover {
+      background: rgba(22, 32, 42, 0.96);
+      border-color: rgba(255, 255, 255, 0.45);
+      color: #ffffff;
+    }
+  }
+}

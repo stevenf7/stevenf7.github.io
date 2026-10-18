@@ -1,23 +1,20 @@
-import React from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
-import '../styles/languageToggle.scss';
+import React from "react";
+import { useLanguage } from "../contexts/LanguageContext";
+import "../styles/languageToggle.scss";
 
 const LanguageToggle = () => {
   const { language, toggleLanguage } = useLanguage();
 
   return (
-    <button 
+    <button
       className="language-toggle"
       onClick={toggleLanguage}
       type="button"
-      aria-label={`Switch to ${language === 'en' ? 'Chinese' : 'English'}`}
+      aria-label={
+        language === "en" ? "Switch language to Chinese" : "切换语言为英文"
+      }
     >
-      <span className="active-lang">
-        {language === 'en' ? '中' : 'EN'}
-      </span>
-      <span className="inactive-lang">
-        {language === 'en' ? 'EN' : '中'}
-      </span>
+      <span className="active-lang">{language === "en" ? "中文" : "EN"}</span>
     </button>
   );
 };

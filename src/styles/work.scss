@@ -1,108 +1,29 @@
 .work-wrapper {
   width: 100%;
-  max-width: 1000px; /* Ensure it doesn't exceed 1000px */
-  margin: 0 auto; /* Center it and ensure it doesn't exceed 1000px */
+  max-width: 1000px;
+  margin: 0.75rem auto 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 32px; /* Add horizontal padding to ensure spacing from edges */
-  
-  /* Responsive padding for all screen sizes */
-  @media (max-width: 768px) {
-    padding: 0 24px; /* Standard mobile padding */
-  }
-  @media (max-width: 480px) {
-    padding: 0 20px; /* Comfortable padding on small phones */
-  }
-  @media (max-width: 360px) {
-    padding: 0 16px; /* Minimal padding on very small screens */
-  }
-  h1{
-    margin-top: 3rem; /* Standardized 3rem spacing from previous section */
-    text-align: center;
-    font-size: 2.4rem; /* Consistent with 80% scaling */
-    line-height: 1.2;
-    margin-bottom: 1rem; /* Standardized header bottom spacing */
-    white-space: normal;
-  }
+  padding: 0;
+
   .grid {
     display: grid;
-    margin-top: 0.5rem; /* Minimal spacing from header for maximum content space */
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 12px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-gap: 16px;
     width: 100%;
     align-items: stretch;
   }
-  .work-item {
-    display: flex;
-    align-items: stretch;
-    padding: 0 32px; /* Add horizontal padding to ensure spacing from edges */
-    
-    @media (max-width: 768px) {
-      padding: 0 24px; /* Reduced padding on mobile */
-    }
-    @media (max-width: 480px) {
-      padding: 0 20px; /* Further reduced padding on small screens */
-    }
-    @media (max-width: 360px) {
-      padding: 0 16px; /* Minimal padding on very small screens */
-    }
-  }
-  .work-card {
-    background: white;
-    border-radius: 15px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding-left: calc(2rem + 32px); /* Add left padding for edge spacing */
-    padding-right: calc(2rem + 32px); /* Add right padding for edge spacing */
-    
-    @media (max-width: 768px) {
-      padding-left: calc(2rem + 24px); /* Reduced padding on mobile */
-      padding-right: calc(2rem + 24px);
-    }
-    @media (max-width: 480px) {
-      padding-left: calc(2rem + 20px); /* Further reduced padding on small screens */
-      padding-right: calc(2rem + 20px);
-    }
-    @media (max-width: 360px) {
-      padding-left: calc(2rem + 16px); /* Minimal padding on very small screens */
-      padding-right: calc(2rem + 16px);
-    }
+}
+
+@media (max-width: 900px) {
+  .work-wrapper .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 992px) {
-  .work-wrapper {
-    h1 {
-      font-size: 2.5rem;
-    }
-    .grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .work-wrapper {
-    h1 {
-      font-size: 2.2rem;
-    }
-    .grid {
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 8px;
-    }
-  }
-}
-
-@media (max-width: 480px) {
-  .work-wrapper {
-    h1 {
-      font-size: 2rem;
-    }
-    .grid {
-      grid-template-columns: 1fr;
-      grid-gap: 8px;
-    }
+@media (max-width: 580px) {
+  .work-wrapper .grid {
+    grid-template-columns: 1fr;
   }
 }
