@@ -1,6 +1,6 @@
 // Skills Icons
 import clangIcon from "./images/skillsIcon/C_lang.png"
-import rosIcon from "./images/skillsIcon/ROS.jpg"
+import rosIcon from "./images/skillsIcon/ROS.png"
 import openCVIcon from "./images/skillsIcon/OpenCV.png"
 import RPIIcon from "./images/skillsIcon/CPU.svg"
 import SolidworksIcon from "./images/skillsIcon/CAD.svg"

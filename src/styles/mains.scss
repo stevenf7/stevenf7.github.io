@@ -1,4 +1,141 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
+
+:root {
+  --bg-primary: #ffffff;
+  --bg-surface: #f8f9fa;
+  --bg-elevated: rgba(255, 255, 255, 0.94);
+  --bg-navbar: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.58) 0%,
+    rgba(240, 247, 255, 0.36) 52%,
+    rgba(255, 255, 255, 0.48) 100%
+  );
+  --navbar-border: rgba(255, 255, 255, 0.72);
+  --navbar-shadow: 0 12px 34px rgba(15, 23, 42, 0.16),
+    0 2px 8px rgba(15, 23, 42, 0.06),
+    inset 0 1px 1px rgba(255, 255, 255, 0.92),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.38);
+  --navbar-sheen: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.42) 0%,
+    rgba(255, 255, 255, 0.06) 48%,
+    rgba(255, 255, 255, 0.16) 100%
+  );
+  --nav-link-color: #0f172a;
+  --nav-link-shadow: 0 1px 6px rgba(255, 255, 255, 0.75);
+  --nav-link-hover-bg: rgba(255, 255, 255, 0.52);
+  --nav-link-hover-border: rgba(255, 255, 255, 0.75);
+  --nav-link-hover-color: #000000;
+  --nav-pill-bg: rgba(255, 255, 255, 0.45);
+  --nav-pill-border: rgba(255, 255, 255, 0.75);
+  --nav-pill-hover-bg: rgba(255, 255, 255, 0.72);
+  --nav-pill-hover-border: rgba(255, 255, 255, 0.95);
+  --nav-pill-shadow: 0 2px 8px rgba(15, 23, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  --text-primary: #16202a;
+  --text-secondary: #364152;
+  --text-muted: #475467;
+  --btn-primary-bg: #16202a;
+  --btn-primary-hover-bg: #2b3d4f;
+  --btn-primary-text: #ffffff;
+  --accent-blue: #2563eb;
+  --accent-green: #4f7f00;
+  --border-subtle: rgba(22, 32, 42, 0.12);
+  --card-bg: #ffffff;
+  --card-media-bg: #ffffff;
+  --card-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  --card-hover-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
+  --tag-bg: #eef4f8;
+  --tag-text: #243b53;
+  --media-placeholder-bg: #f5f5f5;
+  --pub-card-bg: #f8f9fa;
+  --pub-media-bottom-gradient: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 50%,
+    rgba(240, 248, 255, 0.5) 70%,
+    rgba(240, 248, 255, 0.9) 85%,
+    rgba(240, 248, 255, 1) 100%
+  );
+  --pub-content-bottom-gradient: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 28%,
+    rgba(240, 248, 255, 0.35) 42%,
+    rgba(240, 248, 255, 0.88) 56%,
+    rgba(240, 248, 255, 1) 66%
+  );
+  --skill-item-bg: rgba(255, 255, 255, 0.86);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0d1117;
+  --bg-surface: #161b22;
+  --bg-elevated: rgba(22, 27, 34, 0.94);
+  --bg-navbar: linear-gradient(
+    135deg,
+    rgba(22, 27, 34, 0.72) 0%,
+    rgba(18, 24, 34, 0.62) 52%,
+    rgba(22, 27, 34, 0.68) 100%
+  );
+  --navbar-border: rgba(255, 255, 255, 0.16);
+  --navbar-shadow: 0 12px 34px rgba(0, 0, 0, 0.45),
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.14),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.06);
+  --navbar-sheen: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.01) 48%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  --nav-link-color: #f0f6fc;
+  --nav-link-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  --nav-link-hover-bg: rgba(255, 255, 255, 0.12);
+  --nav-link-hover-border: rgba(255, 255, 255, 0.24);
+  --nav-link-hover-color: #ffffff;
+  --nav-pill-bg: rgba(255, 255, 255, 0.08);
+  --nav-pill-border: rgba(255, 255, 255, 0.2);
+  --nav-pill-hover-bg: rgba(255, 255, 255, 0.16);
+  --nav-pill-hover-border: rgba(255, 255, 255, 0.35);
+  --nav-pill-shadow: 0 2px 8px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --text-primary: #f0f6fc;
+  --text-secondary: #c9d1d9;
+  --text-muted: #8b949e;
+  --btn-primary-bg: #21262d;
+  --btn-primary-hover-bg: #30363d;
+  --btn-primary-text: #f0f6fc;
+  --accent-blue: #58a6ff;
+  --accent-green: #84cc16;
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --card-bg: #161b22;
+  --card-media-bg: rgba(240, 246, 252, 0.94);
+  --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.38);
+  --card-hover-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
+  --tag-bg: rgba(88, 166, 255, 0.14);
+  --tag-text: #79c0ff;
+  --media-placeholder-bg: #161b22;
+  --pub-card-bg: #161b22;
+  --pub-media-bottom-gradient: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 50%,
+    rgba(22, 27, 34, 0.55) 70%,
+    rgba(22, 27, 34, 0.92) 85%,
+    rgba(22, 27, 34, 1) 100%
+  );
+  --pub-content-bottom-gradient: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 28%,
+    rgba(22, 27, 34, 0.4) 42%,
+    rgba(22, 27, 34, 0.9) 56%,
+    rgba(22, 27, 34, 1) 66%
+  );
+  --skill-item-bg: rgba(22, 27, 34, 0.86);
+}
+
 @import "./include-media.scss";
 
 // Atoms
@@ -13,6 +150,7 @@
 @import "./projects.scss";
 @import "./education.scss";
 @import "./languageToggle.scss";
+@import "./themeToggle.scss";
 @import "./../css/resume.scss";
 
 * {
@@ -27,18 +165,21 @@ html {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 body {
   overflow-x: hidden;
-  background-color: #ffffff;
-  color: #16202a;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.25s ease, color 0.25s ease;
   margin: 0;
   padding: 0;
 }
 
 :focus-visible {
-  outline: 3px solid #2563eb;
+  outline: 3px solid var(--accent-blue);
   outline-offset: 3px;
 }
 
@@ -69,7 +210,7 @@ section h2,
   line-height: 1.2;
   font-weight: 700;
   text-align: center;
-  color: #16202a;
+  color: var(--text-primary);
 
   @media (max-width: 768px) {
     font-size: 2.05rem;
@@ -169,8 +310,8 @@ section h2,
 }
 
 .video-fallback {
-  background-color: #e9ecef;
-  color: #475467;
+  background-color: var(--media-placeholder-bg, #e9ecef);
+  color: var(--text-muted, #475467);
   display: flex;
   align-items: center;
   justify-content: center;

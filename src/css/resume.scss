@@ -34,6 +34,7 @@ h1{
     text-align: center;
     display: block;
     margin-bottom: 2rem;
+    color: var(--text-primary, #16202a);
 }
 
 .Resume{
@@ -44,7 +45,7 @@ h1{
     height: 1100px; /* Match the iframe height */
     position: relative;
     z-index: 2; /* Ensure resume displays above background */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--card-shadow, 0 4px 8px rgba(0, 0, 0, 0.1));
     border: none;
     border-radius: 12px; /* Add rounded edges to match site design - desktop only */
 }

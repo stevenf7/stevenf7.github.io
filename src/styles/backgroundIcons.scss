@@ -6,7 +6,7 @@
   height: 100%;
   overflow: hidden;
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
 }
 
 @keyframes slowRotate {
@@ -38,5 +38,12 @@
   .wallpaper-icon {
     width: 30px;
     height: 30px;
+  }
+}
+
+[data-theme="dark"] {
+  .wallpaper-icon {
+    opacity: 0.16;
+    filter: brightness(0.95) contrast(1.05);
   }
 }

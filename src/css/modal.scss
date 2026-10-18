@@ -479,3 +479,115 @@ body.modal-open {
     font-size: 0.75rem;
   }
 }
+
+[data-theme="dark"] {
+  .modalBackground {
+    background: rgba(5, 8, 14, 0.65);
+  }
+
+  .modalContainer {
+    background: rgba(22, 27, 34, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.65),
+                0 10px 30px rgba(0, 0, 0, 0.45);
+
+    @supports not (backdrop-filter: blur(25px)) {
+      background: rgba(22, 27, 34, 0.98);
+    }
+  }
+
+  .modal-topbar {
+    border-bottom-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .modal-org-logo {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .modal-org-name {
+    color: #f0f6fc;
+  }
+
+  .modal-counter {
+    color: #b1bac4;
+    background: rgba(88, 166, 255, 0.16);
+  }
+
+  .modal-close {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.16);
+    color: #f0f6fc;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+    }
+  }
+
+  .modal-heading h1,
+  .modal-heading h2 {
+    color: #f0f6fc;
+  }
+
+  .modal-date {
+    color: #58a6ff;
+  }
+
+  .modal-summary {
+    color: #b1bac4;
+  }
+
+  .modal-media {
+    background: #0d1117;
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .modal-external-link {
+    color: #58a6ff;
+    border-bottom-color: rgba(88, 166, 255, 0.4);
+
+    &:hover {
+      color: #79c0ff;
+      border-bottom-color: #79c0ff;
+    }
+  }
+
+  .modal-highlights-title {
+    color: #8b949e;
+  }
+
+  .modal-highlights li {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.09);
+    border-left: 3px solid #58a6ff;
+    color: #d0d7de;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    a {
+      color: #58a6ff;
+
+      &:hover {
+        color: #79c0ff;
+      }
+    }
+  }
+
+  .modal-highlight-index {
+    background: rgba(88, 166, 255, 0.18);
+    color: #58a6ff;
+  }
+
+  .modal-footer-nav {
+    border-top-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .modal-nav-btn:disabled {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.35);
+  }
+}
+

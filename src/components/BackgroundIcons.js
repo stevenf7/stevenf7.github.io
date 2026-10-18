@@ -181,7 +181,6 @@ const BackgroundIcons = () => {
             left: `${icon.x}%`,
             top: `${icon.y}%`,
             transform: `rotate(${icon.initialRotation}deg)`,
-            opacity: icon.opacity,
           }}
         />
       ))}

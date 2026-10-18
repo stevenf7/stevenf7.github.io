@@ -20,30 +20,41 @@
   align-items: center;
   gap: 12px;
   padding: 0.55rem 1.1rem;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.58) 0%,
-    rgba(240, 247, 255, 0.36) 52%,
-    rgba(255, 255, 255, 0.48) 100%
+  background: var(
+    --bg-navbar,
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.58) 0%,
+      rgba(240, 247, 255, 0.36) 52%,
+      rgba(255, 255, 255, 0.48) 100%
+    )
   );
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  box-shadow: 0 12px 34px rgba(15, 23, 42, 0.16),
+  border: 1px solid var(--navbar-border, rgba(255, 255, 255, 0.72));
+  box-shadow: var(
+    --navbar-shadow,
+    0 12px 34px rgba(15, 23, 42, 0.16),
     0 2px 8px rgba(15, 23, 42, 0.06),
     inset 0 1px 1px rgba(255, 255, 255, 0.92),
-    inset 0 -1px 1px rgba(255, 255, 255, 0.38);
+    inset 0 -1px 1px rgba(255, 255, 255, 0.38)
+  );
   backdrop-filter: blur(22px) saturate(190%) brightness(1.03);
   -webkit-backdrop-filter: blur(22px) saturate(190%) brightness(1.03);
   border-radius: 16px;
+  transition: background 0.25s ease, border-color 0.25s ease,
+    box-shadow 0.25s ease;
 
   &::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.42) 0%,
-      rgba(255, 255, 255, 0.06) 48%,
-      rgba(255, 255, 255, 0.16) 100%
+    background: var(
+      --navbar-sheen,
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.42) 0%,
+        rgba(255, 255, 255, 0.06) 48%,
+        rgba(255, 255, 255, 0.16) 100%
+      )
     );
     pointer-events: none;
   }
@@ -83,19 +94,19 @@
     align-items: center;
     padding: 6px 11px;
     border-radius: 10px;
-    color: #0f172a;
+    color: var(--nav-link-color, #0f172a);
     font-size: 0.92rem;
     font-weight: 600;
     text-decoration: none;
-    text-shadow: 0 1px 6px rgba(255, 255, 255, 0.75);
+    text-shadow: var(--nav-link-shadow, 0 1px 6px rgba(255, 255, 255, 0.75));
     transition: background-color 0.2s ease, color 0.2s ease,
       box-shadow 0.2s ease, border-color 0.2s ease;
     border: 1px solid transparent;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.52);
-      border-color: rgba(255, 255, 255, 0.75);
-      color: #000000;
+      background: var(--nav-link-hover-bg, rgba(255, 255, 255, 0.52));
+      border-color: var(--nav-link-hover-border, rgba(255, 255, 255, 0.75));
+      color: var(--nav-link-hover-color, #000000);
       box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08),
         inset 0 1px 0 rgba(255, 255, 255, 0.85);
     }
@@ -117,6 +128,20 @@
     &:hover {
       background: rgba(22, 32, 42, 0.96);
       border-color: rgba(255, 255, 255, 0.45);
+      color: #ffffff;
+    }
+  }
+}
+
+[data-theme="dark"] {
+  .navbar-wrapper .resume-nav-link {
+    background: rgba(88, 166, 255, 0.22);
+    border-color: rgba(88, 166, 255, 0.45);
+    color: #f0f6fc;
+
+    &:hover {
+      background: rgba(88, 166, 255, 0.35);
+      border-color: rgba(88, 166, 255, 0.65);
       color: #ffffff;
     }
   }
