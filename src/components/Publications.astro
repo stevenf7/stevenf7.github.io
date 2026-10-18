@@ -1,0 +1,105 @@
+---
+import "../styles/publications.scss";
+import BilingualText from "./atoms/BilingualText.astro";
+import data, { getText, resolveAsset } from "../data";
+import { isVideoFile } from "../utils/media";
+
+import hriLabGif from "../images/publications/hri_lab.gif";
+import destrahVideo from "../images/publications/destrah.mp4";
+import urLousdVideo from "../images/publications/ur_lousd.mp4";
+import h1SilVideo from "../images/publications/h1_sil.mp4";
+import h1TrainVideo from "../images/nvidia/h1_Train.mp4";
+import carterOutdoorVideo from "../images/nvidia/Carter Outdoor.mp4";
+import clawVideo from "../images/nvidia/claw.mp4";
+import dextrousHandImage from "../images/nvidia/IMG_8301.webp";
+import robotStackVideo from "../images/nvidia/Robot Stack2.mp4";
+
+const PUBLICATION_MEDIA = {
+  hriLabGif,
+  destrahVideo,
+  urLousdVideo,
+  h1SilVideo,
+  h1TrainVideo,
+  carterOutdoorVideo,
+  clawVideo,
+  dextrousHandImage,
+  robotStackVideo,
+};
+
+const mediaGradient =
+  "var(--pub-media-bottom-gradient, linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(240, 248, 255, 0.5) 70%, rgba(240, 248, 255, 0.9) 85%, rgba(240, 248, 255, 1.0) 100%))";
+
+const publications = data.publications.map((publication) => {
+  const mediaSrc = resolveAsset(PUBLICATION_MEDIA[publication.media]);
+  return {
+    ...publication,
+    mediaSrc,
+    isVideo: isVideoFile(mediaSrc),
+    titleEn: getText(publication.title, "en"),
+  };
+});
+---
+
+<section class="section" id="publications" aria-labelledby="publications-heading">
+  <div class="container">
+    <h2 id="publications-heading" class="fade-in-section">
+      <BilingualText text={data.sections.publications} />
+    </h2>
+    <div class="publications-wrapper">
+      <div class="grid">
+        {
+          publications.map((publication) => (
+            <article class="publication-card fade-in-section">
+              <div
+                class="background-media"
+                style={{
+                  backgroundImage: publication.isVideo
+                    ? "none"
+                    : `${mediaGradient}, url(${publication.mediaSrc})`,
+                }}
+              >
+                {publication.isVideo && (
+                  <video
+                    class="background-video"
+                    src={publication.mediaSrc}
+                    aria-label={publication.titleEn}
+                    data-viewport-video
+                    data-fallback-en="Video preview unavailable on this device"
+                    data-fallback-zh="当前设备无法预览视频"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                    disablepictureinpicture
+                  />
+                )}
+              </div>
+              <div class="content">
+                <div class="publication-type" data-type={publication.type}>
+                  {publication.type}
+                </div>
+                <h3 class="header">
+                  <BilingualText text={publication.title} />
+                </h3>
+                <p class="subtitle">
+                  <BilingualText text={publication.subtitle} />
+                </p>
+                {publication.projectLink && (
+                  <a
+                    href={publication.projectLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn"
+                  >
+                    <BilingualText text={data.buttons.viewPublication} />
+                  </a>
+                )}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

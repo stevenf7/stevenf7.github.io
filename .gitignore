@@ -54,9 +54,12 @@ typings/
 # dotenv environment variable files
 .env*
 
-# gatsby files
+# astro build output
+dist/
+.astro/
+
+# legacy gatsby files
 .cache/
-public
 
 # Mac files
 .DS_Store

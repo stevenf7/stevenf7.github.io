@@ -7,39 +7,27 @@ on:
 jobs:
   build-check:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '24'
           cache: 'npm'
-          
+
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
-        
-      - name: Install native dependencies explicitly
-        run: |
-          npm install @parcel/watcher --legacy-peer-deps
-          npm rebuild @parcel/watcher
-        
-      - name: Clean Gatsby cache
-        run: npx gatsby clean
-        
+        run: npm ci
+
       - name: Build website
-        run: |
-          export GATSBY_DISABLE_FILE_WATCHER=true
-          export GATSBY_DISABLE_WATCHER=true
-          export NODE_ENV=production
-          npm run build
+        run: npm run build
         env:
-          GATSBY_GA_MEASUREMENT_ID: ${{ secrets.GATSBY_GA_MEASUREMENT_ID }}
-          
+          PUBLIC_GA_MEASUREMENT_ID: ${{ secrets.GATSBY_GA_MEASUREMENT_ID }}
+
       - name: Check build output
         run: |
           echo "✅ Build completed successfully!"
-          echo "📁 Build output size: $(du -sh public | cut -f1)"
-          echo "📄 Number of pages built: $(find public -name "*.html" | wc -l)" 
+          echo "📁 Build output size: $(du -sh dist | cut -f1)"
+          echo "📄 Number of pages built: $(find dist -name "*.html" | wc -l)"

@@ -1,69 +1,45 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
+import {
+  LANGUAGE_EVENT,
+  SUPPORTED_LANGUAGES,
+  getLanguageUrl,
+  readLanguage,
+} from "../utils/language";
 
-export const LanguageContext = createContext();
+export { getLanguageUrl };
 
-export const useLanguage = () => {
-  const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error("useLanguage must be used within a LanguageProvider");
-  }
-  return context;
+const subscribe = (callback) => {
+  window.addEventListener(LANGUAGE_EVENT, callback);
+  return () => window.removeEventListener(LANGUAGE_EVENT, callback);
 };
 
-export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState("en");
+export const setLanguage = (nextLanguage) => {
+  if (typeof window === "undefined") return;
+  if (!SUPPORTED_LANGUAGES.includes(nextLanguage)) return;
+  if (readLanguage() === nextLanguage) return;
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const urlParams = new URLSearchParams(window.location.search);
-      const langParam = urlParams.get("lang");
+  document.documentElement.lang = nextLanguage;
 
-      if (langParam === "zh" || langParam === "en") {
-        setLanguage(langParam);
-      }
-    }
-  }, []);
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", nextLanguage);
+  window.history.replaceState({}, "", url);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const urlParams = new URLSearchParams(window.location.search);
-      const currentLangParam = urlParams.get("lang");
-
-      if (currentLangParam !== language) {
-        urlParams.set("lang", language);
-        const hash = window.location.hash || "";
-        const newUrl = `${window.location.pathname}?${urlParams.toString()}${hash}`;
-        window.history.replaceState({}, "", newUrl);
-      }
-    }
-  }, [language]);
-
-  const toggleLanguage = () => {
-    setLanguage((prev) => (prev === "en" ? "zh" : "en"));
-  };
-
-  const getLanguageUrl = (targetLanguage, pathname = "/", hash = "") => {
-    const cleanPath = pathname || "/";
-    const normalizedHash = hash
-      ? hash.startsWith("#")
-        ? hash
-        : `#${hash}`
-      : "";
-    return `${cleanPath}?lang=${targetLanguage}${normalizedHash}`;
-  };
-
-  return (
-    <LanguageContext.Provider
-      value={{
-        language,
-        setLanguage,
-        toggleLanguage,
-        getLanguageUrl,
-        isEnglish: language === "en",
-        isChinese: language === "zh",
-      }}
-    >
-      {children}
-    </LanguageContext.Provider>
+  window.dispatchEvent(
+    new CustomEvent(LANGUAGE_EVENT, { detail: nextLanguage })
   );
+};
+
+// Each Astro island is its own React root, so language lives on
+// <html lang> and is broadcast with a window event instead of a provider.
+export const useLanguage = () => {
+  const language = useSyncExternalStore(subscribe, readLanguage, () => "en");
+
+  return {
+    language,
+    setLanguage,
+    toggleLanguage: () => setLanguage(language === "en" ? "zh" : "en"),
+    getLanguageUrl,
+    isEnglish: language === "en",
+    isChinese: language === "zh",
+  };
 };

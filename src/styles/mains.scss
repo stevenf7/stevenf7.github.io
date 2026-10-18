@@ -333,6 +333,47 @@ section h2,
   min-height: 100vh;
 }
 
+html[lang="zh"] [data-bilingual="en"],
+html:not([lang="zh"]) [data-bilingual="zh"] {
+  display: none !important;
+}
+
+// React islands render English on the server; hide them for Chinese
+// visitors until they hydrate so the English copy never flashes.
+html[lang="zh"] astro-island[ssr] {
+  visibility: hidden;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+html.js .fade-in-section:not(.is-visible) {
+  opacity: 0;
+}
+
+// `backwards` (not `both`) so hover transforms still apply after the reveal.
+html.js .fade-in-section.is-visible {
+  animation: fade-in-up 0.6s ease-out var(--fade-delay, 0s) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .fade-in-section:not(.is-visible) {
+    opacity: 1;
+  }
+
+  html.js .fade-in-section.is-visible {
+    animation: none;
+  }
+}
+
 video:not([controls])::-webkit-media-controls,
 video:not([controls])::-webkit-media-controls-panel,
 video:not([controls])::-webkit-media-controls-play-button,

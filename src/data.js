@@ -1254,4 +1254,29 @@ const siteData = {
   ]
 }
 
-export default siteData
+// Vite (Astro) imports images as ImageMetadata objects ({ src, width, ... })
+// and SVGs as components carrying the same fields; components expect URLs.
+export const resolveAsset = (asset) => {
+  if (!asset) return ""
+  if (typeof asset === "string") return asset
+  return typeof asset.src === "string" ? asset.src : ""
+}
+
+const isAssetModule = (value) =>
+  (typeof value === "object" || typeof value === "function") &&
+  value !== null &&
+  typeof value.src === "string" &&
+  "width" in value
+
+const normalizeAssets = (value) => {
+  if (isAssetModule(value)) return value.src
+  if (Array.isArray(value)) return value.map(normalizeAssets)
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, item]) => [key, normalizeAssets(item)])
+    )
+  }
+  return value
+}
+
+export default normalizeAssets(siteData)

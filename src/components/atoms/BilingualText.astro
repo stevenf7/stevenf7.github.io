@@ -1,0 +1,18 @@
+---
+import { getText } from "../../data";
+
+const { text } = Astro.props;
+const en = getText(text, "en");
+const zh = getText(text, "zh");
+---
+
+{
+  en === zh ? (
+    en
+  ) : (
+    <>
+      <span data-bilingual="en">{en}</span>
+      <span data-bilingual="zh" lang="zh">{zh}</span>
+    </>
+  )
+}

@@ -1,79 +1,54 @@
-import React, { createContext, useContext, useState, useEffect } from "react"
+import { useSyncExternalStore } from "react"
 
-export const ThemeContext = createContext()
+export const THEME_EVENT = "themechange"
 
-export const useTheme = () => {
-  const context = useContext(ThemeContext)
-  if (!context) {
-    throw new Error("useTheme must be used within a ThemeProvider")
-  }
-  return context
+const readTheme = () => {
+  if (typeof document === "undefined") return "light"
+  return document.documentElement.getAttribute("data-theme") === "dark"
+    ? "dark"
+    : "light"
 }
 
-export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("light")
+const subscribe = callback => {
+  window.addEventListener(THEME_EVENT, callback)
+  return () => window.removeEventListener(THEME_EVENT, callback)
+}
 
-  useEffect(() => {
-    if (typeof window === "undefined") return
-
-    const savedTheme = window.localStorage.getItem("theme")
-    if (savedTheme === "dark" || savedTheme === "light") {
-      setTheme(savedTheme)
-      document.documentElement.setAttribute("data-theme", savedTheme)
-    } else {
-      const prefersDark =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches
-      const initialTheme = prefersDark ? "dark" : "light"
-      setTheme(initialTheme)
-      document.documentElement.setAttribute("data-theme", initialTheme)
-    }
-
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
-    const handleChange = e => {
-      const stored = window.localStorage.getItem("theme")
-      if (!stored) {
-        const nextTheme = e.matches ? "dark" : "light"
-        setTheme(nextTheme)
-        document.documentElement.setAttribute("data-theme", nextTheme)
-      }
-    }
-
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener("change", handleChange)
-      return () => mediaQuery.removeEventListener("change", handleChange)
-    } else if (mediaQuery.addListener) {
-      mediaQuery.addListener(handleChange)
-      return () => mediaQuery.removeListener(handleChange)
-    }
-  }, [])
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      document.documentElement.setAttribute("data-theme", theme)
-    }
-  }, [theme])
-
-  const toggleTheme = () => {
-    setTheme(prev => {
-      const next = prev === "dark" ? "light" : "dark"
-      if (typeof window !== "undefined") {
-        window.localStorage.setItem("theme", next)
-        document.documentElement.setAttribute("data-theme", next)
-      }
-      return next
-    })
+const applyTheme = (nextTheme, { persist }) => {
+  document.documentElement.setAttribute("data-theme", nextTheme)
+  if (persist) {
+    try {
+      window.localStorage.setItem("theme", nextTheme)
+    } catch (e) {}
   }
+  window.dispatchEvent(new CustomEvent(THEME_EVENT, { detail: nextTheme }))
+}
 
-  return (
-    <ThemeContext.Provider
-      value={{
-        theme,
-        isDark: theme === "dark",
-        toggleTheme,
-      }}
-    >
-      {children}
-    </ThemeContext.Provider>
-  )
+if (typeof window !== "undefined" && window.matchMedia) {
+  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
+  const handleSystemChange = event => {
+    let stored = null
+    try {
+      stored = window.localStorage.getItem("theme")
+    } catch (e) {}
+    if (!stored) {
+      applyTheme(event.matches ? "dark" : "light", { persist: false })
+    }
+  }
+  if (mediaQuery.addEventListener) {
+    mediaQuery.addEventListener("change", handleSystemChange)
+  } else if (mediaQuery.addListener) {
+    mediaQuery.addListener(handleSystemChange)
+  }
+}
+
+export const useTheme = () => {
+  const theme = useSyncExternalStore(subscribe, readTheme, () => "light")
+
+  return {
+    theme,
+    isDark: theme === "dark",
+    toggleTheme: () =>
+      applyTheme(theme === "dark" ? "light" : "dark", { persist: true }),
+  }
 }

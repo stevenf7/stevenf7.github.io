@@ -1,0 +1,31 @@
+---
+import BilingualText from "./atoms/BilingualText.astro";
+import data from "../data";
+---
+
+<section class="section" id="skills" aria-labelledby="skills-heading">
+  <div class="container">
+    <h2 id="skills-heading" class="fade-in-section">
+      <BilingualText text={data.sections.skills} />
+    </h2>
+    <div class="skills-wrapper">
+      <div class="grid">
+        {
+          data.skills.map((skill) => (
+            <div class="skill-item fade-in-section">
+              <img src={skill.img} alt="" aria-hidden="true" loading="lazy" />
+              {skill.title && (
+                <h3>
+                  <BilingualText text={skill.title} />
+                </h3>
+              )}
+              <p>
+                <BilingualText text={skill.para} />
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
