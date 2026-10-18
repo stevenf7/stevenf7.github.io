@@ -87,8 +87,10 @@
 }
 
 [data-theme="dark"] {
+  .footer-container .social-icons a[aria-label="GitHub"] img,
+  .footer-container .social-icons a[href*="github.com"] img,
   .footer-container .social-icons img[alt="GitHub"],
   .footer-container .social-icons img[src*="github"] {
-    filter: invert(1) brightness(1.2);
+    filter: brightness(0) invert(1);
   }
 }
