@@ -1,0 +1,114 @@
+---
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/mains.scss";
+import Navbar from "../components/Navbar.jsx";
+import BackgroundIcons from "../components/BackgroundIcons.jsx";
+import BilingualText from "../components/atoms/BilingualText.astro";
+import data, { getText, resolveAsset } from "../data";
+import socialPreviewImage from "../images/SelfPhoto4.jpg";
+import faviconImage from "../images/GoosePhoto.jpg";
+
+const { title, description = data.seo.description, pathname = "/" } = Astro.props;
+
+const siteUrl = (Astro.site?.href || "https://stevenf7.github.io").replace(/\/$/, "");
+const normalizedPath = pathname.startsWith("/") ? pathname : `/${pathname}`;
+const canonicalUrl = `${siteUrl}${normalizedPath}`;
+const zhAlternateUrl = `${canonicalUrl}?lang=zh`;
+
+const titles = { en: getText(title, "en"), zh: getText(title, "zh") };
+const resolvedDescription = getText(description, "en");
+const socialImageUrl = new URL(resolveAsset(socialPreviewImage), siteUrl).href;
+const faviconUrl = resolveAsset(faviconImage);
+const gaId =
+  import.meta.env.PUBLIC_GA_MEASUREMENT_ID || process.env.GATSBY_GA_MEASUREMENT_ID;
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titles.en}</title>
+    <script is:inline define:vars={{ titles }}>
+      var root = document.documentElement;
+      try {
+        var savedTheme = localStorage.getItem("theme");
+        if (savedTheme !== "dark" && savedTheme !== "light") {
+          savedTheme =
+            window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+        }
+        root.setAttribute("data-theme", savedTheme);
+      } catch (e) {}
+      var langParam = new URLSearchParams(window.location.search).get("lang");
+      root.lang = langParam === "zh" ? "zh" : "en";
+      root.classList.add("js");
+      var applyTitle = function () {
+        document.title = titles[root.lang] || titles.en;
+      };
+      applyTitle();
+      window.addEventListener("languagechange", applyTitle);
+    </script>
+    <meta name="description" content={resolvedDescription} />
+    <meta name="theme-color" content="#16202a" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" type="image/jpeg" href={faviconUrl} />
+    <link rel="apple-touch-icon" href={faviconUrl} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={canonicalUrl} />
+    <link rel="alternate" hreflang="zh" href={zhAlternateUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+    <meta property="og:title" content={titles.en} />
+    <meta property="og:description" content={resolvedDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:alt" content={titles.en} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="zh_CN" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="Ji Yuan (Steven) Feng" />
+    <meta name="twitter:title" content={titles.en} />
+    <meta name="twitter:description" content={resolvedDescription} />
+    <meta name="twitter:image" content={socialImageUrl} />
+  </head>
+  <body>
+    <div class="layout-container">
+      <a class="skip-link" href="#main-content">
+        <BilingualText text={data.nav.skipToContent} />
+      </a>
+      <BackgroundIcons client:idle />
+      <div class="content-wrapper">
+        <Navbar client:load />
+        <main id="main-content" tabindex="-1">
+          <slot />
+        </main>
+      </div>
+    </div>
+
+    {
+      gaId && (
+        <>
+          <script
+            is:inline
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+          />
+          <script is:inline define:vars={{ gaId }}>
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function () {
+              window.dataLayer.push(arguments);
+            };
+            window.gtag("js", new Date());
+            window.gtag("config", gaId, { anonymize_ip: true });
+          </script>
+        </>
+      )
+    }
+
+    <script>
+      import "../scripts/enhancements.js";
+    </script>
+  </body>
+</html>

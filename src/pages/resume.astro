@@ -1,0 +1,27 @@
+---
+import "../css/resume.scss";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BilingualText from "../components/atoms/BilingualText.astro";
+import data, { getText } from "../data";
+import resumePdf from "../images/resume.pdf";
+---
+
+<BaseLayout
+  title={data.seo.resumeTitle}
+  description={data.seo.description}
+  pathname="/resume/"
+>
+  <section class="section" id="resume" aria-labelledby="resume-heading">
+    <div class="container">
+      <h1 id="resume-heading" class="fade-in-section">
+        <BilingualText text={data.nav.resume} />
+      </h1>
+      <iframe
+        src={resumePdf}
+        class="Resume fade-in-section"
+        title={getText(data.nav.resume, "en")}
+        data-aria-label-en={getText(data.nav.resume, "en")}
+        data-aria-label-zh={getText(data.nav.resume, "zh")}></iframe>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,50 @@
+---
+import "../styles/footer.scss";
+import BilingualText from "./atoms/BilingualText.astro";
+import data from "../data";
+---
+
+<footer class="section" id="contact" aria-labelledby="contact-heading">
+  <div class="container">
+    <div class="footer-container">
+      <h2 id="contact-heading" class="fade-in-section">
+        <BilingualText text={data.sections.contact} />
+      </h2>
+      <p class="contact-subheading fade-in-section" style="--fade-delay: 0.1s">
+        <BilingualText text={data.contactSubHeading} />
+      </p>
+      <p class="personal-note fade-in-section" style="--fade-delay: 0.2s">
+        <BilingualText text={data.personalNote} />
+      </p>
+      <a class="email-link fade-in-section" href={`mailto:${data.contactEmail}`}>
+        {data.contactEmail}
+      </a>
+      <div class="social-icons fade-in-section">
+        {
+          data.social.map((socialLink) => (
+            <a
+              href={socialLink.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={socialLink.label}
+            >
+              <img src={socialLink.img} alt="" aria-hidden="true" loading="lazy" />
+            </a>
+          ))
+        }
+      </div>
+      <span class="fade-in-section">
+        <BilingualText text={data.footer.madeBy} />{" "}
+        <span role="img" aria-label="duck">🦆</span>
+        <a
+          href="https://www.linkedin.com/in/stevenfeng7/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {" "}
+          <BilingualText text={data.name} />
+        </a>
+      </span>
+    </div>
+  </div>
+</footer>

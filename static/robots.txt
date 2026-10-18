@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://stevenf7.github.io/sitemap.xml

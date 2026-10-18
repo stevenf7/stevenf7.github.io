@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Nvidia from "../components/NVIDIA.jsx";
+import Education from "../components/Education.jsx";
+import Publications from "../components/Publications.astro";
+import Projects from "../components/projects.jsx";
+import Skills from "../components/Skills.astro";
+import Footer from "../components/Footer.astro";
+import data from "../data";
+---
+
+<BaseLayout title={data.seo.title} description={data.seo.description} pathname="/">
+  <Header />
+  <Nvidia client:visible />
+  <Education client:visible />
+  <Publications />
+  <Projects client:visible />
+  <Skills />
+  <Footer />
+</BaseLayout>

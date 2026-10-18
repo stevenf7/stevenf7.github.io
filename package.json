@@ -1,54 +1,40 @@
 {
   "name": "Main",
   "private": true,
+  "type": "module",
   "description": "Personal Website from a non web developer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Steven Feng <jy5feng@uwaterloo.ca>",
   "dependencies": {
+    "@astrojs/react": "^4.2.0",
+    "astro": "^5.5.0",
     "bootstrap": "^5.3.2",
-    "date-fns": "^4.1.0",
-    "gatsby": "^5.13.1",
-    "gatsby-plugin-gtag": "^1.0.13",
-    "gatsby-plugin-image": "^3.13.0",
-    "gatsby-plugin-manifest": "^5.13.0",
-    "gatsby-plugin-react-helmet": "^6.13.0",
-    "gatsby-plugin-sass": "^6.13.0",
-    "gatsby-plugin-sharp": "^5.13.0",
-    "gatsby-plugin-smoothscroll": "^1.2.0",
-    "gatsby-source-filesystem": "^5.13.0",
-    "gatsby-transformer-sharp": "^5.13.0",
-    "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-bootstrap": "^2.9.1",
-    "react-dom": "^18.2.0",
-    "react-helmet": "^6.1.0",
     "framer-motion": "^10.16.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-simple-typewriter": "^5.0.1",
     "sass": "^1.69.5"
   },
   "devDependencies": {
-    "gh-pages": "^6.1.0",
     "prettier": "^3.1.0"
   },
+  "engines": {
+    "node": ">=22"
+  },
   "keywords": [
-    "gatsby"
+    "astro"
   ],
   "license": "0BSD",
   "scripts": {
-    "deploy": "gatsby build && gh-pages -d public -b main",
-    "build": "gatsby build",
-    "develop": "gatsby develop --host=0.0.0.0",
+    "dev": "astro dev --host",
+    "start": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview --host",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "clean": "node -e \"for (const d of ['dist', '.astro']) require('fs').rmSync(d, { recursive: true, force: true })\""
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/stevenf7/stevenf7.github.io/"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
   }
 }
