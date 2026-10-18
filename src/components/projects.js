@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Fade from "./animations/Fade";
+import Card from "./atoms/Card";
 import ViewportVideo from "./atoms/ViewportVideo";
+import Modal from "./modal";
 import { useLanguage } from "../contexts/LanguageContext";
 import data, { getText } from "../data";
 import "../styles/projects.scss";
@@ -30,6 +32,20 @@ const MEDIA_MAP = {
 const Project = () => {
   const { language } = useLanguage();
   const [showAllProjects, setShowAllProjects] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [modalId, setModalId] = useState(0);
+
+  const handlePrevious = () => {
+    if (modalId > 0) {
+      setModalId(modalId - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (modalId < data.projects.length - 1) {
+      setModalId(modalId + 1);
+    }
+  };
 
   const projectItems = data.projectsCarouselItems.map((item) => ({
     ...item,
@@ -46,15 +62,19 @@ const Project = () => {
 
   const featuredProjects = projectItems.filter((item) => item.featured);
   const additionalProjects = projectItems.filter((item) => !item.featured);
-  const visibleProjects = showAllProjects
-    ? projectItems
-    : featuredProjects;
+  const visibleProjects = showAllProjects ? projectItems : featuredProjects;
 
   return (
-    <section className="section" id="projects" aria-labelledby="projects-heading">
+    <section
+      className="section"
+      id="projects"
+      aria-labelledby="projects-heading"
+    >
       <div className="container">
         <Fade bottom distance="20px">
-          <h2 id="projects-heading">{getText(data.sections.projects, language)}</h2>
+          <h2 id="projects-heading">
+            {getText(data.sections.projects, language)}
+          </h2>
         </Fade>
 
         <div className="project-wrapper">
@@ -108,7 +128,38 @@ const Project = () => {
             ))}
           </div>
 
-          {additionalProjects.length > 0 && (
+          {showAllProjects && (
+            <div className="internships-subsection" id="work">
+              <Fade bottom distance="20px">
+                <h3 className="internships-subheading">
+                  {getText(data.sections.internships, language)}
+                </h3>
+              </Fade>
+              <div className="work-wrapper">
+                <div className="grid">
+                  {data.projects.map((project, index) => (
+                    <Fade
+                      bottom
+                      distance="20px"
+                      key={getText(project.title, "en")}
+                    >
+                      <Card
+                        id={index}
+                        heading={getText(project.title, language)}
+                        subtitle={project.date ? project.date.trim() : ""}
+                        paragraph={getText(project.para, language)}
+                        imgUrl={project.imageSrc}
+                        setOpenModal={setOpenModal}
+                        setId={setModalId}
+                      />
+                    </Fade>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {(additionalProjects.length > 0 || data.projects.length > 0) && (
             <div className="projects-toggle-wrap">
               <button
                 type="button"
@@ -124,6 +175,16 @@ const Project = () => {
                 )}
               </button>
             </div>
+          )}
+
+          {openModal && (
+            <Modal
+              closeModal={setOpenModal}
+              id={modalId}
+              totalItems={data.projects.length}
+              onPrevious={handlePrevious}
+              onNext={handleNext}
+            />
           )}
         </div>
       </div>

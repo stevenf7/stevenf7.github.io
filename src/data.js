@@ -130,7 +130,7 @@ const siteData = {
     publications: { en: "Publications & Talks", zh: "论文与技术演讲" },
     education: { en: "Education & Research", zh: "教育与科研" },
     internships: { en: "Internship Experience", zh: "实习经历" },
-    projects: { en: "Selected Engineering Projects", zh: "代表性工程项目" },
+    projects: { en: "Hobbies, Projects & Internships", zh: "爱好、项目与实习经历" },
     skills: { en: "Technical Skills", zh: "技术栈" },
     contact: { en: "Contact", zh: "联系" }
   },
@@ -144,7 +144,7 @@ const siteData = {
     viewPublication: { en: "View Publication", zh: "查看链接" },
     viewAllDemos: { en: "View all 16 NVIDIA demos & talks", zh: "展开全部 16 个 NVIDIA 演示与演讲" },
     showFewerDemos: { en: "Show featured NVIDIA overview", zh: "收起完整演示列表" },
-    viewAllProjects: { en: "View earlier robotics, hackathon & aviation projects", zh: "展开更多早期机器人、黑客松与飞行项目" },
+    viewAllProjects: { en: "View internships & other projects", zh: "展开实习经历与更多项目" },
     showFewerProjects: { en: "Show selected projects only", zh: "仅显示代表性项目" },
     close: { en: "Close", zh: "关闭" }
   },
@@ -797,16 +797,16 @@ const siteData = {
     },
     {
       title: {
-        en: "NVIDIA (2022 Internship)",
-        zh: "英伟达（2022 实习）"
+        en: "NVIDIA",
+        zh: "英伟达"
       },
       position: {
         en: "Robotics Simulation Engineer Intern - NVIDIA",
         zh: "机器人仿真工程师实习生 - NVIDIA"
       },
       para: {
-        en: "Built physics-based Isaac Sim sensors and quadruped simulation extensions before returning full-time in 2023.",
-        zh: "在 2023 年全职加入前，于实习期间开发 Isaac Sim 物理传感器与四足机器人仿真扩展。"
+        en: "Built physics-based Isaac Sim sensors and quadruped simulation extensions before returning full-time.",
+        zh: "在全职加入前，于实习期间开发 Isaac Sim 物理传感器与四足机器人仿真扩展。"
       },
       imageSrc: NVIDIAIcon,
       date: "01/2022 - 04/2022",
@@ -964,47 +964,42 @@ const siteData = {
       featured: true,
       tag: { en: "Multi-Robot SLAM", zh: "多机器人 SLAM" },
       title: {
-        en: "Autonomous Multi-Robot Warehouse SLAM (Capstone)",
-        zh: "自主多机器人仓库探索与 SLAM（毕业设计）"
+        en: "Autonomous Multi-Robot Warehouse SLAM",
+        zh: "自主多机器人仓库探索与 SLAM"
       },
       subtitle: {
-        en: "Coordinated exploration and mapping in an 80,000 sq ft simulated warehouse",
-        zh: "7,500 平方米虚拟仓库中的多机器人协同探索与建图"
+        en: "UWaterloo Mechatronics Capstone · ROS & Gazebo",
+        zh: "滑铁卢大学机电工程毕业设计 · ROS 与 Gazebo"
       },
       description: {
-        en: "Built a multi-robot exploration and SLAM prototype capable of mapping an 80,000 sq ft virtual warehouse through coordinated autonomy.",
-        zh: "构建多机器人协同探索与 SLAM 系统原型，可完成约 7,500 平方米虚拟仓库的自主建图。"
+        en: "Built a multi-robot exploration and SLAM system capable of mapping an 80,000 sq ft virtual warehouse through coordinated frontier-based autonomy.",
+        zh: "构建多机器人协同探索与 SLAM 系统原型，通过自主协同完成约 7,500 平方米虚拟仓库的建图。"
       },
       buttons: [
         {
-          text: { en: "GitHub Organization", zh: "查看 GitHub" },
+          text: { en: "GitHub", zh: "GitHub" },
           url: "https://github.com/FireScopeRobotics"
         }
       ]
     },
     {
-      media: "watoImage",
+      media: "pilotImg",
       type: "image",
       featured: true,
-      tag: { en: "Autonomous Driving", zh: "自动驾驶" },
+      tag: { en: "Aviation", zh: "航空飞行" },
       title: {
-        en: "WATonomous Level 4 Autonomous Vehicle",
-        zh: "WATonomous 四级自动驾驶车队"
+        en: "Fixed-Wing, Glider & Drone Pilot",
+        zh: "固定翼、滑翔机与无人机飞行员"
       },
       subtitle: {
-        en: "Local planning and Model Predictive Control on a Chevrolet Bolt platform",
-        zh: "雪佛兰 Bolt 平台上的局部路径规划与模型预测控制（MPC）"
+        en: "Transport Canada PPL (2017) & Glider License (2016) · CA + US Drone Certificates",
+        zh: "加拿大私人飞机执照（2017）与滑翔机执照（2016）· 加美无人机执照"
       },
       description: {
-        en: "Worked on local planning and the Model Predictive Control (MPC) stack in ROS for University of Waterloo's Level 4 autonomous vehicle team.",
-        zh: "在滑铁卢大学自动驾驶车队负责基于 ROS 的局部规划与模型预测控制（MPC）开发。"
+        en: "Certified to fly single-engine aircraft, gliders, and unmanned aerial systems across North America—hands-on flight dynamics experience that informs my aerial robotics work.",
+        zh: "具备北美单发固定翼飞机、滑翔机及无人机飞行资质，将真实飞行动力学经验融入飞行机器人研发。"
       },
-      buttons: [
-        {
-          text: { en: "Team Website", zh: "车队官网" },
-          url: "https://www.watonomous.ca/"
-        }
-      ]
+      buttons: []
     },
     {
       media: "airplaneImage",
@@ -1016,17 +1011,41 @@ const siteData = {
         zh: "自研遥控固定翼飞机"
       },
       subtitle: {
-        en: "Airframe, embedded telemetry, and control architecture built from scratch",
-        zh: "从零设计气动结构、嵌入式飞控与无线通信架构"
+        en: "Raspberry Pi & ESP8266 · Two-Person Hardware/Firmware Build",
+        zh: "树莓派与 ESP8266 · 双人硬件与飞控自研项目"
       },
       description: {
-        en: "Designed and built a remote-controlled airplane from scratch using Raspberry Pi and ESP8266 modules, covering both mechanical airframe and embedded software architecture in a two-person team.",
-        zh: "在两人团队中基于树莓派与 ESP8266 从零设计并制造遥控飞机，覆盖机械结构与嵌入式软件架构。"
+        en: "Designed and fabricated a fixed-wing airplane from scratch, covering both the mechanical airframe and onboard wireless flight-control architecture.",
+        zh: "从零设计并制造固定翼飞机，完成气动机身结构与机载无线飞控软件架构开发。"
       },
       buttons: [
         {
-          text: { en: "GitHub Repository", zh: "查看代码库" },
+          text: { en: "GitHub", zh: "GitHub" },
           url: "https://github.com/The-Airplane-Project/Remote-Controlled-Airplane"
+        }
+      ]
+    },
+    {
+      media: "watoImage",
+      type: "image",
+      featured: false,
+      tag: { en: "Autonomous Driving", zh: "自动驾驶" },
+      title: {
+        en: "WATonomous Level 4 Autonomous Vehicle",
+        zh: "WATonomous 四级自动驾驶车队"
+      },
+      subtitle: {
+        en: "SAE AutoDrive Challenge · Chevrolet Bolt EV Platform",
+        zh: "SAE AutoDrive 自动驾驶挑战赛 · 雪佛兰 Bolt 平台"
+      },
+      description: {
+        en: "Developed ROS nodes for local trajectory planning and the Model Predictive Control (MPC) stack for University of Waterloo's self-driving vehicle team.",
+        zh: "为滑铁卢大学自动驾驶车队开发基于 ROS 的局部轨迹规划与模型预测控制（MPC）算法栈。"
+      },
+      buttons: [
+        {
+          text: { en: "Team Website", zh: "车队官网" },
+          url: "https://www.watonomous.ca/"
         }
       ]
     },
@@ -1040,8 +1059,8 @@ const siteData = {
         zh: "可穿戴辅助导航与骑行安全硬件"
       },
       subtitle: {
-        en: "1st Place — VisionSense at MakeUofT 2019",
-        zh: "第一名 —— VisionSense（MakeUofT 2019）"
+        en: "1st Place Overall — MakeUofT 2019",
+        zh: "总冠军（第一名）—— MakeUofT 2019"
       },
       description: {
         en: "VisionSense haptically guides users with visual impairments around obstacles, while NightLight uses motion sensing to trigger turn signals for cyclists at night.",
@@ -1068,8 +1087,8 @@ const siteData = {
         zh: "Intelibatch 与 Purrtector 网络应用"
       },
       subtitle: {
-        en: "Best Use of Google Cloud Award — Purrtector, nwHacks 2021",
-        zh: "Google Cloud 最佳使用奖 —— Purrtector（nwHacks 2021）"
+        en: "Best Use of Google Cloud Award — nwHacks 2021",
+        zh: "Google Cloud 最佳使用奖 —— nwHacks 2021"
       },
       description: {
         en: "Intelibatch predicts regional COVID-19 case trends with React, Flask, and TensorFlow to optimize pooled testing. Purrtector is a Chrome extension that rewards sustainable habits.",
@@ -1096,8 +1115,8 @@ const siteData = {
         zh: "自主循线机器人"
       },
       subtitle: {
-        en: "2nd highest competition score in MTE 380",
-        zh: "MTE 380 课程竞赛第二高分"
+        en: "2nd Highest Score · UWaterloo MTE 380 Competition",
+        zh: "滑铁卢大学 MTE 380 课程竞赛第二高分"
       },
       description: {
         en: "Led mechanical CAD in SolidWorks, managed the bill of materials, and coordinated mechanical, electrical, and firmware integration as project manager.",
@@ -1105,7 +1124,7 @@ const siteData = {
       },
       buttons: [
         {
-          text: { en: "GitHub Organization", zh: "查看 GitHub" },
+          text: { en: "GitHub", zh: "GitHub" },
           url: "https://github.com/B-O-F-A"
         }
       ]
@@ -1157,25 +1176,6 @@ const siteData = {
           url: "https://globalnews.ca/video/3355924/sir-winston-churchill-students-head-to-vex-robotics-world-championship/"
         }
       ]
-    },
-    {
-      media: "pilotImg",
-      type: "image",
-      featured: false,
-      tag: { en: "Aviation", zh: "航空飞行" },
-      title: {
-        en: "Fixed-Wing, Glider & Drone Pilot",
-        zh: "固定翼、滑翔机与无人机飞行员"
-      },
-      subtitle: {
-        en: "Transport Canada Glider (2016) & Private Pilot License (2017); CA + US Drone Operator",
-        zh: "加拿大滑翔机（2016）与私人飞行执照（2017）；加美无人机操作执照"
-      },
-      description: {
-        en: "Earned Transport Canada glider and private pilot licenses and holds drone credentials in both Canada and the United States—experience that continues to inform my aerial robotics work.",
-        zh: "考取加拿大交通部滑翔机与私人飞行执照，并持有加拿大与美国无人机执照，这段经历持续启发我的飞行机器人研究。"
-      },
-      buttons: []
     }
   ],
 

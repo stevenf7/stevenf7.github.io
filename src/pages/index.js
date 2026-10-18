@@ -5,10 +5,9 @@ import SEO from "../components/seo";
 import data from "../data";
 import Header from "../components/Header";
 import Nvidia from "../components/NVIDIA";
-import Publications from "../components/Publications";
-import Work from "../components/Work";
-import Project from "../components/projects";
 import Education from "../components/Education";
+import Publications from "../components/Publications";
+import Project from "../components/projects";
 import Skills from "../components/skills";
 import Footer from "../components/Footer";
 
@@ -18,10 +17,9 @@ const IndexPage = () => (
     <SEO title={data.seo.title} description={data.seo.description} pathname="/" />
     <Header />
     <Nvidia />
-    <Publications />
-    <Work />
-    <Project />
     <Education />
+    <Publications />
+    <Project />
     <Skills />
     <Footer />
   </Layout>

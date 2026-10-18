@@ -10,10 +10,9 @@ const Navbar = () => {
   const navItems = [
     { key: "home", label: data.nav.home, hash: "#home" },
     { key: "nvidia", label: data.nav.nvidia, hash: "#nvidia" },
-    { key: "publications", label: data.nav.publications, hash: "#publications" },
-    { key: "work", label: data.nav.work, hash: "#work" },
-    { key: "projects", label: data.nav.projects, hash: "#projects" },
     { key: "education", label: data.nav.education, hash: "#education" },
+    { key: "publications", label: data.nav.publications, hash: "#publications" },
+    { key: "projects", label: data.nav.projects, hash: "#projects" },
     { key: "contact", label: data.nav.contact, hash: "#contact" },
   ];
 

@@ -5,16 +5,10 @@ import Fade from "../components/animations/Fade"
 import "../css/resume.scss"
 import { useLanguage } from "../contexts/LanguageContext"
 import data, { getText } from "../data"
+import resumePdf from "../images/resume.pdf"
 
 const ResumeContent = () => {
   const { language } = useLanguage()
-
-  const resumeUrls = {
-    en: "https://drive.google.com/file/d/1fPQOUJndzVjnpf468iD_SXImoHbwJZ6j/preview",
-    zh: "https://drive.google.com/file/d/1fPQOUJndzVjnpf468iD_SXImoHbwJZ6j/preview",
-  }
-
-  const resumeUrl = resumeUrls[language] || resumeUrls.en
   const resumeTitle = getText(data.nav.resume, language)
 
   return (
@@ -25,13 +19,10 @@ const ResumeContent = () => {
         </Fade>
         <Fade bottom duration={0.6} distance="20px">
           <iframe
-            src={resumeUrl}
-            allow="autoplay"
+            src={resumePdf}
             className="Resume"
             title={resumeTitle}
-          >
-            {resumeTitle}
-          </iframe>
+          />
         </Fade>
       </div>
     </section>

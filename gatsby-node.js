@@ -4,4 +4,15 @@
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
+  if (stage === "develop" || stage === "develop-html") {
+    actions.setWebpackConfig({
+      watchOptions: {
+        poll: 1000,
+        aggregateTimeout: 300,
+        ignored: /node_modules/,
+      },
+    })
+  }
+}
+
