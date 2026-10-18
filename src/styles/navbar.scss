@@ -60,7 +60,7 @@
   }
 
   @media (max-width: 768px) {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     padding: 0.5rem 0.75rem;
   }
 
@@ -114,6 +114,12 @@
     @media (max-width: 640px) {
       padding: 5px 8px;
       font-size: 0.82rem;
+    }
+
+    &.nav-link-desktop-only {
+      @media (max-width: 768px) {
+        display: none;
+      }
     }
   }
 

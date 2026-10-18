@@ -36,7 +36,9 @@ const Navbar = () => {
                 <a
                   key={item.key}
                   href={getLanguageUrl(language, "/", item.hash)}
-                  className="nav-link"
+                  className={`nav-link${
+                    item.key !== "home" ? " nav-link-desktop-only" : ""
+                  }`}
                 >
                   {getText(item.label, language)}
                 </a>
