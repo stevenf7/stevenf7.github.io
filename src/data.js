@@ -88,8 +88,8 @@ const siteData = {
   },
 
   headerParagraph: {
-    en: "At NVIDIA, I work across Isaac Lab and Isaac Sim on humanoid and legged robot learning, OpenUSD asset composition, synthetic sensors, and software-in-the-loop deployment.",
-    zh: "在英伟达，我负责 Isaac Lab 与 Isaac Sim 的人形与足式机器人学习、OpenUSD 资产构建、合成传感器与软件在环部署。"
+    en: "I am a robotics systems engineer passionate about bringing autonomous and biomimetic robots to life.",
+    zh: "我是一名机器人系统工程师,致力于将智能机器人和仿生机器人带入现实。"
   },
 
   heroSpecialties: {
