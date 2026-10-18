@@ -58,6 +58,10 @@ typings/
 dist/
 .astro/
 
+# playwright output
+test-results/
+playwright-report/
+
 # legacy gatsby files
 .cache/
 

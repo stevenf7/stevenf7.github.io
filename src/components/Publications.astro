@@ -1,36 +1,15 @@
 ---
 import "../styles/publications.scss";
 import BilingualText from "./atoms/BilingualText.astro";
-import data, { getText, resolveAsset } from "../data";
+import data, { getText } from "../data";
+import { PUBLICATION_MEDIA } from "../media";
 import { isVideoFile } from "../utils/media";
-
-import hriLabGif from "../images/publications/hri_lab.gif";
-import destrahVideo from "../images/publications/destrah.mp4";
-import urLousdVideo from "../images/publications/ur_lousd.mp4";
-import h1SilVideo from "../images/publications/h1_sil.mp4";
-import h1TrainVideo from "../images/nvidia/h1_Train.mp4";
-import carterOutdoorVideo from "../images/nvidia/Carter Outdoor.mp4";
-import clawVideo from "../images/nvidia/claw.mp4";
-import dextrousHandImage from "../images/nvidia/IMG_8301.webp";
-import robotStackVideo from "../images/nvidia/Robot Stack2.mp4";
-
-const PUBLICATION_MEDIA = {
-  hriLabGif,
-  destrahVideo,
-  urLousdVideo,
-  h1SilVideo,
-  h1TrainVideo,
-  carterOutdoorVideo,
-  clawVideo,
-  dextrousHandImage,
-  robotStackVideo,
-};
 
 const mediaGradient =
   "var(--pub-media-bottom-gradient, linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(240, 248, 255, 0.5) 70%, rgba(240, 248, 255, 0.9) 85%, rgba(240, 248, 255, 1.0) 100%))";
 
 const publications = data.publications.map((publication) => {
-  const mediaSrc = resolveAsset(PUBLICATION_MEDIA[publication.media]);
+  const mediaSrc = PUBLICATION_MEDIA[publication.media];
   return {
     ...publication,
     mediaSrc,

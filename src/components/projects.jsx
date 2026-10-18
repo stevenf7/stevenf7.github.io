@@ -4,34 +4,9 @@ import Card from "./atoms/Card";
 import ViewportVideo from "./atoms/ViewportVideo";
 import Modal from "./modal";
 import { useLanguage } from "../contexts/LanguageContext";
-import data, { getText, resolveAsset } from "../data";
+import data, { getText } from "../data";
+import { PROJECT_MEDIA as MEDIA_MAP } from "../media";
 import "../styles/projects.scss";
-
-import airplaneImage from "../images/ProjectPhotos/airplane.webp";
-import watoImage from "../images/ProjectPhotos/Wato.webp";
-import hisecurityImage from "../images/ProjectPhotos/HiSecurity2.webp";
-import pilotImg from "../images/ProjectPhotos/Pilot.webp";
-import vexImg from "../images/ProjectPhotos/VEX.webp";
-import wearableImg from "../images/ProjectPhotos/wearableHacks.webp";
-import webappImg from "../images/ProjectPhotos/WebappProjects.webp";
-import mte380Img from "../images/ProjectPhotos/mte380.webp";
-import capstoneVideo from "../images/ProjectPhotos/capstone.mp4";
-
-const MEDIA_SOURCES = {
-  airplaneImage,
-  watoImage,
-  capstoneVideo,
-  webappImg,
-  wearableImg,
-  mte380Img,
-  hisecurityImage,
-  vexImg,
-  pilotImg,
-};
-
-const MEDIA_MAP = Object.fromEntries(
-  Object.entries(MEDIA_SOURCES).map(([key, asset]) => [key, resolveAsset(asset)])
-);
 
 const Project = () => {
   const { language } = useLanguage();

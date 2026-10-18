@@ -48,7 +48,24 @@ src/
   styles/, css/ # SCSS stylesheets
   images/       # Images, videos, and resume.pdf
   data.js       # All site content (English + Chinese)
+  media.js      # Image/video maps referenced by the `media` keys in data.js
 public/         # Files copied as-is to the site root (e.g. robots.txt)
+tests/
+  unit/         # Vitest content checks for data.js
+  e2e/          # Playwright smoke tests against the production build
+```
+
+## Testing
+
+Content checks (about 1 second) verify `src/data.js`: every bilingual field has both English and Chinese text, every `media` key points to a real file, links are valid URLs, and modal entries have the fields they need.
+```bash
+npm test
+```
+
+Smoke tests build the site and load it in headless Chromium (desktop and mobile). They check that every section renders and hydrates with no console errors, Chinese mode, the language and theme toggles, the Education modal, the resume PDF, and the mobile navbar.
+```bash
+npx playwright install chromium   # one-time browser download
+npm run test:e2e
 ```
 
 ## Deployment
@@ -56,8 +73,9 @@ public/         # Files copied as-is to the site root (e.g. robots.txt)
 This site is automatically deployed using GitHub Actions (`.github/workflows/deploy.yml`). When you push to the `production` branch, it will:
 
 1. Install dependencies with `npm ci`
-2. Build the Astro site into `dist/`
-3. Deploy `dist/` to GitHub Pages
+2. Run the content tests
+3. Build the Astro site into `dist/`
+4. Deploy `dist/` to GitHub Pages
 
 To redeploy without pushing new code, open **Actions > Build and Deploy to GitHub Pages > Run workflow** on GitHub and choose the `production` branch (or run `gh workflow run deploy.yml --ref production`).
 
@@ -66,7 +84,8 @@ The repo's **Settings > Pages > Source** must be set to **GitHub Actions**. The 
 ## Quality Assurance
 
 ### Pull Request Checks
-Every Pull Request automatically triggers a build check (`.github/workflows/pr-check.yml`) to ensure:
-- Dependencies install correctly from `package-lock.json`
-- Astro builds successfully
-- No breaking changes are introduced
+Every Pull Request automatically triggers a check (`.github/workflows/pr-check.yml`) that:
+- Installs dependencies from `package-lock.json`
+- Runs the content tests
+- Builds the Astro site
+- Runs the Playwright smoke tests (the HTML report is uploaded as an artifact if they fail)

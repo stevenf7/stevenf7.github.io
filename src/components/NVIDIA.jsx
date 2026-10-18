@@ -2,50 +2,9 @@ import React, { useState } from "react";
 import Fade from "./animations/Fade";
 import ViewportVideo from "./atoms/ViewportVideo";
 import { useLanguage } from "../contexts/LanguageContext";
-import data, { getText, resolveAsset } from "../data";
+import data, { getText } from "../data";
+import { NVIDIA_MEDIA as MEDIA_MAP } from "../media";
 import "../styles/NVIDIA.scss";
-
-import gr1ImitationVideo from "../images/nvidia/gr1_imitation.mp4";
-import h1FlipGif from "../images/nvidia/h1_Flip.mp4";
-import leatherbackVideo from "../images/nvidia/Leatherback.mp4";
-import h1TrainVideo from "../images/nvidia/h1_Train.mp4";
-import frankaMoveitVideo from "../images/nvidia/Franka Moveit.mp4";
-import frankaDrawerVideo from "../images/nvidia/Franka Drawer.mp4";
-import carterOutdoorVideo from "../images/nvidia/Carter Outdoor.mp4";
-import agilityWalkVideo from "../images/nvidia/Agility Walk.mp4";
-import robotStackVideo from "../images/nvidia/Robot Stack2.mp4";
-import gtc_lousd from "../images/nvidia/IMG_2228.webp";
-import gtc_sil from "../images/nvidia/gtc_sil.webp";
-import newton from "../images/nvidia/newton.webp";
-import claw from "../images/nvidia/claw.mp4";
-import urLousdVideo from "../images/publications/ur_lousd.mp4";
-import destrahVideo from "../images/publications/destrah.mp4";
-import siggraphTalk from "../images/nvidia/IMG_2877.webp";
-import gtcDexterousHands from "../images/nvidia/IMG_8301.webp";
-
-const MEDIA_SOURCES = {
-  gr1ImitationVideo,
-  h1FlipGif,
-  h1TrainVideo,
-  urLousdVideo,
-  destrahVideo,
-  frankaMoveitVideo,
-  frankaDrawerVideo,
-  claw,
-  leatherbackVideo,
-  carterOutdoorVideo,
-  agilityWalkVideo,
-  robotStackVideo,
-  gtc_lousd,
-  gtc_sil,
-  newton,
-  siggraphTalk,
-  gtcDexterousHands,
-};
-
-const MEDIA_MAP = Object.fromEntries(
-  Object.entries(MEDIA_SOURCES).map(([key, asset]) => [key, resolveAsset(asset)])
-);
 
 const NVIDIA = () => {
   const { language } = useLanguage();

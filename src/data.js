@@ -968,8 +968,8 @@ const siteData = {
         zh: "自主多机器人仓库探索与 SLAM"
       },
       subtitle: {
-        en: "UWaterloo Mechatronics Capstone · ROS & Gazebo",
-        zh: "滑铁卢大学机电工程毕业设计 · ROS 与 Gazebo"
+        en: "UWaterloo Mechatronics Capstone · ROS & Isaac Sim",
+        zh: "滑铁卢大学机电工程毕业设计 · ROS 与 Isaac Sim"
       },
       description: {
         en: "Built a multi-robot exploration and SLAM system capable of mapping an 80,000 sq ft virtual warehouse through coordinated frontier-based autonomy.",
