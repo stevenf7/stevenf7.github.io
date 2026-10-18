@@ -63,6 +63,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run content tests
+        run: npm test
+
       - name: Build website
         run: npm run build
         env:
