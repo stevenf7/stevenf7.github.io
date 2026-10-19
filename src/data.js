@@ -192,7 +192,7 @@ const siteData = {
   ],
 
   nvidiaFeaturedDemo: {
-    media: "robotStackVideo",
+    media: "gr1ImitationVideo",
     type: "video",
     badge: {
       en: "Featured NVIDIA Work",
@@ -244,7 +244,7 @@ const siteData = {
     },
     {
       id: "humanoids",
-      media: "gr1ImitationVideo",
+      media: "h1TrainVideo",
       type: "video",
       category: {
         en: "Humanoid & Legged Learning",
