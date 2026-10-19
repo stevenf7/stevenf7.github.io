@@ -1,4 +1,5 @@
 import { LANGUAGE_EVENT, getLanguageUrl, readLanguage } from "../utils/language";
+import { observeVideo } from "../utils/videoPlayback";
 
 const updateLanguageLinks = () => {
   const language = readLanguage();
@@ -55,40 +56,21 @@ const showVideoFallback = (video) => {
   video.replaceWith(fallback);
 };
 
-const playMuted = (video) => {
-  video.defaultMuted = true;
-  video.muted = true;
-  const playPromise = video.play();
-  if (playPromise && typeof playPromise.catch === "function") {
-    playPromise.catch(() => {});
-  }
-};
-
 const autoplayViewportVideos = () => {
-  const videos = document.querySelectorAll("video[data-viewport-video]");
-  const observer =
-    "IntersectionObserver" in window
-      ? new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) playMuted(entry.target);
-            });
-          },
-          { rootMargin: "300px 0px", threshold: 0.1 }
-        )
-      : null;
-
-  videos.forEach((video) => {
+  document.querySelectorAll("video[data-viewport-video]").forEach((video) => {
     if (video.error) {
       showVideoFallback(video);
       return;
     }
-    video.addEventListener("error", () => showVideoFallback(video), { once: true });
-    if (observer) {
-      observer.observe(video);
-    } else {
-      playMuted(video);
-    }
+    const stopObserving = observeVideo(video);
+    video.addEventListener(
+      "error",
+      () => {
+        stopObserving();
+        showVideoFallback(video);
+      },
+      { once: true }
+    );
   });
 };
 

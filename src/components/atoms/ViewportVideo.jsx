@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { isVideoFile } from "../../utils/media";
+import { observeVideo } from "../../utils/videoPlayback";
 
 export { isVideoFile };
 
@@ -16,69 +17,15 @@ const ViewportVideo = ({
   const videoRef = useRef(null);
   const [hasError, setHasError] = useState(false);
 
-  const forcePlay = useCallback(
-    (videoElement) => {
-      const video = videoElement || videoRef.current;
-      if (!video || !autoPlay) return;
-
-      video.defaultMuted = true;
-      video.muted = true;
-      video.loop = true;
-      video.playsInline = true;
-
-      const playPromise = video.play();
-      if (playPromise && typeof playPromise.catch === "function") {
-        playPromise.catch(() => {
-          setTimeout(() => {
-            if (videoRef.current) {
-              videoRef.current.defaultMuted = true;
-              videoRef.current.muted = true;
-              videoRef.current.play().catch(() => {});
-            }
-          }, 120);
-        });
-      }
-    },
-    [autoPlay]
-  );
-
   useEffect(() => {
     setHasError(false);
   }, [src]);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || hasError) return undefined;
-
-    forcePlay(video);
-
-    if (
-      typeof window === "undefined" ||
-      typeof IntersectionObserver === "undefined"
-    ) {
-      return undefined;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            forcePlay(video);
-          }
-        });
-      },
-      {
-        rootMargin: "300px 0px",
-        threshold: 0.1,
-      }
-    );
-
-    observer.observe(video);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [forcePlay, hasError, src]);
+    if (!video || hasError || !autoPlay) return undefined;
+    return observeVideo(video);
+  }, [autoPlay, hasError, src]);
 
   if (hasError || !src) {
     return (
@@ -108,14 +55,6 @@ const ViewportVideo = ({
       disablePictureInPicture
       aria-label={alt || undefined}
       style={style}
-      onLoadedMetadata={(event) => forcePlay(event.currentTarget)}
-      onLoadedData={(event) => forcePlay(event.currentTarget)}
-      onCanPlay={(event) => forcePlay(event.currentTarget)}
-      onEnded={(event) => {
-        const video = event.currentTarget;
-        video.currentTime = 0;
-        forcePlay(video);
-      }}
       onError={() => setHasError(true)}
     />
   );
