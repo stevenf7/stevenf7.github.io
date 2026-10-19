@@ -113,6 +113,27 @@ test("education card opens and closes the detail modal", async ({ page }) => {
   await expect(dialog).toBeHidden()
 })
 
+test("blocked autoplay shows controls and resumes on the first tap", async ({ page }) => {
+  // Mimics Safari with Low Power Mode, where play() rejects until a user gesture.
+  await page.addInitScript(() => {
+    let allowPlay = false
+    document.addEventListener("click", () => (allowPlay = true), { capture: true })
+    HTMLMediaElement.prototype.play = function () {
+      return allowPlay
+        ? Promise.resolve()
+        : Promise.reject(new DOMException("blocked", "NotAllowedError"))
+    }
+  })
+  await page.goto("/")
+
+  const video = page.locator("#publications video").first()
+  await video.scrollIntoViewIfNeeded()
+  await expect(video).toHaveAttribute("controls", "")
+
+  await page.locator("#publications-heading").click()
+  await expect(video).not.toHaveAttribute("controls", "")
+})
+
 test("resume page embeds the PDF", async ({ page, request }) => {
   await page.goto("/resume/")
   const iframe = page.locator("iframe.Resume")

@@ -67,8 +67,8 @@ const siteData = {
       zh: "404: 页面未找到"
     },
     description: {
-      en: "Portfolio of Ji Yuan (Steven) Feng, Robotics Simulation Engineer at NVIDIA working on Isaac Lab, Isaac Sim, OpenUSD digital twins, humanoid learning, and ROS simulation pipelines.",
-      zh: "冯纪元个人作品集：NVIDIA 机器人仿真工程师，专注于 Isaac Lab、Isaac Sim、OpenUSD 数字孪生、人形机器人强化学习与 ROS 仿真流程。"
+      en: "Portfolio of Ji Yuan (Steven) Feng, Robotics Simulation Engineer at NVIDIA leading the Isaac Sim robot importers and exporters, with work across manipulation physics, physics-based sensors, humanoid learning, and ROS digital twins.",
+      zh: "冯纪元个人作品集：NVIDIA 机器人仿真工程师，负责 Isaac Sim 机器人导入与导出工具，工作涵盖操作物理、物理传感器、人形机器人学习与 ROS 数字孪生。"
     }
   },
 
@@ -168,22 +168,26 @@ const siteData = {
   },
 
   nvidiaLead: {
-    en: "Full-time robotics simulation work spanning Isaac Lab policy training, Isaac Sim digital twins, OpenUSD robot composition, ROS 2 software-in-the-loop pipelines, and developer talks at NVIDIA GTC, ACM SIGGRAPH, and ROSCon.",
-    zh: "全职负责 Isaac Lab 策略训练、Isaac Sim 高保真数字孪生、OpenUSD 机器人资产组合、ROS 2 软件在环流程，并在 NVIDIA GTC、ACM SIGGRAPH 与 ROSCon 发表技术演讲。"
+    en: "I build the robotics simulation foundations in NVIDIA Isaac Sim, from leading the robot importers and exporters to manipulation physics, physics-based sensors, and the sim-ready robot library, and teach these workflows at NVIDIA GTC, ACM SIGGRAPH, and ROSCon.",
+    zh: "我在 NVIDIA Isaac Sim 中构建机器人仿真基础能力，包括负责机器人导入与导出工具、操作与接触物理、物理传感器以及仿真就绪机器人资产库，并在 NVIDIA GTC、ACM SIGGRAPH 与 ROSCon 讲授相关工作流。"
   },
 
   nvidiaExperience: [
     {
-      en: "In Isaac Lab, I develop scalable humanoid and legged robot models and reinforcement-learning locomotion and manipulation workflows.",
-      zh: "在 Isaac Lab 中开发可扩展的人形与足式机器人模型，以及基于强化学习的运动与操作训练流程。"
+      en: "Lead the Isaac Sim importers and exporters that bring URDF and MJCF robots into OpenUSD as modular, sim-ready assets.",
+      zh: "负责 Isaac Sim 导入与导出工具，将 URDF 与 MJCF 机器人转换为模块化、仿真就绪的 OpenUSD 资产。"
     },
     {
-      en: "In Isaac Sim, I build high-fidelity OpenUSD digital twins, physics-based sensor models, and ROS / ROS 2 inference pipelines for software-in-the-loop testing.",
-      zh: "在 Isaac Sim 中构建高保真 OpenUSD 数字孪生、物理传感器模型，以及面向软件在环测试的 ROS / ROS 2 推理管道。"
+      en: "Manipulation and contact physics: tuning joint drives, grippers, and dexterous hands for high-fidelity grasping.",
+      zh: "操作与接触物理：调优关节驱动、夹爪与灵巧手，实现高保真抓取仿真。"
     },
     {
-      en: "Through GTC labs, SIGGRAPH courses, ROSCon sessions, and white papers, I turn simulation best practices into reproducible workflows for robotics developers.",
-      zh: "通过 GTC 实验课、SIGGRAPH 课程、ROSCon 演讲与技术白皮书，将仿真最佳实践转化为机器人开发者可复用的工作流。"
+      en: "Physics-based sensors, including IMU, contact, and effort sensors.",
+      zh: "物理传感器，包括 IMU、接触与力矩传感器。"
+    },
+    {
+      en: "The Isaac Sim asset library of 100+ humanoids, quadrupeds, arms, grippers, and mobile robots.",
+      zh: "Isaac Sim 机器人资产库，涵盖 100 多款人形、四足、机械臂、夹爪与移动机器人。"
     }
   ],
 
@@ -191,24 +195,56 @@ const siteData = {
     media: "gr1ImitationVideo",
     type: "video",
     badge: {
-      en: "Featured NVIDIA Demo · Isaac Lab",
-      zh: "重点演示 · Isaac Lab"
+      en: "Featured NVIDIA Work",
+      zh: "重点工作"
     },
     title: {
-      en: "GR1 humanoid robot imitation-learning policy",
-      zh: "GR1 人形机器人模仿学习策略"
+      en: "NVIDIA Isaac Sim",
+      zh: "NVIDIA Isaac Sim"
     },
     description: {
-      en: "Full-body humanoid motion policy trained and evaluated in simulation to reproduce expressive human-like movement while maintaining balance.",
-      zh: "在仿真环境中训练与评估全身人形运动策略，在保持平衡的同时复现类人动作。"
+      en: "Core simulation work that turns real robots into accurate, sim-ready digital twins for testing, data collection, and training.",
+      zh: "将真实机器人转化为精确、仿真就绪的数字孪生，用于测试、数据采集与训练的核心仿真工作。"
     },
-    tags: ["Isaac Lab", "Humanoid Control", "Imitation Learning", "PhysX"]
+    tags: ["Isaac Sim", "OpenUSD", "PhysX", "URDF / MJCF"]
   },
 
   nvidiaCaseStudies: [
     {
+      id: "importers",
+      media: "urLousdVideo",
+      type: "video",
+      category: {
+        en: "Robot Importers & Sim-Ready Assets",
+        zh: "机器人导入工具与仿真资产"
+      },
+      title: {
+        en: "Isaac Sim importers, exporters, and the sim-ready robot library",
+        zh: "Isaac Sim 导入导出工具与仿真就绪机器人资产库"
+      },
+      summary: {
+        en: "Lead the URDF and MJCF importers and USD exporters in Isaac Sim, setting the standard for how robots become modular, simulation-ready OpenUSD assets.",
+        zh: "负责 Isaac Sim 中的 URDF、MJCF 导入工具与 USD 导出工具，制定机器人转换为模块化、可直接仿真的 OpenUSD 资产的标准。"
+      },
+      highlights: {
+        en: [
+          "Curated 100+ sim-ready humanoids, quadrupeds, manipulators, grippers, and mobile robots used across Isaac Sim and Isaac Lab.",
+          "Taught the robot asset structure at ACM SIGGRAPH 2025 (Learn OpenUSD: Robotics Best Practices) and NVIDIA GTC 2025."
+        ],
+        zh: [
+          "维护 100 多款仿真就绪的人形、四足、机械臂、夹爪与移动机器人，供 Isaac Sim 与 Isaac Lab 使用。",
+          "在 ACM SIGGRAPH 2025（Learn OpenUSD：机器人最佳实践）与 NVIDIA GTC 2025 讲授机器人资产结构。"
+        ]
+      },
+      tags: ["Isaac Sim", "URDF / MJCF", "OpenUSD", "Asset Pipelines"],
+      link: {
+        text: { en: "View SIGGRAPH OpenUSD Lab", zh: "查看 SIGGRAPH OpenUSD 课程" },
+        url: "https://dl.acm.org/doi/10.1145/3721251.3736528"
+      }
+    },
+    {
       id: "humanoids",
-      media: "agilityWalkVideo",
+      media: "h1TrainVideo",
       type: "video",
       category: {
         en: "Humanoid & Legged Learning",
@@ -219,8 +255,8 @@ const siteData = {
         zh: "Isaac Lab 中的行走与全身控制策略"
       },
       summary: {
-        en: "Built scalable humanoid and legged simulation environments and trained reinforcement-learning policies for walking, imitation, and dynamic recovery.",
-        zh: "构建可扩展的人形与足式机器人仿真环境，训练行走、模仿学习与动态恢复等强化学习策略。"
+        en: "Built humanoid and legged robot environments and trained reinforcement-learning policies for walking, imitation, and dynamic recovery, plus a sim-to-sim pipeline for evaluating them across simulators.",
+        zh: "构建人形与足式机器人仿真环境，训练行走、模仿学习与动态恢复等强化学习策略，并开发用于跨仿真器评估策略的 sim-to-sim 流程。"
       },
       highlights: {
         en: [
@@ -232,42 +268,10 @@ const siteData = {
           "参与撰写 Isaac Lab GPU 加速机器人学习框架白皮书。"
         ]
       },
-      tags: ["Isaac Lab", "Reinforcement Learning", "Humanoids", "PyTorch"],
+      tags: ["Isaac Lab", "Reinforcement Learning", "Humanoids", "Whole-Body Control"],
       link: {
         text: { en: "Read Isaac Lab White Paper", zh: "阅读 Isaac Lab 白皮书" },
         url: "https://arxiv.org/abs/2511.04831"
-      }
-    },
-    {
-      id: "digital-twins",
-      media: "robotStackVideo",
-      type: "video",
-      category: {
-        en: "OpenUSD Digital Twins & ROS 2",
-        zh: "OpenUSD 数字孪生与 ROS 2"
-      },
-      title: {
-        en: "End-to-end URDF-to-USD and software-in-the-loop workflows",
-        zh: "从 URDF 到 USD 的端到端软件在环仿真流程"
-      },
-      summary: {
-        en: "Connected robot asset authoring, physics tuning, synthetic sensors, and ROS 2 autonomy stacks for repeatable simulation testing in Isaac Sim.",
-        zh: "打通机器人资产构建、物理调参、合成传感器与 ROS 2 自主栈，在 Isaac Sim 中实现可重复的软件在环测试。"
-      },
-      highlights: {
-        en: [
-          "Covers full robot stacks, Franka MoveIt motion planning, outdoor mobile navigation, and Ackermann steering models.",
-          "Presented at ROSCon 2026, ACM SIGGRAPH 2025, and NVIDIA GTC 2025."
-        ],
-        zh: [
-          "覆盖完整机器人软件栈、Franka MoveIt 运动规划、户外移动导航与阿克曼转向模型。",
-          "相关工作发表于 ROSCon 2026、ACM SIGGRAPH 2025 与 NVIDIA GTC 2025。"
-        ]
-      },
-      tags: ["Isaac Sim", "OpenUSD", "ROS 2", "SIL Testing"],
-      link: {
-        text: { en: "View SIGGRAPH Digital Twin Paper", zh: "查看 SIGGRAPH 数字孪生论文" },
-        url: "https://dl.acm.org/doi/10.1145/3721251.3734066"
       }
     },
     {
@@ -275,8 +279,8 @@ const siteData = {
       media: "destrahVideo",
       type: "video",
       category: {
-        en: "Manipulation & Contact Physics",
-        zh: "灵巧操作与接触物理"
+        en: "Manipulation & Asset Tuning",
+        zh: "灵巧操作与资产调优"
       },
       title: {
         en: "Dexterous hands, articulated arms, and PhysX tuning",
@@ -321,11 +325,11 @@ const siteData = {
       highlights: {
         en: [
           "Talks span GTC 2025/2026, SIGGRAPH 2025/2026, ROSCon 2026, and live Newton physics engine showcases.",
-          "Focused on practical OpenUSD composition, sensor setup, and policy deployment."
+          "Presented digital twin and ROS 2 software-in-the-loop workflows to 200+ attendees, covering robot import, OpenUSD composition, and sensor setup."
         ],
         zh: [
           "涵盖 GTC 2025/2026、SIGGRAPH 2025/2026、ROSCon 2026 以及 Newton 下一代物理引擎展示。",
-          "聚焦 OpenUSD 资产组合、传感器配置与策略部署实践。"
+          "向 200 多位参会者展示数字孪生与 ROS 2 软件在环工作流，涵盖机器人导入、OpenUSD 资产组合与传感器配置。"
         ]
       },
       tags: ["NVIDIA GTC", "ACM SIGGRAPH", "ROSCon", "Newton"],
@@ -337,97 +341,6 @@ const siteData = {
   ],
 
   nvidiaCarouselItems: [
-    {
-      media: "gr1ImitationVideo",
-      type: "video",
-      category: { en: "Humanoid IL", zh: "人形模仿学习" },
-      title: {
-        en: "GR1 humanoid robot imitation-learning policy",
-        zh: "GR1 人形机器人模仿学习策略"
-      },
-      description: {
-        en: "GR1 humanoid robot demonstrating imitation-learning capabilities for coordinated human-like movement.",
-        zh: "GR1 人形机器人展示模仿学习能力，实现协调的类人动作。"
-      }
-    },
-    {
-      media: "agilityWalkVideo",
-      type: "video",
-      category: { en: "Humanoid RL", zh: "人形学习" },
-      title: {
-        en: "Agility humanoid robot locomotion policy",
-        zh: "Agility 人形机器人行走策略"
-      },
-      description: {
-        en: "Agility humanoid robot executing a learned bipedal walking policy in simulation.",
-        zh: "Agility 人形机器人在仿真中执行学习到的双足行走策略。"
-      }
-    },
-    {
-      media: "h1TrainVideo",
-      type: "video",
-      category: { en: "Humanoid RL", zh: "人形学习" },
-      title: {
-        en: "Training H1 humanoids to walk in parallel",
-        zh: "并行训练 H1 人形机器人行走"
-      },
-      description: {
-        en: "Multi-environment reinforcement-learning training run for Unitree H1 locomotion in Isaac Lab.",
-        zh: "在 Isaac Lab 中进行宇树 H1 行走策略的多环境并行强化学习训练。"
-      }
-    },
-    {
-      media: "h1FlipGif",
-      type: "video",
-      category: { en: "Humanoid RL", zh: "人形学习" },
-      title: {
-        en: "H1 humanoid front-flip experiment",
-        zh: "H1 人形机器人前空翻实验"
-      },
-      description: {
-        en: "Dynamic whole-body control failure case during an H1 front-flip experiment in simulation.",
-        zh: "H1 机器人在仿真中尝试前空翻时的动态全身控制实验。"
-      }
-    },
-    {
-      media: "destrahVideo",
-      type: "video",
-      category: { en: "Manipulation", zh: "灵巧操作" },
-      title: {
-        en: "Dextrah dexterous manipulation task",
-        zh: "Dextrah 灵巧操作任务"
-      },
-      description: {
-        en: "Dexterous hand-arm system performing coordinated object manipulation in Isaac Sim.",
-        zh: "灵巧手与机械臂系统在 Isaac Sim 中执行协同物体操作。"
-      }
-    },
-    {
-      media: "frankaDrawerVideo",
-      type: "video",
-      category: { en: "Manipulation", zh: "灵巧操作" },
-      title: {
-        en: "Reinforcement-learning drawer manipulation",
-        zh: "基于强化学习的拉抽屉操作"
-      },
-      description: {
-        en: "Franka arm policy learning articulated drawer opening with contact-rich interaction.",
-        zh: "Franka 机械臂通过强化学习完成含接触约束的抽屉开启任务。"
-      }
-    },
-    {
-      media: "claw",
-      type: "video",
-      category: { en: "Manipulation", zh: "灵巧操作" },
-      title: {
-        en: "High-fidelity claw grasping simulation",
-        zh: "高精度机械爪抓取仿真"
-      },
-      description: {
-        en: "Contact and drive tuning for stable grasping in an articulated claw mechanism.",
-        zh: "针对关节机械爪进行接触与驱动调优，实现稳定抓取。"
-      }
-    },
     {
       media: "urLousdVideo",
       type: "video",
@@ -478,6 +391,97 @@ const siteData = {
       description: {
         en: "Wheeled RC vehicle simulation validating Ackermann steering kinematics and control.",
         zh: "验证阿克曼转向运动学与控制算法的轮式遥控车仿真。"
+      }
+    },
+    {
+      media: "destrahVideo",
+      type: "video",
+      category: { en: "Manipulation", zh: "灵巧操作" },
+      title: {
+        en: "Dextrah dexterous manipulation task",
+        zh: "Dextrah 灵巧操作任务"
+      },
+      description: {
+        en: "Dexterous hand-arm system performing coordinated object manipulation in Isaac Sim.",
+        zh: "灵巧手与机械臂系统在 Isaac Sim 中执行协同物体操作。"
+      }
+    },
+    {
+      media: "frankaDrawerVideo",
+      type: "video",
+      category: { en: "Manipulation", zh: "灵巧操作" },
+      title: {
+        en: "Reinforcement-learning drawer manipulation",
+        zh: "基于强化学习的拉抽屉操作"
+      },
+      description: {
+        en: "Franka arm policy learning articulated drawer opening with contact-rich interaction.",
+        zh: "Franka 机械臂通过强化学习完成含接触约束的抽屉开启任务。"
+      }
+    },
+    {
+      media: "claw",
+      type: "video",
+      category: { en: "Manipulation", zh: "灵巧操作" },
+      title: {
+        en: "High-fidelity claw grasping simulation",
+        zh: "高精度机械爪抓取仿真"
+      },
+      description: {
+        en: "Contact and drive tuning for stable grasping in an articulated claw mechanism.",
+        zh: "针对关节机械爪进行接触与驱动调优，实现稳定抓取。"
+      }
+    },
+    {
+      media: "gr1ImitationVideo",
+      type: "video",
+      category: { en: "Humanoid IL", zh: "人形模仿学习" },
+      title: {
+        en: "GR1 humanoid robot imitation-learning policy",
+        zh: "GR1 人形机器人模仿学习策略"
+      },
+      description: {
+        en: "GR1 humanoid robot demonstrating imitation-learning capabilities for coordinated human-like movement.",
+        zh: "GR1 人形机器人展示模仿学习能力，实现协调的类人动作。"
+      }
+    },
+    {
+      media: "agilityWalkVideo",
+      type: "video",
+      category: { en: "Humanoid RL", zh: "人形学习" },
+      title: {
+        en: "Agility humanoid robot locomotion policy",
+        zh: "Agility 人形机器人行走策略"
+      },
+      description: {
+        en: "Agility humanoid robot executing a learned bipedal walking policy in simulation.",
+        zh: "Agility 人形机器人在仿真中执行学习到的双足行走策略。"
+      }
+    },
+    {
+      media: "h1TrainVideo",
+      type: "video",
+      category: { en: "Humanoid RL", zh: "人形学习" },
+      title: {
+        en: "Training H1 humanoids to walk in parallel",
+        zh: "并行训练 H1 人形机器人行走"
+      },
+      description: {
+        en: "Multi-environment reinforcement-learning training run for Unitree H1 locomotion in Isaac Lab.",
+        zh: "在 Isaac Lab 中进行宇树 H1 行走策略的多环境并行强化学习训练。"
+      }
+    },
+    {
+      media: "h1FlipGif",
+      type: "video",
+      category: { en: "Humanoid RL", zh: "人形学习" },
+      title: {
+        en: "H1 humanoid front-flip experiment",
+        zh: "H1 人形机器人前空翻实验"
+      },
+      description: {
+        en: "Dynamic whole-body control failure case during an H1 front-flip experiment in simulation.",
+        zh: "H1 机器人在仿真中尝试前空翻时的动态全身控制实验。"
       }
     },
     {
