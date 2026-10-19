@@ -67,8 +67,8 @@ const siteData = {
       zh: "404: 页面未找到"
     },
     description: {
-      en: "Portfolio of Ji Yuan (Steven) Feng, Robotics Simulation Engineer at NVIDIA leading the Isaac Sim robot importers and exporters, sim-ready OpenUSD robot assets, digital twins, and ROS simulation pipelines.",
-      zh: "冯纪元个人作品集：NVIDIA 机器人仿真工程师，负责 Isaac Sim 机器人导入与导出工具、仿真就绪 OpenUSD 机器人资产、数字孪生与 ROS 仿真流程。"
+      en: "Portfolio of Ji Yuan (Steven) Feng, Robotics Simulation Engineer at NVIDIA leading the Isaac Sim robot importers and exporters, with work across manipulation physics, physics-based sensors, humanoid learning, and ROS digital twins.",
+      zh: "冯纪元个人作品集：NVIDIA 机器人仿真工程师，负责 Isaac Sim 机器人导入与导出工具，工作涵盖操作物理、物理传感器、人形机器人学习与 ROS 数字孪生。"
     }
   },
 
@@ -168,26 +168,26 @@ const siteData = {
   },
 
   nvidiaLead: {
-    en: "I lead the robot importers and exporters in Isaac Sim, which turn URDF and MJCF robots into simulation-ready OpenUSD assets, and curate the robot library used across Isaac Sim and Isaac Lab. I also build end-to-end digital twin and ROS 2 workflows and teach them at NVIDIA GTC, ACM SIGGRAPH, and ROSCon.",
-    zh: "我负责 Isaac Sim 的机器人导入与导出工具，将 URDF 与 MJCF 机器人转换为可直接用于仿真的 OpenUSD 资产，并维护 Isaac Sim 与 Isaac Lab 共用的机器人资产库。同时，我构建端到端的数字孪生与 ROS 2 工作流，并在 NVIDIA GTC、ACM SIGGRAPH 与 ROSCon 进行讲授。"
+    en: "I build the robotics simulation foundations in NVIDIA Isaac Sim, from leading the robot importers and exporters to manipulation physics, physics-based sensors, and the sim-ready robot library, and teach these workflows at NVIDIA GTC, ACM SIGGRAPH, and ROSCon.",
+    zh: "我在 NVIDIA Isaac Sim 中构建机器人仿真基础能力，包括负责机器人导入与导出工具、操作与接触物理、物理传感器以及仿真就绪机器人资产库，并在 NVIDIA GTC、ACM SIGGRAPH 与 ROSCon 讲授相关工作流。"
   },
 
   nvidiaExperience: [
     {
-      en: "Lead the Isaac Sim importers and exporters: the tools that bring URDF and MJCF robots into OpenUSD and define what a sim-ready robot looks like across NVIDIA's robotics stack.",
-      zh: "负责 Isaac Sim 机器人导入与导出工具：将 URDF 与 MJCF 机器人带入 OpenUSD，并定义 NVIDIA 机器人技术栈中“仿真就绪”机器人的标准。"
+      en: "Lead the Isaac Sim importers and exporters that bring URDF and MJCF robots into OpenUSD as modular, sim-ready assets.",
+      zh: "负责 Isaac Sim 导入与导出工具，将 URDF 与 MJCF 机器人转换为模块化、仿真就绪的 OpenUSD 资产。"
     },
     {
-      en: "Grew the Isaac Sim robot library to 100+ humanoids, quadrupeds, arms, grippers, and mobile robots that teams use for simulation, data collection, and training.",
-      zh: "将 Isaac Sim 机器人资产库扩展至 100 多款人形、四足、机械臂、夹爪与移动机器人，供各团队用于仿真、数据采集与训练。"
+      en: "Manipulation and contact physics: tuning joint drives, grippers, and dexterous hands for high-fidelity grasping.",
+      zh: "操作与接触物理：调优关节驱动、夹爪与灵巧手，实现高保真抓取仿真。"
     },
     {
-      en: "Build end-to-end digital twin workflows, from composing a robot arm with its controller to ROS 2 software-in-the-loop testing, and teach them at GTC, ROSCon, and SIGGRAPH.",
-      zh: "构建端到端数字孪生工作流，从组装机械臂与控制器到 ROS 2 软件在环测试，并在 GTC、ROSCon 与 SIGGRAPH 进行讲授。"
+      en: "Physics-based sensors, including IMU, contact, and effort sensors.",
+      zh: "物理传感器，包括 IMU、接触与力矩传感器。"
     },
     {
-      en: "Also built locomotion and manipulation learning examples and a sim-to-sim pipeline for checking how policies hold up across simulators.",
-      zh: "此外开发了运动与操作学习示例，以及用于验证策略在不同仿真器间表现的 sim-to-sim 流程。"
+      en: "The Isaac Sim asset library of 100+ humanoids, quadrupeds, arms, grippers, and mobile robots.",
+      zh: "Isaac Sim 机器人资产库，涵盖 100 多款人形、四足、机械臂、夹爪与移动机器人。"
     }
   ],
 
@@ -195,18 +195,18 @@ const siteData = {
     media: "robotStackVideo",
     type: "video",
     badge: {
-      en: "Featured NVIDIA Work · Isaac Sim Importers",
-      zh: "重点工作 · Isaac Sim 导入工具"
+      en: "Featured NVIDIA Work",
+      zh: "重点工作"
     },
     title: {
-      en: "From URDF to a sim-ready robot in Isaac Sim",
-      zh: "从 URDF 到 Isaac Sim 中的仿真就绪机器人"
+      en: "NVIDIA Isaac Sim",
+      zh: "NVIDIA Isaac Sim"
     },
     description: {
-      en: "A complete robot brought into Isaac Sim through the URDF importer and composed into a modular OpenUSD digital twin with physics, sensors, and ROS 2 control.",
-      zh: "通过 URDF 导入工具将完整机器人带入 Isaac Sim，并组合为包含物理、传感器与 ROS 2 控制的模块化 OpenUSD 数字孪生。"
+      en: "Core simulation work that turns real robots into accurate, sim-ready digital twins for testing, data collection, and training.",
+      zh: "将真实机器人转化为精确、仿真就绪的数字孪生，用于测试、数据采集与训练的核心仿真工作。"
     },
-    tags: ["Isaac Sim", "URDF / MJCF Importers", "OpenUSD", "ROS 2"]
+    tags: ["Isaac Sim", "OpenUSD", "PhysX", "URDF / MJCF"]
   },
 
   nvidiaCaseStudies: [
@@ -243,35 +243,35 @@ const siteData = {
       }
     },
     {
-      id: "digital-twins",
-      media: "frankaMoveitVideo",
+      id: "humanoids",
+      media: "gr1ImitationVideo",
       type: "video",
       category: {
-        en: "Digital Twins & ROS 2",
-        zh: "数字孪生与 ROS 2"
+        en: "Humanoid & Legged Learning",
+        zh: "人形与足式强化学习"
       },
       title: {
-        en: "End-to-end digital twin and software-in-the-loop workflows",
-        zh: "端到端数字孪生与软件在环仿真流程"
+        en: "Locomotion and whole-body learning in Isaac Lab",
+        zh: "Isaac Lab 中的行走与全身控制策略"
       },
       summary: {
-        en: "Built workflows that take a robot from import to a working digital twin, such as a robotic arm with an inverse kinematics controller, connected to ROS 2 autonomy stacks for repeatable software-in-the-loop testing.",
-        zh: "构建将机器人从导入到可用数字孪生的完整流程，例如带逆运动学控制器的机械臂，并接入 ROS 2 自主栈，实现可重复的软件在环测试。"
+        en: "Built humanoid and legged robot environments and trained reinforcement-learning policies for walking, imitation, and dynamic recovery, plus a sim-to-sim pipeline for evaluating them across simulators.",
+        zh: "构建人形与足式机器人仿真环境，训练行走、模仿学习与动态恢复等强化学习策略，并开发用于跨仿真器评估策略的 sim-to-sim 流程。"
       },
       highlights: {
         en: [
-          "Covers Franka MoveIt motion planning, outdoor mobile navigation, and Ackermann steering models.",
-          "Presented to 200+ attendees at ROSCon 2026, ACM SIGGRAPH 2025, and NVIDIA GTC 2025."
+          "GR1 imitation learning, H1 walking training, H1 dynamic flip experiments, and Agility humanoid locomotion.",
+          "Co-authored the Isaac Lab GPU-accelerated simulation framework white paper."
         ],
         zh: [
-          "覆盖 Franka MoveIt 运动规划、户外移动导航与阿克曼转向模型。",
-          "在 ROSCon 2026、ACM SIGGRAPH 2025 与 NVIDIA GTC 2025 向 200 多位参会者展示。"
+          "涵盖 GR1 模仿学习、H1 行走训练、H1 动态空翻实验与 Agility 人形行走策略。",
+          "参与撰写 Isaac Lab GPU 加速机器人学习框架白皮书。"
         ]
       },
-      tags: ["Isaac Sim", "OpenUSD", "ROS 2", "SIL Testing"],
+      tags: ["Isaac Lab", "Reinforcement Learning", "Humanoids", "Whole-Body Control"],
       link: {
-        text: { en: "View SIGGRAPH Digital Twin Paper", zh: "查看 SIGGRAPH 数字孪生论文" },
-        url: "https://dl.acm.org/doi/10.1145/3721251.3734066"
+        text: { en: "Read Isaac Lab White Paper", zh: "阅读 Isaac Lab 白皮书" },
+        url: "https://arxiv.org/abs/2511.04831"
       }
     },
     {
@@ -279,8 +279,8 @@ const siteData = {
       media: "destrahVideo",
       type: "video",
       category: {
-        en: "Manipulation & Contact Physics",
-        zh: "灵巧操作与接触物理"
+        en: "Manipulation & Asset Tuning",
+        zh: "灵巧操作与资产调优"
       },
       title: {
         en: "Dexterous hands, articulated arms, and PhysX tuning",
@@ -325,11 +325,11 @@ const siteData = {
       highlights: {
         en: [
           "Talks span GTC 2025/2026, SIGGRAPH 2025/2026, ROSCon 2026, and live Newton physics engine showcases.",
-          "Focused on robot import, OpenUSD composition, sensor setup, and ROS integration."
+          "Presented digital twin and ROS 2 software-in-the-loop workflows to 200+ attendees, covering robot import, OpenUSD composition, and sensor setup."
         ],
         zh: [
           "涵盖 GTC 2025/2026、SIGGRAPH 2025/2026、ROSCon 2026 以及 Newton 下一代物理引擎展示。",
-          "聚焦机器人导入、OpenUSD 资产组合、传感器配置与 ROS 集成实践。"
+          "向 200 多位参会者展示数字孪生与 ROS 2 软件在环工作流，涵盖机器人导入、OpenUSD 资产组合与传感器配置。"
         ]
       },
       tags: ["NVIDIA GTC", "ACM SIGGRAPH", "ROSCon", "Newton"],
