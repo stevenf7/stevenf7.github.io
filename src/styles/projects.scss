@@ -1,3 +1,5 @@
+@import "./tile-hover.scss";
+
 .project-wrapper {
   width: 100%;
   max-width: 1000px;
@@ -32,6 +34,7 @@
   border-radius: 16px;
   overflow: hidden;
   box-shadow: var(--card-shadow, 0 10px 26px rgba(15, 23, 42, 0.06));
+  @include tile-hover;
 }
 
 .project-media {
