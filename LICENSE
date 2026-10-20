@@ -9,8 +9,11 @@ This repository contains two kinds of material, licensed differently.
 The following "Personal Content" is NOT open source and is NOT covered by the
 MIT License below:
 
-  - All photographs, images, videos, animations, and PDF files, including
-    everything in the src/images/ directory and the resume;
+  - Personal photographs and videos of Ji Yuan (Steven) Feng and his work,
+    specifically the photos in the root of src/images/ (such as the profile
+    and header photos) and the photos and videos in src/images/ProjectPhotos/,
+    src/images/workPhotos/, src/images/nvidia/, and src/images/publications/;
+  - The resume (src/images/resume.pdf);
   - All written content describing Ji Yuan (Steven) Feng, including the
     biography, experience, education, project, publication, and talk
     descriptions in src/data.js and in the .astro and .jsx components, in
@@ -57,8 +60,16 @@ SOFTWARE.
 3. Third-party material
 ================================================================================
 
-Company, university, and product names and logos (including NVIDIA, Tesla,
-Ford, ecobee, Khazanah, Stanford, and the University of Waterloo), icons, and
-media created at or owned by employers or conference organizers remain the
-property of their respective owners and are used for identification and
-portfolio purposes only. Their inclusion does not grant any license to them.
+The following are not Personal Content and are not claimed by the copyright
+holder:
+
+  - Icons, including those in src/images/backgroundIcons/,
+    src/images/skillsIcon/, and src/images/contactIcon/;
+  - Company, university, and product names and logos (including NVIDIA,
+    Tesla, Ford, ecobee, Khazanah, Stanford, and the University of Waterloo),
+    including those in src/images/company/ and src/images/school/;
+  - Media created at or owned by employers or conference organizers.
+
+These remain the property of their respective owners and are used for
+identification and portfolio purposes only. Neither the MIT License above nor
+this repository grants any license to them.
