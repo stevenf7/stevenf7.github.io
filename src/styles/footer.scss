@@ -84,6 +84,12 @@
       }
     }
   }
+
+  .footer-copyright {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--text-muted, #475467);
+  }
 }
 
 [data-theme="dark"] {

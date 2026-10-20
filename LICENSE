@@ -1,14 +1,75 @@
-The BSD Zero Clause License (0BSD)
+Copyright (c) 2020-2026 Ji Yuan (Steven) Feng
 
-Copyright (c) 2020 Gatsby Inc.
+This repository contains two kinds of material, licensed differently.
 
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
+================================================================================
+1. Personal content: All Rights Reserved
+================================================================================
 
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
+The following "Personal Content" is NOT open source and is NOT covered by the
+MIT License below:
+
+  - Personal photographs and videos of Ji Yuan (Steven) Feng and his work,
+    specifically the photos in the root of src/images/ (such as the profile
+    and header photos) and the photos and videos in src/images/ProjectPhotos/,
+    src/images/workPhotos/, src/images/nvidia/, and src/images/publications/;
+  - The resume (src/images/resume.pdf);
+  - All written content describing Ji Yuan (Steven) Feng, including the
+    biography, experience, education, project, publication, and talk
+    descriptions in src/data.js and in the .astro and .jsx components, in
+    every language;
+  - The name, likeness, and personal branding of Ji Yuan (Steven) Feng.
+
+Copyright (c) 2020-2026 Ji Yuan (Steven) Feng. All rights reserved.
+
+No permission is granted to copy, reproduce, modify, distribute, publicly
+display, or create derivative works from the Personal Content, or to use it to
+train machine-learning or AI models, without prior written permission from
+the copyright holder. Viewing the website and sharing links to it are welcome.
+
+If you fork this repository to build your own website, you must remove or
+replace all Personal Content with your own.
+
+================================================================================
+2. Source code: MIT License
+================================================================================
+
+The website source code (the HTML/Astro/JSX structure, JavaScript, styles,
+configuration, tests, and build scripts), excluding the Personal Content
+described above, is licensed under the MIT License:
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+================================================================================
+3. Third-party material
+================================================================================
+
+The following are not Personal Content and are not claimed by the copyright
+holder:
+
+  - Icons, including those in src/images/backgroundIcons/,
+    src/images/skillsIcon/, and src/images/contactIcon/;
+  - Company, university, and product names and logos (including NVIDIA,
+    Tesla, Ford, ecobee, Khazanah, Stanford, and the University of Waterloo),
+    including those in src/images/company/ and src/images/school/;
+  - Media created at or owned by employers or conference organizers.
+
+These remain the property of their respective owners and are used for
+identification and portfolio purposes only. Neither the MIT License above nor
+this repository grants any license to them.

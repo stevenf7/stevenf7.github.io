@@ -150,7 +150,11 @@ const siteData = {
   },
 
   footer: {
-    madeBy: { en: "Made by", zh: "作者" }
+    madeBy: { en: "Made by", zh: "作者" },
+    rights: {
+      en: "Photos, videos, and written content: all rights reserved.",
+      zh: "照片、视频与文字内容：保留所有权利。"
+    }
   },
 
   modal: {
