@@ -26,7 +26,7 @@
   "keywords": [
     "astro"
   ],
-  "license": "0BSD",
+  "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "dev": "astro dev --host",
     "start": "astro dev --host",

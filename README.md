@@ -89,3 +89,7 @@ Every Pull Request automatically triggers a check (`.github/workflows/pr-check.y
 - Runs the content tests
 - Builds the Astro site
 - Runs the Playwright smoke tests (the HTML report is uploaded as an artifact if they fail)
+
+## License
+
+The source code is available under the MIT License. My photos, videos, resume, and written content (bio, experience, project, and publication descriptions) are **all rights reserved** and may not be reused without permission. If you fork this repo for your own site, replace that content with your own. See [`LICENSE`](LICENSE) for details.
