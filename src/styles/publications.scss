@@ -1,3 +1,5 @@
+@import "./tile-hover.scss";
+
 .publications-wrapper {
   width: 100%;
   max-width: 1000px;
@@ -22,16 +24,10 @@
   overflow: hidden;
   background: var(--pub-card-bg, #f8f9fa);
   border: 1px solid var(--border-subtle, rgba(22, 32, 42, 0.1));
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
   height: 390px;
   display: flex;
   flex-direction: column;
-
-  &:hover,
-  &:focus-within {
-    transform: translateY(-4px);
-    box-shadow: var(--card-hover-shadow, 0 12px 28px rgba(15, 23, 42, 0.1));
-
+  @include tile-hover {
     .background-video,
     .background-media {
       transform: scale(1.03);

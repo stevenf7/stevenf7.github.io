@@ -1,3 +1,5 @@
+@import "./tile-hover.scss";
+
 .card {
   width: 100%;
   min-height: 305px;
@@ -9,13 +11,7 @@
   border-radius: 15px;
   overflow: hidden;
   box-shadow: var(--card-shadow, 0 8px 24px rgba(15, 23, 42, 0.06));
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-
-  &:hover,
-  &:focus-within {
-    transform: translateY(-3px);
-    box-shadow: var(--card-hover-shadow, 0 14px 32px rgba(15, 23, 42, 0.12));
-  }
+  @include tile-hover;
 
   .card-media {
     position: relative;

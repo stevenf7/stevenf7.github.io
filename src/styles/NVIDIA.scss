@@ -1,3 +1,5 @@
+@import "./tile-hover.scss";
+
 #nvidia .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -70,6 +72,7 @@
   border-radius: 16px;
   overflow: hidden;
   box-shadow: var(--card-shadow, 0 14px 36px rgba(15, 23, 42, 0.08));
+  @include tile-hover;
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
@@ -166,6 +169,7 @@
   border-radius: 16px;
   overflow: hidden;
   box-shadow: var(--card-shadow, 0 10px 28px rgba(15, 23, 42, 0.06));
+  @include tile-hover;
 }
 
 .nvidia-case-media {
@@ -313,6 +317,7 @@
   border: 1px solid var(--border-subtle, rgba(22, 32, 42, 0.12));
   border-radius: 14px;
   overflow: hidden;
+  @include tile-hover;
 }
 
 .nvidia-gallery-media {
